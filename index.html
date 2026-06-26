@@ -39,6 +39,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#courses">Courses</a></li>
         <li><a href="#programs">Programs</a></li>
+        <li><a href="#media">Media</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#resources">Resources</a></li>
@@ -229,51 +230,239 @@
       </div>
     </section>
 
+    <!-- -------- MEDIA CENTER (AUDIO & VIDEO) -------- -->
+    <section class="section" id="media">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Media <span class="gradient-text">Center</span></h2>
+          <p class="section-subtitle">Listen to Quranic recitations and watch enlightening video lectures</p>
+        </div>
+
+        <div class="media-container grid grid-2">
+          <!-- Audio Player Block -->
+          <div class="media-card audio-card glass-card reveal-left">
+            <h3 class="media-title">🔊 Audio Recitations</h3>
+            
+            <div class="custom-audio-player">
+              <!-- Player Display -->
+              <div class="player-display">
+                <div class="audio-visualizer" id="audio-visualizer">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+                <div class="track-details">
+                  <h4 id="audio-track-title">Surah Al-Fatihah</h4>
+                  <p id="audio-track-artist">Mishary Rashid Alafasy</p>
+                </div>
+              </div>
+
+              <!-- Main controls -->
+              <div class="player-controls">
+                <button class="play-btn" id="audio-play-btn" aria-label="Play">▶</button>
+                <div class="progress-container">
+                  <span id="audio-current-time">0:00</span>
+                  <input type="range" id="audio-progress" class="progress-bar" value="0" min="0" max="100">
+                  <span id="audio-duration">0:00</span>
+                </div>
+              </div>
+
+              <!-- Volume Control -->
+              <div class="volume-container">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="audio-volume" class="volume-slider" value="80" min="0" max="100">
+              </div>
+
+              <!-- Hidden HTML5 Audio element -->
+              <audio id="html5-audio" src="https://download.quranicaudio.com/quran/mishari_rashid_alafasy/001.mp3" preload="metadata"></audio>
+            </div>
+
+            <!-- Playlist -->
+            <div class="audio-playlist" role="list">
+              <button class="playlist-item active" data-index="0" data-src="https://download.quranicaudio.com/quran/mishari_rashid_alafasy/001.mp3">
+                <span class="track-num">01</span>
+                <span class="track-name">Surah Al-Fatihah</span>
+                <span class="track-length">1:40</span>
+              </button>
+              <button class="playlist-item" data-index="1" data-src="https://download.quranicaudio.com/quran/mishari_rashid_alafasy/095.mp3">
+                <span class="track-num">95</span>
+                <span class="track-name">Surah At-Tin</span>
+                <span class="track-length">1:50</span>
+              </button>
+              <button class="playlist-item" data-index="2" data-src="https://download.quranicaudio.com/quran/mishari_rashid_alafasy/108.mp3">
+                <span class="track-num">108</span>
+                <span class="track-name">Surah Al-Kauthar</span>
+                <span class="track-length">0:45</span>
+              </button>
+              <button class="playlist-item" data-index="3" data-src="https://download.quranicaudio.com/quran/mishari_rashid_alafasy/112.mp3">
+                <span class="track-num">112</span>
+                <span class="track-name">Surah Al-Ikhlas</span>
+                <span class="track-length">0:50</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Player Block -->
+          <div class="media-card video-card glass-card reveal-right">
+            <h3 class="media-title">📺 Video Lectures</h3>
+            
+            <div class="video-player-wrapper">
+              <div class="responsive-video">
+                <iframe id="video-iframe" src="https://www.youtube.com/embed/5Hw0Q7yJigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <!-- Video Playlist -->
+            <div class="video-playlist" role="list">
+              <button class="video-item active" data-index="0" data-src="https://www.youtube.com/embed/5Hw0Q7yJigw">
+                <span class="video-thumbnail">▶</span>
+                <div class="video-details">
+                  <h4>Medina Live &amp; Scenic Reflections</h4>
+                  <p>A beautiful serene footage of Al-Masjid an-Nabawi</p>
+                </div>
+              </button>
+              <button class="video-item" data-index="1" data-src="https://www.youtube.com/embed/a7Aea3l1K5E">
+                <span class="video-thumbnail">▶</span>
+                <div class="video-details">
+                  <h4>Tajweed Basics - Proper Pronunciation</h4>
+                  <p>Introductory lesson on the rules of reciting Al-Quran</p>
+                </div>
+              </button>
+              <button class="video-item" data-index="2" data-src="https://www.youtube.com/embed/G6jWzN0u5t0">
+                <span class="video-thumbnail">▶</span>
+                <div class="video-details">
+                  <h4>Quran: The Ultimate Guide for Humanity</h4>
+                  <p>Reflecting on the purpose and message of Al-Quran</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- -------- EVENTS -------- -->
     <section class="section section-alt" id="events">
       <div class="container">
         <div class="section-header reveal">
-          <h2 class="section-title"><span class="gradient-text">Events</span></h2>
-          <p class="section-subtitle">Join us for transformative learning experiences and community gatherings</p>
+          <h2 class="section-title">Events &amp; <span class="gradient-text">Trips Calendar</span></h2>
+          <p class="section-subtitle">View our upcoming study circles, programs, and international educational journeys</p>
         </div>
 
-        <div class="events-container">
-          <div class="events-column reveal-left">
-            <h3>🔮 Upcoming Events</h3>
-            <article class="event-card">
-              <span class="event-icon">📅</span>
-              <h4>Events 2026</h4>
-              <span class="event-date">2026</span>
-              <p>Explore our upcoming events, workshops, and community gatherings planned for 2026.</p>
-              <a href="https://nurulquran.com/events-2026">View Details →</a>
-            </article>
-            <article class="event-card">
-              <span class="event-icon">🌙</span>
-              <h4>Ramadan Portal 2026</h4>
-              <span class="event-date">Ramadan 2026</span>
-              <p>Your comprehensive companion for the blessed month — daily reflections and special sessions.</p>
-              <a href="https://nurulquran.com/ramadan">View Details →</a>
-            </article>
-          </div>
-
-          <div class="events-column reveal-right">
-            <h3>📌 Past Events</h3>
-            <article class="event-card">
-              <span class="event-icon">🕋</span>
-              <h4>Saudi Arabia Ilm &amp; Umrah Trip 2024</h4>
-              <span class="event-date">2024</span>
-              <p>A blessed journey combining sacred Umrah with immersive Islamic learning in the holy lands.</p>
-              <a href="https://nurulquran.com/ksa-trip-2024">View Details →</a>
-            </article>
-            <article class="event-card">
-              <span class="event-icon">✈️</span>
-              <h4>Pakistan Trip December 2024</h4>
-              <span class="event-date">December 2024</span>
-              <p>Educational trip featuring community engagement, onsite classes, and student fellowship.</p>
-              <a href="https://nurulquran.com/pk-trip-2024">View Details →</a>
-            </article>
+        <!-- Tab Controls -->
+        <div class="events-tabs-container reveal">
+          <div class="events-tabs" role="tablist">
+            <button class="event-tab-btn active" role="tab" aria-selected="true" aria-controls="calendar-panel" id="tab-calendar">
+              🗓️ Monthly Calendar
+            </button>
+            <button class="event-tab-btn" role="tab" aria-selected="false" aria-controls="trips-panel" id="tab-trips">
+              ✈️ Trips &amp; Programs
+            </button>
           </div>
         </div>
+
+        <!-- Panel 1: Calendar View -->
+        <div class="event-panel active" id="calendar-panel" role="tabpanel" aria-labelledby="tab-calendar">
+          <div class="calendar-layout grid">
+            
+            <!-- Calendar Card -->
+            <div class="calendar-widget glass-card reveal-left">
+              <div class="calendar-header">
+                <button class="cal-nav-btn" id="prev-month" aria-label="Previous Month">&lt;</button>
+                <h3 id="calendar-month-year">July 2026</h3>
+                <button class="cal-nav-btn" id="next-month" aria-label="Next Month">&gt;</button>
+              </div>
+              <div class="calendar-weekdays">
+                <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+              </div>
+              <div class="calendar-days" id="calendar-days-grid">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+
+            <!-- Event Details Side Card -->
+            <div class="event-detail-display glass-card reveal-right" id="event-detail-card">
+              <div class="event-detail-empty" id="event-detail-empty">
+                <span class="empty-icon">📅</span>
+                <h4>Select a highlighted date</h4>
+                <p>Click on any date with a glowing indicator to view the program details and link.</p>
+              </div>
+              <div class="event-detail-content hidden" id="event-detail-content">
+                <span class="event-detail-tag" id="event-type-tag">Seminar</span>
+                <h3 id="event-detail-title">Surah Al-Mulk Study Circle</h3>
+                <div class="event-meta-item">
+                  <span class="meta-icon">⏰</span>
+                  <span id="event-detail-time">Sundays at 11:00 AM EST</span>
+                </div>
+                <div class="event-meta-item">
+                  <span class="meta-icon">📍</span>
+                  <span id="event-detail-location">Online via Zoom / Live Stream</span>
+                </div>
+                <p id="event-detail-desc" class="event-detail-desc">Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.</p>
+                <a href="https://nurulquranlive.com/" class="btn btn-primary" id="event-detail-cta" target="_blank" rel="noopener noreferrer">Join Program Live →</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 2: Trips & Programs View -->
+        <div class="event-panel" id="trips-panel" role="tabpanel" aria-labelledby="tab-trips">
+          <div class="trips-timeline">
+            
+            <div class="timeline-item reveal">
+              <div class="timeline-badge">🕋</div>
+              <div class="timeline-card glass-card">
+                <span class="trip-tag upcoming">Upcoming (October 2026)</span>
+                <h3>Saudi Arabia Ilm &amp; Umrah Trip 2026</h3>
+                <p class="trip-meta">✈️ Medina &amp; Mecca | 12 Days | Coordinated by USA &amp; UK Branches</p>
+                <p class="trip-desc">
+                  An intensive spiritual journey combining the sacred Umrah pilgrimage with daily interactive Quran study circles, Seerah lectures, and historical tours of key Islamic sites.
+                </p>
+                <div class="trip-footer">
+                  <a href="https://nurulquran.com/ksa-trip-2026/" class="btn btn-outline">Registration Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-badge">✈️</div>
+              <div class="timeline-card glass-card">
+                <span class="trip-tag upcoming">Upcoming (Dec 2026)</span>
+                <h3>Pakistan Tour &amp; Student Retreat 2026</h3>
+                <p class="trip-meta">✈️ Lahore &amp; Islamabad | 10 Days | Onsite Fellowship</p>
+                <p class="trip-desc">
+                  A beautiful opportunity for international students to gather for a spiritual retreat, participate in community service projects, and attend specialized onsite workshops.
+                </p>
+                <div class="trip-footer">
+                  <a href="https://nurulquran.com/pk-trip-2026/" class="btn btn-outline">Join Waitlist →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-badge">🎓</div>
+              <div class="timeline-card glass-card">
+                <span class="trip-tag past">Past Event</span>
+                <h3>Saudi Arabia Ilm &amp; Umrah Trip 2024</h3>
+                <p class="trip-meta">Medina &amp; Mecca | Completed</p>
+                <p class="trip-desc">
+                  Our successful 2024 trip that combined beautiful Umrah rituals with immersive daily classes on Seerah and Tazkiyah in the holy cities.
+                </p>
+                <div class="trip-footer">
+                  <a href="https://nurulquran.com/ksa-trip-2024/" class="btn btn-secondary">View Photo Gallery →</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 

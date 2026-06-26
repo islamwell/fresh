@@ -1419,6 +1419,647 @@ p {
 }
 
 /* ============================================================
+   17. MEDIA CENTER (AUDIO & VIDEO PLAYER)
+   ============================================================ */
+.media-container {
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.media-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.media-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-heading);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.75rem;
+}
+
+/* Custom Audio Player */
+.custom-audio-player {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.player-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Visualizer bars */
+.audio-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  width: 48px;
+  height: 36px;
+}
+
+.audio-visualizer .bar {
+  width: 3px;
+  height: 20%;
+  background: var(--color-gold);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.audio-visualizer.playing .bar {
+  animation: visualize 1.2s ease-in-out infinite alternate;
+}
+
+.audio-visualizer.playing .bar:nth-child(1) { animation-delay: 0.1s; }
+.audio-visualizer.playing .bar:nth-child(2) { animation-delay: 0.4s; }
+.audio-visualizer.playing .bar:nth-child(3) { animation-delay: 0.2s; }
+.audio-visualizer.playing .bar:nth-child(4) { animation-delay: 0.6s; }
+.audio-visualizer.playing .bar:nth-child(5) { animation-delay: 0.3s; }
+.audio-visualizer.playing .bar:nth-child(6) { animation-delay: 0.5s; }
+.audio-visualizer.playing .bar:nth-child(7) { animation-delay: 0.1s; }
+.audio-visualizer.playing .bar:nth-child(8) { animation-delay: 0.7s; }
+
+@keyframes visualize {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+.track-details h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-heading);
+}
+
+.track-details p {
+  font-size: 0.85rem;
+  margin: 0.2rem 0 0 0;
+  opacity: 0.7;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.play-btn {
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--btn-text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+  background: var(--btn-hover);
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: var(--border-light);
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.progress-bar::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.volume-slider {
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: var(--border-light);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-heading);
+  cursor: pointer;
+}
+
+/* Playlist styling */
+.audio-playlist, .video-playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 220px;
+  padding-right: 0.5rem;
+}
+
+.playlist-item, .video-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  width: 100%;
+}
+
+.playlist-item:hover, .video-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-gold);
+  transform: translateX(4px);
+}
+
+.playlist-item.active, .video-item.active {
+  background: rgba(124, 156, 255, 0.08);
+  border-color: var(--color-gold);
+}
+
+.playlist-item.active .track-name, .video-item.active h4 {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.track-num {
+  font-weight: 700;
+  opacity: 0.5;
+  width: 30px;
+}
+
+.track-name {
+  flex: 1;
+}
+
+.track-length {
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+
+/* Video Showcase Styles */
+.video-player-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-item {
+  gap: 1rem;
+}
+
+.video-thumbnail {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.video-details h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+}
+
+.video-details p {
+  margin: 0.15rem 0 0 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Custom Scrollbar for playlists */
+.audio-playlist::-webkit-scrollbar,
+.video-playlist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.audio-playlist::-webkit-scrollbar-thumb,
+.video-playlist::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   18. INTERACTIVE EVENTS & TRIPS CALENDAR
+   ============================================================ */
+.events-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.events-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  padding: 0.35rem;
+  border-radius: 50px;
+  gap: 0.25rem;
+}
+
+.event-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  font-size: 0.95rem;
+}
+
+.event-tab-btn.active {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+}
+
+.event-panel {
+  display: none;
+}
+
+.event-panel.active {
+  display: block;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Calendar View Grid */
+.calendar-layout {
+  gap: 2rem;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+@media (max-width: 992px) {
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calendar-widget {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--text-heading);
+}
+
+.cal-nav-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.cal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-gold);
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  opacity: 0.6;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.cal-day {
+  aspect-ratio: 1.1;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  position: relative;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cal-day:hover:not(.empty) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-light);
+}
+
+.cal-day.empty {
+  cursor: default;
+}
+
+.cal-day.has-event {
+  color: var(--text-heading);
+  font-weight: 600;
+  border-color: rgba(124, 156, 255, 0.15);
+  background: rgba(124, 156, 255, 0.03);
+}
+
+.cal-day.has-event:hover {
+  border-color: var(--color-gold);
+  background: rgba(124, 156, 255, 0.08);
+}
+
+.event-dot {
+  position: absolute;
+  bottom: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 8px var(--color-gold);
+}
+
+.cal-day.selected {
+  background: var(--color-gold) !important;
+  color: #000 !important;
+  border-color: var(--color-gold) !important;
+}
+
+.cal-day.selected .event-dot {
+  background: #000;
+  box-shadow: none;
+}
+
+/* Event Detail Card Display */
+.event-detail-display {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.event-detail-empty {
+  text-align: center;
+  opacity: 0.8;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.event-detail-content {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.event-detail-tag {
+  background: rgba(201, 162, 39, 0.15);
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50px;
+  display: inline-block;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.event-detail-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-heading);
+  line-height: 1.3;
+}
+
+.event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.meta-icon {
+  font-size: 1.1rem;
+}
+
+.event-detail-desc {
+  font-size: 0.95rem;
+  margin: 1.25rem 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.event-detail-cta {
+  width: fit-content;
+  margin-top: 0.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Trips Timeline panel */
+.trips-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 3rem;
+}
+
+.trips-timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-light);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-badge {
+  position: absolute;
+  left: -3rem;
+  top: 1.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+  z-index: 1;
+}
+
+.timeline-card {
+  padding: 1.75rem;
+}
+
+.trip-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.trip-tag.upcoming {
+  background: rgba(100, 255, 218, 0.15);
+  color: var(--color-teal);
+}
+
+.trip-tag.past {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.timeline-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-heading);
+}
+
+.trip-meta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.7;
+  margin: 0 0 1rem 0;
+}
+
+.trip-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+.trip-footer {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ============================================================
    19. REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {

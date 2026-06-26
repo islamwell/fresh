@@ -277,7 +277,8 @@ const TestimonialCarousel = {
     const card = this.cards[index];
     if (!card) return;
 
-    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    const cardWidth = card.offsetWidth + 24; // card width + gap
+    this.track.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
     this.currentIndex = index;
     this.updateDots();
   },
@@ -328,6 +329,302 @@ function initSmoothScroll() {
   });
 }
 
+// ---- Media Manager (Audio & Video Player) ----
+const MediaManager = {
+  init() {
+    this.audio = document.getElementById('html5-audio');
+    this.playBtn = document.getElementById('audio-play-btn');
+    this.progress = document.getElementById('audio-progress');
+    this.volume = document.getElementById('audio-volume');
+    this.currentTimeEl = document.getElementById('audio-current-time');
+    this.durationEl = document.getElementById('audio-duration');
+    this.visualizer = document.getElementById('audio-visualizer');
+    this.trackTitle = document.getElementById('audio-track-title');
+    this.playlistItems = document.querySelectorAll('.playlist-item');
+    this.videoIframe = document.getElementById('video-iframe');
+    this.videoItems = document.querySelectorAll('.video-item');
+
+    if (!this.audio) return;
+
+    // Play/Pause button
+    this.playBtn.addEventListener('click', () => this.togglePlay());
+
+    // Time update
+    this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+    
+    // Loaded metadata to set initial duration
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.durationEl.textContent = this.formatTime(this.audio.duration);
+    });
+
+    // Seek progress
+    this.progress.addEventListener('input', (e) => {
+      const pct = parseFloat(e.target.value);
+      this.audio.currentTime = (pct / 100) * this.audio.duration;
+    });
+
+    // Volume adjustment
+    this.volume.addEventListener('input', (e) => {
+      const vol = parseFloat(e.target.value) / 100;
+      this.audio.volume = vol;
+    });
+
+    // Track ended → play next or loop
+    this.audio.addEventListener('ended', () => {
+      this.visualizer.classList.remove('playing');
+      this.playBtn.textContent = '▶';
+    });
+
+    // Audio Playlist selection
+    this.playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.playlistItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        const src = item.dataset.src;
+        const name = item.querySelector('.track-name').textContent;
+        
+        this.trackTitle.textContent = name;
+        this.audio.src = src;
+        this.audio.load();
+        
+        this.play();
+      });
+    });
+
+    // Video Playlist selection
+    this.videoItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.videoItems.forEach(v => v.classList.remove('active'));
+        item.classList.add('active');
+        
+        const src = item.dataset.src;
+        this.videoIframe.src = src;
+      });
+    });
+  },
+
+  togglePlay() {
+    if (this.audio.paused) {
+      this.play();
+    } else {
+      this.pause();
+    }
+  },
+
+  play() {
+    this.audio.play().then(() => {
+      this.playBtn.textContent = '⏸';
+      this.visualizer.classList.add('playing');
+    }).catch(err => console.log("Play failed: ", err));
+  },
+
+  pause() {
+    this.audio.pause();
+    this.playBtn.textContent = '▶';
+    this.visualizer.classList.remove('playing');
+  },
+
+  onTimeUpdate() {
+    if (!this.audio.duration) return;
+    const pct = (this.audio.currentTime / this.audio.duration) * 100;
+    this.progress.value = pct;
+    this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
+  },
+
+  formatTime(secs) {
+    if (isNaN(secs)) return '0:00';
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+};
+
+// ---- Calendar & Events Manager ----
+const CalendarManager = {
+  events: {
+    '2026-07-05': {
+      title: 'Surah Al-Mulk Study Circle',
+      type: 'Weekly Circle',
+      time: 'Sundays at 11:00 AM EST',
+      location: 'Online via Zoom / Live Stream',
+      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
+      link: 'https://nurulquranlive.com/'
+    },
+    '2026-07-12': {
+      title: 'Surah Al-Mulk Study Circle',
+      type: 'Weekly Circle',
+      time: 'Sundays at 11:00 AM EST',
+      location: 'Online via Zoom / Live Stream',
+      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
+      link: 'https://nurulquranlive.com/'
+    },
+    '2026-07-15': {
+      title: 'Tajweed Masterclass for Beginners',
+      type: 'Seminar',
+      time: 'Wednesday at 6:30 PM EST',
+      location: 'Onsite (Boston, USA) & Online',
+      desc: 'A live interactive workshop focusing on the correct articulation points (Makharij) of Arabic letters. Essential for anyone wanting to improve their recitation.',
+      link: 'https://nurulquran.com/seminars/'
+    },
+    '2026-07-19': {
+      title: 'Surah Al-Mulk Study Circle',
+      type: 'Weekly Circle',
+      time: 'Sundays at 11:00 AM EST',
+      location: 'Online via Zoom / Live Stream',
+      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
+      link: 'https://nurulquranlive.com/'
+    },
+    '2026-07-24': {
+      title: 'Youth Summer Program Kickoff',
+      type: 'Youth Program',
+      time: 'Friday at 5:00 PM EST',
+      location: 'NurulQuran Center USA & UK Branches',
+      desc: 'An inspiring program kickoff for teenagers and youth. Features team-building activities, interactive discussions, and spiritual lessons.',
+      link: 'https://nurulquran.com/teens/'
+    },
+    '2026-07-26': {
+      title: 'Surah Al-Mulk Study Circle',
+      type: 'Weekly Circle',
+      time: 'Sundays at 11:00 AM EST',
+      location: 'Online via Zoom / Live Stream',
+      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
+      link: 'https://nurulquranlive.com/'
+    }
+  },
+
+  init() {
+    this.daysGrid = document.getElementById('calendar-days-grid');
+    this.monthYearEl = document.getElementById('calendar-month-year');
+    this.prevBtn = document.getElementById('prev-month');
+    this.nextBtn = document.getElementById('next-month');
+    
+    this.detailEmpty = document.getElementById('event-detail-empty');
+    this.detailContent = document.getElementById('event-detail-content');
+    this.detailTag = document.getElementById('event-type-tag');
+    this.detailTitle = document.getElementById('event-detail-title');
+    this.detailTime = document.getElementById('event-detail-time');
+    this.detailLoc = document.getElementById('event-detail-location');
+    this.detailDesc = document.getElementById('event-detail-desc');
+    this.detailCta = document.getElementById('event-detail-cta');
+
+    // Tabs
+    this.tabCalendar = document.getElementById('tab-calendar');
+    this.tabTrips = document.getElementById('tab-trips');
+    this.panelCalendar = document.getElementById('calendar-panel');
+    this.panelTrips = document.getElementById('trips-panel');
+
+    if (!this.daysGrid) return;
+
+    // Set current active date (July 2026)
+    this.currentYear = 2026;
+    this.currentMonth = 6; // 0-indexed: 6 = July
+    
+    this.renderCalendar();
+    this.setupTabs();
+
+    this.prevBtn.addEventListener('click', () => this.navigateMonth(-1));
+    this.nextBtn.addEventListener('click', () => this.navigateMonth(1));
+  },
+
+  setupTabs() {
+    const togglePanel = (showCal) => {
+      this.tabCalendar.classList.toggle('active', showCal);
+      this.tabCalendar.setAttribute('aria-selected', String(showCal));
+      this.tabTrips.classList.toggle('active', !showCal);
+      this.tabTrips.setAttribute('aria-selected', String(!showCal));
+
+      this.panelCalendar.classList.toggle('active', showCal);
+      this.panelTrips.classList.toggle('active', !showCal);
+    };
+
+    this.tabCalendar?.addEventListener('click', () => togglePanel(true));
+    this.tabTrips?.addEventListener('click', () => togglePanel(false));
+  },
+
+  navigateMonth(dir) {
+    this.currentMonth += dir;
+    if (this.currentMonth < 0) {
+      this.currentMonth = 11;
+      this.currentYear--;
+    } else if (this.currentMonth > 11) {
+      this.currentMonth = 0;
+      this.currentYear++;
+    }
+    this.renderCalendar();
+    
+    // Reset selection card
+    this.detailContent.classList.add('hidden');
+    this.detailEmpty.classList.remove('hidden');
+  },
+
+  renderCalendar() {
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    this.monthYearEl.textContent = `${monthNames[this.currentMonth]} ${this.currentYear}`;
+    
+    this.daysGrid.innerHTML = '';
+
+    const firstDayIndex = new Date(this.currentYear, this.currentMonth, 1).getDay();
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+    
+    // Empty cells for alignment before first day of month
+    for (let i = 0; i < firstDayIndex; i++) {
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'cal-day empty';
+      this.daysGrid.appendChild(emptyDiv);
+    }
+
+    // Days in current month
+    for (let day = 1; day <= lastDay; day++) {
+      const dayButton = document.createElement('button');
+      dayButton.className = 'cal-day';
+      dayButton.textContent = day;
+      
+      const dateString = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      
+      if (this.events[dateString]) {
+        dayButton.classList.add('has-event');
+        dayButton.setAttribute('aria-label', `Day ${day}, has event: ${this.events[dateString].title}`);
+        
+        // Add dot marker
+        const dot = document.createElement('span');
+        dot.className = 'event-dot';
+        dayButton.appendChild(dot);
+        
+        dayButton.addEventListener('click', () => this.showEvent(dateString, dayButton));
+      } else {
+        dayButton.setAttribute('aria-label', `Day ${day}`);
+      }
+
+      this.daysGrid.appendChild(dayButton);
+    }
+  },
+
+  showEvent(dateString, element) {
+    const event = this.events[dateString];
+    if (!event) return;
+
+    // Highlight selected day
+    this.daysGrid.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+
+    // Fill event details
+    this.detailTag.textContent = event.type;
+    this.detailTitle.textContent = event.title;
+    this.detailTime.textContent = event.time;
+    this.detailLoc.textContent = event.location;
+    this.detailDesc.textContent = event.desc;
+    this.detailCta.href = event.link;
+
+    // Swap displays
+    this.detailEmpty.classList.add('hidden');
+    this.detailContent.classList.remove('hidden');
+  }
+};
+
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
@@ -336,5 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ScrollReveal.init();
   StatCounter.init();
   TestimonialCarousel.init();
+  MediaManager.init();
+  CalendarManager.init();
   initSmoothScroll();
 });
