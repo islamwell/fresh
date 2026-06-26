@@ -1,0 +1,44 @@
+{
+  "heading": "Resources",
+  "subtitle": "A rich library of materials to support your Quranic learning journey",
+  "categories": [
+    {
+      "title": "Student's Corner",
+      "icon": "📚",
+      "items": [
+        { "title": "Student Blogs", "description": "Reflections and insights from fellow students", "link": "https://nurulquran.com/blogs/", "icon": "✏️" },
+        { "title": "Student Activities", "description": "Engage in enriching learning activities", "link": "https://nurulquran.com/students-activities/", "icon": "🎯" },
+        { "title": "Testimonials", "description": "Hear from our community of learners", "link": "https://nurulquran.com/testimonial/", "icon": "💬" }
+      ]
+    },
+    {
+      "title": "Study Notes",
+      "icon": "📝",
+      "items": [
+        { "title": "Juz Wise Rootwords", "description": "Essential Arabic rootwords organized by Juz", "link": "https://nurulquran.com/rootwords/", "icon": "🔤" },
+        { "title": "Surah Wise Flow Charts", "description": "Visual flow charts for each Surah's themes", "link": "https://nurulquran.com/surah-wise-flow-charts/", "icon": "📊" },
+        { "title": "Tafseer Notes", "description": "Detailed notes from Tafseer sessions", "link": "https://nurulquran.com/tafseer-notes-2/", "icon": "📋" }
+      ]
+    },
+    {
+      "title": "Media & Community",
+      "icon": "🌐",
+      "items": [
+        { "title": "NurulQuran Audio App", "description": "Listen to lectures on the go", "link": "https://nurulquran.com/nq-audio-app/", "icon": "🎧" },
+        { "title": "NurulQuranTV YouTube", "description": "Video lectures and Quranic content", "link": "https://www.youtube.com/nurulqurantv", "icon": "▶️" },
+        { "title": "WhatsApp Groups", "description": "Join our learning communities", "link": "https://nurulquran.com/whatsapp/", "icon": "💬" },
+        { "title": "NurulQuran Live", "description": "Live streaming classes and events", "link": "https://nurulquranlive.com/", "icon": "📡" }
+      ]
+    },
+    {
+      "title": "More Resources",
+      "icon": "📂",
+      "items": [
+        { "title": "Presentations", "description": "Educational slide decks and materials", "link": "https://nurulquran.com/presentation/", "icon": "📽️" },
+        { "title": "Reading Material", "description": "Curated articles and book recommendations", "link": "https://nurulquran.com/reading-material/", "icon": "📖" },
+        { "title": "Useful Websites", "description": "Recommended Islamic learning resources", "link": "https://nurulquran.com/useful-websites/", "icon": "🔗" },
+        { "title": "Refer a Friend", "description": "Share the gift of Quranic knowledge", "link": "https://nurulquran.com/refer/", "icon": "🤝" }
+      ]
+    }
+  ]
+}

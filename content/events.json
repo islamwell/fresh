@@ -1,0 +1,40 @@
+{
+  "heading": "Events",
+  "subtitle": "Join us for transformative learning experiences and community gatherings",
+  "upcoming": [
+    {
+      "title": "Events 2026",
+      "description": "Explore our upcoming events, workshops, and community gatherings planned for 2026. Stay connected and be part of our growing learning community.",
+      "date": "2026",
+      "status": "upcoming",
+      "link": "https://nurulquran.com/events-2026",
+      "icon": "📅"
+    },
+    {
+      "title": "Ramadan Portal 2026",
+      "description": "Your comprehensive companion for the blessed month of Ramadan. Access daily Quran reflections, special lectures, Dawrah-e-Quran sessions, and spiritual resources.",
+      "date": "Ramadan 2026",
+      "status": "upcoming",
+      "link": "https://nurulquran.com/ramadan",
+      "icon": "🌙"
+    }
+  ],
+  "past": [
+    {
+      "title": "Saudi Arabia Ilm & Umrah Trip 2024",
+      "description": "A blessed journey combining sacred Umrah with immersive Islamic learning in the holy lands. Students experienced firsthand the places of revelation and prophetic history.",
+      "date": "2024",
+      "status": "completed",
+      "link": "https://nurulquran.com/ksa-trip-2024",
+      "icon": "🕋"
+    },
+    {
+      "title": "Pakistan Trip December 2024",
+      "description": "An enriching educational trip to Pakistan featuring community engagement, onsite classes, and fellowship with students across our local branches.",
+      "date": "December 2024",
+      "status": "completed",
+      "link": "https://nurulquran.com/pk-trip-2024",
+      "icon": "✈️"
+    }
+  ]
+}

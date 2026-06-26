@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>NurulQuran — Enlighten Your Lives with the Nur of Al Quran</title>
+  <meta name="description" content="Nur-Ul-Quran International Institute offers detailed onsite and online Quranic education including Tafseer, Tajweed, Arabic Grammar, Seerah, and character building courses.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+
+  <!-- Prevent FOUC for manual theme override -->
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="#" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.jpg" alt="" width="44" height="44">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <!-- Decorative elements -->
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="hero-orb" aria-hidden="true" style="width:300px;height:300px;top:10%;left:5%;background:rgba(124,156,255,0.12);--duration:10s;--delay:0s"></div>
+    <div class="hero-orb" aria-hidden="true" style="width:200px;height:200px;top:60%;right:10%;background:rgba(100,255,218,0.1);--duration:8s;--delay:2s"></div>
+    <div class="hero-orb" aria-hidden="true" style="width:250px;height:250px;bottom:15%;left:30%;background:rgba(255,213,79,0.08);--duration:12s;--delay:4s"></div>
+    <div class="hero-orb" aria-hidden="true" style="width:150px;height:150px;top:30%;right:25%;background:rgba(244,143,177,0.08);--duration:9s;--delay:1s"></div>
+
+    <div class="hero__content">
+      <p class="hero__arabic" lang="ar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+      <h1 class="hero__title">
+        Enlighten Your Lives<br>
+        with the <span class="highlight">Nur of Al Quran</span>
+      </h1>
+      <p class="hero__subtitle">
+        Comprehensive Quranic education — Tafseer, Tajweed, Arabic Grammar, and Seerah — designed to deepen your understanding and bring you closer to Allah ﷻ.
+      </p>
+      <div class="hero__cta">
+        <a href="#courses" class="btn btn-primary">Explore Courses</a>
+        <a href="#projects" class="btn btn-secondary">Donate Now</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="scroll-arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- -------- ABOUT -------- -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">About <span class="gradient-text">NurulQuran</span></h2>
+          <p class="section-subtitle">Spreading the light of Quranic knowledge since 2008</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text reveal-left">
+            <p>
+              Nur-Ul-Quran International is an institute that offers detailed onsite and online Quranic education, which includes in-depth tafseer of the Noble Quran, an understanding of the vocabulary along with Arabic grammar and rules of proper tajweed.
+            </p>
+            <p>
+              Students are also introduced to the Seerah — biography of our beloved Prophet Muhammad ﷺ. Our courses focus on character building and personality development of the students, towards living a successful family life and effective home management.
+            </p>
+            <p>
+              Our goal is to make this precious knowledge of Al-Quran easily understandable and attainable for anyone with the desire to build a strong relationship with Allah ﷻ.
+            </p>
+            <a href="#courses" class="btn btn-outline" style="margin-top:0.5rem;">View Our Courses →</a>
+          </div>
+
+          <div class="about-stats reveal-right">
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-count="10000">0</div>
+              <div class="stat-label">Students Worldwide</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-count="25">0</div>
+              <div class="stat-label">Countries Reached</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-count="15">0</div>
+              <div class="stat-label">Years of Service</div>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-count="50">0</div>
+              <div class="stat-label">Courses Offered</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- COURSES -------- -->
+    <section class="section section-alt" id="courses">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Our <span class="gradient-text">Courses</span></h2>
+          <p class="section-subtitle">Comprehensive Quranic education designed to deepen your understanding and strengthen your connection with Allah ﷻ</p>
+        </div>
+
+        <div class="grid grid-3 stagger" id="courses-grid">
+          <!-- Populated by JS from courses.json, fallback below -->
+          <article class="course-card gradient-border-card reveal" style="--i:0">
+            <span class="card-icon">📖</span>
+            <h3>Tafseer of the Noble Quran</h3>
+            <p>In-depth explanation and interpretation of the Noble Quran, uncovering the wisdom, context, and guidance within each verse.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:1">
+            <span class="card-icon">🎙️</span>
+            <h3>Tajweed &amp; Quranic Vocabulary</h3>
+            <p>Master the art of proper Quranic recitation with precise pronunciation rules and expand your vocabulary.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:2">
+            <span class="card-icon">✍️</span>
+            <h3>Arabic Grammar</h3>
+            <p>Build a strong foundation in Arabic grammar to unlock the linguistic beauty of the Quran.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:3">
+            <span class="card-icon">🌙</span>
+            <h3>Seerah — Life of the Prophet ﷺ</h3>
+            <p>Study the inspiring biography of Prophet Muhammad ﷺ — his character, wisdom, and exemplary leadership.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:4">
+            <span class="card-icon">💎</span>
+            <h3>Character Building &amp; Development</h3>
+            <p>Foster personal growth, moral excellence, and spiritual development based on the Quran and Sunnah.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:5">
+            <span class="card-icon">🏡</span>
+            <h3>Family Life &amp; Home Management</h3>
+            <p>Practical guidance on building a successful family life through the lens of Islamic teachings.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+          <article class="course-card gradient-border-card reveal" style="--i:6">
+            <span class="card-icon">🌟</span>
+            <h3>Ambassadors of Islam</h3>
+            <p>Empowering students to become confident ambassadors of Islamic knowledge with wisdom and grace.</p>
+            <span class="card-link">Learn more →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- PROGRAMS -------- -->
+    <section class="section" id="programs">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Special <span class="gradient-text">Programs</span></h2>
+          <p class="section-subtitle">Tailored learning experiences for every age group and season</p>
+        </div>
+
+        <div class="grid grid-4 stagger">
+          <article class="program-card reveal" style="--i:0">
+            <div class="program-icon">👧</div>
+            <h3>Kids Program</h3>
+            <p>Fun, engaging Islamic learning for children with age-appropriate Quran stories, Duas, and interactive activities.</p>
+            <a href="https://nurulquran.com/kids/" class="card-link" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-weight:600;font-size:0.9rem">Explore →</a>
+          </article>
+          <article class="program-card reveal" style="--i:1">
+            <div class="program-icon">🎓</div>
+            <h3>Teens Program</h3>
+            <p>Specially designed curriculum for teenagers, addressing their unique questions and building a strong Islamic identity.</p>
+            <a href="https://nurulquran.com/teens/" class="card-link" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-weight:600;font-size:0.9rem">Explore →</a>
+          </article>
+          <article class="program-card reveal" style="--i:2">
+            <div class="program-icon">🌙</div>
+            <h3>Ramadan Portal</h3>
+            <p>Your comprehensive companion for Ramadan — daily reflections, Dawrah-e-Quran, special lectures, and spiritual resources.</p>
+            <a href="https://nurulquran.com/ramadan/" class="card-link" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-weight:600;font-size:0.9rem">Explore →</a>
+          </article>
+          <article class="program-card reveal" style="--i:3">
+            <div class="program-icon">🤝</div>
+            <h3>Volunteer</h3>
+            <p>Join our dedicated team of volunteers and contribute your skills to spreading the light of Quranic knowledge worldwide.</p>
+            <a href="https://nurulquran.com/volunteer/" class="card-link" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-weight:600;font-size:0.9rem">Join Us →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- EVENTS -------- -->
+    <section class="section section-alt" id="events">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title"><span class="gradient-text">Events</span></h2>
+          <p class="section-subtitle">Join us for transformative learning experiences and community gatherings</p>
+        </div>
+
+        <div class="events-container">
+          <div class="events-column reveal-left">
+            <h3>🔮 Upcoming Events</h3>
+            <article class="event-card">
+              <span class="event-icon">📅</span>
+              <h4>Events 2026</h4>
+              <span class="event-date">2026</span>
+              <p>Explore our upcoming events, workshops, and community gatherings planned for 2026.</p>
+              <a href="https://nurulquran.com/events-2026">View Details →</a>
+            </article>
+            <article class="event-card">
+              <span class="event-icon">🌙</span>
+              <h4>Ramadan Portal 2026</h4>
+              <span class="event-date">Ramadan 2026</span>
+              <p>Your comprehensive companion for the blessed month — daily reflections and special sessions.</p>
+              <a href="https://nurulquran.com/ramadan">View Details →</a>
+            </article>
+          </div>
+
+          <div class="events-column reveal-right">
+            <h3>📌 Past Events</h3>
+            <article class="event-card">
+              <span class="event-icon">🕋</span>
+              <h4>Saudi Arabia Ilm &amp; Umrah Trip 2024</h4>
+              <span class="event-date">2024</span>
+              <p>A blessed journey combining sacred Umrah with immersive Islamic learning in the holy lands.</p>
+              <a href="https://nurulquran.com/ksa-trip-2024">View Details →</a>
+            </article>
+            <article class="event-card">
+              <span class="event-icon">✈️</span>
+              <h4>Pakistan Trip December 2024</h4>
+              <span class="event-date">December 2024</span>
+              <p>Educational trip featuring community engagement, onsite classes, and student fellowship.</p>
+              <a href="https://nurulquran.com/pk-trip-2024">View Details →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- TESTIMONIALS -------- -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">What Our <span class="gradient-text">Students Say</span></h2>
+          <p class="section-subtitle">Hear from students whose lives have been transformed through the light of Quranic knowledge</p>
+        </div>
+
+        <div class="testimonials-track" id="testimonials-track" role="region" aria-label="Student testimonials" tabindex="0">
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">AA</div>
+            <blockquote class="testimonial-quote">The Tafseer course at NurulQuran has completely transformed my understanding of the Quran. Every class opens new doors of wisdom and brings me closer to Allah ﷻ. The depth of explanation is unparalleled.</blockquote>
+            <cite class="testimonial-name">Amna Asif</cite>
+            <span class="testimonial-role">Tafseer Student</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">S</div>
+            <blockquote class="testimonial-quote">The Ambassadors of Islam course equipped me with the confidence and knowledge to share the beauty of our deen. I feel empowered to represent Islam with wisdom and compassion.</blockquote>
+            <cite class="testimonial-name">Samra</cite>
+            <span class="testimonial-role">Ambassadors of Islam Course Student</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">PM</div>
+            <blockquote class="testimonial-quote">Even through WhatsApp, the quality of teaching is remarkable. I can learn at my own pace while managing my daily responsibilities. NurulQuran has made Quranic education truly accessible.</blockquote>
+            <cite class="testimonial-name">Parveen Mahmood</cite>
+            <span class="testimonial-role">WhatsApp Listener</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">MM</div>
+            <blockquote class="testimonial-quote">Mishal e Raah has been a guiding light in my journey of faith. The practical approach to Islamic living has helped me create a more harmonious and spiritually rich home environment.</blockquote>
+            <cite class="testimonial-name">Mrs. Muqeem</cite>
+            <span class="testimonial-role">Mishal e Raah Student</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">RS</div>
+            <blockquote class="testimonial-quote">As a professional, finding time for Islamic studies was always a challenge. NurulQuran's flexible learning options have been a blessing, allowing me to grow spiritually alongside my career.</blockquote>
+            <cite class="testimonial-name">Dr. Rifat Salim</cite>
+            <span class="testimonial-role">Listener</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">R</div>
+            <blockquote class="testimonial-quote">The NurulQuran Digital Group has become an essential part of my daily routine. The discussions and reflections shared in the group inspire me to constantly improve myself.</blockquote>
+            <cite class="testimonial-name">Rubina</cite>
+            <span class="testimonial-role">WhatsApp Student (NQDG)</span>
+          </article>
+          <article class="testimonial-card glass-card">
+            <div class="testimonial-avatar" aria-hidden="true">RA</div>
+            <blockquote class="testimonial-quote">Learning Tajweed at NurulQuran has given me the confidence to recite the Quran beautifully and correctly. The patient teaching methodology makes even complex rules easy to understand.</blockquote>
+            <cite class="testimonial-name">Rabia Akber</cite>
+            <span class="testimonial-role">Tajweed Student</span>
+          </article>
+        </div>
+
+        <div class="testimonials-dots" id="testimonials-dots" role="tablist" aria-label="Testimonial navigation"></div>
+      </div>
+    </section>
+
+    <!-- -------- RESOURCES -------- -->
+    <section class="section section-alt" id="resources">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title"><span class="gradient-text">Resources</span></h2>
+          <p class="section-subtitle">A rich library of materials to support your Quranic learning journey</p>
+        </div>
+
+        <div class="grid grid-2" id="resources-grid">
+          <!-- Student's Corner -->
+          <div class="resource-category reveal" style="--i:0">
+            <h3 class="resource-category-title">📚 Student's Corner</h3>
+            <div class="grid" style="gap:0.75rem">
+              <a href="https://nurulquran.com/blogs/" class="resource-card">
+                <span class="resource-icon">✏️</span>
+                <div class="resource-info"><h4>Student Blogs</h4><p>Reflections and insights from fellow students</p></div>
+              </a>
+              <a href="https://nurulquran.com/students-activities/" class="resource-card">
+                <span class="resource-icon">🎯</span>
+                <div class="resource-info"><h4>Student Activities</h4><p>Engage in enriching learning activities</p></div>
+              </a>
+              <a href="https://nurulquran.com/testimonial/" class="resource-card">
+                <span class="resource-icon">💬</span>
+                <div class="resource-info"><h4>Testimonials</h4><p>Hear from our community of learners</p></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Study Notes -->
+          <div class="resource-category reveal" style="--i:1">
+            <h3 class="resource-category-title">📝 Study Notes</h3>
+            <div class="grid" style="gap:0.75rem">
+              <a href="https://nurulquran.com/rootwords/" class="resource-card">
+                <span class="resource-icon">🔤</span>
+                <div class="resource-info"><h4>Juz Wise Rootwords</h4><p>Essential Arabic rootwords organized by Juz</p></div>
+              </a>
+              <a href="https://nurulquran.com/surah-wise-flow-charts/" class="resource-card">
+                <span class="resource-icon">📊</span>
+                <div class="resource-info"><h4>Surah Wise Flow Charts</h4><p>Visual flow charts for each Surah's themes</p></div>
+              </a>
+              <a href="https://nurulquran.com/tafseer-notes-2/" class="resource-card">
+                <span class="resource-icon">📋</span>
+                <div class="resource-info"><h4>Tafseer Notes</h4><p>Detailed notes from Tafseer sessions</p></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Media & Community -->
+          <div class="resource-category reveal" style="--i:2">
+            <h3 class="resource-category-title">🌐 Media &amp; Community</h3>
+            <div class="grid" style="gap:0.75rem">
+              <a href="https://nurulquran.com/nq-audio-app/" class="resource-card">
+                <span class="resource-icon">🎧</span>
+                <div class="resource-info"><h4>NurulQuran Audio App</h4><p>Listen to lectures on the go</p></div>
+              </a>
+              <a href="https://www.youtube.com/nurulqurantv" class="resource-card" target="_blank" rel="noopener noreferrer">
+                <span class="resource-icon">▶️</span>
+                <div class="resource-info"><h4>NurulQuranTV YouTube</h4><p>Video lectures and Quranic content</p></div>
+              </a>
+              <a href="https://nurulquran.com/whatsapp/" class="resource-card">
+                <span class="resource-icon">💬</span>
+                <div class="resource-info"><h4>WhatsApp Groups</h4><p>Join our learning communities</p></div>
+              </a>
+              <a href="https://nurulquranlive.com/" class="resource-card" target="_blank" rel="noopener noreferrer">
+                <span class="resource-icon">📡</span>
+                <div class="resource-info"><h4>NurulQuran Live</h4><p>Live streaming classes and events</p></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- More Resources -->
+          <div class="resource-category reveal" style="--i:3">
+            <h3 class="resource-category-title">📂 More Resources</h3>
+            <div class="grid" style="gap:0.75rem">
+              <a href="https://nurulquran.com/presentation/" class="resource-card">
+                <span class="resource-icon">📽️</span>
+                <div class="resource-info"><h4>Presentations</h4><p>Educational slide decks and materials</p></div>
+              </a>
+              <a href="https://nurulquran.com/reading-material/" class="resource-card">
+                <span class="resource-icon">📖</span>
+                <div class="resource-info"><h4>Reading Material</h4><p>Curated articles and book recommendations</p></div>
+              </a>
+              <a href="https://nurulquran.com/useful-websites/" class="resource-card">
+                <span class="resource-icon">🔗</span>
+                <div class="resource-info"><h4>Useful Websites</h4><p>Recommended Islamic learning resources</p></div>
+              </a>
+              <a href="https://nurulquran.com/refer/" class="resource-card">
+                <span class="resource-icon">🤝</span>
+                <div class="resource-info"><h4>Refer a Friend</h4><p>Share the gift of Quranic knowledge</p></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- PROJECTS / DONATE -------- -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Our <span style="color:var(--color-bright-gold)">Projects</span></h2>
+          <p class="section-subtitle">Support our mission to spread the light of Quranic knowledge across the globe</p>
+        </div>
+
+        <div class="grid grid-3 stagger">
+          <article class="project-card reveal" style="--i:0">
+            <span class="project-icon">🏛️</span>
+            <h3>Khayran Kaseer Project</h3>
+            <span class="project-subtitle">NurulQuran Institute USA</span>
+            <p>Establishing and expanding NurulQuran's presence in the United States, providing accessible Quranic education across North America.</p>
+            <a href="https://nurulquran.com/khayrankaseer-usa/">Learn More →</a>
+          </article>
+          <article class="project-card reveal" style="--i:1">
+            <span class="project-icon">🤲</span>
+            <h3>Ramadan Ration Project</h3>
+            <p>Providing essential food supplies to underprivileged families during Ramadan, ensuring no one goes hungry while fasting.</p>
+            <a href="https://nurulquran.com/ration/">Learn More →</a>
+          </article>
+          <article class="project-card reveal" style="--i:2">
+            <span class="project-icon">💝</span>
+            <h3>General Donations &amp; Zakat</h3>
+            <p>Support our ongoing operations, student scholarships, and community services through your generous contributions.</p>
+            <a href="https://nurulquran.com/donations/zakat/">Learn More →</a>
+          </article>
+        </div>
+
+        <div class="donate-cta reveal">
+          <h3 style="color:#fff;margin-bottom:0.75rem;font-size:1.5rem">Support Quranic Education</h3>
+          <p>Your generous contributions enable us to continue providing free and affordable Quranic education to students worldwide. Every donation is a Sadaqah Jariyah — a continuous charity.</p>
+          <div class="donate-buttons">
+            <a href="https://nurulquran.com/reward/" class="btn btn-donate">💖 Donate Now</a>
+            <a href="https://nurulquran.com/donations/zakat/" class="btn btn-secondary">Zakat Contributions</a>
+            <a href="https://nurulquran.com/volunteer/" class="btn btn-secondary">🤝 Volunteer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- CONTACT -------- -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Get in <span class="gradient-text">Touch</span></h2>
+          <p class="section-subtitle">Reach out to us from anywhere in the world</p>
+        </div>
+
+        <div class="contact-grid stagger">
+          <div class="contact-card reveal" style="--i:0">
+            <div class="contact-flag">🇺🇸</div>
+            <h4>USA</h4>
+            <a href="tel:+15085808350">(508) 580-8350</a>
+          </div>
+          <div class="contact-card reveal" style="--i:1">
+            <div class="contact-flag">🇬🇧</div>
+            <h4>United Kingdom</h4>
+            <a href="tel:+447429313215">+44 7429 313215</a>
+          </div>
+          <div class="contact-card reveal" style="--i:2">
+            <div class="contact-flag">🇮🇳</div>
+            <h4>India</h4>
+            <a href="tel:+919849058466">+91 98490 58466</a>
+          </div>
+          <div class="contact-card reveal" style="--i:3">
+            <div class="contact-flag">🇵🇰</div>
+            <h4>Pakistan</h4>
+            <a href="tel:+923008338033">+92 300 8338033</a>
+          </div>
+        </div>
+
+        <div class="contact-email glass-card reveal" style="text-align:center;margin-top:2rem">
+          <p style="margin-bottom:0.5rem;color:var(--text-muted)">Email us at</p>
+          <a href="mailto:info@nurulquran.com" style="font-size:1.25rem;font-weight:600">info@nurulquran.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="nav-brand" style="color:var(--text)">
+            <img src="assets/logo.jpg" alt="" width="40" height="40">
+            <span>NurulQuran</span>
+          </a>
+          <p>Nur-Ul-Quran International Institute — Enlighten Your Lives with the Nur of Al Quran.</p>
+          <div class="footer-social">
+            <a href="https://www.youtube.com/nurulqurantv" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶️</a>
+            <a href="https://nurulquran.com/whatsapp/" aria-label="WhatsApp Groups">💬</a>
+            <a href="https://nurulquranlive.com/" target="_blank" rel="noopener noreferrer" aria-label="Live Classes">📡</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="https://nurulquran.com/kids/">Kids</a></li>
+            <li><a href="https://nurulquran.com/teens/">Teens</a></li>
+            <li><a href="https://nurulquran.com/ramadan/">Ramadan Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="https://nurulquran.com/blogs/">Blogs</a></li>
+            <li><a href="https://nurulquran.com/rootwords/">Rootwords</a></li>
+            <li><a href="https://nurulquran.com/tafseer-notes-2/">Tafseer Notes</a></li>
+            <li><a href="https://nurulquran.com/reading-material/">Reading Material</a></li>
+            <li><a href="https://nurulquran.com/nq-audio-app/">Audio App</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#projects">Donate</a></li>
+            <li><a href="https://nurulquran.com/volunteer/">Volunteer</a></li>
+            <li><a href="https://nurulquran.com/refer/">Refer a Friend</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="https://nurulquran.com/about-nurulquran/">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js" defer></script>
+</body>
+</html>

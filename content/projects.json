@@ -1,0 +1,33 @@
+{
+  "heading": "Our Projects",
+  "subtitle": "Support our mission to spread the light of Quranic knowledge across the globe",
+  "donateMessage": "Your generous contributions enable us to continue providing free and affordable Quranic education to students worldwide. Every donation is a Sadaqah Jariyah — a continuous charity.",
+  "donateLink": "https://nurulquran.com/reward/",
+  "zakatLink": "https://nurulquran.com/donations/zakat/",
+  "projects": [
+    {
+      "title": "Khayran Kaseer Project",
+      "subtitle": "NurulQuran Institute USA",
+      "description": "An initiative to establish and expand NurulQuran's presence in the United States, providing accessible Quranic education to Muslim communities across North America.",
+      "link": "https://nurulquran.com/khayrankaseer-usa/",
+      "icon": "🏛️",
+      "status": "active"
+    },
+    {
+      "title": "Ramadan Ration Project",
+      "description": "Providing essential food supplies and rations to underprivileged families during the blessed month of Ramadan, ensuring no one goes hungry while fasting.",
+      "link": "https://nurulquran.com/ration/",
+      "icon": "🤲",
+      "status": "seasonal"
+    },
+    {
+      "title": "General Donations & Zakat",
+      "description": "Support our ongoing operations, student scholarships, and community services through your generous donations and Zakat contributions.",
+      "link": "https://nurulquran.com/donations/zakat/",
+      "icon": "💝",
+      "status": "active"
+    }
+  ],
+  "volunteerLink": "https://nurulquran.com/volunteer/",
+  "volunteerMessage": "Join our team of dedicated volunteers and contribute your skills to spreading the light of Quranic knowledge."
+}

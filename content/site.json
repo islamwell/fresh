@@ -1,0 +1,39 @@
+{
+  "name": "NurulQuran",
+  "fullName": "Nur-Ul-Quran International Institute",
+  "tagline": "Enlighten Your Lives with the Nur of Al Quran",
+  "mission": "Nur-Ul-Quran International is an institute that offers detailed onsite and online Quranic education, which includes in-depth tafseer of the Noble Quran, an understanding of the vocabulary along with Arabic grammar and rules of proper tajweed. Students are also introduced to the Seerah — biography of our beloved Prophet Muhammad ﷺ. Our courses focus on character building and personality development of the students, towards living a successful family life and effective home management. Our goal is to make this precious knowledge of Al-Quran easily understandable and attainable for anyone with the desire to build a strong relationship with Allah ﷻ.",
+  "stats": [
+    { "number": "10000+", "label": "Students Worldwide" },
+    { "number": "25+", "label": "Countries Reached" },
+    { "number": "15+", "label": "Years of Service" },
+    { "number": "50+", "label": "Courses Offered" }
+  ],
+  "contact": {
+    "phones": [
+      { "region": "USA", "number": "(508) 580-8350", "flag": "🇺🇸" },
+      { "region": "UK", "number": "+44 7429 313215", "flag": "🇬🇧" },
+      { "region": "India", "number": "+91 98490 58466", "flag": "🇮🇳" },
+      { "region": "Pakistan", "number": "+92 300 8338033", "flag": "🇵🇰" }
+    ],
+    "email": "info@nurulquran.com"
+  },
+  "social": {
+    "youtube": "https://www.youtube.com/nurulqurantv",
+    "whatsapp": "https://nurulquran.com/whatsapp/",
+    "website_live": "https://nurulquranlive.com/"
+  },
+  "nav": [
+    { "label": "About", "href": "#about" },
+    { "label": "Courses", "href": "#courses" },
+    { "label": "Programs", "href": "#programs" },
+    { "label": "Events", "href": "#events" },
+    { "label": "Resources", "href": "#resources" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "cta": {
+    "primary": { "label": "Explore Courses", "href": "#courses" },
+    "secondary": { "label": "Donate Now", "href": "#projects" }
+  }
+}

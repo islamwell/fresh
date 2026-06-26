@@ -1,0 +1,62 @@
+{
+  "heading": "Our Courses",
+  "subtitle": "Comprehensive Quranic education designed to deepen your understanding and strengthen your connection with Allah ﷻ",
+  "courses": [
+    {
+      "id": "tafseer",
+      "title": "Tafseer of the Noble Quran",
+      "description": "In-depth explanation and interpretation of the Noble Quran, uncovering the wisdom, context, and guidance within each verse. Explore the deeper meanings that transform your understanding of Allah's words.",
+      "icon": "📖",
+      "color": "var(--accent-gold)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "tajweed",
+      "title": "Tajweed & Quranic Vocabulary",
+      "description": "Master the art of proper Quranic recitation with precise pronunciation rules and expand your understanding of Quranic vocabulary to connect more deeply with each word you recite.",
+      "icon": "🎙️",
+      "color": "var(--accent-teal)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "arabic-grammar",
+      "title": "Arabic Grammar",
+      "description": "Build a strong foundation in Arabic grammar to unlock the linguistic beauty of the Quran. Understand sentence structures, verb forms, and grammatical rules that reveal deeper meanings.",
+      "icon": "✍️",
+      "color": "var(--primary)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "seerah",
+      "title": "Seerah — Life of the Prophet ﷺ",
+      "description": "Study the inspiring biography of Prophet Muhammad ﷺ — his character, wisdom, and exemplary leadership. Learn practical lessons from his life that guide us in our daily affairs.",
+      "icon": "🌙",
+      "color": "var(--accent-rose)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "character-building",
+      "title": "Character Building & Development",
+      "description": "Courses designed to foster personal growth, moral excellence, and spiritual development based on the teachings of the Quran and Sunnah. Transform your character from within.",
+      "icon": "💎",
+      "color": "var(--accent-gold)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "family-life",
+      "title": "Family Life & Home Management",
+      "description": "Practical guidance on building a successful family life, nurturing relationships, and managing your home effectively — all through the beautiful lens of Islamic teachings.",
+      "icon": "🏡",
+      "color": "var(--accent-teal)",
+      "link": "https://nurulquran.com/courses/"
+    },
+    {
+      "id": "ambassadors",
+      "title": "Ambassadors of Islam",
+      "description": "An advanced course empowering students to become confident ambassadors of Islamic knowledge, equipped to share the beauty of Islam with wisdom and grace.",
+      "icon": "🌟",
+      "color": "var(--primary)",
+      "link": "https://nurulquran.com/courses/"
+    }
+  ]
+}
