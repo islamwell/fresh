@@ -170,10 +170,16 @@ const adminApp = {
       const backup = localStorage.getItem('nq-admin-backup');
       if (backup) {
         if (confirm('Found unsaved changes from a previous session. Would you like to restore them?')) {
-          this.data = JSON.parse(backup);
-          this.setUnsavedChanges(true);
-          this.renderAll();
-          return;
+          try {
+            this.data = JSON.parse(backup);
+            this.setUnsavedChanges(true);
+            this.renderAll();
+            return;
+          } catch (e) {
+            console.error('Failed to parse backup:', e);
+            localStorage.removeItem('nq-admin-backup');
+            this.showToast('Failed to restore backup (corrupted data). Loading fresh data.', 'error');
+          }
         } else {
           localStorage.removeItem('nq-admin-backup');
         }
