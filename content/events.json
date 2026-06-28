@@ -1,6 +1,103 @@
 {
   "heading": "Events",
   "subtitle": "Join us for transformative learning experiences and community gatherings",
+  "calendar": [
+    {
+      "date": "2026-07-05",
+      "title": "Surah Al-Mulk Study Circle",
+      "type": "Weekly Circle",
+      "time": "Sundays at 11:00 AM EST",
+      "location": "Online via Zoom / Live Stream",
+      "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
+      "link": "https://nurulquranlive.com/",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-07-12",
+      "title": "Surah Al-Mulk Study Circle",
+      "type": "Weekly Circle",
+      "time": "Sundays at 11:00 AM EST",
+      "location": "Online via Zoom / Live Stream",
+      "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
+      "link": "https://nurulquranlive.com/",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-07-15",
+      "title": "Tajweed Masterclass for Beginners",
+      "type": "Seminar",
+      "time": "Wednesday at 6:30 PM EST",
+      "location": "Onsite (Boston, USA) & Online",
+      "description": "A live interactive workshop focusing on the correct articulation points (Makharij) of Arabic letters. Essential for anyone wanting to improve their recitation.",
+      "link": "https://nurulquran.com/seminars/",
+      "registrationForm": "https://forms.gle/example-tajweed-2026"
+    },
+    {
+      "date": "2026-07-19",
+      "title": "Surah Al-Mulk Study Circle",
+      "type": "Weekly Circle",
+      "time": "Sundays at 11:00 AM EST",
+      "location": "Online via Zoom / Live Stream",
+      "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
+      "link": "https://nurulquranlive.com/",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Youth Summer Program Kickoff",
+      "type": "Youth Program",
+      "time": "Friday at 5:00 PM EST",
+      "location": "NurulQuran Center USA & UK Branches",
+      "description": "An inspiring program kickoff for teenagers and youth. Features team-building activities, interactive discussions, and spiritual lessons.",
+      "link": "https://nurulquran.com/teens/",
+      "registrationForm": "https://forms.gle/example-youth-2026"
+    },
+    {
+      "date": "2026-07-26",
+      "title": "Surah Al-Mulk Study Circle",
+      "type": "Weekly Circle",
+      "time": "Sundays at 11:00 AM EST",
+      "location": "Online via Zoom / Live Stream",
+      "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
+      "link": "https://nurulquranlive.com/",
+      "registrationForm": ""
+    }
+  ],
+  "trips": [
+    {
+      "title": "Saudi Arabia Ilm & Umrah Trip 2026",
+      "status": "upcoming",
+      "date": "October 2026",
+      "icon": "🕋",
+      "meta": "✈️ Medina & Mecca | 12 Days | Coordinated by USA & UK Branches",
+      "description": "An intensive spiritual journey combining the sacred Umrah pilgrimage with daily interactive Quran study circles, Seerah lectures, and historical tours of key Islamic sites.",
+      "link": "https://nurulquran.com/ksa-trip-2026/",
+      "linkText": "Registration Details →",
+      "registrationForm": "https://forms.gle/example-ksa-2026"
+    },
+    {
+      "title": "Pakistan Tour & Student Retreat 2026",
+      "status": "upcoming",
+      "date": "Dec 2026",
+      "icon": "✈️",
+      "meta": "✈️ Lahore & Islamabad | 10 Days | Onsite Fellowship",
+      "description": "A beautiful opportunity for international students to gather for a spiritual retreat, participate in community service projects, and attend specialized onsite workshops.",
+      "link": "https://nurulquran.com/pk-trip-2026/",
+      "linkText": "Join Waitlist →",
+      "registrationForm": ""
+    },
+    {
+      "title": "Saudi Arabia Ilm & Umrah Trip 2024",
+      "status": "past",
+      "date": "2024",
+      "icon": "🎓",
+      "meta": "Medina & Mecca | Completed",
+      "description": "Our successful 2024 trip that combined beautiful Umrah rituals with immersive daily classes on Seerah and Tazkiyah in the holy cities.",
+      "link": "https://nurulquran.com/ksa-trip-2024/",
+      "linkText": "View Photo Gallery →",
+      "registrationForm": ""
+    }
+  ],
   "upcoming": [
     {
       "title": "Events 2026",

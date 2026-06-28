@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NurulQuran Admin Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="login-container">
+    <div class="login-card glass-card">
+      <img src="assets/logo.jpg" alt="NurulQuran Logo" class="login-logo">
+      <h2>Admin Login</h2>
+      <p>Please enter your password to access the dashboard.</p>
+      <form id="login-form">
+        <input type="password" id="admin-password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <div id="login-error" class="error-msg hidden">Incorrect password. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- Dashboard Screen (hidden initially) -->
+  <div id="dashboard-screen" class="dashboard-container hidden">
+    <!-- Sidebar -->
+    <aside class="sidebar glass-card">
+      <div class="sidebar-header">
+        <img src="assets/logo.jpg" alt="Logo" width="32" height="32">
+        <h3>Admin Panel</h3>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-tab="events">📅 Events</button>
+        <button class="nav-btn" data-tab="courses">📚 Courses</button>
+        <button class="nav-btn" data-tab="media">🎵 Media</button>
+        <button class="nav-btn" data-tab="resources">🔗 Resources</button>
+        <button class="nav-btn" data-tab="projects">🏗️ Projects</button>
+        <button class="nav-btn" data-tab="testimonials">💬 Testimonials</button>
+        <button class="nav-btn" data-tab="settings">⚙️ Settings</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-outline" style="width: 100%;">Logout</button>
+        <a href="index.html" class="back-link">← Back to Site</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Utility Bar -->
+      <header class="utility-bar glass-card">
+        <div class="status-indicator">
+          <span id="save-status" class="status-badge saved">✔️ All Changes Saved</span>
+        </div>
+        <div class="utility-actions">
+          <button id="export-btn" class="btn btn-primary" aria-label="Export all JSON files">📥 Export Data</button>
+          <label class="btn btn-secondary upload-btn">
+            📤 Import JSON
+            <input type="file" id="import-file" accept=".json" hidden>
+          </label>
+        </div>
+      </header>
+
+      <!-- Tab Content Area -->
+      <div class="tab-content" id="tab-content">
+        <!-- Events Tab -->
+        <div class="tab-pane active" id="tab-events">
+          <div class="pane-header">
+            <h2>Manage Events & Calendar</h2>
+            <button class="btn btn-primary" onclick="adminApp.openModal('event')">+ Add Event</button>
+          </div>
+          <div class="content-sections">
+            <section class="admin-section">
+              <h3>Calendar Events</h3>
+              <div class="item-list" id="list-events-calendar"></div>
+            </section>
+            <section class="admin-section">
+              <h3>Trips</h3>
+              <div class="item-list" id="list-events-trips"></div>
+            </section>
+            <section class="admin-section">
+              <h3>Upcoming General</h3>
+              <div class="item-list" id="list-events-upcoming"></div>
+            </section>
+            <section class="admin-section">
+              <h3>Past Events</h3>
+              <div class="item-list" id="list-events-past"></div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Courses Tab -->
+        <div class="tab-pane" id="tab-courses">
+          <div class="pane-header">
+            <h2>Manage Courses</h2>
+            <button class="btn btn-primary" onclick="adminApp.openModal('course')">+ Add Course</button>
+          </div>
+          <div class="item-list" id="list-courses"></div>
+        </div>
+
+        <!-- Media Tab -->
+        <div class="tab-pane" id="tab-media">
+          <div class="pane-header">
+            <h2>Manage Media</h2>
+          </div>
+          <div class="content-sections">
+             <section class="admin-section">
+                <div class="section-header-row">
+                    <h3>Audio Tracks</h3>
+                    <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('audio')">+ Add Audio</button>
+                </div>
+                <div class="item-list" id="list-media-audio"></div>
+             </section>
+             <section class="admin-section">
+                <div class="section-header-row">
+                    <h3>Video Lectures</h3>
+                    <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('video')">+ Add Video</button>
+                </div>
+                <div class="item-list" id="list-media-video"></div>
+             </section>
+          </div>
+        </div>
+
+        <!-- Resources Tab -->
+        <div class="tab-pane" id="tab-resources">
+            <div class="pane-header">
+                <h2>Manage Resources</h2>
+            </div>
+            <div class="content-sections" id="list-resources-categories">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Projects Tab -->
+        <div class="tab-pane" id="tab-projects">
+          <div class="pane-header">
+            <h2>Manage Projects</h2>
+            <button class="btn btn-primary" onclick="adminApp.openModal('project')">+ Add Project</button>
+          </div>
+          <div class="item-list" id="list-projects"></div>
+        </div>
+
+        <!-- Testimonials Tab -->
+        <div class="tab-pane" id="tab-testimonials">
+          <div class="pane-header">
+            <h2>Manage Testimonials</h2>
+            <button class="btn btn-primary" onclick="adminApp.openModal('testimonial')">+ Add Testimonial</button>
+          </div>
+          <div class="item-list" id="list-testimonials"></div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-pane" id="tab-settings">
+          <div class="pane-header">
+            <h2>Site Settings</h2>
+            <button class="btn btn-primary" onclick="adminApp.saveSettings()">Save Settings</button>
+          </div>
+          <div class="settings-form glass-card" id="settings-form-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Container -->
+  <div id="admin-modal" class="modal-overlay hidden">
+    <div class="modal-container glass-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Edit Item</h3>
+        <button class="close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="modal-form">
+            <!-- Dynamically populated based on item type -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline close-modal">Cancel</button>
+        <button class="btn btn-primary" form="modal-form" type="submit">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/admin.js?v=4"></script>
+</body>
+</html>

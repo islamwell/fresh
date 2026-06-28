@@ -37,8 +37,15 @@
   --text: #1a1a2e;
   --text-secondary: #4a4a6a;
   --text-muted: #7a7a9a;
+  --text-heading: var(--text);
   --border: rgba(26, 35, 126, 0.12);
   --border-light: rgba(26, 35, 126, 0.06);
+
+  /* Calendar Colors */
+  --cal-event-bg: #e6f4ea;
+  --cal-event-border: #1e8e3e;
+  --cal-event-text: #0d652d;
+  --cal-event-bg-hover: #ceead6;
 
   /* Glass */
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -103,8 +110,15 @@
     --text: #e8eaed;
     --text-secondary: #a0a8c0;
     --text-muted: #6b7394;
+    --text-heading: var(--text);
     --border: rgba(124, 156, 255, 0.15);
     --border-light: rgba(124, 156, 255, 0.08);
+
+    /* Calendar Colors */
+    --cal-event-bg: rgba(30, 142, 62, 0.2);
+    --cal-event-border: #81c995;
+    --cal-event-text: #81c995;
+    --cal-event-bg-hover: rgba(30, 142, 62, 0.35);
 
     --glass-bg: rgba(14, 20, 40, 0.75);
     --glass-border: rgba(124, 156, 255, 0.12);
@@ -136,8 +150,15 @@ html.dark {
   --text: #e8eaed;
   --text-secondary: #a0a8c0;
   --text-muted: #6b7394;
+    --text-heading: var(--text);
   --border: rgba(124, 156, 255, 0.15);
   --border-light: rgba(124, 156, 255, 0.08);
+
+  /* Calendar Colors */
+  --cal-event-bg: rgba(30, 142, 62, 0.2);
+  --cal-event-border: #81c995;
+  --cal-event-text: #81c995;
+  --cal-event-bg-hover: rgba(30, 142, 62, 0.35);
 
   --glass-bg: rgba(14, 20, 40, 0.75);
   --glass-border: rgba(124, 156, 255, 0.12);
@@ -167,6 +188,7 @@ html.light {
   --text: #1a1a2e;
   --text-secondary: #4a4a6a;
   --text-muted: #7a7a9a;
+  --text-heading: var(--text);
   --border: rgba(26, 35, 126, 0.12);
   --border-light: rgba(26, 35, 126, 0.06);
 
@@ -1472,7 +1494,7 @@ p {
 .audio-visualizer .bar {
   width: 3px;
   height: 20%;
-  background: var(--color-gold);
+  background: var(--accent-gold);
   border-radius: 2px;
   transition: height 0.2s ease;
 }
@@ -1516,7 +1538,7 @@ p {
 }
 
 .play-btn {
-  background: var(--btn-bg);
+  background: var(--primary);
   border: none;
   border-radius: 50%;
   width: 44px;
@@ -1524,16 +1546,16 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--btn-text);
+  color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.2s, background 0.2s;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
 }
 
 .play-btn:hover {
   transform: scale(1.05);
-  background: var(--btn-hover);
+  background: var(--primary-light);
 }
 
 .progress-container {
@@ -1559,7 +1581,7 @@ p {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--color-gold);
+  background: var(--accent-gold);
   cursor: pointer;
   transition: transform 0.1s;
 }
@@ -1622,17 +1644,17 @@ p {
 
 .playlist-item:hover, .video-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: var(--color-gold);
+  border-color: var(--accent-gold);
   transform: translateX(4px);
 }
 
 .playlist-item.active, .video-item.active {
   background: rgba(124, 156, 255, 0.08);
-  border-color: var(--color-gold);
+  border-color: var(--accent-gold);
 }
 
 .playlist-item.active .track-name, .video-item.active h4 {
-  color: var(--color-gold);
+  color: var(--accent-gold);
   font-weight: 600;
 }
 
@@ -1681,8 +1703,8 @@ p {
 }
 
 .video-thumbnail {
-  background: var(--btn-bg);
-  color: var(--btn-text);
+  background: var(--primary);
+  color: #fff;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -1749,8 +1771,8 @@ p {
 }
 
 .event-tab-btn.active {
-  background: var(--btn-bg);
-  color: var(--btn-text);
+  background: var(--primary);
+  color: #fff;
 }
 
 .event-panel {
@@ -1816,7 +1838,7 @@ p {
 
 .cal-nav-btn:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-gold);
+  border-color: var(--accent-gold);
 }
 
 .calendar-weekdays {
@@ -1861,15 +1883,15 @@ p {
 }
 
 .cal-day.has-event {
-  color: var(--text-heading);
-  font-weight: 600;
-  border-color: rgba(124, 156, 255, 0.15);
-  background: rgba(124, 156, 255, 0.03);
+  color: var(--cal-event-text);
+  font-weight: 700;
+  border-color: var(--cal-event-border);
+  background: var(--cal-event-bg);
 }
 
 .cal-day.has-event:hover {
-  border-color: var(--color-gold);
-  background: rgba(124, 156, 255, 0.08);
+  border-color: var(--cal-event-border);
+  background: var(--cal-event-bg-hover);
 }
 
 .event-dot {
@@ -1878,14 +1900,14 @@ p {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 8px var(--color-gold);
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
 }
 
 .cal-day.selected {
-  background: var(--color-gold) !important;
-  color: #000 !important;
-  border-color: var(--color-gold) !important;
+  background: var(--accent-gold) !important;
+  color: #000000 !important;
+  border-color: var(--accent-gold) !important;
 }
 
 .cal-day.selected .event-dot {
@@ -1919,7 +1941,7 @@ p {
 
 .event-detail-tag {
   background: rgba(201, 162, 39, 0.15);
-  color: var(--color-gold);
+  color: var(--accent-gold);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1998,14 +2020,14 @@ p {
   top: 1.5rem;
   width: 2.4rem;
   height: 2.4rem;
-  background: var(--btn-bg);
-  color: var(--btn-text);
+  background: var(--primary);
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   z-index: 1;
 }
 
@@ -2025,7 +2047,7 @@ p {
 
 .trip-tag.upcoming {
   background: rgba(100, 255, 218, 0.15);
-  color: var(--color-teal);
+  color: var(--accent-teal);
 }
 
 .trip-tag.past {

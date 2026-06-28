@@ -331,7 +331,7 @@ function initSmoothScroll() {
 
 // ---- Media Manager (Audio & Video Player) ----
 const MediaManager = {
-  init() {
+  async init() {
     this.audio = document.getElementById('html5-audio');
     this.playBtn = document.getElementById('audio-play-btn');
     this.progress = document.getElementById('audio-progress');
@@ -340,18 +340,116 @@ const MediaManager = {
     this.durationEl = document.getElementById('audio-duration');
     this.visualizer = document.getElementById('audio-visualizer');
     this.trackTitle = document.getElementById('audio-track-title');
-    this.playlistItems = document.querySelectorAll('.playlist-item');
     this.videoIframe = document.getElementById('video-iframe');
-    this.videoItems = document.querySelectorAll('.video-item');
+    this.audioPlaylistContainer = document.getElementById('audio-playlist-container');
+    this.videoPlaylistContainer = document.getElementById('video-playlist-container');
 
     if (!this.audio) return;
 
+    // Load media data from JSON
+    try {
+      const response = await fetch('content/media.json');
+      const data = await response.json();
+      this.renderAudioPlaylist(data.audio.tracks);
+      this.renderVideoPlaylist(data.video.items);
+    } catch (err) {
+      console.error('Failed to load media.json:', err);
+      return;
+    }
+
+    // Setup player controls
+    this.setupPlayerControls();
+  },
+
+  renderAudioPlaylist(tracks) {
+    if (!this.audioPlaylistContainer || !tracks.length) return;
+
+    this.audioPlaylistContainer.innerHTML = '';
+
+    tracks.forEach((track, index) => {
+      const btn = document.createElement('button');
+      btn.className = `playlist-item${index === 0 ? ' active' : ''}`;
+      btn.dataset.index = index;
+      btn.dataset.src = track.src;
+      btn.innerHTML = `
+        <span class="track-num">${track.surahNumber}</span>
+        <span class="track-name">${track.title}</span>
+        <span class="track-length">${track.duration}</span>
+      `;
+      this.audioPlaylistContainer.appendChild(btn);
+    });
+
+    // Set initial track from first audio track
+    const firstTrack = tracks[0];
+    this.trackTitle.textContent = firstTrack.title;
+    this.audio.src = firstTrack.src;
+
+    // Bind playlist click handlers
+    this.playlistItems = this.audioPlaylistContainer.querySelectorAll('.playlist-item');
+    this.playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.playlistItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        const src = item.dataset.src;
+        const name = item.querySelector('.track-name').textContent;
+
+        this.trackTitle.textContent = name;
+        this.audio.src = src;
+        this.audio.load();
+
+        this.play();
+      });
+    });
+  },
+
+  renderVideoPlaylist(items) {
+    if (!this.videoPlaylistContainer || !items.length) return;
+
+    this.videoPlaylistContainer.innerHTML = '';
+
+    items.forEach((item, index) => {
+      const embedSrc = `https://www.youtube.com/embed/${item.youtubeId}`;
+      const btn = document.createElement('button');
+      btn.className = `video-item${index === 0 ? ' active' : ''}`;
+      btn.dataset.index = index;
+      btn.dataset.src = embedSrc;
+      btn.innerHTML = `
+        <span class="video-thumbnail">▶</span>
+        <div class="video-details">
+          <h4>${item.title}</h4>
+          <p>${item.description}</p>
+        </div>
+      `;
+      this.videoPlaylistContainer.appendChild(btn);
+    });
+
+    // Set initial video from first video item
+    const firstVideo = items[0];
+    if (this.videoIframe) {
+      this.videoIframe.src = `https://www.youtube.com/embed/${firstVideo.youtubeId}`;
+    }
+
+    // Bind video playlist click handlers
+    this.videoItems = this.videoPlaylistContainer.querySelectorAll('.video-item');
+    this.videoItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.videoItems.forEach(v => v.classList.remove('active'));
+        item.classList.add('active');
+
+        const src = item.dataset.src;
+        this.videoIframe.src = src;
+      });
+    });
+  },
+
+  setupPlayerControls() {
     // Play/Pause button
     this.playBtn.addEventListener('click', () => this.togglePlay());
 
     // Time update
     this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
-    
+
     // Loaded metadata to set initial duration
     this.audio.addEventListener('loadedmetadata', () => {
       this.durationEl.textContent = this.formatTime(this.audio.duration);
@@ -373,34 +471,6 @@ const MediaManager = {
     this.audio.addEventListener('ended', () => {
       this.visualizer.classList.remove('playing');
       this.playBtn.textContent = '▶';
-    });
-
-    // Audio Playlist selection
-    this.playlistItems.forEach(item => {
-      item.addEventListener('click', () => {
-        this.playlistItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        const src = item.dataset.src;
-        const name = item.querySelector('.track-name').textContent;
-        
-        this.trackTitle.textContent = name;
-        this.audio.src = src;
-        this.audio.load();
-        
-        this.play();
-      });
-    });
-
-    // Video Playlist selection
-    this.videoItems.forEach(item => {
-      item.addEventListener('click', () => {
-        this.videoItems.forEach(v => v.classList.remove('active'));
-        item.classList.add('active');
-        
-        const src = item.dataset.src;
-        this.videoIframe.src = src;
-      });
     });
   },
 
@@ -442,58 +512,9 @@ const MediaManager = {
 
 // ---- Calendar & Events Manager ----
 const CalendarManager = {
-  events: {
-    '2026-07-05': {
-      title: 'Surah Al-Mulk Study Circle',
-      type: 'Weekly Circle',
-      time: 'Sundays at 11:00 AM EST',
-      location: 'Online via Zoom / Live Stream',
-      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
-      link: 'https://nurulquranlive.com/'
-    },
-    '2026-07-12': {
-      title: 'Surah Al-Mulk Study Circle',
-      type: 'Weekly Circle',
-      time: 'Sundays at 11:00 AM EST',
-      location: 'Online via Zoom / Live Stream',
-      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
-      link: 'https://nurulquranlive.com/'
-    },
-    '2026-07-15': {
-      title: 'Tajweed Masterclass for Beginners',
-      type: 'Seminar',
-      time: 'Wednesday at 6:30 PM EST',
-      location: 'Onsite (Boston, USA) & Online',
-      desc: 'A live interactive workshop focusing on the correct articulation points (Makharij) of Arabic letters. Essential for anyone wanting to improve their recitation.',
-      link: 'https://nurulquran.com/seminars/'
-    },
-    '2026-07-19': {
-      title: 'Surah Al-Mulk Study Circle',
-      type: 'Weekly Circle',
-      time: 'Sundays at 11:00 AM EST',
-      location: 'Online via Zoom / Live Stream',
-      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
-      link: 'https://nurulquranlive.com/'
-    },
-    '2026-07-24': {
-      title: 'Youth Summer Program Kickoff',
-      type: 'Youth Program',
-      time: 'Friday at 5:00 PM EST',
-      location: 'NurulQuran Center USA & UK Branches',
-      desc: 'An inspiring program kickoff for teenagers and youth. Features team-building activities, interactive discussions, and spiritual lessons.',
-      link: 'https://nurulquran.com/teens/'
-    },
-    '2026-07-26': {
-      title: 'Surah Al-Mulk Study Circle',
-      type: 'Weekly Circle',
-      time: 'Sundays at 11:00 AM EST',
-      location: 'Online via Zoom / Live Stream',
-      desc: 'Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah\'s creation and our purpose in life.',
-      link: 'https://nurulquranlive.com/'
-    }
-  },
+  events: {},
 
-  init() {
+  async init() {
     this.daysGrid = document.getElementById('calendar-days-grid');
     this.monthYearEl = document.getElementById('calendar-month-year');
     this.prevBtn = document.getElementById('prev-month');
@@ -507,6 +528,7 @@ const CalendarManager = {
     this.detailLoc = document.getElementById('event-detail-location');
     this.detailDesc = document.getElementById('event-detail-desc');
     this.detailCta = document.getElementById('event-detail-cta');
+    this.tripsContainer = document.getElementById('trips-timeline-container');
 
     // Tabs
     this.tabCalendar = document.getElementById('tab-calendar');
@@ -515,6 +537,35 @@ const CalendarManager = {
     this.panelTrips = document.getElementById('trips-panel');
 
     if (!this.daysGrid) return;
+
+    // Load events from JSON
+    try {
+      const response = await fetch('content/events.json');
+      const data = await response.json();
+
+      // Build events lookup object keyed by date string
+      this.events = {};
+      if (data.calendar && Array.isArray(data.calendar)) {
+        data.calendar.forEach(item => {
+          this.events[item.date] = {
+            title: item.title,
+            type: item.type,
+            time: item.time,
+            location: item.location,
+            desc: item.description,
+            link: item.link,
+            registrationForm: item.registrationForm || ''
+          };
+        });
+      }
+
+      // Render trips timeline
+      if (data.trips && Array.isArray(data.trips)) {
+        this.renderTrips(data.trips);
+      }
+    } catch (err) {
+      console.error('Failed to load events.json:', err);
+    }
 
     // Set current active date (July 2026)
     this.currentYear = 2026;
@@ -525,6 +576,38 @@ const CalendarManager = {
 
     this.prevBtn.addEventListener('click', () => this.navigateMonth(-1));
     this.nextBtn.addEventListener('click', () => this.navigateMonth(1));
+  },
+
+  renderTrips(trips) {
+    if (!this.tripsContainer) return;
+
+    this.tripsContainer.innerHTML = '';
+
+    trips.forEach(trip => {
+      const statusLabel = trip.status === 'upcoming'
+        ? `Upcoming (${trip.date})`
+        : 'Past Event';
+      const tagClass = trip.status === 'upcoming' ? 'upcoming' : 'past';
+      const btnClass = trip.status === 'upcoming' ? 'btn-outline' : 'btn-secondary';
+
+      const timelineItem = document.createElement('div');
+      timelineItem.className = 'timeline-item reveal';
+      timelineItem.innerHTML = `
+        <div class="timeline-badge">${trip.icon}</div>
+        <div class="timeline-card glass-card">
+          <span class="trip-tag ${tagClass}">${statusLabel}</span>
+          <h3>${trip.title}</h3>
+          <p class="trip-meta">${trip.meta}</p>
+          <p class="trip-desc">${trip.description}</p>
+          <div class="trip-footer">
+            <a href="${trip.link}" class="btn ${btnClass}">${trip.linkText}</a>
+            ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="margin-left:0.5rem">Register →</a>` : ''}
+          </div>
+        </div>
+      `;
+
+      this.tripsContainer.appendChild(timelineItem);
+    });
   },
 
   setupTabs() {
@@ -618,6 +701,21 @@ const CalendarManager = {
     this.detailLoc.textContent = event.location;
     this.detailDesc.textContent = event.desc;
     this.detailCta.href = event.link;
+
+    // Handle registration form button
+    const existingRegBtn = this.detailContent.querySelector('.event-register-btn');
+    if (existingRegBtn) existingRegBtn.remove();
+
+    if (event.registrationForm) {
+      const regBtn = document.createElement('a');
+      regBtn.href = event.registrationForm;
+      regBtn.className = 'btn btn-secondary event-register-btn';
+      regBtn.target = '_blank';
+      regBtn.rel = 'noopener noreferrer';
+      regBtn.textContent = 'Register';
+      regBtn.style.marginLeft = '0.5rem';
+      this.detailCta.parentNode.insertBefore(regBtn, this.detailCta.nextSibling);
+    }
 
     // Swap displays
     this.detailEmpty.classList.add('hidden');

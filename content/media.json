@@ -1,0 +1,61 @@
+{
+  "audio": {
+    "defaultArtist": "Mishary Rashid Alafasy",
+    "tracks": [
+      {
+        "id": 1,
+        "title": "Surah Al-Fatihah",
+        "artist": "Mishary Rashid Alafasy",
+        "surahNumber": "01",
+        "src": "https://download.quranicaudio.com/quran/mishari_rashid_alafasy/001.mp3",
+        "duration": "1:40"
+      },
+      {
+        "id": 2,
+        "title": "Surah At-Tin",
+        "artist": "Mishary Rashid Alafasy",
+        "surahNumber": "95",
+        "src": "https://download.quranicaudio.com/quran/mishari_rashid_alafasy/095.mp3",
+        "duration": "1:50"
+      },
+      {
+        "id": 3,
+        "title": "Surah Al-Kauthar",
+        "artist": "Mishary Rashid Alafasy",
+        "surahNumber": "108",
+        "src": "https://download.quranicaudio.com/quran/mishari_rashid_alafasy/108.mp3",
+        "duration": "0:45"
+      },
+      {
+        "id": 4,
+        "title": "Surah Al-Ikhlas",
+        "artist": "Mishary Rashid Alafasy",
+        "surahNumber": "112",
+        "src": "https://download.quranicaudio.com/quran/mishari_rashid_alafasy/112.mp3",
+        "duration": "0:50"
+      }
+    ]
+  },
+  "video": {
+    "items": [
+      {
+        "id": 1,
+        "title": "Medina Live & Scenic Reflections",
+        "description": "A beautiful serene footage of Al-Masjid an-Nabawi",
+        "youtubeId": "5Hw0Q7yJigw"
+      },
+      {
+        "id": 2,
+        "title": "Tajweed Basics - Proper Pronunciation",
+        "description": "Introductory lesson on the rules of reciting Al-Quran",
+        "youtubeId": "a7Aea3l1K5E"
+      },
+      {
+        "id": 3,
+        "title": "Quran: The Ultimate Guide for Humanity",
+        "description": "Reflecting on the purpose and message of Al-Quran",
+        "youtubeId": "G6jWzN0u5t0"
+      }
+    ]
+  }
+}
