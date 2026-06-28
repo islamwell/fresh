@@ -67,23 +67,34 @@
         <div class="tab-pane active" id="tab-events">
           <div class="pane-header">
             <h2>Manage Events & Calendar</h2>
-            <button class="btn btn-primary" onclick="adminApp.openModal('event')">+ Add Event</button>
           </div>
           <div class="content-sections">
             <section class="admin-section">
-              <h3>Calendar Events</h3>
+              <div class="section-header-inline">
+                <h3>Calendar Events</h3>
+                <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('event', null, 'calendar')">+ Add Event</button>
+              </div>
               <div class="item-list" id="list-events-calendar"></div>
             </section>
             <section class="admin-section">
-              <h3>Trips</h3>
+              <div class="section-header-inline">
+                <h3>Trips</h3>
+                <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('event', null, 'trips')">+ Add Trip</button>
+              </div>
               <div class="item-list" id="list-events-trips"></div>
             </section>
             <section class="admin-section">
-              <h3>Upcoming General</h3>
+              <div class="section-header-inline">
+                <h3>Upcoming General</h3>
+                <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('event', null, 'upcoming')">+ Add General Event</button>
+              </div>
               <div class="item-list" id="list-events-upcoming"></div>
             </section>
             <section class="admin-section">
-              <h3>Past Events</h3>
+              <div class="section-header-inline">
+                <h3>Past Events</h3>
+                <button class="btn btn-primary btn-sm" onclick="adminApp.openModal('event', null, 'past')">+ Add Past Event</button>
+              </div>
               <div class="item-list" id="list-events-past"></div>
             </section>
           </div>

@@ -254,6 +254,22 @@ const adminApp = {
       `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'trips')">Edit</button>
        <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'trips')">Delete</button>`
     )).join('');
+
+    // Upcoming General
+    const upcomingList = document.getElementById('list-events-upcoming');
+    upcomingList.innerHTML = (d.upcoming || []).map((e, i) => this.generateCardHTML(
+      `${e.icon} ${e.title}`, e.status, e.date, e.description,
+      `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'upcoming')">Edit</button>
+       <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'upcoming')">Delete</button>`
+    )).join('');
+
+    // Past General
+    const pastList = document.getElementById('list-events-past');
+    pastList.innerHTML = (d.past || []).map((e, i) => this.generateCardHTML(
+      `${e.icon} ${e.title}`, e.status, e.date, e.description,
+      `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'past')">Edit</button>
+       <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'past')">Delete</button>`
+    )).join('');
   },
 
   renderCourses() {
@@ -424,6 +440,15 @@ const adminApp = {
         <div class="form-group"><label>More Info Link</label><input type="url" name="link" value="${item.link || ''}"></div>
         <div class="form-group"><label>Link Text</label><input type="text" name="linkText" value="${item.linkText || 'Details →'}"></div>
         <div class="form-group"><label>Registration Form (Google Form URL)</label><input type="url" name="registrationForm" value="${item.registrationForm || ''}"></div>
+      `;
+    } else if (type === 'event' && (subList === 'upcoming' || subList === 'past')) {
+       html = `
+        <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
+        <div class="form-group"><label>Date/Year</label><input type="text" name="date" value="${item.date || ''}" required></div>
+        <div class="form-group"><label>Status</label><input type="text" name="status" value="${item.status || ''}" required></div>
+        <div class="form-group"><label>Icon Emoji</label><input type="text" name="icon" value="${item.icon || ''}" required></div>
+        <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
+        <div class="form-group"><label>Link</label><input type="url" name="link" value="${item.link || ''}"></div>
       `;
     } else if (type === 'course') {
       html = `

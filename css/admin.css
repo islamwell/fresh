@@ -303,6 +303,19 @@ label {
   margin-bottom: 2.5rem;
 }
 
+.section-header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header-inline h3 {
+  margin: 0;
+  color: var(--accent-gold);
+  font-size: 1.25rem;
+}
+
 .admin-section h3 {
   color: var(--accent-gold);
   margin-bottom: 1rem;
