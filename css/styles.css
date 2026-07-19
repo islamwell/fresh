@@ -674,6 +674,43 @@ p {
     background: rgba(255, 255, 255, 0.15);
     color: #fff;
   }
+
+  /* ---- Fix: force white-on-dark when overlay is open, even if scrolled ---- */
+  body.menu-open { overflow: hidden; }
+
+  .navbar.scrolled .nav-links.open a {
+    color: #fff;
+  }
+  .navbar.scrolled .nav-links.open a:hover,
+  .navbar.scrolled .nav-links.open a.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-links.open ~ .nav-actions .nav-toggle,
+  .navbar.scrolled .nav-links.open ~ .nav-actions .nav-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .navbar.scrolled .nav-links.open ~ .nav-actions .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .navbar.scrolled .nav-brand:has(~ .nav-links.open) {
+    color: #fff;
+  }
+
+  .navbar.scrolled:has(.nav-links.open) {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
 }
 
 /* ============================================================

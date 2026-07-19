@@ -101,12 +101,14 @@ const NavManager = {
     const isOpen = this.navLinks?.classList.toggle('open');
     this.navToggle?.setAttribute('aria-expanded', String(isOpen));
     this.navToggle.querySelector('span').textContent = isOpen ? '✕' : '☰';
+    document.body.classList.toggle('menu-open', isOpen);
   },
 
   closeMobile() {
     this.navLinks?.classList.remove('open');
     this.navToggle?.setAttribute('aria-expanded', 'false');
     if (this.navToggle) this.navToggle.querySelector('span').textContent = '☰';
+    document.body.classList.remove('menu-open');
   },
 
   setupActiveTracking() {
@@ -344,14 +346,30 @@ const MediaManager = {
     this.audioPlaylistContainer = document.getElementById('audio-playlist-container');
     this.videoPlaylistContainer = document.getElementById('video-playlist-container');
 
+    // Fallback logic state
+    this.fallbackIndex = 0;
+    this.fallbackVideos = [
+      '8K8PqckMGiA', // Dawrah e Quran 2026 Para 2
+      'O0hXZrlxy4I', // Dawrah e Quran 2026 Para 3
+      'rvMxAl6BiAg', // Dawrah e Quran 2026 Para 1
+      '29noFYSZqHU', // Qasim Ali Shah Interview
+      'LZAWLZFuo50', // AlLulu Wal Marjaan Course
+      '5Hw0Q7yJigw', // Medina Live
+      'a7Aea3l1K5E', // Tajweed Basics
+      'G6jWzN0u5t0'  // Quran: Ultimate Guide
+    ];
+
     if (!this.audio) return;
+
+    // Load YouTube API
+    this.setupYoutubeAPI();
 
     // Load media data from JSON
     try {
       const response = await fetch('content/media.json');
       const data = await response.json();
       this.renderAudioPlaylist(data.audio.tracks);
-      this.renderVideoPlaylist(data.video.items);
+      await this.renderVideoPlaylist(data.video.items);
     } catch (err) {
       console.error('Failed to load media.json:', err);
       return;
@@ -403,17 +421,166 @@ const MediaManager = {
     });
   },
 
-  renderVideoPlaylist(items) {
+  checkVideoExists(videoId) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      let resolved = false;
+
+      const timer = setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
+          resolve(false);
+        }
+      }, 3000);
+
+      img.onload = () => {
+        if (!resolved) {
+          resolved = true;
+          clearTimeout(timer);
+          if (img.naturalWidth === 120 && img.naturalHeight === 90) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        }
+      };
+
+      img.onerror = () => {
+        if (!resolved) {
+          resolved = true;
+          clearTimeout(timer);
+          resolve(false);
+        }
+      };
+
+      img.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+    });
+  },
+
+  setupYoutubeAPI() {
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    const self = this;
+    const oldCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function() {
+      if (oldCallback) oldCallback();
+      self.initYoutubePlayer();
+    };
+  },
+
+  initYoutubePlayer() {
+    const iframe = document.getElementById('video-iframe');
+    if (!iframe) return;
+
+    this.ytPlayer = new YT.Player('video-iframe', {
+      events: {
+        'onError': (e) => this.onPlayerError(e)
+      }
+    });
+  },
+
+  loadVideo(youtubeId) {
+    this.currentVideoId = youtubeId;
+    if (this.ytPlayer && typeof this.ytPlayer.loadVideoById === 'function') {
+      try {
+        this.ytPlayer.loadVideoById(youtubeId);
+        return;
+      } catch (err) {
+        console.error('Error loading video via player API:', err);
+      }
+    }
+
+    const iframe = document.getElementById('video-iframe');
+    if (iframe) {
+      iframe.src = `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1`;
+    }
+  },
+
+  async onPlayerError(event) {
+    console.warn('YouTube Player API Error triggered with code:', event.data);
+    let fallbackId = '';
+    let foundWorking = false;
+
+    while (!foundWorking && this.fallbackIndex < this.fallbackVideos.length) {
+      const testId = this.fallbackVideos[this.fallbackIndex];
+      this.fallbackIndex = (this.fallbackIndex + 1) % this.fallbackVideos.length;
+
+      if (await this.checkVideoExists(testId)) {
+        fallbackId = testId;
+        foundWorking = true;
+      }
+    }
+
+    if (!fallbackId) {
+      fallbackId = this.fallbackVideos[0];
+    }
+
+    console.log('Falling back to video:', fallbackId);
+    this.loadVideo(fallbackId);
+
+    const activeItem = this.videoPlaylistContainer.querySelector('.video-item.active');
+    if (activeItem) {
+      activeItem.dataset.youtubeId = fallbackId;
+      const titleEl = activeItem.querySelector('h4');
+      if (titleEl && !titleEl.textContent.includes('(Fallback)')) {
+        titleEl.textContent += " (Fallback)";
+      }
+    }
+  },
+
+  async renderVideoPlaylist(items) {
     if (!this.videoPlaylistContainer || !items.length) return;
+
+    const checkedItems = await Promise.all(
+      items.map(async (item) => {
+        const isValid = await this.checkVideoExists(item.youtubeId);
+        return { item, isValid };
+      })
+    );
+
+    const verifiedItems = [];
+    for (const res of checkedItems) {
+      if (res.isValid) {
+        verifiedItems.push(res.item);
+      } else {
+        console.warn(`Video link ${res.item.youtubeId} is invalid. Locating fallback from NurulQuranTV...`);
+        let fallbackId = '';
+        let foundWorking = false;
+
+        while (!foundWorking && this.fallbackIndex < this.fallbackVideos.length) {
+          const testId = this.fallbackVideos[this.fallbackIndex];
+          this.fallbackIndex = (this.fallbackIndex + 1) % this.fallbackVideos.length;
+
+          if (await this.checkVideoExists(testId)) {
+            fallbackId = testId;
+            foundWorking = true;
+          }
+        }
+
+        if (!fallbackId) {
+          fallbackId = this.fallbackVideos[0];
+        }
+
+        verifiedItems.push({
+          ...res.item,
+          youtubeId: fallbackId,
+          title: res.item.title + " (Fallback)"
+        });
+      }
+    }
 
     this.videoPlaylistContainer.innerHTML = '';
 
-    items.forEach((item, index) => {
-      const embedSrc = `https://www.youtube.com/embed/${item.youtubeId}`;
+    verifiedItems.forEach((item, index) => {
       const btn = document.createElement('button');
       btn.className = `video-item${index === 0 ? ' active' : ''}`;
       btn.dataset.index = index;
-      btn.dataset.src = embedSrc;
+      btn.dataset.youtubeId = item.youtubeId;
       btn.innerHTML = `
         <span class="video-thumbnail">▶</span>
         <div class="video-details">
@@ -424,21 +591,19 @@ const MediaManager = {
       this.videoPlaylistContainer.appendChild(btn);
     });
 
-    // Set initial video from first video item
-    const firstVideo = items[0];
-    if (this.videoIframe) {
-      this.videoIframe.src = `https://www.youtube.com/embed/${firstVideo.youtubeId}`;
+    const firstVideo = verifiedItems[0];
+    if (firstVideo) {
+      this.loadVideo(firstVideo.youtubeId);
     }
 
-    // Bind video playlist click handlers
     this.videoItems = this.videoPlaylistContainer.querySelectorAll('.video-item');
     this.videoItems.forEach(item => {
       item.addEventListener('click', () => {
         this.videoItems.forEach(v => v.classList.remove('active'));
         item.classList.add('active');
 
-        const src = item.dataset.src;
-        this.videoIframe.src = src;
+        const youtubeId = item.dataset.youtubeId;
+        this.loadVideo(youtubeId);
       });
     });
   },
