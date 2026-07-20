@@ -110,25 +110,33 @@ const adminApp = {
     if (currentTheme === 'light') {
       document.body.classList.add('light-mode');
       setTimeout(() => {
-        const toggleBtn = document.getElementById('theme-toggle-admin');
-        if (toggleBtn) toggleBtn.textContent = '☀️ Light Mode';
+        this.updateThemeUI(true);
       }, 50);
     }
     
-    // Bind click handler when DOM loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('theme-toggle-admin')?.addEventListener('click', () => {
-        this.toggleTheme();
-      });
+    // Bind click handlers directly
+    document.getElementById('theme-toggle-admin')?.addEventListener('click', () => {
+      this.toggleTheme();
+    });
+    document.getElementById('theme-toggle-login')?.addEventListener('click', () => {
+      this.toggleTheme();
     });
   },
 
   toggleTheme() {
     const isLight = document.body.classList.toggle('light-mode');
     localStorage.setItem('nq-admin-theme', isLight ? 'light' : 'dark');
-    const toggleBtn = document.getElementById('theme-toggle-admin');
-    if (toggleBtn) {
-      toggleBtn.textContent = isLight ? '☀️ Light Mode' : '🌓 Light Mode';
+    this.updateThemeUI(isLight);
+  },
+
+  updateThemeUI(isLight) {
+    const toggleBtnAdmin = document.getElementById('theme-toggle-admin');
+    if (toggleBtnAdmin) {
+      toggleBtnAdmin.textContent = isLight ? '☀️ Light Mode' : '🌓 Light Mode';
+    }
+    const toggleBtnLogin = document.getElementById('theme-toggle-login');
+    if (toggleBtnLogin) {
+      toggleBtnLogin.textContent = isLight ? '☀️' : '🌙';
     }
   },
 
