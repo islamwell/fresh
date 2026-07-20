@@ -587,3 +587,79 @@ label {
     justify-content: center;
   }
 }
+
+/* ==== Admin Light Mode Theme Overrides ==== */
+body.light-mode {
+  --admin-bg: #f8fafc;
+  --admin-panel: rgba(255, 255, 255, 0.9);
+  --admin-border: rgba(76, 110, 245, 0.15);
+  --admin-text: #0f172a;
+  --admin-muted: #64748b;
+}
+
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.15);
+}
+
+body.light-mode .item-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+body.light-mode .item-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .item-title {
+  color: #0f172a;
+}
+
+body.light-mode .item-desc {
+  color: #334155;
+}
+
+body.light-mode .action-btn {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+body.light-mode .action-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .sidebar-header h3 {
+  background: linear-gradient(135deg, #0f172a, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .nav-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #0f172a;
+}
+
+body.light-mode .nav-btn.active {
+  background: rgba(76, 110, 245, 0.08);
+}
+
+body.light-mode .back-link:hover {
+  color: #0f172a;
+}
+
+body.light-mode .close-modal:hover {
+  color: #0f172a;
+}
+

@@ -346,6 +346,14 @@ const MediaManager = {
     this.audioPlaylistContainer = document.getElementById('audio-playlist-container');
     this.videoPlaylistContainer = document.getElementById('video-playlist-container');
 
+    // Floating bar elements
+    this.floatingBar = document.getElementById('floating-audio-bar');
+    this.floatingPlayBtn = document.getElementById('floating-play-btn');
+    this.floatingPrevBtn = document.getElementById('floating-prev-btn');
+    this.floatingNextBtn = document.getElementById('floating-next-btn');
+    this.floatingTitle = document.getElementById('floating-track-title');
+    this.floatingArtist = document.getElementById('floating-track-artist');
+
     // Fallback logic state
     this.fallbackIndex = 0;
     this.fallbackVideos = [
@@ -484,20 +492,34 @@ const MediaManager = {
     });
   },
 
-  loadVideo(youtubeId) {
+  loadVideo(youtubeId, videoUrl = '') {
     this.currentVideoId = youtubeId;
-    if (this.ytPlayer && typeof this.ytPlayer.loadVideoById === 'function') {
-      try {
-        this.ytPlayer.loadVideoById(youtubeId);
-        return;
-      } catch (err) {
-        console.error('Error loading video via player API:', err);
+    this.currentVideoUrl = videoUrl;
+    
+    const wrapper = document.querySelector('.responsive-video');
+    if (!wrapper) return;
+    
+    if (videoUrl) {
+      if (this.ytPlayer && typeof this.ytPlayer.pauseVideo === 'function') {
+        try { this.ytPlayer.pauseVideo(); } catch(e) {}
       }
-    }
-
-    const iframe = document.getElementById('video-iframe');
-    if (iframe) {
-      iframe.src = `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1`;
+      wrapper.innerHTML = `
+        <video id="native-video-player" controls autoplay style="width: 100%; height: 100%; border-radius: 8px; background: #000;">
+          <source src="${videoUrl}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
+    } else {
+      wrapper.innerHTML = `
+        <iframe id="video-iframe" src="https://www.youtube.com/embed/${youtubeId}?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      `;
+      if (window.YT && YT.Player) {
+        this.ytPlayer = new YT.Player('video-iframe', {
+          events: {
+            'onError': (e) => this.onPlayerError(e)
+          }
+        });
+      }
     }
   },
 
@@ -538,6 +560,7 @@ const MediaManager = {
 
     const checkedItems = await Promise.all(
       items.map(async (item) => {
+        if (item.videoUrl) return { item, isValid: true };
         const isValid = await this.checkVideoExists(item.youtubeId);
         return { item, isValid };
       })
@@ -548,7 +571,7 @@ const MediaManager = {
       if (res.isValid) {
         verifiedItems.push(res.item);
       } else {
-        console.warn(`Video link ${res.item.youtubeId} is invalid. Locating fallback from NurulQuranTV...`);
+        console.warn(`Video link ${res.item.youtubeId} is invalid. Locating fallback...`);
         let fallbackId = '';
         let foundWorking = false;
 
@@ -580,7 +603,8 @@ const MediaManager = {
       const btn = document.createElement('button');
       btn.className = `video-item${index === 0 ? ' active' : ''}`;
       btn.dataset.index = index;
-      btn.dataset.youtubeId = item.youtubeId;
+      btn.dataset.youtubeId = item.youtubeId || '';
+      btn.dataset.videoUrl = item.videoUrl || '';
       btn.innerHTML = `
         <span class="video-thumbnail">▶</span>
         <div class="video-details">
@@ -593,7 +617,7 @@ const MediaManager = {
 
     const firstVideo = verifiedItems[0];
     if (firstVideo) {
-      this.loadVideo(firstVideo.youtubeId);
+      this.loadVideo(firstVideo.youtubeId || '', firstVideo.videoUrl || '');
     }
 
     this.videoItems = this.videoPlaylistContainer.querySelectorAll('.video-item');
@@ -603,7 +627,8 @@ const MediaManager = {
         item.classList.add('active');
 
         const youtubeId = item.dataset.youtubeId;
-        this.loadVideo(youtubeId);
+        const videoUrl = item.dataset.videoUrl;
+        this.loadVideo(youtubeId, videoUrl);
       });
     });
   },
@@ -611,6 +636,9 @@ const MediaManager = {
   setupPlayerControls() {
     // Play/Pause button
     this.playBtn.addEventListener('click', () => this.togglePlay());
+    this.floatingPlayBtn?.addEventListener('click', () => this.togglePlay());
+    this.floatingPrevBtn?.addEventListener('click', () => this.playPrev());
+    this.floatingNextBtn?.addEventListener('click', () => this.playNext());
 
     // Time update
     this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
@@ -632,10 +660,9 @@ const MediaManager = {
       this.audio.volume = vol;
     });
 
-    // Track ended → play next or loop
+    // Track ended → play next
     this.audio.addEventListener('ended', () => {
-      this.visualizer.classList.remove('playing');
-      this.playBtn.textContent = '▶';
+      this.playNext();
     });
   },
 
@@ -650,13 +677,27 @@ const MediaManager = {
   play() {
     this.audio.play().then(() => {
       this.playBtn.textContent = '⏸';
+      if (this.floatingPlayBtn) this.floatingPlayBtn.textContent = '⏸';
       this.visualizer.classList.add('playing');
+      
+      const activeItem = this.audioPlaylistContainer?.querySelector('.playlist-item.active');
+      if (activeItem) {
+        const title = activeItem.querySelector('.track-name')?.textContent || 'Recitation';
+        const artist = 'Mishary Rashid Alafasy';
+        if (this.floatingTitle) this.floatingTitle.textContent = title;
+        if (this.floatingArtist) this.floatingArtist.textContent = artist;
+      }
+      
+      if (this.floatingBar) {
+        this.floatingBar.style.transform = 'translateY(0)';
+      }
     }).catch(err => console.log("Play failed: ", err));
   },
 
   pause() {
     this.audio.pause();
     this.playBtn.textContent = '▶';
+    if (this.floatingPlayBtn) this.floatingPlayBtn.textContent = '▶';
     this.visualizer.classList.remove('playing');
   },
 
@@ -672,6 +713,25 @@ const MediaManager = {
     const m = Math.floor(secs / 60);
     const s = Math.floor(secs % 60).toString().padStart(2, '0');
     return `${m}:${s}`;
+  },
+
+  playNext() {
+    const items = Array.from(this.audioPlaylistContainer?.querySelectorAll('.playlist-item') || []);
+    if (!items.length) return;
+    const activeItem = this.audioPlaylistContainer.querySelector('.playlist-item.active');
+    const currentIndex = activeItem ? items.indexOf(activeItem) : -1;
+    const nextIndex = (currentIndex + 1) % items.length;
+    items[nextIndex].click();
+  },
+
+  playPrev() {
+    const items = Array.from(this.audioPlaylistContainer?.querySelectorAll('.playlist-item') || []);
+    if (!items.length) return;
+    const activeItem = this.audioPlaylistContainer.querySelector('.playlist-item.active');
+    const currentIndex = activeItem ? items.indexOf(activeItem) : 0;
+    let prevIndex = currentIndex - 1;
+    if (prevIndex < 0) prevIndex = items.length - 1;
+    items[prevIndex].click();
   }
 };
 
@@ -888,6 +948,331 @@ const CalendarManager = {
   }
 };
 
+// ---- Video Lightbox Theater Modal ----
+const VideoLightbox = {
+  init() {
+    this.lightbox = document.getElementById('video-lightbox');
+    this.closeBtn = document.getElementById('close-lightbox');
+    this.content = document.getElementById('lightbox-video-content');
+    this.openBtn = document.getElementById('open-theater-mode-btn');
+
+    if (!this.lightbox || !this.content) return;
+
+    this.openBtn?.addEventListener('click', () => this.open());
+    this.closeBtn?.addEventListener('click', () => this.close());
+    
+    this.lightbox.addEventListener('click', (e) => {
+      if (e.target === this.lightbox) this.close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !this.lightbox.classList.contains('hidden')) {
+        this.close();
+      }
+    });
+  },
+
+  open() {
+    const currentId = MediaManager.currentVideoId;
+    const currentUrl = MediaManager.currentVideoUrl;
+    if (!currentId && !currentUrl) return;
+
+    if (currentUrl) {
+      const nativePlayer = document.getElementById('native-video-player');
+      if (nativePlayer) nativePlayer.pause();
+      
+      this.content.innerHTML = `
+        <video controls autoplay style="width: 100%; height: 100%; background: #000;">
+          <source src="${currentUrl}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
+    } else {
+      if (MediaManager.ytPlayer && typeof MediaManager.ytPlayer.pauseVideo === 'function') {
+        try { MediaManager.ytPlayer.pauseVideo(); } catch(e) {}
+      }
+      
+      this.content.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/${currentId}?autoplay=1&enablejsapi=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                style="width: 100%; height: 100%; border: none;"></iframe>
+      `;
+    }
+
+    this.lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  },
+
+  close() {
+    this.lightbox.classList.add('hidden');
+    this.content.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+};
+
+// ---- Dynamic Data Manager ----
+const DynamicDataManager = {
+  async init() {
+    try {
+      const siteRes = await fetch('content/site.json');
+      const site = await siteRes.json();
+      this.populateSiteDetails(site);
+
+      const coursesRes = await fetch('content/courses.json');
+      const coursesData = await coursesRes.json();
+      this.courses = coursesData.courses || [];
+      this.renderCourses(this.courses);
+      this.setupCourseFilters();
+
+      const resourcesRes = await fetch('content/resources.json');
+      const resourcesData = await resourcesRes.json();
+      this.renderResources(resourcesData.categories || []);
+
+      const testimonialsRes = await fetch('content/testimonials.json');
+      const testimonialsData = await testimonialsRes.json();
+      this.renderTestimonials(testimonialsData.testimonials || []);
+
+      const projectsRes = await fetch('content/projects.json');
+      const projectsData = await projectsRes.json();
+      this.renderProjects(projectsData.projects || []);
+
+      this.injectSchemaMetadata(this.courses);
+
+    } catch (err) {
+      console.error("Failed to load dynamic data:", err);
+    }
+  },
+
+  populateSiteDetails(site) {
+    if (!site) return;
+    const siteTitleEls = document.querySelectorAll('.logo span, footer .logo-footer h3');
+    siteTitleEls.forEach(el => {
+      el.textContent = site.name;
+    });
+
+    const heroTagline = document.querySelector('.hero-content p');
+    if (heroTagline) heroTagline.textContent = site.tagline;
+
+    const aboutMission = document.querySelector('#about p');
+    if (aboutMission && site.mission) {
+      aboutMission.textContent = site.mission;
+    }
+
+    const statsContainer = document.querySelector('.stats-grid');
+    if (statsContainer && site.stats) {
+      statsContainer.innerHTML = site.stats.map(s => `
+        <div class="stat-card glass-card reveal">
+          <div class="stat-number" data-count="${parseInt(s.number)}">${s.number}</div>
+          <div class="stat-label">${s.label}</div>
+        </div>
+      `).join('');
+      StatCounter.init();
+    }
+
+    const footerContact = document.querySelector('.footer-col:last-child');
+    if (footerContact && site.contact) {
+      const emailEl = footerContact.querySelector('p:nth-of-type(1)');
+      if (emailEl) emailEl.innerHTML = `<strong>Email:</strong> <a href="mailto:${site.contact.email}" style="color:var(--text-muted)">${site.contact.email}</a>`;
+      
+      const phoneList = footerContact.querySelector('.phone-list') || document.createElement('div');
+      phoneList.className = 'phone-list';
+      phoneList.style.marginTop = '0.5rem';
+      phoneList.innerHTML = (site.contact.phones || []).map(p => `
+        <div style="font-size:0.9rem;margin-bottom:0.25rem;color:var(--text-muted)">
+          ${p.flag} ${p.region}: <a href="tel:${p.number.replace(/\D/g,'')}" style="color:inherit">${p.number}</a>
+        </div>
+      `).join('');
+      if (!footerContact.querySelector('.phone-list')) {
+        footerContact.appendChild(phoneList);
+      }
+    }
+  },
+
+  renderCourses(courses) {
+    const grid = document.getElementById('courses-grid');
+    if (!grid) return;
+    grid.innerHTML = courses.map((c, i) => {
+      const isEmoji = !c.icon.startsWith('http') && !c.icon.startsWith('assets/');
+      const iconHtml = isEmoji 
+        ? `<div class="course-icon">${c.icon}</div>`
+        : `<div class="course-icon-img-wrapper" style="width: 50px; height: 50px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;"><img src="${c.icon}" alt="${c.title}" style="width:100%; height:100%; object-fit:contain; border-radius:8px;"></div>`;
+      
+      return `
+        <article class="course-card reveal" style="--i:${i}; border-top: 4px solid ${c.color || 'var(--primary)'}">
+          ${iconHtml}
+          <h3>${c.title}</h3>
+          <p>${c.description}</p>
+          <a href="${c.link || '#'}" class="card-link" style="color:${c.color || 'var(--primary)'}">Learn More →</a>
+        </article>
+      `;
+    }).join('');
+    ScrollReveal.init();
+  },
+
+  setupCourseFilters() {
+    const tabs = document.querySelectorAll('#course-filter-tabs .filter-btn');
+    const searchInput = document.getElementById('course-search');
+
+    const filterAndSearch = () => {
+      const activeTab = document.querySelector('#course-filter-tabs .filter-btn.active');
+      const category = activeTab ? activeTab.dataset.filter : 'all';
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+      const filtered = this.courses.filter(c => {
+        let matchesCategory = true;
+        if (category === 'quran') {
+          matchesCategory = c.title.toLowerCase().includes('quran') || c.description.toLowerCase().includes('quran') || c.title.toLowerCase().includes('tafseer');
+        } else if (category === 'tajweed') {
+          matchesCategory = c.title.toLowerCase().includes('tajweed') || c.description.toLowerCase().includes('recitation') || c.title.toLowerCase().includes('vocabulary');
+        } else if (category === 'arabic') {
+          matchesCategory = c.title.toLowerCase().includes('arabic') || c.description.toLowerCase().includes('grammar') || c.title.toLowerCase().includes('linguistic');
+        } else if (category === 'character') {
+          matchesCategory = c.title.toLowerCase().includes('character') || c.title.toLowerCase().includes('family') || c.title.toLowerCase().includes('ambassadors') || c.description.toLowerCase().includes('personal growth');
+        }
+
+        const matchesQuery = c.title.toLowerCase().includes(query) || c.description.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+      });
+
+      this.renderCourses(filtered);
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.style.background = 'transparent';
+          t.style.borderColor = 'rgba(255,255,255,0.1)';
+        });
+        tab.classList.add('active');
+        tab.style.background = 'var(--primary)';
+        tab.style.borderColor = 'var(--primary)';
+        filterAndSearch();
+      });
+    });
+
+    searchInput?.addEventListener('input', filterAndSearch);
+    
+    const active = document.querySelector('#course-filter-tabs .filter-btn.active');
+    if (active) {
+      active.style.background = 'var(--primary)';
+      active.style.borderColor = 'var(--primary)';
+    }
+  },
+
+  renderResources(categories) {
+    const grid = document.getElementById('resources-grid');
+    if (!grid) return;
+    grid.innerHTML = categories.map((cat, i) => `
+      <div class="resource-category-card glass-card reveal" style="--i:${i}; padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); background: rgba(15, 22, 40, 0.4);">
+        <h3 style="margin-top:0; color:var(--accent-teal); display:flex; align-items:center; gap:0.5rem; font-size:1.35rem">
+          <span>${cat.icon}</span> <span>${cat.title}</span>
+        </h3>
+        <ul style="list-style:none; padding:0; margin:1.5rem 0 0 0; display:flex; flex-direction:column; gap:1rem">
+          ${cat.items.map(item => `
+            <li style="display:flex; flex-direction:column; gap:0.25rem">
+              <a href="${item.link}" target="_blank" style="text-decoration:none; color:#fff; font-weight:600; font-size:1rem; transition:color 0.3s; display:inline-flex; align-items:center; gap:0.35rem">
+                <span>${item.icon || '📄'}</span> <span>${item.title}</span>
+              </a>
+              <span style="font-size:0.85rem; color:var(--text-muted, #94a3b8); line-height:1.4">${item.description}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    `).join('');
+    ScrollReveal.init();
+  },
+
+  renderTestimonials(testimonials) {
+    const track = document.getElementById('testimonials-track');
+    if (!track) return;
+    track.innerHTML = testimonials.map(t => {
+      const avatarHtml = t.picture 
+        ? `<img src="${t.picture}" alt="${t.name}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">`
+        : `<div class="testimonial-avatar" style="background: linear-gradient(135deg, var(--primary), var(--accent-teal)); color:#fff; font-weight:700; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center">${t.initials}</div>`;
+      
+      return `
+        <figure class="testimonial-card glass-card">
+          <blockquote>"${t.quote}"</blockquote>
+          <figcaption class="testimonial-author">
+            ${avatarHtml}
+            <div>
+              <cite class="author-name">${t.name}</cite>
+              <span class="author-role">${t.role}</span>
+            </div>
+          </figcaption>
+        </figure>
+      `;
+    }).join('');
+    TestimonialCarousel.init();
+  },
+
+  renderProjects(projects) {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    grid.innerHTML = projects.map((p, i) => {
+      const isEmoji = !p.icon.startsWith('http') && !p.icon.startsWith('assets/');
+      const iconHtml = isEmoji 
+        ? `<div class="project-icon" style="font-size:2rem;margin-bottom:1rem">${p.icon}</div>`
+        : `<img src="${p.icon}" alt="${p.title}" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 1rem; border-radius: 8px;">`;
+      
+      return `
+        <article class="project-card reveal" style="--i:${i}">
+          ${iconHtml}
+          <h3>${p.title}</h3>
+          ${p.subtitle ? `<span style="font-size:0.85rem;color:var(--accent-teal);margin-bottom:0.5rem;display:block">${p.subtitle}</span>` : ''}
+          <p>${p.description}</p>
+          <a href="${p.link || '#'}" class="card-link" style="color:var(--accent-gold)">Learn More →</a>
+        </article>
+      `;
+    }).join('');
+    ScrollReveal.init();
+  },
+
+  injectSchemaMetadata(courses) {
+    try {
+      const schema = {
+        "@context": "https://schema.org",
+        "@graph": []
+      };
+
+      schema["@graph"].push({
+        "@type": "EducationalOrganization",
+        "@id": "https://nurulquran.com/#organization",
+        "name": "Nur-Ul-Quran International Institute",
+        "url": "https://nurulquran.com",
+        "logo": "https://nurulquran.com/assets/logo.jpg",
+        "sameAs": [
+          "https://www.youtube.com/nurulqurantv"
+        ]
+      });
+
+      courses.forEach(c => {
+        schema["@graph"].push({
+          "@type": "Course",
+          "name": c.title,
+          "description": c.description,
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Nur-Ul-Quran International Institute",
+            "sameAs": "https://nurulquran.com"
+          }
+        });
+      });
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema, null, 2);
+      document.head.appendChild(script);
+    } catch (err) {
+      console.error("Schema metadata generation failed:", err);
+    }
+  }
+};
+
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
@@ -895,8 +1280,12 @@ document.addEventListener('DOMContentLoaded', () => {
   StarField.init();
   ScrollReveal.init();
   StatCounter.init();
-  TestimonialCarousel.init();
+  
+  // DynamicDataManager loads testimonials and calls TestimonialCarousel.init()
+  DynamicDataManager.init();
+  
   MediaManager.init();
   CalendarManager.init();
+  VideoLightbox.init();
   initSmoothScroll();
 });

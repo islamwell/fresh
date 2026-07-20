@@ -145,6 +145,21 @@
           <p class="section-subtitle">Comprehensive Quranic education designed to deepen your understanding and strengthen your connection with Allah ﷻ</p>
         </div>
 
+        <!-- Course Filters & Search -->
+        <div class="courses-filter-bar reveal" style="margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 1.25rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(8px);">
+          <div class="filter-tabs" id="course-filter-tabs" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="filter-btn active" data-filter="all" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">All Courses</button>
+            <button class="filter-btn" data-filter="quran" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Quran & Tafseer</button>
+            <button class="filter-btn" data-filter="tajweed" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Tajweed & Recitation</button>
+            <button class="filter-btn" data-filter="arabic" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Arabic Grammar</button>
+            <button class="filter-btn" data-filter="character" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Development & Family</button>
+          </div>
+          <div class="search-box" style="position: relative; max-width: 320px; width: 100%;">
+            <input type="text" id="course-search" placeholder="Search courses by keyword..." style="width: 100%; padding: 0.75rem 1.25rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: rgba(0,0,0,0.2); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; transition: all 0.3s; box-sizing: border-box;">
+            <span style="position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+          </div>
+        </div>
+
         <div class="grid grid-3 stagger" id="courses-grid">
           <!-- Populated by JS from courses.json -->
         </div>
@@ -254,6 +269,11 @@
               <div class="responsive-video">
                 <iframe id="video-iframe" src="https://www.youtube.com/embed/5Hw0Q7yJigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
               </div>
+            </div>
+            <div style="text-align: right; margin-top: 0.75rem;">
+              <button id="open-theater-mode-btn" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 20px; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                <span>🎭</span> <span>Theater Mode</span>
+              </button>
             </div>
 
             <!-- Video Playlist -->
@@ -498,7 +518,31 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scroll to Top -->
+  <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- Video Lightbox Modal -->
+  <div id="video-lightbox" class="modal-overlay hidden" style="background: rgba(0,0,0,0.9); z-index: 3000;">
+    <div class="lightbox-container" style="position: relative; max-width: 960px; width: 100%; aspect-ratio: 16/9; box-shadow: 0 25px 50px rgba(0,0,0,0.8); background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+      <button id="close-lightbox" style="position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); color: #fff; border: none; font-size: 1.5rem; cursor: pointer; z-index: 10; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: all 0.3s;" aria-label="Close theater mode">✕</button>
+      <div id="lightbox-video-content" style="width: 100%; height: 100%;"></div>
+    </div>
+  </div>
+
+  <!-- Floating Audio Player Bar -->
+  <div id="floating-audio-bar" class="glass-card" style="position: fixed; bottom: 2rem; left: 2rem; z-index: 2500; display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.25rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 30px rgba(0,0,0,0.5); backdrop-filter: blur(20px); transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); max-width: 360px; width: calc(100% - 4rem); box-sizing: border-box;">
+    <div style="background: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;" id="floating-play-indicator">🎵</div>
+    <div style="flex: 1; min-width: 0;">
+      <div id="floating-track-title" style="font-weight: 600; font-size: 0.85rem; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Surah Al-Fatihah</div>
+      <div id="floating-track-artist" style="font-size: 0.75rem; color: var(--text-muted, #94a3b8); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Mishary Rashid Alafasy</div>
+    </div>
+    <div style="display: flex; gap: 0.75rem; align-items: center;">
+      <button id="floating-prev-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 1rem;" aria-label="Previous track">⏮</button>
+      <button id="floating-play-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 1.2rem; width: 24px; display: flex; align-items: center; justify-content: center;" aria-label="Play/Pause">▶</button>
+      <button id="floating-next-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 1rem;" aria-label="Next track">⏭</button>
+    </div>
+  </div>
+
   <script src="js/app.js?v=2" defer></script>
 </body>
 </html>

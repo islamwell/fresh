@@ -3,6 +3,77 @@
    Handles Authentication, CRUD for JSON files, Export/Import
    ============================================================ */
 
+/* ==== File System Sync Helpers ==== */
+const DB_NAME = 'NurulQuranSync';
+const STORE_NAME = 'Handles';
+const KEY_NAME = 'projectRoot';
+
+async function getSavedDirHandle() {
+  return new Promise((resolve) => {
+    try {
+      const request = indexedDB.open(DB_NAME, 1);
+      request.onupgradeneeded = (e) => {
+        e.target.result.createObjectStore(STORE_NAME);
+      };
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const getReq = store.get(KEY_NAME);
+        getReq.onsuccess = () => resolve(getReq.result || null);
+        getReq.onerror = () => resolve(null);
+      };
+      request.onerror = () => resolve(null);
+    } catch (err) {
+      resolve(null);
+    }
+  });
+}
+
+async function saveDirHandle(handle) {
+  return new Promise((resolve) => {
+    try {
+      const request = indexedDB.open(DB_NAME, 1);
+      request.onupgradeneeded = (e) => {
+        e.target.result.createObjectStore(STORE_NAME);
+      };
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        store.put(handle, KEY_NAME);
+        tx.oncomplete = () => resolve(true);
+        tx.onerror = () => resolve(false);
+      };
+      request.onerror = () => resolve(false);
+    } catch (err) {
+      resolve(false);
+    }
+  });
+}
+
+async function writeFile(dirHandle, path, content) {
+  const parts = path.split('/');
+  let currentDir = dirHandle;
+  for (let i = 0; i < parts.length - 1; i++) {
+    currentDir = await currentDir.getDirectoryHandle(parts[i], { create: true });
+  }
+  const fileHandle = await currentDir.getFileHandle(parts[parts.length - 1], { create: true });
+  const writable = await fileHandle.createWritable();
+  await writable.write(content);
+  await writable.close();
+}
+
+async function uploadFileToDisk(dirHandle, file, targetFolder) {
+  const assetsDir = await dirHandle.getDirectoryHandle('assets', { create: true });
+  const uploadDir = await assetsDir.getDirectoryHandle(targetFolder, { create: true });
+  const fileHandle = await uploadDir.getFileHandle(file.name, { create: true });
+  const writable = await fileHandle.createWritable();
+  await writable.write(file);
+  await writable.close();
+  return `assets/${targetFolder}/${file.name}`;
+}
+
 const adminApp = {
   // Hardcoded hash for 'nurulquran2026'
   // SHA-256 hash for basic client-side protection
@@ -20,6 +91,7 @@ const adminApp = {
   },
   
   hasUnsavedChanges: false,
+  dirHandle: null,
   
   // Current Editing Context
   currentEditType: null,
@@ -27,9 +99,137 @@ const adminApp = {
   currentEditSubList: null,
 
   async init() {
+    this.initTheme();
     this.bindLogin();
     this.checkAuth();
+    this.tryRestoreWorkspace();
   },
+
+  initTheme() {
+    const currentTheme = localStorage.getItem('nq-admin-theme') || 'dark';
+    if (currentTheme === 'light') {
+      document.body.classList.add('light-mode');
+      setTimeout(() => {
+        const toggleBtn = document.getElementById('theme-toggle-admin');
+        if (toggleBtn) toggleBtn.textContent = '☀️ Light Mode';
+      }, 50);
+    }
+    
+    // Bind click handler when DOM loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('theme-toggle-admin')?.addEventListener('click', () => {
+        this.toggleTheme();
+      });
+    });
+  },
+
+  toggleTheme() {
+    const isLight = document.body.classList.toggle('light-mode');
+    localStorage.setItem('nq-admin-theme', isLight ? 'light' : 'dark');
+    const toggleBtn = document.getElementById('theme-toggle-admin');
+    if (toggleBtn) {
+      toggleBtn.textContent = isLight ? '☀️ Light Mode' : '🌓 Light Mode';
+    }
+  },
+
+  async tryRestoreWorkspace() {
+    const handle = await getSavedDirHandle();
+    if (handle) {
+      try {
+        const permission = await handle.queryPermission({ mode: 'readwrite' });
+        if (permission === 'granted') {
+          this.dirHandle = handle;
+          this.updateSyncBadge(true);
+        } else {
+          // Click to reconnect
+          this.updateSyncBadge(false, '🔗 Reconnect Workspace');
+        }
+      } catch (err) {
+        console.error("Failed to restore workspace permission:", err);
+      }
+    }
+  },
+
+  async connectWorkspace() {
+    try {
+      if (!window.showDirectoryPicker) {
+        alert("File System Access API is not supported in this browser. Please use Chrome, Edge, or Opera.");
+        return;
+      }
+      // If we need to request permission on a restored handle
+      const savedHandle = await getSavedDirHandle();
+      if (savedHandle) {
+        const permission = await savedHandle.requestPermission({ mode: 'readwrite' });
+        if (permission === 'granted') {
+          this.dirHandle = savedHandle;
+          this.updateSyncBadge(true);
+          this.showToast('Workspace reconnected!');
+          if (this.hasUnsavedChanges) this.autoSaveIfSynced();
+          return;
+        }
+      }
+
+      const handle = await window.showDirectoryPicker({ mode: 'readwrite' });
+      this.dirHandle = handle;
+      await saveDirHandle(handle);
+      this.updateSyncBadge(true);
+      this.showToast('Workspace connected!');
+      if (this.hasUnsavedChanges) this.autoSaveIfSynced();
+    } catch (err) {
+      console.error(err);
+      if (err.name !== 'AbortError') {
+        this.showToast('Failed to connect folder: ' + err.message, 'error');
+      }
+    }
+  },
+
+  updateSyncBadge(connected, text = null) {
+    const badge = document.getElementById('sync-status');
+    if (!badge) return;
+    if (connected) {
+      badge.className = 'status-badge saved';
+      badge.innerHTML = '⚡ Local Folder Connected';
+    } else {
+      badge.className = 'status-badge unsaved';
+      badge.innerHTML = text || '🔗 Sync Local Folder';
+    }
+  },
+
+  async autoSaveIfSynced() {
+    if (!this.dirHandle) return;
+    try {
+      const syncStatus = document.getElementById('sync-status');
+      if (syncStatus) {
+        syncStatus.className = 'status-badge saved';
+        syncStatus.innerHTML = '🔄 Saving...';
+      }
+      
+      await writeFile(this.dirHandle, 'content/events.json', JSON.stringify(this.data.events, null, 2));
+      await writeFile(this.dirHandle, 'content/courses.json', JSON.stringify(this.data.courses, null, 2));
+      await writeFile(this.dirHandle, 'content/media.json', JSON.stringify(this.data.media, null, 2));
+      await writeFile(this.dirHandle, 'content/resources.json', JSON.stringify(this.data.resources, null, 2));
+      await writeFile(this.dirHandle, 'content/projects.json', JSON.stringify(this.data.projects, null, 2));
+      await writeFile(this.dirHandle, 'content/testimonials.json', JSON.stringify(this.data.testimonials, null, 2));
+      await writeFile(this.dirHandle, 'content/site.json', JSON.stringify(this.data.site, null, 2));
+      
+      localStorage.removeItem('nq-admin-backup');
+      this.hasUnsavedChanges = false;
+      
+      const badge = document.getElementById('save-status');
+      if (badge) {
+        badge.className = 'status-badge saved';
+        badge.innerHTML = '✔️ Synced to Disk';
+      }
+      if (syncStatus) {
+        syncStatus.className = 'status-badge saved';
+        syncStatus.innerHTML = '⚡ Local Folder Connected';
+      }
+    } catch (err) {
+      console.error("Auto-save failed:", err);
+      this.showToast('Auto-save to disk failed: ' + err.message, 'error');
+    }
+  },
+
 
   /* ---- Authentication ---- */
   async hashPassword(password) {
@@ -142,6 +342,9 @@ const adminApp = {
     // Auto-save to localStorage as backup
     if (status) {
       localStorage.setItem('nq-admin-backup', JSON.stringify(this.data));
+      if (this.dirHandle) {
+        this.autoSaveIfSynced();
+      }
     }
   },
 
@@ -250,6 +453,7 @@ const adminApp = {
     calList.innerHTML = (d.calendar || []).map((e, i) => this.generateCardHTML(
       e.title, e.type, `${e.date} | ${e.time} | ${e.location}`, e.description,
       `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'calendar')">Edit</button>
+       <button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('calendar', ${i})">Archive</button>
        <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'calendar')">Delete</button>`
     )).join('');
 
@@ -258,6 +462,7 @@ const adminApp = {
     tripsList.innerHTML = (d.trips || []).map((e, i) => this.generateCardHTML(
       `${e.icon} ${e.title}`, e.status, `${e.date} | ${e.meta}`, e.description,
       `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'trips')">Edit</button>
+       ${e.status === 'upcoming' ? `<button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('trips', ${i})">Archive</button>` : ''}
        <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'trips')">Delete</button>`
     )).join('');
 
@@ -266,6 +471,7 @@ const adminApp = {
     upcomingList.innerHTML = (d.upcoming || []).map((e, i) => this.generateCardHTML(
       `${e.icon} ${e.title}`, e.status, e.date, e.description,
       `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'upcoming')">Edit</button>
+       <button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('upcoming', ${i})">Archive</button>
        <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'upcoming')">Delete</button>`
     )).join('');
 
@@ -460,7 +666,16 @@ const adminApp = {
       html = `
         <div class="form-group"><label>ID (unique string)</label><input type="text" name="id" value="${item.id || ''}" required></div>
         <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
-        <div class="form-group"><label>Icon Emoji</label><input type="text" name="icon" value="${item.icon || ''}" required></div>
+        <div class="form-group">
+          <label>Icon Emoji or Image URL</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" name="icon" id="field-icon" value="${item.icon || ''}" required style="flex: 1;">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Image
+              <input type="file" accept="image/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-icon', 'courses')">
+            </label>
+          </div>
+        </div>
         <div class="form-group"><label>Color CSS Var</label><input type="text" name="color" value="${item.color || 'var(--primary)'}" required></div>
         <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
         <div class="form-group"><label>Course Link</label><input type="url" name="link" value="${item.link || ''}" required></div>
@@ -471,12 +686,31 @@ const adminApp = {
         <div class="form-group"><label>Artist</label><input type="text" name="artist" value="${item.artist || 'Mishary Rashid Alafasy'}" required></div>
         <div class="form-group"><label>Surah Number</label><input type="text" name="surahNumber" value="${item.surahNumber || ''}"></div>
         <div class="form-group"><label>Duration (MM:SS)</label><input type="text" name="duration" value="${item.duration || ''}"></div>
-        <div class="form-group"><label>Audio URL (.mp3)</label><input type="url" name="src" value="${item.src || ''}" required></div>
+        <div class="form-group">
+          <label>Audio URL (.mp3)</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" name="src" id="field-src" value="${item.src || ''}" required style="flex: 1;">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload File
+              <input type="file" accept="audio/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-src', 'audio')">
+            </label>
+          </div>
+        </div>
       `;
     } else if (type === 'video') {
        html = `
         <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
-        <div class="form-group"><label>YouTube Video ID</label><input type="text" name="youtubeId" value="${item.youtubeId || ''}" required placeholder="e.g. 5Hw0Q7yJigw"></div>
+        <div class="form-group"><label>YouTube Video ID</label><input type="text" name="youtubeId" value="${item.youtubeId || ''}" placeholder="e.g. 5Hw0Q7yJigw"></div>
+        <div class="form-group">
+          <label>Or Upload Video File (.mp4/.mov)</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" name="videoUrl" id="field-video-url" value="${item.videoUrl || ''}" placeholder="assets/video/lecture.mp4" style="flex: 1;">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Video
+              <input type="file" accept="video/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-video-url', 'video')">
+            </label>
+          </div>
+        </div>
         <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
       `;
     } else if (type === 'resource') {
@@ -491,7 +725,16 @@ const adminApp = {
         <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
         <div class="form-group"><label>Subtitle</label><input type="text" name="subtitle" value="${item.subtitle || ''}"></div>
         <div class="form-group"><label>Status (active/seasonal)</label><input type="text" name="status" value="${item.status || 'active'}"></div>
-        <div class="form-group"><label>Icon Emoji</label><input type="text" name="icon" value="${item.icon || ''}" required></div>
+        <div class="form-group">
+          <label>Icon Emoji or Image URL</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" name="icon" id="field-project-icon" value="${item.icon || ''}" required style="flex: 1;">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Image
+              <input type="file" accept="image/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-project-icon', 'uploads')">
+            </label>
+          </div>
+        </div>
         <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
         <div class="form-group"><label>Project Link</label><input type="url" name="link" value="${item.link || ''}" required></div>
       `;
@@ -500,6 +743,16 @@ const adminApp = {
         <div class="form-group"><label>Student Name</label><input type="text" name="name" value="${item.name || ''}" required></div>
         <div class="form-group"><label>Role / Course</label><input type="text" name="role" value="${item.role || ''}" required></div>
         <div class="form-group"><label>Initials</label><input type="text" name="initials" value="${item.initials || ''}" required maxlength="2"></div>
+        <div class="form-group">
+          <label>Profile Image URL (Optional)</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" name="picture" id="field-testi-pic" value="${item.picture || ''}" style="flex: 1;">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Image
+              <input type="file" accept="image/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-testi-pic', 'uploads')">
+            </label>
+          </div>
+        </div>
         <div class="form-group"><label>Quote</label><textarea name="quote" required>${item.quote || ''}</textarea></div>
       `;
     }
@@ -511,6 +764,48 @@ const adminApp = {
   closeModal() {
     document.getElementById('admin-modal').classList.add('hidden');
     document.getElementById('modal-form').innerHTML = '';
+  },
+
+  async handleModalFileUpload(input, targetFieldId, folder) {
+    const file = input.files[0];
+    if (!file) return;
+    
+    const field = document.getElementById(targetFieldId);
+    if (!field) return;
+    
+    this.showToast(`Uploading ${file.name}...`);
+    
+    try {
+      if (this.dirHandle) {
+        const relativePath = await uploadFileToDisk(this.dirHandle, file, folder);
+        field.value = relativePath;
+        this.showToast('Uploaded and synced to disk');
+        this.setUnsavedChanges(true);
+      } else {
+        if (file.type.startsWith('image/')) {
+          if (file.size > 1.5 * 1024 * 1024) {
+            alert("File is too large. In static offline mode, images must be under 1.5MB to be saved as Base64. Please sync your local folder to enable direct disk-syncing.");
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            field.value = e.target.result;
+            this.showToast('Image loaded as Base64');
+            this.setUnsavedChanges(true);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          const blobUrl = URL.createObjectURL(file);
+          field.value = blobUrl;
+          this.showToast('Media loaded as preview', 'warning');
+          alert(`Static/Offline mode: Media loaded as temporary preview.\n\nTo save permanently:\n1. Copy the file "${file.name}" into your local project's "assets/${folder}/" directory.\n2. In this form, set the path to "assets/${folder}/${file.name}".\n\nOr connect your local workspace (click "Sync Local Folder" in utility bar) to auto-save uploads directly to your disk!`);
+          this.setUnsavedChanges(true);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      this.showToast('Upload failed: ' + err.message, 'error');
+    }
   },
 
   saveModalData() {
@@ -572,6 +867,43 @@ const adminApp = {
     this.setUnsavedChanges(true);
     this.renderAll();
     this.showToast('Item deleted', 'warning');
+  },
+
+  archiveItem(subList, index) {
+    if (!this.data.events) return;
+    if (!confirm('Are you sure you want to archive this event?')) return;
+    
+    if (subList === 'trips') {
+      this.data.events.trips[index].status = 'past';
+      this.showToast('Trip marked as Past Event');
+    } else if (subList === 'calendar') {
+      const item = this.data.events.calendar[index];
+      this.data.events.calendar.splice(index, 1);
+      const pastEvent = {
+        title: item.title,
+        description: item.description,
+        date: item.date,
+        status: 'completed',
+        link: item.link || '',
+        icon: '📅'
+      };
+      if (!this.data.events.past) this.data.events.past = [];
+      this.data.events.past.push(pastEvent);
+      this.showToast('Event archived to Past General list');
+    } else if (subList === 'upcoming') {
+      const item = this.data.events.upcoming[index];
+      this.data.events.upcoming.splice(index, 1);
+      const pastEvent = {
+        ...item,
+        status: 'completed'
+      };
+      if (!this.data.events.past) this.data.events.past = [];
+      this.data.events.past.push(pastEvent);
+      this.showToast('Event moved to Past General list');
+    }
+    
+    this.setUnsavedChanges(true);
+    this.renderAll();
   },
 
   /* ---- Export / Import ---- */

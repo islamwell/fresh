@@ -40,6 +40,7 @@
         <button class="nav-btn" data-tab="settings">⚙️ Settings</button>
       </nav>
       <div class="sidebar-footer">
+        <button id="theme-toggle-admin" class="btn btn-outline" style="width: 100%; margin-bottom: 0.5rem;">🌓 Light Mode</button>
         <button id="logout-btn" class="btn btn-outline" style="width: 100%;">Logout</button>
         <a href="index.html" class="back-link">← Back to Site</a>
       </div>
@@ -49,8 +50,9 @@
     <main class="main-content">
       <!-- Utility Bar -->
       <header class="utility-bar glass-card">
-        <div class="status-indicator">
+        <div class="status-indicator" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
           <span id="save-status" class="status-badge saved">✔️ All Changes Saved</span>
+          <span id="sync-status" class="status-badge unsaved" style="cursor: pointer;" onclick="adminApp.connectWorkspace()">🔗 Sync Local Folder</span>
         </div>
         <div class="utility-actions">
           <button id="export-btn" class="btn btn-primary" aria-label="Export all JSON files">📥 Export Data</button>
