@@ -45,8 +45,8 @@
   --surface: #ffffff;
   --surface-elevated: rgba(255, 255, 255, 0.85);
   --text: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-muted: #7a7a9a;
+  --text-secondary: #334155;
+  --text-muted: #525266;
   --text-heading: var(--text);
   --border: rgba(26, 35, 126, 0.12);
   --border-light: rgba(26, 35, 126, 0.06);
@@ -196,8 +196,8 @@ html.light {
   --surface: #ffffff;
   --surface-elevated: rgba(255, 255, 255, 0.85);
   --text: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-muted: #7a7a9a;
+  --text-secondary: #334155;
+  --text-muted: #525266;
   --text-heading: var(--text);
   --border: rgba(26, 35, 126, 0.12);
   --border-light: rgba(26, 35, 126, 0.06);
@@ -3072,6 +3072,7 @@ html.light .glass-card {
   html:not(.dark) .resource-category-card {
     background: #ffffff !important;
     border-color: var(--border) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
   }
   html:not(.dark) .resource-category-card h3 {
     color: var(--accent-teal) !important;
@@ -3082,7 +3083,8 @@ html.light .glass-card {
   html:not(.dark) .resource-category-card a:hover {
     color: var(--primary) !important;
   }
-  html:not(.dark) .resource-category-card span[style*="text-muted"] {
+  html:not(.dark) .resource-category-card span,
+  html:not(.dark) .resource-category-card .resource-item-desc {
     color: var(--text-secondary) !important;
   }
   /* Catch the inline color:#fff on resource links */
@@ -3094,6 +3096,7 @@ html.light .glass-card {
 html.light .resource-category-card {
   background: #ffffff !important;
   border-color: var(--border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
 }
 html.light .resource-category-card h3 {
   color: var(--accent-teal) !important;
@@ -3103,6 +3106,10 @@ html.light .resource-category-card a {
 }
 html.light .resource-category-card a:hover {
   color: var(--primary) !important;
+}
+html.light .resource-category-card span,
+html.light .resource-category-card .resource-item-desc {
+  color: var(--text-secondary) !important;
 }
 html.light .resource-category-card li a[style*="color:#fff"],
 html.light .resource-category-card li a[style*="color: #fff"] {

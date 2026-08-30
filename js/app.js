@@ -1614,7 +1614,7 @@ const DynamicDataManager = {
               <a href="${item.link}" target="_blank" style="text-decoration:none; color:var(--text); font-weight:600; font-size:1rem; transition:color 0.3s; display:inline-flex; align-items:center; gap:0.35rem">
                 <span>${item.icon || '📄'}</span> <span>${item.title}</span>
               </a>
-              <span style="font-size:0.85rem; color:var(--text-muted, #94a3b8); line-height:1.4">${item.description}</span>
+              <span class="resource-item-desc" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.4">${item.description}</span>
             </li>
           `).join('')}
         </ul>
