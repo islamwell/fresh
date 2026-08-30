@@ -1076,23 +1076,81 @@ p {
 /* ============================================================
    13. TESTIMONIALS CAROUSEL
    ============================================================ */
+.testimonials-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .testimonials-track {
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 1rem 0 2rem;
+  padding: 1rem 0.5rem 2rem;
   scrollbar-width: none;
+  cursor: grab;
+}
+
+.testimonials-track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  user-select: none;
 }
 
 .testimonials-track::-webkit-scrollbar { display: none; }
 
 .testimonial-card {
-  flex: 0 0 min(100%, 380px);
-  scroll-snap-align: center;
-  padding: 2.5rem 2rem;
+  flex: 0 0 360px;
+  max-width: calc(100vw - 3rem);
+  padding: 2.25rem 1.75rem;
   text-align: center;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-elevated, rgba(255, 255, 255, 0.9));
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.carousel-arrow:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: -1.25rem;
+}
+
+.carousel-next {
+  right: -1.25rem;
 }
 
 .testimonial-avatar {
@@ -1165,6 +1223,15 @@ p {
   background: var(--primary);
   width: 28px;
   border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    flex: 0 0 85vw;
+  }
+  .carousel-arrow {
+    display: none;
+  }
 }
 
 /* ============================================================

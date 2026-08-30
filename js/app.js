@@ -233,47 +233,34 @@ const TestimonialCarousel = {
   init() {
     this.track = document.getElementById('testimonials-track');
     this.dotsContainer = document.getElementById('testimonials-dots');
-    if (!this.track || !this.dotsContainer) return;
+    this.prevBtn = document.getElementById('testi-prev');
+    this.nextBtn = document.getElementById('testi-next');
+
+    if (!this.track) return;
 
     this.cards = this.track.querySelectorAll('.testimonial-card');
     if (!this.cards.length) return;
 
     this.currentIndex = 0;
     this.autoplayInterval = null;
+    this.isDragging = false;
+    this.startX = 0;
+    this.scrollLeft = 0;
 
-    // Calculate clean page count (max 3-4 dots instead of dot-per-card)
-    this.calculatePages();
-    this.renderDots();
-
-    // Scroll listener to update active dot smoothly
-    let scrollTimeout;
-    this.track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => this.updateActiveDotFromScroll(), 60);
-    }, { passive: true });
-
-    // Handle responsive resize
-    window.addEventListener('resize', () => {
-      this.calculatePages();
-      this.renderDots();
-    });
-
-    // Auto-scroll loop
+    this.updatePagination();
+    this.setupListeners();
     this.startAutoplay();
-
-    // Pause on interaction
-    this.track.addEventListener('mouseenter', () => this.stopAutoplay());
-    this.track.addEventListener('mouseleave', () => this.startAutoplay());
-    this.track.addEventListener('touchstart', () => this.stopAutoplay(), { passive: true });
-    this.track.addEventListener('touchend', () => this.startAutoplay(), { passive: true });
   },
 
-  calculatePages() {
+  updatePagination() {
     if (!this.track || !this.cards.length) return;
-    const trackWidth = this.track.clientWidth || window.innerWidth;
-    const cardWidth = (this.cards[0]?.offsetWidth || 340) + 24;
-    const visibleCount = Math.max(1, Math.round(trackWidth / cardWidth));
-    this.pageCount = Math.min(4, Math.max(1, Math.ceil(this.cards.length / visibleCount)));
+    const trackWidth = this.track.clientWidth;
+    const cardWidth = (this.cards[0]?.offsetWidth || 360) + 24;
+    const visibleCount = Math.max(1, Math.floor(trackWidth / cardWidth));
+    const totalPages = Math.max(1, this.cards.length - visibleCount + 1);
+    this.pageCount = Math.min(4, totalPages);
+
+    this.renderDots();
   },
 
   renderDots() {
@@ -291,8 +278,71 @@ const TestimonialCarousel = {
     }
   },
 
-  updateActiveDotFromScroll() {
-    if (!this.track || !this.cards.length || this.pageCount <= 1) return;
+  setupListeners() {
+    // Arrow buttons
+    if (this.prevBtn) {
+      this.prevBtn.onclick = () => {
+        this.stopAutoplay();
+        this.scrollPrev();
+      };
+    }
+
+    if (this.nextBtn) {
+      this.nextBtn.onclick = () => {
+        this.stopAutoplay();
+        this.scrollNext();
+      };
+    }
+
+    // Scroll listener for dot sync
+    let scrollTimeout;
+    this.track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => this.syncDotsWithScroll(), 60);
+    }, { passive: true });
+
+    // Mouse drag scrolling
+    this.track.addEventListener('mousedown', (e) => {
+      this.isDragging = true;
+      this.track.classList.add('is-dragging');
+      this.startX = e.pageX - this.track.offsetLeft;
+      this.scrollLeft = this.track.scrollLeft;
+      this.stopAutoplay();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - this.track.offsetLeft;
+      const walk = (x - this.startX) * 1.5;
+      this.track.scrollLeft = this.scrollLeft - walk;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!this.isDragging) return;
+      this.isDragging = false;
+      this.track.classList.remove('is-dragging');
+      this.startAutoplay();
+    });
+
+    // Pause on hover
+    this.track.addEventListener('mouseenter', () => this.stopAutoplay());
+    this.track.addEventListener('mouseleave', () => {
+      if (!this.isDragging) this.startAutoplay();
+    });
+
+    // Touch events
+    this.track.addEventListener('touchstart', () => this.stopAutoplay(), { passive: true });
+    this.track.addEventListener('touchend', () => this.startAutoplay(), { passive: true });
+
+    // Window resize
+    window.addEventListener('resize', () => {
+      this.updatePagination();
+    });
+  },
+
+  syncDotsWithScroll() {
+    if (!this.track || !this.dotsContainer || this.pageCount <= 1) return;
     const maxScroll = this.track.scrollWidth - this.track.clientWidth;
     if (maxScroll <= 0) return;
     const progress = this.track.scrollLeft / maxScroll;
@@ -304,12 +354,34 @@ const TestimonialCarousel = {
   },
 
   goToPage(pageIndex) {
-    if (!this.track || !this.cards.length) return;
+    if (!this.track) return;
     this.currentIndex = pageIndex;
     const maxScroll = this.track.scrollWidth - this.track.clientWidth;
     const targetScroll = this.pageCount > 1 ? (pageIndex / (this.pageCount - 1)) * maxScroll : 0;
     this.track.scrollTo({ left: targetScroll, behavior: 'smooth' });
     this.updateDots();
+  },
+
+  scrollNext() {
+    if (!this.track || !this.cards.length) return;
+    const cardWidth = (this.cards[0]?.offsetWidth || 360) + 24;
+    const maxScroll = this.track.scrollWidth - this.track.clientWidth;
+    if (this.track.scrollLeft >= maxScroll - 15) {
+      this.track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      this.track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  },
+
+  scrollPrev() {
+    if (!this.track || !this.cards.length) return;
+    const cardWidth = (this.cards[0]?.offsetWidth || 360) + 24;
+    if (this.track.scrollLeft <= 15) {
+      const maxScroll = this.track.scrollWidth - this.track.clientWidth;
+      this.track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+      this.track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
   },
 
   updateDots() {
@@ -326,10 +398,8 @@ const TestimonialCarousel = {
 
     this.stopAutoplay();
     this.autoplayInterval = setInterval(() => {
-      if (this.pageCount <= 1) return;
-      const next = (this.currentIndex + 1) % this.pageCount;
-      this.goToPage(next);
-    }, 5500);
+      this.scrollNext();
+    }, 5000);
   },
 
   stopAutoplay() {
