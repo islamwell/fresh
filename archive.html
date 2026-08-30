@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Events &amp; Trips Archive — NurulQuran</title>
+  <meta name="description" content="Explore the historical archive of past international educational tours, Umrah journeys, and major Quranic seminar series by Nur-Ul-Quran International Institute.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <!-- Prevent FOUC for manual theme override -->
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Upcoming Events</a></li>
+        <li><a href="archive.html" class="active">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="index.html#media">Media</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="index.html#resources">Resources</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="archive-hero hero" style="min-height: 45vh; padding-top: 7rem; padding-bottom: 3rem;">
+    <!-- Decorative elements -->
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Events &amp; Trips <span class="highlight">Archive</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 680px; margin: 0 auto 1.5rem;">
+        A historical journey through our past educational tours, Umrah trips, retreats, and foundational seminar series with Ustazah Iffat Maqbool since 2008.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html#events" class="btn btn-primary">🗓️ View Upcoming Events &amp; Calendar</a>
+        <a href="index.html#media" class="btn btn-secondary">🎙️ Audio &amp; Video Media</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main id="main-content" class="section" style="padding-top: 3rem;">
+    <div class="container">
+      
+      <!-- Filter and Search Bar -->
+      <div class="archive-filter-bar reveal">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="filter-btn archive-filter-btn active" data-filter="all" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">All Records</button>
+          <button class="filter-btn archive-filter-btn" data-filter="trips" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">✈️ Past International Trips</button>
+          <button class="filter-btn archive-filter-btn" data-filter="seminars" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">📖 Major Seminars &amp; Dawrahs</button>
+        </div>
+
+        <div style="display: flex; gap: 1rem; align-items: center; width: 100%; max-width: 360px;">
+          <div class="search-box" style="position: relative; width: 100%;">
+            <input type="text" id="archive-search" placeholder="Search by city, country, title..." style="width: 100%; padding: 0.7rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; background: rgba(0,0,0,0.2); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; box-sizing: border-box;">
+            <span style="position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <span id="archive-count" style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Loading archive records...</span>
+      </div>
+
+      <!-- Archive Grid (populated dynamically) -->
+      <div class="archive-grid" id="archive-grid">
+        <!-- Generated by js/archive.js from content/events.json -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-brand" style="color:var(--text)">
+            <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+            <span>NurulQuran</span>
+          </a>
+          <p>Nur-Ul-Quran International Institute — Enlighten Your Lives with the Nur of Al Quran.</p>
+          <div class="footer-social" id="footer-social">
+            <a href="https://www.youtube.com/nurulqurantv" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶️</a>
+            <a href="https://nurulquran.com/whatsapp/" aria-label="WhatsApp Groups">💬</a>
+            <a href="https://nurulquranlive.com/" target="_blank" rel="noopener noreferrer" aria-label="Live Classes">📡</a>
+          </div>
+          <a href="admin.html" class="admin-link" style="display:inline-block;margin-top:0.75rem;font-size:0.75rem;opacity:0.3;transition:opacity 0.3s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='0.3'">Admin Panel</a>
+        </div>
+
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#programs">Programs</a></li>
+            <li><a href="https://nurulquran.com/kids/">Kids</a></li>
+            <li><a href="https://nurulquran.com/teens/">Teens</a></li>
+            <li><a href="https://nurulquran.com/ramadan/">Ramadan Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="archive.html">Event Archive</a></li>
+            <li><a href="https://nurulquran.com/blogs/">Blogs</a></li>
+            <li><a href="https://nurulquran.com/rootwords/">Rootwords</a></li>
+            <li><a href="https://nurulquran.com/tafseer-notes-2/">Tafseer Notes</a></li>
+            <li><a href="https://nurulquran.com/reading-material/">Reading Material</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html#projects">Donate</a></li>
+            <li><a href="https://nurulquran.com/volunteer/">Volunteer</a></li>
+            <li><a href="https://nurulquran.com/refer/">Refer a Friend</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+            <li><a href="https://nurulquran.com/about-nurulquran/">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.0.7 (updated 2026-08-30 16:45)</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/app.js?v=3"></script>
+  <script src="js/archive.js?v=3"></script>
+</body>
+</html>

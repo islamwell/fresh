@@ -808,8 +808,35 @@ const CalendarManager = {
     this.renderCalendar();
     this.setupTabs();
 
-    this.prevBtn.addEventListener('click', () => this.navigateMonth(-1));
-    this.nextBtn.addEventListener('click', () => this.navigateMonth(1));
+    this.prevBtn?.addEventListener('click', () => this.navigateMonth(-1));
+    this.nextBtn?.addEventListener('click', () => this.navigateMonth(1));
+
+    // Auto-select and highlight first upcoming event with side flyer
+    this.autoSelectFirstUpcomingEvent();
+  },
+
+  autoSelectFirstUpcomingEvent() {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const eventDates = Object.keys(this.events).sort();
+    if (eventDates.length === 0) return;
+
+    // Pick first event on or after today, or fallback to the earliest event
+    const targetDate = eventDates.find(d => d >= todayStr) || eventDates[0];
+    if (!targetDate) return;
+
+    const [y, m, d] = targetDate.split('-').map(Number);
+    if (this.currentYear !== y || this.currentMonth !== m - 1) {
+      this.currentYear = y;
+      this.currentMonth = m - 1;
+      this.renderCalendar();
+    }
+
+    const dayBtns = this.daysGrid.querySelectorAll('.cal-day.has-event');
+    dayBtns.forEach(btn => {
+      if (parseInt(btn.textContent.trim(), 10) === d) {
+        this.showEvent(targetDate, btn);
+      }
+    });
   },
 
   renderTrips(trips) {
@@ -828,15 +855,21 @@ const CalendarManager = {
       if (trip.flyers && Array.isArray(trip.flyers) && trip.flyers.length > 0) {
         flyersHtml = `
           <div class="trip-flyers-grid">
-            ${trip.flyers.map(f => `
-              <div class="trip-flyer-thumb" data-flyer-src="${f.image}" data-caption="${f.city}: ${f.topic} (${f.date}) • ${f.venue} (Tel: ${f.phone})">
-                <img src="${f.image}" alt="${f.city} Flyer" loading="lazy">
-                <span class="trip-flyer-label">${f.city} • ${f.topic}</span>
-              </div>
-            `).join('')}
+            ${trip.flyers.map(f => {
+              const flyerShareText = `*${f.topic} (${f.city})*\n🗓️ ${f.date}\n📍 ${f.venue}\n📞 Contact: ${f.phone}\n\nJoin Ustazah Iffat Maqbool in Ireland!\nDetails: https://nurulquran.web.app/#events`;
+              return `
+                <div class="trip-flyer-thumb" data-flyer-src="${f.image}" data-caption="${f.city}: ${f.topic} (${f.date}) • ${f.venue} (Tel: ${f.phone})" data-share-text="${encodeURIComponent(flyerShareText)}">
+                  <img src="${f.image}" alt="${f.city} Flyer" loading="lazy">
+                  <span class="trip-flyer-label">${f.city} • ${f.topic}</span>
+                </div>
+              `;
+            }).join('')}
           </div>
         `;
       }
+
+      const tripShareText = `*${trip.title}*\n🗓️ ${trip.date}\n${trip.meta}\n\n${trip.description}\n\nMore details: https://nurulquran.web.app/#events`;
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(tripShareText)}`;
 
       const timelineItem = document.createElement('div');
       timelineItem.className = 'timeline-item reveal';
@@ -848,9 +881,12 @@ const CalendarManager = {
           <p class="trip-meta">${trip.meta}</p>
           <p class="trip-desc">${trip.description}</p>
           ${flyersHtml}
-          <div class="trip-footer">
+          <div class="trip-footer" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
             <a href="${trip.link}" class="btn ${btnClass}" ${trip.link.endsWith('.jpeg') || trip.link.endsWith('.jpg') ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
-            ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="margin-left:0.5rem">Register →</a>` : ''}
+            ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Register →</a>` : ''}
+            <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm">
+              <span>💬</span> <span>Share</span>
+            </a>
           </div>
         </div>
       `;
@@ -860,7 +896,8 @@ const CalendarManager = {
         thumb.addEventListener('click', () => {
           const src = thumb.dataset.flyerSrc;
           const caption = thumb.dataset.caption;
-          FlyerLightboxManager.open(src, caption);
+          const shareText = thumb.dataset.shareText ? decodeURIComponent(thumb.dataset.shareText) : '';
+          FlyerLightboxManager.open(src, caption, shareText);
         });
       });
 
@@ -869,7 +906,7 @@ const CalendarManager = {
       if (flyerLinkBtn) {
         flyerLinkBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          FlyerLightboxManager.open(trip.link, trip.title);
+          FlyerLightboxManager.open(trip.link, trip.title, tripShareText);
         });
       }
 
@@ -969,6 +1006,9 @@ const CalendarManager = {
     this.detailDesc.textContent = event.desc;
     this.detailCta.href = event.link;
 
+    const flyerShareText = `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 Contact: ${event.contact || '+353 83 025 6299'}\n\nJoin Ustazah Iffat Maqbool!\nMore details: https://nurulquran.web.app/#events`;
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(flyerShareText)}`;
+
     // Handle flyer graphic preview inside card
     const flyerWrap = document.getElementById('event-detail-flyer-wrap');
     if (flyerWrap) {
@@ -985,7 +1025,7 @@ const CalendarManager = {
         `;
         flyerWrap.classList.remove('hidden');
         flyerWrap.querySelector('.event-detail-flyer-preview')?.addEventListener('click', () => {
-          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`);
+          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText);
         });
       } else {
         flyerWrap.innerHTML = '';
@@ -993,19 +1033,46 @@ const CalendarManager = {
       }
     }
 
-    // Handle registration form button
-    const existingRegBtn = this.detailContent.querySelector('.event-register-btn');
-    if (existingRegBtn) existingRegBtn.remove();
+    // Dynamic action buttons container (Registration + WhatsApp Share)
+    let actionWrap = this.detailContent.querySelector('.event-detail-actions-wrap');
+    if (!actionWrap) {
+      actionWrap = document.createElement('div');
+      actionWrap.className = 'event-detail-actions-wrap';
+      actionWrap.style.display = 'flex';
+      actionWrap.style.gap = '0.5rem';
+      actionWrap.style.flexWrap = 'wrap';
+      actionWrap.style.alignItems = 'center';
+      actionWrap.style.marginTop = '1rem';
+      this.detailCta.parentNode.insertBefore(actionWrap, this.detailCta);
+      actionWrap.appendChild(this.detailCta);
+    }
 
+    // WhatsApp Share Button
+    let waBtn = actionWrap.querySelector('.event-wa-btn');
+    if (!waBtn) {
+      waBtn = document.createElement('a');
+      waBtn.className = 'btn-whatsapp event-wa-btn';
+      waBtn.target = '_blank';
+      waBtn.rel = 'noopener noreferrer';
+      waBtn.innerHTML = '<span>💬</span> <span>Share</span>';
+      actionWrap.appendChild(waBtn);
+    }
+    waBtn.href = waUrl;
+
+    // Handle registration form button
+    let regBtn = actionWrap.querySelector('.event-register-btn');
     if (event.registrationForm) {
-      const regBtn = document.createElement('a');
+      if (!regBtn) {
+        regBtn = document.createElement('a');
+        regBtn.className = 'btn btn-secondary event-register-btn';
+        regBtn.target = '_blank';
+        regBtn.rel = 'noopener noreferrer';
+        regBtn.textContent = 'Register';
+        actionWrap.appendChild(regBtn);
+      }
       regBtn.href = event.registrationForm;
-      regBtn.className = 'btn btn-secondary event-register-btn';
-      regBtn.target = '_blank';
-      regBtn.rel = 'noopener noreferrer';
-      regBtn.textContent = 'Register';
-      regBtn.style.marginLeft = '0.5rem';
-      this.detailCta.parentNode.insertBefore(regBtn, this.detailCta.nextSibling);
+    } else if (regBtn) {
+      regBtn.remove();
     }
 
     // Swap displays
@@ -1020,6 +1087,7 @@ const FlyerLightboxManager = {
     this.lightbox = document.getElementById('flyer-lightbox');
     this.img = document.getElementById('flyer-lightbox-img');
     this.caption = document.getElementById('flyer-lightbox-caption');
+    this.shareContainer = document.getElementById('flyer-lightbox-share');
     this.closeBtn = document.getElementById('close-flyer-lightbox');
 
     if (!this.lightbox) return;
@@ -1029,7 +1097,12 @@ const FlyerLightboxManager = {
       card.addEventListener('click', () => {
         const src = card.dataset.flyerSrc;
         const caption = card.dataset.caption;
-        this.open(src, caption);
+        const title = card.querySelector('h4')?.textContent || 'Ireland Tour 2026';
+        const venue = card.querySelector('.flyer-venue')?.textContent || '';
+        const date = card.querySelector('.flyer-city-date')?.textContent || '';
+        const phone = card.querySelector('.flyer-contact')?.textContent || '';
+        const shareText = `*${title}*\n🗓️ ${date}\n${venue}\n${phone}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!\nMore info: https://nurulquran.web.app/#events`;
+        this.open(src, caption, shareText);
       });
     });
 
@@ -1045,10 +1118,21 @@ const FlyerLightboxManager = {
     });
   },
 
-  open(src, caption = '') {
+  open(src, caption = '', shareText = '') {
     if (!this.lightbox || !this.img) return;
     this.img.src = src;
     if (this.caption) this.caption.innerHTML = caption;
+
+    if (this.shareContainer) {
+      const textToShare = shareText || caption.replace(/<[^>]*>?/gm, '');
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(textToShare)}`;
+      this.shareContainer.innerHTML = `
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="event.stopPropagation()">
+          <span>💬</span> <span>Share on WhatsApp</span>
+        </a>
+      `;
+    }
+
     this.lightbox.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   },
