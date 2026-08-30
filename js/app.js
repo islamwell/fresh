@@ -1357,7 +1357,7 @@ const DynamicDataManager = {
         "@id": "https://nurulquran.com/#organization",
         "name": "Nur-Ul-Quran International Institute",
         "url": "https://nurulquran.com",
-        "logo": "https://nurulquran.com/assets/logo.jpg",
+        "logo": "https://nurulquran.com/assets/logo.png",
         "sameAs": [
           "https://www.youtube.com/nurulqurantv"
         ]
