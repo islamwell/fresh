@@ -3272,15 +3272,27 @@ html.light #open-theater-mode-btn {
 
 /* ============================================================
    FINAL LIGHT MODE FIX — Resource Category Cards
-   (overrides inline dark backgrounds from JS)
+   (Cream/Pink background tint & Black outline + shadow on hover)
    ============================================================ */
 html.light .resource-category-card,
-html:not(.dark) .resource-category-card {
-  background-color: #ffffff !important;
-  border: 1px solid var(--border) !important;
+html:not(.dark) .resource-category-card,
+html.light .resource-card,
+html:not(.dark) .resource-card {
+  background-color: #fef8f5 !important; /* Soft warm cream-pink tint */
+  border: 1px solid rgba(26, 35, 126, 0.12) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.25s ease !important;
+}
+
+html.light .resource-category-card:hover,
+html:not(.dark) .resource-category-card:hover,
+html.light .resource-card:hover,
+html:not(.dark) .resource-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: #1a1a2e !important; /* Crisp black/dark outline on hover */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16) !important; /* Elevated shadow on hover */
 }
 
 /* Force text and link colors inside the card to be dark */
@@ -3306,3 +3318,4 @@ html.light .resource-category-card .resource-item-desc,
 html:not(.dark) .resource-category-card .resource-item-desc {
   color: var(--text-secondary) !important;
 }
+
