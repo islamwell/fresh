@@ -6,6 +6,16 @@
 /* ---- Google Fonts ---- */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
 
+/* ---- Tanzil Madinah Uthmani Quranic Font ---- */
+@font-face {
+  font-family: 'me_quran';
+  src: url('../assets/fonts/me_quran.woff') format('woff'),
+       url('../assets/fonts/me_quran.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================================
    1. CSS CUSTOM PROPERTIES — Color System
    ============================================================ */
@@ -88,7 +98,7 @@
   /* Typography */
   --font-heading: 'Outfit', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-arabic: 'Amiri', serif;
+  --font-arabic: 'me_quran', 'KFGQPC Uthman Taha Naskh', 'Amiri', 'Traditional Arabic', serif;
 
   /* Color scheme */
   color-scheme: light dark;
@@ -826,10 +836,10 @@ p {
   margin-bottom: 1.5rem;
   opacity: 0.95;
   direction: rtl;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   line-height: 1.8;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
-  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  font-weight: 400; /* Regular weight - NOT bold */
 }
 
 .hero__title {
