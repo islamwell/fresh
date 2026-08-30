@@ -3269,3 +3269,40 @@ html.light #open-theater-mode-btn {
   color: var(--primary) !important;
   border-color: var(--border) !important;
 }
+
+/* ============================================================
+   FINAL LIGHT MODE FIX — Resource Category Cards
+   (overrides inline dark backgrounds from JS)
+   ============================================================ */
+html.light .resource-category-card,
+html:not(.dark) .resource-category-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Force text and link colors inside the card to be dark */
+html.light .resource-category-card,
+html.light .resource-category-card a,
+html.light .resource-category-card h3,
+html.light .resource-category-card li,
+html.light .resource-category-card span,
+html:not(.dark) .resource-category-card,
+html:not(.dark) .resource-category-card a,
+html:not(.dark) .resource-category-card h3,
+html:not(.dark) .resource-category-card li,
+html:not(.dark) .resource-category-card span {
+  color: var(--text) !important;
+}
+
+html.light .resource-category-card .resource-category-title,
+html:not(.dark) .resource-category-card .resource-category-title {
+  color: var(--accent-teal) !important;
+}
+
+html.light .resource-category-card .resource-item-desc,
+html:not(.dark) .resource-category-card .resource-item-desc {
+  color: var(--text-secondary) !important;
+}
