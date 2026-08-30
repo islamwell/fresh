@@ -29,7 +29,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=7">
+  <link rel="stylesheet" href="css/styles.css?v=8">
 </head>
 <body>
   <!-- Skip Link -->
@@ -54,9 +54,13 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><button type="button" class="btn-finder-link" id="finderTriggerMobile" style="background:none;border:none;color:var(--accent-gold);font-family:inherit;font-size:inherit;font-weight:600;cursor:pointer;padding:0.5rem 0;display:flex;align-items:center;gap:0.4rem;" aria-haspopup="dialog"><span>🎯</span> <span>Find Best Course</span></button></li>
       </ul>
 
       <div class="nav-actions">
+        <button type="button" class="btn btn-sm btn-finder" id="finderTriggerNav" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;padding:0.45rem 0.9rem;" aria-haspopup="dialog">
+          <span>🎯</span> <span>Find Best Course</span>
+        </button>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
           <span class="theme-icon">🌙</span>
         </button>
@@ -90,6 +94,9 @@
       <div class="hero__cta">
         <a href="#events" class="btn btn-primary">Events</a>
         <a href="#courses" class="btn btn-secondary">Courses</a>
+        <button type="button" class="btn btn-finder" id="finderTriggerHero" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.4rem;font-size:0.95rem;" aria-haspopup="dialog">
+          <span>🎯</span> <span>Find Best Course</span>
+        </button>
       </div>
     </div>
 
@@ -356,6 +363,18 @@
         <div class="section-header reveal">
           <h2 class="section-title">Our <span class="gradient-text">Courses</span></h2>
           <p class="section-subtitle">Comprehensive Quranic education designed to deepen your understanding and strengthen your connection with Allah ﷻ</p>
+        </div>
+
+        <!-- Find Best Course Banner -->
+        <div class="finder-banner reveal" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(200, 150, 62, 0.12), rgba(26, 35, 126, 0.08)); border: 1.5px solid var(--accent-gold); border-radius: var(--radius-lg); padding: 1.5rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem;">
+          <div>
+            <span class="trip-tag trip-tag-active" style="margin-bottom: 0.5rem;">Interactive Course Matcher</span>
+            <h3 style="margin: 0 0 0.4rem; font-size: 1.35rem; color: var(--text);">Not sure which course is right for you?</h3>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); max-width: 580px;">Answer a few quick questions about your age, schedule, and goals. We'll match you with the perfect course and instructor.</p>
+          </div>
+          <button type="button" class="btn btn-finder" id="finderTriggerCourses" style="padding: 0.85rem 1.75rem; font-size: 0.95rem;" aria-haspopup="dialog">
+            <span>🎯</span> <span>Find Best Course →</span>
+          </button>
         </div>
 
         <!-- Course Filters & Search -->
@@ -704,7 +723,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:15)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.1 (updated 2026-08-31 01:25)</span></p>
       </div>
     </div>
   </footer>
@@ -803,6 +822,308 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=7" defer></script>
+  <!-- ============ COURSE FINDER WIZARD MODAL ============ -->
+  <div class="wizard-overlay" id="wizardOverlay" role="dialog" aria-modal="true" aria-labelledby="wizardTitle" hidden>
+    <div class="wizard-dialog" id="wizardDialog">
+
+      <!-- Top header & progress container -->
+      <div class="wizard-top">
+        <div class="wizard-header">
+          <div class="wizard-header-text">
+            <p class="eyebrow">
+              <span>✨</span> Course Finder
+            </p>
+            <h3 id="wizardTitle">Find Your Best Course</h3>
+          </div>
+          <button class="wizard-close" id="wizardClose" type="button" aria-label="Close course finder">✕</button>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="wizard-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="wizardProgress">
+          <div class="wizard-progress-fill" id="wizardFill" style="width:0%"></div>
+        </div>
+        <p class="wizard-step-label" id="wizardStepLabel">Step 1 of 5</p>
+      </div>
+
+      <!-- Steps container -->
+      <div class="wizard-body" id="wizardSteps">
+
+        <!-- STEP 1: Who is this for? -->
+        <div class="wizard-step" data-step="1">
+          <p class="wizard-question">Who is this course for?</p>
+          <div class="wizard-options cols-2" role="group" aria-label="Who is this for">
+            <label class="wizard-opt">
+              <input type="radio" name="age" value="little" required>
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">🌱</span>
+                <span class="wizard-opt-name">Little One (5–9)</span>
+                <span class="wizard-opt-desc">First letters, short Surahs, Noorani Qaida</span>
+              </span>
+            </label>
+            <label class="wizard-opt">
+              <input type="radio" name="age" value="teen">
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">⛰️</span>
+                <span class="wizard-opt-name">Tween / Teen (10–17)</span>
+                <span class="wizard-opt-desc">Tajweed, Hifz, understanding the Qur'an</span>
+              </span>
+            </label>
+            <label class="wizard-opt">
+              <input type="radio" name="age" value="adult">
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">🌊</span>
+                <span class="wizard-opt-name">Adult / Sister (18+)</span>
+                <span class="wizard-opt-desc">Flexible pace, female scholars, Tafseer &amp; Seerah</span>
+              </span>
+            </label>
+            <label class="wizard-opt">
+              <input type="radio" name="age" value="family">
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">🏡</span>
+                <span class="wizard-opt-name">For my family</span>
+                <span class="wizard-opt-desc">Multiple children or parent + child together</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2: Online or onsite? -->
+        <div class="wizard-step" data-step="2" hidden>
+          <p class="wizard-question">How would you like to attend?</p>
+          <div class="wizard-options cols-2" role="group" aria-label="Learning format">
+            <label class="wizard-opt">
+              <input type="radio" name="format" value="online" required>
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">💻</span>
+                <span class="wizard-opt-name">Online</span>
+                <span class="wizard-opt-desc">Live interactive classes via video call — learn anywhere in the world</span>
+              </span>
+            </label>
+            <label class="wizard-opt">
+              <input type="radio" name="format" value="onsite">
+              <span class="wizard-opt-label">
+                <span class="wizard-opt-check">✓</span>
+                <span class="wizard-opt-icon">🕌</span>
+                <span class="wizard-opt-name">Onsite</span>
+                <span class="wizard-opt-desc">In-person at a centre in your city (US · UK · PK · NO · FR · CA)</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 3: City (only shown when onsite selected) -->
+        <div class="wizard-step" data-step="3" hidden>
+          <p class="wizard-question">Which city is your centre in?</p>
+          <div class="wizard-select-wrap">
+            <select name="city" id="wizardCity" aria-label="Select your city">
+              <option value="" disabled selected>Select your city…</option>
+              <optgroup label="🇺🇸 USA">
+                <option value="Boston, MA">Boston / New England (Main Campus)</option>
+                <option value="Atlanta, GA">Atlanta, GA</option>
+                <option value="Houston, TX">Houston, TX</option>
+                <option value="Chicago, IL">Chicago, IL</option>
+                <option value="New York, NY">New York / NJ</option>
+              </optgroup>
+              <optgroup label="🇬🇧 United Kingdom">
+                <option value="London">London</option>
+                <option value="Birmingham">Birmingham</option>
+                <option value="Manchester">Manchester</option>
+                <option value="Bradford">Bradford</option>
+                <option value="Leicester">Leicester</option>
+                <option value="Leeds">Leeds</option>
+                <option value="Glasgow">Glasgow</option>
+              </optgroup>
+              <optgroup label="🇵🇰 Pakistan">
+                <option value="Jauharabad">Jauharabad (Main Institute Campus)</option>
+                <option value="Lahore">Lahore</option>
+                <option value="Islamabad">Islamabad / Rawalpindi</option>
+                <option value="Karachi">Karachi</option>
+                <option value="Gujranwala">Gujranwala</option>
+                <option value="Sialkot">Sialkot</option>
+                <option value="Hyderabad">Hyderabad</option>
+              </optgroup>
+              <optgroup label="🇳🇴 Scandinavia &amp; Europe">
+                <option value="Oslo">Oslo, Norway</option>
+                <option value="Copenhagen">Copenhagen, Denmark</option>
+                <option value="Paris">Paris, France</option>
+              </optgroup>
+              <optgroup label="🇨🇦 Canada">
+                <option value="Toronto">Toronto / GTA</option>
+                <option value="Montreal">Montreal</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option value="Other">Other city (we will connect you with nearest circle)</option>
+              </optgroup>
+            </select>
+          </div>
+          <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-muted);">Don't see your city? Pick "Other" and we'll connect you with a nearby circle or online program.</p>
+        </div>
+
+        <!-- STEP 4: Level (Skipped for adults) -->
+        <div class="wizard-step" data-step="4" hidden>
+          <p class="wizard-question">What is the current level?</p>
+          <div class="wizard-options" role="group" aria-label="Current level">
+            <label class="wizard-opt" data-level="beginner">
+              <input type="radio" name="level" value="beginner" required>
+              <span class="wizard-opt-label" style="flex-direction:row; align-items:center; gap:12px;">
+                <span class="wizard-opt-check">✓</span>
+                <span>
+                  <span class="wizard-opt-name">Complete beginner</span>
+                  <span class="wizard-opt-desc">Has never read Arabic letters</span>
+                </span>
+              </span>
+            </label>
+            <label class="wizard-opt" data-level="qaida">
+              <input type="radio" name="level" value="qaida">
+              <span class="wizard-opt-label" style="flex-direction:row; align-items:center; gap:12px;">
+                <span class="wizard-opt-check">✓</span>
+                <span>
+                  <span class="wizard-opt-name">Knows the alphabet</span>
+                  <span class="wizard-opt-desc">Can recognise letters but not yet joining words</span>
+                </span>
+              </span>
+            </label>
+            <label class="wizard-opt" data-level="reading">
+              <input type="radio" name="level" value="reading">
+              <span class="wizard-opt-label" style="flex-direction:row; align-items:center; gap:12px;">
+                <span class="wizard-opt-check">✓</span>
+                <span>
+                  <span class="wizard-opt-name">Can read the Qur'an</span>
+                  <span class="wizard-opt-desc">Reads but wants to improve fluency, Tajweed, or speed</span>
+                </span>
+              </span>
+            </label>
+            <label class="wizard-opt" data-level="advanced">
+              <input type="radio" name="level" value="advanced">
+              <span class="wizard-opt-label" style="flex-direction:row; align-items:center; gap:12px;">
+                <span class="wizard-opt-check">✓</span>
+                <span>
+                  <span class="wizard-opt-name">Advanced / Hifz</span>
+                  <span class="wizard-opt-desc">Already memorising or aiming for Ijazah certification</span>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 5: Goals (multi-select) -->
+        <div class="wizard-step" data-step="5" hidden>
+          <p class="wizard-question">What are your main goals? <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">(choose all that apply)</span></p>
+          <div class="wizard-goals" role="group" aria-label="Your goals">
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="tajweed" id="g-tajweed">
+              <label for="g-tajweed">🎵 Correct Tajweed</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="hifz" id="g-hifz">
+              <label for="g-hifz">📿 Memorisation (Hifz)</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="reading" id="g-reading">
+              <label for="g-reading">📖 Learn to read Arabic</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="understand" id="g-understand">
+              <label for="g-understand">💡 Understand meaning</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="tafseer" id="g-tafseer">
+              <label for="g-tafseer">🌿 Tafseer (deep study)</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="seerah" id="g-seerah">
+              <label for="g-seerah">🕌 Seerah of the Prophet ﷺ</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="character" id="g-character">
+              <label for="g-character">💎 Build good character</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="ijazah" id="g-ijazah">
+              <label for="g-ijazah">🎓 Ijazah / certification</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="confidence" id="g-confidence">
+              <label for="g-confidence">✨ Recitation confidence</label>
+            </span>
+            <span class="wizard-goal-chip">
+              <input type="checkbox" name="goals" value="prayer" id="g-prayer">
+              <label for="g-prayer">🤲 Improve Salah recitation</label>
+            </span>
+          </div>
+        </div>
+
+        <!-- STEP 6: Contact -->
+        <div class="wizard-step" data-step="6" hidden>
+          <p class="wizard-question">Almost there — how do we reach you?</p>
+          <div class="wizard-contact-note">
+            <span>✨</span>
+            <span>We'll send you your personalized course recommendation and arrange your free trial session on WhatsApp. We respect your privacy.</span>
+          </div>
+          <div class="wizard-field">
+            <label for="wizardName">Your Name</label>
+            <input type="text" id="wizardName" name="wname" placeholder="e.g. Fatima / Umm Yusuf" autocomplete="name" required>
+          </div>
+          <div class="wizard-field">
+            <label for="wizardPhone">WhatsApp Number</label>
+            <div class="wizard-phone-row">
+              <div class="wizard-select-wrap">
+                <select name="dialcode" id="wizardDial" aria-label="Country dial code">
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+1-ca">🇨🇦 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+92">🇵🇰 +92</option>
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+47">🇳🇴 +47</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+61">🇦🇺 +61</option>
+                </select>
+              </div>
+              <div class="wizard-field" style="margin:0;flex:1">
+                <input type="tel" id="wizardPhone" name="phone" placeholder="e.g. 508 580 8350" autocomplete="tel-national" required>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 7: Result -->
+        <div class="wizard-step" data-step="7" hidden>
+          <div class="wizard-result-class">
+            <div class="eyebrow" style="margin-bottom:0.4rem;">🎯 Best Matched Course</div>
+            <h3 id="wizardResultTitle">Your Course Recommendation</h3>
+            <p id="wizardResultDesc">Personalized recommendation description</p>
+          </div>
+
+          <div class="wizard-summary">
+            <h4>Your Selected Preferences</h4>
+            <ul id="wizardSummaryList"></ul>
+          </div>
+
+          <a href="#" id="wizardWaBtn" class="wizard-wa-btn" target="_blank" rel="noopener noreferrer">
+            <span>💬</span> <span>Connect on WhatsApp for Free Consultation</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Dialog footer navigation -->
+      <div class="wizard-footer">
+        <button class="wizard-back" id="wizardBack" type="button" style="visibility:hidden;">← Back</button>
+        <button class="btn btn-primary wizard-next" id="wizardNext" type="button">Next →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/app.js?v=8" defer></script>
+  <script src="js/course-finder.js?v=8" defer></script>
 </body>
 </html>
