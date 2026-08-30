@@ -44,6 +44,8 @@
   --bg-alt: #f4f6fb;
   --surface: #ffffff;
   --surface-elevated: rgba(255, 255, 255, 0.85);
+  --card-bg: #ffffff;
+  --card-border: rgba(26, 35, 126, 0.12);
   --text: #1a1a2e;
   --text-secondary: #334155;
   --text-muted: #525266;
@@ -117,6 +119,8 @@
     --bg-alt: #0f1629;
     --surface: #141b2d;
     --surface-elevated: rgba(20, 27, 45, 0.9);
+    --card-bg: #141b2d;
+    --card-border: rgba(124, 156, 255, 0.15);
     --text: #e8eaed;
     --text-secondary: #a0a8c0;
     --text-muted: #6b7394;
@@ -157,10 +161,12 @@ html.dark {
   --bg-alt: #0f1629;
   --surface: #141b2d;
   --surface-elevated: rgba(20, 27, 45, 0.9);
+  --card-bg: #141b2d;
+  --card-border: rgba(124, 156, 255, 0.15);
   --text: #e8eaed;
   --text-secondary: #a0a8c0;
   --text-muted: #6b7394;
-    --text-heading: var(--text);
+  --text-heading: var(--text);
   --border: rgba(124, 156, 255, 0.15);
   --border-light: rgba(124, 156, 255, 0.08);
 
@@ -195,6 +201,8 @@ html.light {
   --bg-alt: #f4f6fb;
   --surface: #ffffff;
   --surface-elevated: rgba(255, 255, 255, 0.85);
+  --card-bg: #ffffff;
+  --card-border: rgba(26, 35, 126, 0.12);
   --text: #1a1a2e;
   --text-secondary: #334155;
   --text-muted: #525266;
@@ -1247,54 +1255,70 @@ p {
 /* ============================================================
    14. RESOURCES SECTION
    ============================================================ */
-.resource-category {
-  margin-bottom: 2.5rem;
+.resource-category-card,
+.resource-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-normal) var(--ease-spring), box-shadow var(--duration-normal) var(--ease-spring), border-color var(--duration-fast);
+}
+
+.resource-category-card:hover,
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-teal);
 }
 
 .resource-category-title {
+  margin-top: 0;
+  color: var(--accent-teal);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.35rem;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
-.resource-card {
+.resource-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  transition: all var(--duration-normal) var(--ease-spring);
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.resource-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.resource-item-link {
   text-decoration: none;
   color: var(--text);
-}
-
-.resource-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary);
-  color: var(--text);
-}
-
-.resource-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  display: flex;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color var(--duration-fast) var(--ease-out);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: var(--bg-alt);
-  border-radius: var(--radius-sm);
+  gap: 0.4rem;
 }
 
-.resource-info h4 { font-size: 1rem; margin-bottom: 0.15rem; }
-.resource-info p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+.resource-item-link:hover {
+  color: var(--primary);
+}
+
+.resource-item-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
 
 /* ============================================================
    15. PROJECTS / DONATE SECTION

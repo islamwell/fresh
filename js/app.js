@@ -1604,17 +1604,17 @@ const DynamicDataManager = {
     const grid = document.getElementById('resources-grid');
     if (!grid) return;
     grid.innerHTML = categories.map((cat, i) => `
-      <div class="resource-category-card glass-card reveal" style="--i:${i}; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-light); background: var(--surface);">
-        <h3 style="margin-top:0; color:var(--accent-teal); display:flex; align-items:center; gap:0.5rem; font-size:1.35rem">
+      <div class="resource-category-card reveal" style="--i:${i};">
+        <h3 class="resource-category-title">
           <span>${cat.icon}</span> <span>${cat.title}</span>
         </h3>
-        <ul style="list-style:none; padding:0; margin:1.5rem 0 0 0; display:flex; flex-direction:column; gap:1rem">
+        <ul class="resource-items-list">
           ${cat.items.map(item => `
-            <li style="display:flex; flex-direction:column; gap:0.25rem">
-              <a href="${item.link}" target="_blank" style="text-decoration:none; color:var(--text); font-weight:600; font-size:1rem; transition:color 0.3s; display:inline-flex; align-items:center; gap:0.35rem">
+            <li class="resource-item">
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="resource-item-link">
                 <span>${item.icon || '📄'}</span> <span>${item.title}</span>
               </a>
-              <span class="resource-item-desc" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.4">${item.description}</span>
+              <span class="resource-item-desc">${item.description}</span>
             </li>
           `).join('')}
         </ul>
