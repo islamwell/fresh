@@ -2742,3 +2742,196 @@ p {
 
   body { font-size: 12pt; }
 }
+
+/* ============================================================
+   22. LIGHT MODE — Contrast & Readability Fixes
+   Only targets elements that hardcode dark-mode colours
+   (near-transparent whites, very bright teal/mint on light bg).
+   Dark mode variables are NOT touched here.
+   ============================================================ */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .btn-secondary {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  html:not(.dark) .btn-secondary:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  /* Teal accent text is too bright on white — use darker teal */
+  html:not(.dark) .flyer-city-date,
+  html:not(.dark) .archive-meta {
+    color: var(--accent-teal);   /* deep-teal: #00695c — good contrast on white */
+  }
+
+  /* Trip "past" tag — near-invisible bg on white */
+  html:not(.dark) .trip-tag.past {
+    background: rgba(26, 35, 126, 0.07);
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+
+  /* Calendar hover — near-invisible on white */
+  html:not(.dark) .cal-day:hover:not(.empty) {
+    background: rgba(26, 35, 126, 0.06);
+    border-color: var(--border);
+  }
+
+  /* Events tab bar background */
+  html:not(.dark) .events-tabs {
+    background: rgba(26, 35, 126, 0.05);
+  }
+
+  /* Audio player backgrounds */
+  html:not(.dark) .custom-audio-player {
+    background: rgba(26, 35, 126, 0.04);
+    border-color: var(--border);
+  }
+  html:not(.dark) .player-display {
+    background: rgba(26, 35, 126, 0.06);
+  }
+
+  /* Playlist items */
+  html:not(.dark) .playlist-item,
+  html:not(.dark) .video-item {
+    background: var(--bg-alt);
+  }
+  html:not(.dark) .playlist-item:hover,
+  html:not(.dark) .video-item:hover {
+    background: rgba(26, 35, 126, 0.07);
+  }
+  html:not(.dark) .playlist-item.active,
+  html:not(.dark) .video-item.active {
+    background: rgba(26, 35, 126, 0.1);
+  }
+
+  /* Flyer cards */
+  html:not(.dark) .flyer-card {
+    background: #ffffff;
+  }
+
+  /* Archive page */
+  html:not(.dark) .archive-card {
+    background: #ffffff;
+  }
+  html:not(.dark) .archive-filter-bar {
+    background: var(--bg-alt);
+  }
+
+  /* Cal nav button */
+  html:not(.dark) .cal-nav-btn {
+    background: var(--bg-alt);
+  }
+  html:not(.dark) .cal-nav-btn:hover {
+    background: rgba(26, 35, 126, 0.08);
+  }
+
+  /* Section subtitle muted text — darken slightly for WCAG AA */
+  html:not(.dark) .section-subtitle,
+  html:not(.dark) .stat-label,
+  html:not(.dark) .footer-links a,
+  html:not(.dark) .footer-brand p,
+  html:not(.dark) .footer-bottom {
+    color: #5a5a7a;
+  }
+
+  /* Flyer contact text — gold is too light on white */
+  html:not(.dark) .flyer-contact {
+    color: var(--accent-gold);
+  }
+
+  /* Archive badge — gold on near-transparent looks washed out */
+  html:not(.dark) .archive-badge {
+    background: rgba(201, 162, 39, 0.15);
+    color: #7a5c00;
+    border-color: rgba(201, 162, 39, 0.4);
+  }
+
+  /* Archive highlights checkmark */
+  html:not(.dark) .archive-highlights li::before {
+    color: var(--accent-teal);
+  }
+
+  /* Flyer spotlight title */
+  html:not(.dark) .flyers-spotlight-title {
+    color: #7a5c00;
+    background: rgba(201, 162, 39, 0.1);
+  }
+
+  /* Event detail tag */
+  html:not(.dark) .event-detail-tag {
+    background: rgba(201, 162, 39, 0.15);
+    color: #7a5c00;
+  }
+
+  /* Trip tag upcoming on white */
+  html:not(.dark) .trip-tag.upcoming {
+    background: rgba(0, 105, 92, 0.1);
+    color: var(--accent-teal);
+  }
+}
+
+/* Same fixes for manually toggled light mode (.light class) */
+html.light .btn-secondary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+html.light .btn-secondary:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+html.light .flyer-city-date,
+html.light .archive-meta { color: var(--accent-teal); }
+html.light .trip-tag.past {
+  background: rgba(26, 35, 126, 0.07);
+  color: var(--text-secondary);
+  opacity: 1;
+}
+html.light .cal-day:hover:not(.empty) {
+  background: rgba(26, 35, 126, 0.06);
+  border-color: var(--border);
+}
+html.light .events-tabs { background: rgba(26, 35, 126, 0.05); }
+html.light .custom-audio-player {
+  background: rgba(26, 35, 126, 0.04);
+  border-color: var(--border);
+}
+html.light .player-display { background: rgba(26, 35, 126, 0.06); }
+html.light .playlist-item,
+html.light .video-item { background: var(--bg-alt); }
+html.light .playlist-item:hover,
+html.light .video-item:hover { background: rgba(26, 35, 126, 0.07); }
+html.light .playlist-item.active,
+html.light .video-item.active { background: rgba(26, 35, 126, 0.1); }
+html.light .flyer-card { background: #ffffff; }
+html.light .archive-card { background: #ffffff; }
+html.light .archive-filter-bar { background: var(--bg-alt); }
+html.light .cal-nav-btn { background: var(--bg-alt); }
+html.light .cal-nav-btn:hover { background: rgba(26, 35, 126, 0.08); }
+html.light .section-subtitle,
+html.light .stat-label,
+html.light .footer-links a,
+html.light .footer-brand p,
+html.light .footer-bottom { color: #5a5a7a; }
+html.light .flyer-contact { color: var(--accent-gold); }
+html.light .archive-badge {
+  background: rgba(201, 162, 39, 0.15);
+  color: #7a5c00;
+  border-color: rgba(201, 162, 39, 0.4);
+}
+html.light .archive-highlights li::before { color: var(--accent-teal); }
+html.light .flyers-spotlight-title {
+  color: #7a5c00;
+  background: rgba(201, 162, 39, 0.1);
+}
+html.light .event-detail-tag {
+  background: rgba(201, 162, 39, 0.15);
+  color: #7a5c00;
+}
+html.light .trip-tag.upcoming {
+  background: rgba(0, 105, 92, 0.1);
+  color: var(--accent-teal);
+}
