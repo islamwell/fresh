@@ -1155,8 +1155,16 @@ const VideoLightbox = {
 
     if (!this.lightbox || !this.content) return;
 
-    this.openBtn?.addEventListener('click', () => this.open());
-    this.closeBtn?.addEventListener('click', () => this.close());
+    this.openBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.open();
+    });
+
+    this.closeBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.close();
+    });
     
     this.lightbox.addEventListener('click', (e) => {
       if (e.target === this.lightbox) this.close();
@@ -1170,32 +1178,62 @@ const VideoLightbox = {
   },
 
   open() {
-    const currentId = MediaManager.currentVideoId;
-    const currentUrl = MediaManager.currentVideoUrl;
-    if (!currentId && !currentUrl) return;
+    let currentId = MediaManager.currentVideoId;
+    let currentUrl = MediaManager.currentVideoUrl;
+
+    // Detect currently active playlist item if currentId is missing
+    if (!currentId && !currentUrl) {
+      const activeVideoItem = document.querySelector('.video-item.active');
+      if (activeVideoItem) {
+        currentId = activeVideoItem.dataset.youtubeId;
+        currentUrl = activeVideoItem.dataset.videoUrl;
+      }
+    }
+
+    // Detect from iframe if still missing
+    if (!currentId && !currentUrl) {
+      const iframe = document.getElementById('video-iframe');
+      if (iframe && iframe.src) {
+        const match = iframe.src.match(/embed\/([^?&]+)/);
+        if (match) currentId = match[1];
+      }
+    }
+
+    // Default fallback video
+    if (!currentId && !currentUrl) {
+      currentId = '8K8PqckMGiA';
+    }
 
     if (currentUrl) {
       const nativePlayer = document.getElementById('native-video-player');
       if (nativePlayer) nativePlayer.pause();
       
       this.content.innerHTML = `
-        <video controls autoplay style="width: 100%; height: 100%; background: #000;">
+        <video controls autoplay style="width: 100%; height: 100%; object-fit: contain; background: #000;">
           <source src="${currentUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       `;
     } else {
+      // Pause inline player
       if (MediaManager.ytPlayer && typeof MediaManager.ytPlayer.pauseVideo === 'function') {
         try { MediaManager.ytPlayer.pauseVideo(); } catch(e) {}
+      } else {
+        const inlineIframe = document.getElementById('video-iframe');
+        if (inlineIframe) {
+          try {
+            inlineIframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          } catch(e) {}
+        }
       }
       
       this.content.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${currentId}?autoplay=1&enablejsapi=1" 
-                title="YouTube video player" 
+        <iframe src="https://www.youtube.com/embed/${currentId}?autoplay=1&enablejsapi=1&rel=0" 
+                title="YouTube video player — Theater Mode" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen 
-                style="width: 100%; height: 100%; border: none;"></iframe>
+                style="width: 100%; height: 100%; border: none; display: block; border-radius: 8px;"></iframe>
       `;
     }
 
@@ -1204,8 +1242,9 @@ const VideoLightbox = {
   },
 
   close() {
+    if (!this.lightbox) return;
     this.lightbox.classList.add('hidden');
-    this.content.innerHTML = '';
+    if (this.content) this.content.innerHTML = '';
     document.body.style.overflow = '';
   }
 };

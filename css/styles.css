@@ -2525,6 +2525,70 @@ p {
 }
 
 /* ============================================================
+   18.4 MODAL OVERLAYS & THEATER MODE LIGHTBOX
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.lightbox-container {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 25;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--color-gold, #ffd54f);
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* ============================================================
    19. REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
