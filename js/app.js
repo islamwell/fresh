@@ -976,6 +976,9 @@ const CalendarManager = {
 
       const tripShareText = `*${trip.title}*\n🗓️ ${trip.date}\n${trip.meta}\n\n${trip.description}\n\nMore details: https://nurulquran.web.app/#events`;
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(tripShareText)}`;
+      const tripMapBtn = (trip.meta && !trip.meta.toLowerCase().includes('online'))
+        ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(trip.meta)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm trip-map-btn" style="padding:0.35rem 0.65rem;font-size:0.75rem"><span>📍</span> <span>Map</span></a>`
+        : '';
 
       const timelineItem = document.createElement('div');
       timelineItem.className = 'timeline-item reveal';
@@ -989,7 +992,8 @@ const CalendarManager = {
           ${flyersHtml}
           <div class="trip-footer" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
             <a href="${trip.link}" class="btn ${btnClass}" ${trip.link.endsWith('.jpeg') || trip.link.endsWith('.jpg') ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
-            ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Register →</a>` : ''}
+            ${tripMapBtn}
+            ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Register →</a>` : ''}
             <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm">
               <span>💬</span> <span>Share</span>
             </a>
@@ -1003,7 +1007,7 @@ const CalendarManager = {
           const src = thumb.dataset.flyerSrc;
           const caption = thumb.dataset.caption;
           const shareText = thumb.dataset.shareText ? decodeURIComponent(thumb.dataset.shareText) : '';
-          FlyerLightboxManager.open(src, caption, shareText);
+          FlyerLightboxManager.open(src, caption, shareText, caption);
         });
       });
 
@@ -1012,7 +1016,7 @@ const CalendarManager = {
       if (flyerLinkBtn) {
         flyerLinkBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          FlyerLightboxManager.open(trip.link, trip.title, tripShareText);
+          FlyerLightboxManager.open(trip.link, trip.title, tripShareText, trip.meta);
         });
       }
 
@@ -1049,6 +1053,9 @@ const CalendarManager = {
     // Reset selection card
     this.detailContent.classList.add('hidden');
     this.detailEmpty.classList.remove('hidden');
+    
+    // Clear selection indicator
+    this.daysGrid.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
   },
 
   renderCalendar() {
@@ -1164,7 +1171,7 @@ const CalendarManager = {
         `;
         flyerWrap.classList.remove('hidden');
         flyerWrap.querySelector('.event-detail-flyer-preview')?.addEventListener('click', () => {
-          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText);
+          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText, event.location);
         });
       } else {
         flyerWrap.innerHTML = '';
@@ -1172,7 +1179,7 @@ const CalendarManager = {
       }
     }
 
-    // Dynamic action buttons container (Registration + WhatsApp Share)
+    // Dynamic action buttons container (Registration + Google Maps + WhatsApp Share)
     let actionWrap = this.detailContent.querySelector('.event-detail-actions-wrap');
     if (!actionWrap) {
       actionWrap = document.createElement('div');
@@ -1184,6 +1191,28 @@ const CalendarManager = {
       actionWrap.style.marginTop = '1rem';
       this.detailCta.parentNode.insertBefore(actionWrap, this.detailCta);
       actionWrap.appendChild(this.detailCta);
+    }
+
+    // Google Maps Button
+    let mapBtn = actionWrap.querySelector('.event-map-btn');
+    if (event.location && !event.location.toLowerCase().includes('online')) {
+      if (!mapBtn) {
+        mapBtn = document.createElement('a');
+        mapBtn.className = 'btn btn-outline event-map-btn';
+        mapBtn.target = '_blank';
+        mapBtn.rel = 'noopener noreferrer';
+        mapBtn.style.display = 'inline-flex';
+        mapBtn.style.alignItems = 'center';
+        mapBtn.style.gap = '0.35rem';
+        mapBtn.style.padding = '0.4rem 0.8rem';
+        mapBtn.style.fontSize = '0.85rem';
+        mapBtn.innerHTML = '<span>📍</span> <span>Map</span>';
+        actionWrap.appendChild(mapBtn);
+      }
+      mapBtn.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`;
+      mapBtn.style.display = 'inline-flex';
+    } else if (mapBtn) {
+      mapBtn.style.display = 'none';
     }
 
     // WhatsApp Share Button
@@ -1241,7 +1270,8 @@ const FlyerLightboxManager = {
         const date = card.querySelector('.flyer-city-date')?.textContent || '';
         const phone = card.querySelector('.flyer-contact')?.textContent || '';
         const shareText = `*${title}*\n🗓️ ${date}\n${venue}\n${phone}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!\nMore info: https://nurulquran.web.app/#events`;
-        this.open(src, caption, shareText);
+        const venueQuery = venue.replace(/^📍\s*/, '').trim();
+        this.open(src, caption, shareText, venueQuery);
       });
     });
 
@@ -1257,7 +1287,7 @@ const FlyerLightboxManager = {
     });
   },
 
-  open(src, caption = '', shareText = '') {
+  open(src, caption = '', shareText = '', mapQuery = '') {
     if (!this.lightbox || !this.img) return;
     this.img.src = src;
     if (this.caption) this.caption.innerHTML = caption;
@@ -1265,10 +1295,19 @@ const FlyerLightboxManager = {
     if (this.shareContainer) {
       const textToShare = shareText || caption.replace(/<[^>]*>?/gm, '');
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(textToShare)}`;
+      const mapBtnHtml = (mapQuery && !mapQuery.toLowerCase().includes('online'))
+        ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3);padding:0.6rem 1.2rem;display:inline-flex;align-items:center;gap:0.4rem;" onclick="event.stopPropagation()">
+            <span>📍</span> <span>Google Maps</span>
+          </a>`
+        : '';
+
       this.shareContainer.innerHTML = `
-        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="event.stopPropagation()">
-          <span>💬</span> <span>Share on WhatsApp</span>
-        </a>
+        <div style="display:flex;gap:0.75rem;justify-content:center;align-items:center;flex-wrap:wrap;">
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="event.stopPropagation()">
+            <span>💬</span> <span>Share on WhatsApp</span>
+          </a>
+          ${mapBtnHtml}
+        </div>
       `;
     }
 
@@ -1473,14 +1512,29 @@ const DynamicDataManager = {
       const isEmoji = !c.icon.startsWith('http') && !c.icon.startsWith('assets/');
       const iconHtml = isEmoji 
         ? `<div class="course-icon">${c.icon}</div>`
-        : `<div class="course-icon-img-wrapper" style="width: 50px; height: 50px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;"><img src="${c.icon}" alt="${c.title}" style="width:100%; height:100%; object-fit:contain; border-radius:8px;"></div>`;
+        : `<div class="course-icon-img-wrapper" style="width: 50px; height: 50px; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center;"><img src="${c.icon}" alt="${c.title}" style="width:100%; height:100%; object-fit:contain; border-radius:8px;"></div>`;
       
+      const arabicHtml = c.arabic ? `<div class="course-arabic" style="font-family:var(--font-arabic); font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.35rem; font-weight: normal; direction: rtl; letter-spacing: 0;">${c.arabic}</div>` : '';
+      const tagHtml = c.tag ? `<span class="course-tag" style="display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(201, 162, 39, 0.15); color: var(--accent-gold); margin-bottom: 0.75rem;">${c.tag}</span>` : '';
+      
+      const regBtnHtml = c.registerLink 
+        ? `<a href="${c.registerLink}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 20px;">Register Now →</a>`
+        : '';
+      const detailsBtnHtml = `<a href="${c.link || 'https://nurulquran.com/courses/'}" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 20px;">Details →</a>`;
+
       return `
-        <article class="course-card reveal" style="--i:${i}; border-top: 4px solid ${c.color || 'var(--primary)'}">
-          ${iconHtml}
-          <h3>${c.title}</h3>
-          <p>${c.description}</p>
-          <a href="${c.link || '#'}" class="card-link" style="color:${c.color || 'var(--primary)'}">Learn More →</a>
+        <article class="course-card reveal" style="--i:${i}; border-top: 4px solid ${c.color || 'var(--primary)'}; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            ${iconHtml}
+            ${arabicHtml}
+            <h3 style="margin-bottom: 0.35rem;">${c.title}</h3>
+            ${tagHtml}
+            <p style="margin-top: 0.25rem;">${c.description}</p>
+          </div>
+          <div class="course-card-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 1.25rem;">
+            ${regBtnHtml}
+            ${detailsBtnHtml}
+          </div>
         </article>
       `;
     }).join('');
@@ -1498,17 +1552,23 @@ const DynamicDataManager = {
 
       const filtered = this.courses.filter(c => {
         let matchesCategory = true;
-        if (category === 'quran') {
-          matchesCategory = c.title.toLowerCase().includes('quran') || c.description.toLowerCase().includes('quran') || c.title.toLowerCase().includes('tafseer');
-        } else if (category === 'tajweed') {
-          matchesCategory = c.title.toLowerCase().includes('tajweed') || c.description.toLowerCase().includes('recitation') || c.title.toLowerCase().includes('vocabulary');
-        } else if (category === 'arabic') {
-          matchesCategory = c.title.toLowerCase().includes('arabic') || c.description.toLowerCase().includes('grammar') || c.title.toLowerCase().includes('linguistic');
-        } else if (category === 'character') {
-          matchesCategory = c.title.toLowerCase().includes('character') || c.title.toLowerCase().includes('family') || c.title.toLowerCase().includes('ambassadors') || c.description.toLowerCase().includes('personal growth');
+        if (category !== 'all') {
+          if (c.category) {
+            matchesCategory = c.category === category;
+          } else {
+            if (category === 'quran') {
+              matchesCategory = c.title.toLowerCase().includes('quran') || c.description.toLowerCase().includes('quran') || c.title.toLowerCase().includes('tafseer');
+            } else if (category === 'tajweed') {
+              matchesCategory = c.title.toLowerCase().includes('tajweed') || c.description.toLowerCase().includes('recitation') || c.title.toLowerCase().includes('vocabulary');
+            } else if (category === 'arabic') {
+              matchesCategory = c.title.toLowerCase().includes('arabic') || c.description.toLowerCase().includes('grammar') || c.title.toLowerCase().includes('linguistic');
+            } else if (category === 'character') {
+              matchesCategory = c.title.toLowerCase().includes('character') || c.title.toLowerCase().includes('family') || c.title.toLowerCase().includes('seerah') || c.title.toLowerCase().includes('ambassadors') || c.description.toLowerCase().includes('personal growth');
+            }
+          }
         }
 
-        const matchesQuery = c.title.toLowerCase().includes(query) || c.description.toLowerCase().includes(query);
+        const matchesQuery = c.title.toLowerCase().includes(query) || (c.arabic && c.arabic.includes(query)) || c.description.toLowerCase().includes(query);
         return matchesCategory && matchesQuery;
       });
 
@@ -1529,8 +1589,10 @@ const DynamicDataManager = {
       });
     });
 
-    searchInput?.addEventListener('input', filterAndSearch);
-    
+    if (searchInput) {
+      searchInput.addEventListener('input', () => filterAndSearch());
+    }
+
     const active = document.querySelector('#course-filter-tabs .filter-btn.active');
     if (active) {
       active.style.background = 'var(--primary)';

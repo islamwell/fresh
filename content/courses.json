@@ -1,62 +1,102 @@
 {
   "heading": "Our Courses",
-  "subtitle": "Comprehensive Quranic education designed to deepen your understanding and strengthen your connection with Allah ﷻ",
+  "subtitle": "More than Qur'an — a complete Islamic education designed to deepen your understanding and strengthen your connection with Allah ﷻ",
   "courses": [
     {
-      "id": "tafseer",
-      "title": "Tafseer of the Noble Quran",
-      "description": "In-depth explanation and interpretation of the Noble Quran, uncovering the wisdom, context, and guidance within each verse. Explore the deeper meanings that transform your understanding of Allah's words.",
-      "icon": "📖",
+      "id": "sabeel-ul-jannah",
+      "title": "Sabeel ul Jannah",
+      "arabic": "سَبِيلُ الْجَنَّة",
+      "tag": "Live · 2026",
+      "category": "quran",
+      "description": "A journey through the Qur'an with Tafseer, Arabic grammar and practical lessons for living. The flagship annual program — run every year since the institute's founding.",
+      "icon": "🌿",
       "color": "var(--accent-gold)",
-      "link": "https://nurulquran.com/courses/"
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": "https://forms.gle/QBxBMFNyEiyameb97"
     },
     {
-      "id": "tajweed",
-      "title": "Tajweed & Quranic Vocabulary",
-      "description": "Master the art of proper Quranic recitation with precise pronunciation rules and expand your understanding of Quranic vocabulary to connect more deeply with each word you recite.",
-      "icon": "🎙️",
+      "id": "nurun-ala-nur",
+      "title": "Nurun Ala Nur",
+      "arabic": "نُورٌ عَلَى نُور",
+      "tag": "Live · 2026",
+      "category": "quran",
+      "description": "Light upon light — a deep-dive Tafseer program connecting the layers of meaning in the Qur'an and their reflections in daily Muslim life.",
+      "icon": "✨",
       "color": "var(--accent-teal)",
-      "link": "https://nurulquran.com/courses/"
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": "https://forms.gle/14Sim7wjfTiq45ep9"
+    },
+    {
+      "id": "seerah-course",
+      "title": "Seerah Course",
+      "arabic": "السِّيرَة النَّبَوِيَّة",
+      "tag": "Live · 2026",
+      "category": "character",
+      "description": "The life of the Prophet ﷺ studied in detail — character, events, lessons, and how his ﷺ example transforms our families, homes and relationships today.",
+      "icon": "🕌",
+      "color": "var(--accent-rose)",
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": "https://nurulquran.com/seerah"
+    },
+    {
+      "id": "lulu-wal-marjaan",
+      "title": "Al Lulu Wal Marjaan",
+      "arabic": "اللُّؤْلُؤ وَالمَرْجَان",
+      "tag": "Archive · I & II",
+      "category": "character",
+      "description": "Pearls and coral — a two-part course of selected ahadith, their meanings, and practical wisdom for family life, kindness and worship.",
+      "icon": "📿",
+      "color": "var(--accent-gold)",
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": ""
+    },
+    {
+      "id": "tafseer-hadith",
+      "title": "Tafseer & Hadith",
+      "arabic": "التَّفْسِير وَالحَدِيث",
+      "tag": "Ongoing",
+      "category": "quran",
+      "description": "Verse-by-verse explanation of the Qur'an woven together with the authentic Sunnah — so students understand what Allah says and how the Prophet ﷺ lived it.",
+      "icon": "📖",
+      "color": "var(--primary)",
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": ""
     },
     {
       "id": "arabic-grammar",
       "title": "Arabic Grammar",
-      "description": "Build a strong foundation in Arabic grammar to unlock the linguistic beauty of the Quran. Understand sentence structures, verb forms, and grammatical rules that reveal deeper meanings.",
-      "icon": "✍️",
-      "color": "var(--primary)",
-      "link": "https://nurulquran.com/courses/"
-    },
-    {
-      "id": "seerah",
-      "title": "Seerah — Life of the Prophet ﷺ",
-      "description": "Study the inspiring biography of Prophet Muhammad ﷺ — his character, wisdom, and exemplary leadership. Learn practical lessons from his life that guide us in our daily affairs.",
-      "icon": "🌙",
-      "color": "var(--accent-rose)",
-      "link": "https://nurulquran.com/courses/"
-    },
-    {
-      "id": "character-building",
-      "title": "Character Building & Development",
-      "description": "Courses designed to foster personal growth, moral excellence, and spiritual development based on the teachings of the Quran and Sunnah. Transform your character from within.",
-      "icon": "💎",
-      "color": "var(--accent-gold)",
-      "link": "https://nurulquran.com/courses/"
-    },
-    {
-      "id": "family-life",
-      "title": "Family Life & Home Management",
-      "description": "Practical guidance on building a successful family life, nurturing relationships, and managing your home effectively — all through the beautiful lens of Islamic teachings.",
-      "icon": "🏡",
+      "arabic": "النَّحْو وَالصَّرْف",
+      "tag": "Integrated",
+      "category": "arabic",
+      "description": "Arabic grammar is built into every lesson so students can unlock the Qur'an's own language — understanding root words, verb forms and sentence structures that reveal deeper meaning.",
+      "icon": "🔤",
       "color": "var(--accent-teal)",
-      "link": "https://nurulquran.com/courses/"
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": ""
+    },
+    {
+      "id": "tajweed",
+      "title": "Tajweed & Quranic Vocabulary",
+      "arabic": "التَّجْوِيد وَالمُفْرَدَات",
+      "tag": "Foundations",
+      "category": "tajweed",
+      "description": "Master the art of proper Quranic recitation with precise pronunciation rules and expand your understanding of Quranic vocabulary to connect more deeply with each word you recite.",
+      "icon": "🎙️",
+      "color": "var(--primary)",
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": ""
     },
     {
       "id": "ambassadors",
       "title": "Ambassadors of Islam",
-      "description": "An advanced course empowering students to become confident ambassadors of Islamic knowledge, equipped to share the beauty of Islam with wisdom and grace.",
+      "arabic": "سُفَرَاءُ الإِسْلَام",
+      "tag": "Advanced",
+      "category": "character",
+      "description": "An empowering course equipping students to become confident ambassadors of Islamic knowledge, equipped to share the beauty of Islam with wisdom and grace.",
       "icon": "🌟",
-      "color": "var(--primary)",
-      "link": "https://nurulquran.com/courses/"
+      "color": "var(--accent-gold)",
+      "link": "https://nurulquran.com/courses/",
+      "registerLink": ""
     }
   ]
 }
