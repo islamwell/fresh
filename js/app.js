@@ -994,9 +994,9 @@ const CalendarManager = {
             <a href="${trip.link}" class="btn ${btnClass}" ${trip.link.endsWith('.jpeg') || trip.link.endsWith('.jpg') ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
             ${tripMapBtn}
             ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Register →</a>` : ''}
-            <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-sm">
-              <span>💬</span> <span>Share</span>
-            </a>
+            <button type="button" class="btn-share-icon trip-share-btn" aria-label="Share" title="Share event &amp; flyer" onclick="event.stopPropagation(); SocialShareManager.open({ title: '${trip.title.replace(/'/g, "\\'")}', text: '${(trip.title + '\n🗓️ ' + trip.meta + '\n' + trip.description).replace(/'/g, "\\'")}', url: 'https://nurulquran.web.app/#trips', imgUrl: '${trip.flyers && trip.flyers[0] ? trip.flyers[0].src : ''}', date: '${trip.meta.replace(/'/g, "\\'")}' })">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+            </button>
           </div>
         </div>
       `;
@@ -1215,17 +1215,28 @@ const CalendarManager = {
       mapBtn.style.display = 'none';
     }
 
-    // WhatsApp Share Button
-    let waBtn = actionWrap.querySelector('.event-wa-btn');
-    if (!waBtn) {
-      waBtn = document.createElement('a');
-      waBtn.className = 'btn-whatsapp event-wa-btn';
-      waBtn.target = '_blank';
-      waBtn.rel = 'noopener noreferrer';
-      waBtn.innerHTML = '<span>💬</span> <span>Share</span>';
-      actionWrap.appendChild(waBtn);
+    // Standard Share Icon Button
+    let shareBtn = actionWrap.querySelector('.event-share-btn');
+    if (!shareBtn) {
+      shareBtn = document.createElement('button');
+      shareBtn.type = 'button';
+      shareBtn.className = 'btn-share-icon event-share-btn';
+      shareBtn.setAttribute('aria-label', 'Share event & flyer');
+      shareBtn.setAttribute('title', 'Share event & flyer');
+      shareBtn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>';
+      actionWrap.appendChild(shareBtn);
     }
-    waBtn.href = waUrl;
+    shareBtn.onclick = (e) => {
+      e.stopPropagation();
+      SocialShareManager.open({
+        title: event.title,
+        text: `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 ${event.contact || ''}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!`,
+        url: 'https://nurulquran.web.app/#events',
+        imgUrl: event.flyer || event.link || '',
+        date: event.time,
+        venue: event.location
+      });
+    };
 
     // Handle registration form button
     let regBtn = actionWrap.querySelector('.event-register-btn');
@@ -1249,6 +1260,239 @@ const CalendarManager = {
   }
 };
 
+// ---- Universal Social Share Modal Manager ----
+const SocialShareManager = {
+  data: {
+    title: '',
+    text: '',
+    url: '',
+    imgUrl: '',
+    date: '',
+    venue: ''
+  },
+
+  init() {
+    this.modal = document.getElementById('social-share-modal');
+    if (!this.modal) return;
+
+    this.closeBtn = document.getElementById('close-share-modal');
+    this.previewImg = document.getElementById('share-preview-img');
+    this.previewTitle = document.getElementById('share-preview-title');
+    this.previewMeta = document.getElementById('share-preview-meta');
+    this.nativeBtn = document.getElementById('share-native-action');
+    this.linkWa = document.getElementById('share-link-wa');
+    this.linkFb = document.getElementById('share-link-fb');
+    this.linkX = document.getElementById('share-link-x');
+    this.linkTg = document.getElementById('share-link-tg');
+    this.copyBtn = document.getElementById('share-copy-btn');
+    this.copyLabel = document.getElementById('share-copy-label');
+    this.copyIcon = document.getElementById('share-copy-icon');
+    this.downloadBtn = document.getElementById('share-download-btn');
+
+    this.closeBtn?.addEventListener('click', () => this.close());
+    this.modal.addEventListener('click', (e) => {
+      if (e.target === this.modal) this.close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !this.modal.classList.contains('hidden')) {
+        this.close();
+      }
+    });
+
+    this.copyBtn?.addEventListener('click', () => this.copyDetails());
+    this.nativeBtn?.addEventListener('click', () => this.triggerNativeShare());
+  },
+
+  openFromCard(card) {
+    if (!card) return;
+    const src = card.dataset.flyerSrc || card.querySelector('img')?.getAttribute('src') || '';
+    const title = card.querySelector('h4')?.textContent || 'Ireland Tour 2026';
+    const date = card.querySelector('.flyer-city-date')?.textContent || '';
+    const venue = card.querySelector('.flyer-venue')?.textContent || '';
+    const contact = card.querySelector('.flyer-contact')?.textContent || '';
+    
+    const formattedText = `*${title}*\n🗓️ ${date}\n${venue}\n${contact}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!`;
+    const fullUrl = 'https://nurulquran.web.app/#events';
+
+    this.open({
+      title: title,
+      text: formattedText,
+      url: fullUrl,
+      imgUrl: src,
+      date: date,
+      venue: venue
+    });
+  },
+
+  open({ title = '', text = '', url = '', imgUrl = '', date = '', venue = '' }) {
+    if (!this.modal) this.init();
+    if (!this.modal) return;
+
+    this.data = { title, text, url: url || window.location.href, imgUrl, date, venue };
+
+    // Format absolute flyer URL
+    let absoluteImgUrl = '';
+    if (imgUrl) {
+      try {
+        absoluteImgUrl = new URL(imgUrl, window.location.origin).href;
+      } catch (e) {
+        absoluteImgUrl = imgUrl;
+      }
+    }
+
+    // Populate preview
+    if (this.previewImg) {
+      if (imgUrl) {
+        this.previewImg.src = imgUrl;
+        this.previewImg.style.display = 'block';
+      } else {
+        this.previewImg.style.display = 'none';
+      }
+    }
+    if (this.previewTitle) this.previewTitle.textContent = title || 'NurulQuran Event';
+    if (this.previewMeta) {
+      this.previewMeta.textContent = [date, venue.replace(/^📍\s*/, '')].filter(Boolean).join(' • ') || 'Nur-Ul-Quran International';
+    }
+
+    // Prepare share text with direct flyer image link so social networks unfurl and show the image!
+    const textWithImage = absoluteImgUrl 
+      ? `${text}\n\n🖼️ View Flyer: ${absoluteImgUrl}\n🔗 Site: ${this.data.url}`
+      : `${text}\n\n🔗 ${this.data.url}`;
+
+    // WhatsApp
+    if (this.linkWa) {
+      this.linkWa.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textWithImage)}`;
+    }
+
+    // Facebook
+    if (this.linkFb) {
+      this.linkFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(absoluteImgUrl || this.data.url)}&quote=${encodeURIComponent(text)}`;
+    }
+
+    // X / Twitter
+    if (this.linkX) {
+      const tweetText = `${title} with Ustazah Iffat Maqbool ${date ? '• ' + date : ''}`;
+      this.linkX.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(absoluteImgUrl || this.data.url)}`;
+    }
+
+    // Telegram
+    if (this.linkTg) {
+      this.linkTg.href = `https://t.me/share/url?url=${encodeURIComponent(absoluteImgUrl || this.data.url)}&text=${encodeURIComponent(text)}`;
+    }
+
+    // Download Flyer button
+    if (this.downloadBtn) {
+      if (imgUrl) {
+        this.downloadBtn.href = imgUrl;
+        this.downloadBtn.download = imgUrl.split('/').pop() || 'event-flyer.jpeg';
+        this.downloadBtn.style.display = 'inline-flex';
+      } else {
+        this.downloadBtn.style.display = 'none';
+      }
+    }
+
+    // Reset copy button state
+    if (this.copyLabel) this.copyLabel.textContent = 'Copy Info';
+    if (this.copyIcon) this.copyIcon.textContent = '📋';
+
+    // Show modal
+    this.modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  },
+
+  async triggerNativeShare() {
+    const { title, text, url, imgUrl } = this.data;
+    
+    // Check if we can share file directly via Web Share API
+    if (imgUrl && navigator.canShare) {
+      try {
+        const absUrl = new URL(imgUrl, window.location.origin).href;
+        const res = await fetch(absUrl);
+        const blob = await res.blob();
+        const filename = imgUrl.split('/').pop() || 'event-flyer.jpeg';
+        const file = new File([blob], filename, { type: blob.type || 'image/jpeg' });
+
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: title,
+            text: text,
+            url: url
+          });
+          return;
+        }
+      } catch (e) {
+        console.warn('Native file share failed or canceled, falling back to text share:', e);
+      }
+    }
+
+    // Fallback to text + url native share
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          text: text,
+          url: url
+        });
+      } catch (e) {
+        if (e.name !== 'AbortError') {
+          this.copyDetails();
+        }
+      }
+    } else {
+      this.copyDetails();
+    }
+  },
+
+  copyDetails() {
+    const fullImg = this.data.imgUrl ? new URL(this.data.imgUrl, window.location.origin).href : '';
+    const textToCopy = `${this.data.text}\n\n🖼️ Flyer: ${fullImg}\n🔗 Link: ${this.data.url}`;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        this.showCopiedState();
+      }).catch(() => {
+        this.fallbackCopy(textToCopy);
+      });
+    } else {
+      this.fallbackCopy(textToCopy);
+    }
+  },
+
+  showCopiedState() {
+    if (this.copyLabel) this.copyLabel.textContent = 'Copied!';
+    if (this.copyIcon) this.copyIcon.textContent = '✓';
+    setTimeout(() => {
+      if (this.copyLabel) this.copyLabel.textContent = 'Copy Info';
+      if (this.copyIcon) this.copyIcon.textContent = '📋';
+    }, 2500);
+  },
+
+  fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      this.showCopiedState();
+    } catch (e) {}
+    document.body.removeChild(ta);
+  },
+
+  close() {
+    if (!this.modal) return;
+    this.modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+};
+
+window.SocialShareManager = SocialShareManager;
+
 // ---- Flyer Lightbox Modal Manager ----
 const FlyerLightboxManager = {
   init() {
@@ -1271,7 +1515,7 @@ const FlyerLightboxManager = {
         const phone = card.querySelector('.flyer-contact')?.textContent || '';
         const shareText = `*${title}*\n🗓️ ${date}\n${venue}\n${phone}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!\nMore info: https://nurulquran.web.app/#events`;
         const venueQuery = venue.replace(/^📍\s*/, '').trim();
-        this.open(src, caption, shareText, venueQuery);
+        this.open(src, caption, shareText, venueQuery, title, date);
       });
     });
 
@@ -1287,14 +1531,13 @@ const FlyerLightboxManager = {
     });
   },
 
-  open(src, caption = '', shareText = '', mapQuery = '') {
+  open(src, caption = '', shareText = '', mapQuery = '', eventTitle = '', eventDate = '') {
     if (!this.lightbox || !this.img) return;
     this.img.src = src;
     if (this.caption) this.caption.innerHTML = caption;
 
     if (this.shareContainer) {
       const textToShare = shareText || caption.replace(/<[^>]*>?/gm, '');
-      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(textToShare)}`;
       const mapBtnHtml = (mapQuery && !mapQuery.toLowerCase().includes('online'))
         ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3);padding:0.6rem 1.2rem;display:inline-flex;align-items:center;gap:0.4rem;" onclick="event.stopPropagation()">
             <span>📍</span> <span>Google Maps</span>
@@ -1303,12 +1546,25 @@ const FlyerLightboxManager = {
 
       this.shareContainer.innerHTML = `
         <div style="display:flex;gap:0.75rem;justify-content:center;align-items:center;flex-wrap:wrap;">
-          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="event.stopPropagation()">
-            <span>💬</span> <span>Share on WhatsApp</span>
-          </a>
+          <button type="button" class="btn btn-primary" id="flyer-lightbox-share-btn" style="padding:0.6rem 1.2rem;display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;cursor:pointer;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+            <span>Share Flyer</span>
+          </button>
           ${mapBtnHtml}
         </div>
       `;
+
+      document.getElementById('flyer-lightbox-share-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        SocialShareManager.open({
+          title: eventTitle || 'Ireland Tour 2026',
+          text: textToShare,
+          url: 'https://nurulquran.web.app/#events',
+          imgUrl: src,
+          date: eventDate,
+          venue: mapQuery
+        });
+      });
     }
 
     this.lightbox.classList.remove('hidden');
@@ -1725,5 +1981,6 @@ document.addEventListener('DOMContentLoaded', () => {
   CalendarManager.init();
   FlyerLightboxManager.init();
   VideoLightbox.init();
+  SocialShareManager.init();
   initSmoothScroll();
 });

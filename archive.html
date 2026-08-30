@@ -29,7 +29,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
   <!-- Skip Link -->
@@ -168,7 +168,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.2.7 (updated 2026-08-31 00:07)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.2.8 (updated 2026-08-31 00:29)</span></p>
       </div>
     </div>
   </footer>
@@ -176,7 +176,66 @@
   <!-- Scroll to Top -->
   <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
 
-  <script src="js/app.js?v=5"></script>
-  <script src="js/archive.js?v=5"></script>
+  <!-- Social Share Modal -->
+  <div id="social-share-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Share Event &amp; Flyer" style="z-index: 4200;">
+    <div class="share-modal-dialog">
+      <div class="share-modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
+          </svg>
+          <span>Share Program</span>
+        </h3>
+        <button type="button" class="share-modal-close" id="close-share-modal" aria-label="Close share options">✕</button>
+      </div>
+
+      <!-- Preview thumbnail and summary -->
+      <div class="share-preview-card">
+        <img id="share-preview-img" src="" alt="Program preview" class="share-preview-thumb">
+        <div class="share-preview-info">
+          <h4 id="share-preview-title">Program Title</h4>
+          <p id="share-preview-meta">Program Date &amp; Location</p>
+        </div>
+      </div>
+
+      <!-- Native Share button -->
+      <button type="button" id="share-native-action" class="share-native-btn">
+        <span>📸</span> <span>Share Details &amp; Flyer</span>
+      </button>
+
+      <!-- Social Platforms -->
+      <div class="share-grid">
+        <a id="share-link-wa" href="#" target="_blank" rel="noopener noreferrer" class="share-option-btn whatsapp">
+          <div class="share-icon-circle" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">💬</div>
+          <span>WhatsApp</span>
+        </a>
+        <a id="share-link-fb" href="#" target="_blank" rel="noopener noreferrer" class="share-option-btn facebook">
+          <div class="share-icon-circle" style="background: rgba(24, 119, 242, 0.15); color: #1877F2;">📘</div>
+          <span>Facebook</span>
+        </a>
+        <a id="share-link-x" href="#" target="_blank" rel="noopener noreferrer" class="share-option-btn twitter">
+          <div class="share-icon-circle" style="background: rgba(0, 0, 0, 0.08); color: var(--text);">𝕏</div>
+          <span>Twitter / X</span>
+        </a>
+        <a id="share-link-tg" href="#" target="_blank" rel="noopener noreferrer" class="share-option-btn telegram">
+          <div class="share-icon-circle" style="background: rgba(34, 158, 217, 0.15); color: #229ED9;">✈️</div>
+          <span>Telegram</span>
+        </a>
+      </div>
+
+      <!-- Extra Action Links -->
+      <div class="share-footer-actions">
+        <button type="button" id="share-copy-btn" class="share-action-link">
+          <span id="share-copy-icon">📋</span> <span id="share-copy-label">Copy Info</span>
+        </button>
+        <a id="share-download-btn" href="#" download="program-details.jpeg" class="share-action-link">
+          <span>📥</span> <span>Save Flyer</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=6"></script>
+  <script src="js/archive.js?v=6"></script>
 </body>
 </html>
