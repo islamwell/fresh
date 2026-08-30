@@ -1012,10 +1012,15 @@ const CalendarManager = {
         dayButton.classList.add('has-event');
         dayButton.setAttribute('aria-label', `Day ${day}, has ${this.events[dateString].length} event(s)`);
         
-        // Add dot marker
-        const dot = document.createElement('span');
-        dot.className = 'event-dot';
-        dayButton.appendChild(dot);
+        // Add dot marker (renders 2 dots on Sept 6, 1 dot for single event days)
+        const dotsWrap = document.createElement('span');
+        dotsWrap.className = 'event-dots-wrap';
+        for (let k = 0; k < this.events[dateString].length; k++) {
+          const dot = document.createElement('span');
+          dot.className = 'event-dot';
+          dotsWrap.appendChild(dot);
+        }
+        dayButton.appendChild(dotsWrap);
         
         dayButton.addEventListener('click', () => this.showEvent(dateString, dayButton, 0));
       } else {
