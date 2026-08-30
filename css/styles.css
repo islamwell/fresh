@@ -2935,3 +2935,306 @@ html.light .trip-tag.upcoming {
   background: rgba(0, 105, 92, 0.1);
   color: var(--accent-teal);
 }
+
+/* ============================================================
+   22.1 LIGHT MODE — Card, Filter & Resource Fixes
+   Overrides inline dark-mode styles on filter bars,
+   course cards, resource cards, glass-cards, search inputs.
+   Uses !important where inline styles must be overridden.
+   ============================================================ */
+
+/* --- Mixin: apply to both auto-light and manual .light --- */
+
+/* Course filter bar — inline rgba(255,255,255,0.02) bg */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .courses-filter-bar {
+    background: var(--bg-alt) !important;
+    border-color: var(--border) !important;
+  }
+}
+html.light .courses-filter-bar {
+  background: var(--bg-alt) !important;
+  border-color: var(--border) !important;
+}
+
+/* Filter buttons — inline color #e2e8f0, border rgba whites */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .filter-btn {
+    color: var(--text-secondary) !important;
+    border-color: var(--border) !important;
+  }
+  html:not(.dark) .filter-btn.active {
+    background: var(--primary) !important;
+    color: #fff !important;
+    border-color: var(--primary) !important;
+  }
+  html:not(.dark) .filter-btn:hover:not(.active) {
+    background: rgba(26, 35, 126, 0.06) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+  }
+}
+html.light .filter-btn {
+  color: var(--text-secondary) !important;
+  border-color: var(--border) !important;
+}
+html.light .filter-btn.active {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+html.light .filter-btn:hover:not(.active) {
+  background: rgba(26, 35, 126, 0.06) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* Course search input — inline bg rgba(0,0,0,0.2), color #fff */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) #course-search {
+    background: var(--bg-alt) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+  }
+  html:not(.dark) #course-search::placeholder {
+    color: var(--text-muted);
+  }
+}
+html.light #course-search {
+  background: var(--bg-alt) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+html.light #course-search::placeholder {
+  color: var(--text-muted);
+}
+
+/* Course cards — ensure readable on white */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .course-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+  }
+  html:not(.dark) .course-card h3 {
+    color: var(--text);
+  }
+  html:not(.dark) .course-card p {
+    color: var(--text-secondary);
+  }
+  html:not(.dark) .course-card .card-icon,
+  html:not(.dark) .course-card .course-icon {
+    color: var(--text);
+  }
+  /* Course tag — inline gold-on-transparent */
+  html:not(.dark) .course-tag {
+    background: rgba(201, 162, 39, 0.15) !important;
+    color: #7a5c00 !important;
+  }
+  /* Course arabic title */
+  html:not(.dark) .course-arabic {
+    color: #7a5c00 !important;
+  }
+}
+html.light .course-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+html.light .course-card h3 { color: var(--text); }
+html.light .course-card p { color: var(--text-secondary); }
+html.light .course-tag {
+  background: rgba(201, 162, 39, 0.15) !important;
+  color: #7a5c00 !important;
+}
+html.light .course-arabic {
+  color: #7a5c00 !important;
+}
+
+/* Glass cards — light mode needs visible bg + border */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .glass-card {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+html.light .glass-card {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Resource category cards — inline bg rgba(15,22,40,0.4), color #fff */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .resource-category-card {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+  }
+  html:not(.dark) .resource-category-card h3 {
+    color: var(--accent-teal) !important;
+  }
+  html:not(.dark) .resource-category-card a {
+    color: var(--text) !important;
+  }
+  html:not(.dark) .resource-category-card a:hover {
+    color: var(--primary) !important;
+  }
+  html:not(.dark) .resource-category-card span[style*="text-muted"] {
+    color: var(--text-secondary) !important;
+  }
+  /* Catch the inline color:#fff on resource links */
+  html:not(.dark) .resource-category-card li a[style*="color:#fff"],
+  html:not(.dark) .resource-category-card li a[style*="color: #fff"] {
+    color: var(--text) !important;
+  }
+}
+html.light .resource-category-card {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+html.light .resource-category-card h3 {
+  color: var(--accent-teal) !important;
+}
+html.light .resource-category-card a {
+  color: var(--text) !important;
+}
+html.light .resource-category-card a:hover {
+  color: var(--primary) !important;
+}
+html.light .resource-category-card li a[style*="color:#fff"],
+html.light .resource-category-card li a[style*="color: #fff"] {
+  color: var(--text) !important;
+}
+
+/* Program cards — ensure readable text */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .program-card {
+    background: #ffffff;
+    border-color: var(--border);
+  }
+  html:not(.dark) .program-card h3 { color: var(--text); }
+  html:not(.dark) .program-card p { color: var(--text-secondary); }
+  html:not(.dark) .program-icon {
+    background: var(--bg-alt);
+    border-color: var(--border);
+  }
+}
+html.light .program-card {
+  background: #ffffff;
+  border-color: var(--border);
+}
+html.light .program-card h3 { color: var(--text); }
+html.light .program-card p { color: var(--text-secondary); }
+html.light .program-icon {
+  background: var(--bg-alt);
+  border-color: var(--border);
+}
+
+/* Testimonial text colors */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .testimonial-card blockquote,
+  html:not(.dark) .testimonial-quote {
+    color: var(--text-secondary);
+  }
+  html:not(.dark) .testimonial-name,
+  html:not(.dark) .author-name {
+    color: var(--text);
+  }
+  html:not(.dark) .testimonial-role,
+  html:not(.dark) .author-role {
+    color: var(--accent-teal);
+  }
+}
+html.light .testimonial-card blockquote,
+html.light .testimonial-quote { color: var(--text-secondary); }
+html.light .testimonial-name,
+html.light .author-name { color: var(--text); }
+html.light .testimonial-role,
+html.light .author-role { color: var(--accent-teal); }
+
+/* Contact cards */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .contact-card {
+    background: #ffffff;
+    border-color: var(--border);
+  }
+  html:not(.dark) .contact-card h4 { color: var(--text); }
+}
+html.light .contact-card {
+  background: #ffffff;
+  border-color: var(--border);
+}
+html.light .contact-card h4 { color: var(--text); }
+
+/* Stat cards */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .stat-card {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+  }
+}
+html.light .stat-card {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+
+/* Event cards in timeline */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .event-card {
+    background: #ffffff;
+    border-color: var(--border-light);
+  }
+  html:not(.dark) .event-card h4 { color: var(--text); }
+  html:not(.dark) .event-card p { color: var(--text-secondary); }
+
+  /* Timeline card */
+  html:not(.dark) .timeline-card {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+  }
+}
+html.light .event-card {
+  background: #ffffff;
+  border-color: var(--border-light);
+}
+html.light .event-card h4 { color: var(--text); }
+html.light .event-card p { color: var(--text-secondary); }
+html.light .timeline-card {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+
+/* Calendar widget */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .calendar-widget {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+  }
+  html:not(.dark) .event-detail-display {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+  }
+}
+html.light .calendar-widget {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+html.light .event-detail-display {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+
+/* Theater Mode button (btn-secondary inside #media section) */
+@media (prefers-color-scheme: light) {
+  html:not(.dark) #open-theater-mode-btn {
+    color: var(--primary) !important;
+    border-color: var(--border) !important;
+  }
+}
+html.light #open-theater-mode-btn {
+  color: var(--primary) !important;
+  border-color: var(--border) !important;
+}
