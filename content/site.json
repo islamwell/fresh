@@ -24,10 +24,12 @@
     "website_live": "https://nurulquranlive.com/"
   },
   "nav": [
+    { "label": "Events", "href": "#events" },
     { "label": "About", "href": "#about" },
     { "label": "Courses", "href": "#courses" },
     { "label": "Programs", "href": "#programs" },
-    { "label": "Events", "href": "#events" },
+    { "label": "Media", "href": "#media" },
+    { "label": "Testimonials", "href": "#testimonials" },
     { "label": "Resources", "href": "#resources" },
     { "label": "Projects", "href": "#projects" },
     { "label": "Contact", "href": "#contact" }

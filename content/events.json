@@ -1,9 +1,57 @@
 {
-  "heading": "Events",
-  "subtitle": "Join us for transformative learning experiences and community gatherings",
+  "heading": "Events & Trips Calendar",
+  "subtitle": "Join us for transformative learning experiences, study circles, and international tours",
   "calendar": [
     {
-      "date": "2026-07-05",
+      "date": "2026-09-03",
+      "title": "Ireland Tour: Meet & Greet with Ustazah Iffat Maqbool",
+      "type": "Meet & Greet (Sisters)",
+      "time": "Thursday, Sept 3, 2026 • 6:00 PM – 8:00 PM",
+      "location": "9 Dalriada Walk Knocklyon, Dublin 16, D16CC01 Ireland",
+      "description": "Live in-person Meet & Greet for sisters with Ustazah Iffat Maqbool in Dublin. An uplifting evening of fellowship, Q&A, and Quranic reflections. Contact: +353 83 025 6299 / +353 86 198 1176.",
+      "link": "assets/flyers/ireland-dublin-2026.jpeg",
+      "flyer": "assets/flyers/ireland-dublin-2026.jpeg",
+      "contact": "+353 83 025 6299 | +353 86 198 1176",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Ireland Tour: Anger Management (Part 3) - لا تغضب",
+      "type": "Lecture & Workshop (Sisters)",
+      "time": "Friday, Sept 4, 2026 • 6:00 PM – 8:00 PM",
+      "location": "Cork Mosque | CICC LTD 60, Tramore Road Turner's Cross T12XV27 Cork",
+      "description": "Live in-person sisters lecture on Anger Management (Part 3) - لا تغضب with Ustazah Iffat Maqbool in Cork. Learn prophetic strategies for emotional regulation and inner peace. Contact: 0861729070.",
+      "link": "assets/flyers/ireland-cork-2026.jpeg",
+      "flyer": "assets/flyers/ireland-cork-2026.jpeg",
+      "contact": "0861729070",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-09-05",
+      "title": "Ireland Tour: Seerat aur Quran ka Bahami Taluq",
+      "type": "Special Seminar (Sisters)",
+      "time": "Saturday, Sept 5, 2026 • 3:00 PM – 5:00 PM",
+      "location": "Talbotsinch R95 PW84, Kilkenny, Ireland",
+      "description": "Live in-person sisters seminar 'سیرت اور قرآن کا باہمی تعلق' (The Mutual Connection of Seerah and Quran) with Ustazah Iffat Maqbool in Kilkenny. Contact: +353 87 714 7776.",
+      "link": "assets/flyers/ireland-kilkenny-2026.jpeg",
+      "flyer": "assets/flyers/ireland-kilkenny-2026.jpeg",
+      "contact": "+353 87 714 7776",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-09-06",
+      "title": "Ireland Tour: Sahaba-e-Rasool ﷺ aur Hum",
+      "type": "Special Seminar (Sisters)",
+      "time": "Sunday, Sept 6, 2026 • 12:30 PM – 2:30 PM",
+      "location": "Mid West House, Abbey Street, Ballyhaunis, County Mayo F35PP48 Ireland",
+      "description": "Live in-person sisters seminar 'صحابۂ رسول ﷺ اور ہم' with Ustazah Iffat Maqbool in Ballyhaunis. Inspiring stories and timeless lessons from the companions of the Prophet ﷺ. Contact: +353 89 951 4733 / +353 86 731 5000.",
+      "link": "assets/flyers/ireland-ballyhaunis-2026.jpeg",
+      "flyer": "assets/flyers/ireland-ballyhaunis-2026.jpeg",
+      "contact": "+353 89 951 4733 | +353 86 731 5000",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-09-13",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
       "time": "Sundays at 11:00 AM EST",
@@ -13,7 +61,7 @@
       "registrationForm": ""
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-09-20",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
       "time": "Sundays at 11:00 AM EST",
@@ -23,37 +71,7 @@
       "registrationForm": ""
     },
     {
-      "date": "2026-07-15",
-      "title": "Tajweed Masterclass for Beginners",
-      "type": "Seminar",
-      "time": "Wednesday at 6:30 PM EST",
-      "location": "Onsite (Boston, USA) & Online",
-      "description": "A live interactive workshop focusing on the correct articulation points (Makharij) of Arabic letters. Essential for anyone wanting to improve their recitation.",
-      "link": "https://nurulquran.com/seminars/",
-      "registrationForm": "https://forms.gle/example-tajweed-2026"
-    },
-    {
-      "date": "2026-07-19",
-      "title": "Surah Al-Mulk Study Circle",
-      "type": "Weekly Circle",
-      "time": "Sundays at 11:00 AM EST",
-      "location": "Online via Zoom / Live Stream",
-      "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
-      "link": "https://nurulquranlive.com/",
-      "registrationForm": ""
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Youth Summer Program Kickoff",
-      "type": "Youth Program",
-      "time": "Friday at 5:00 PM EST",
-      "location": "NurulQuran Center USA & UK Branches",
-      "description": "An inspiring program kickoff for teenagers and youth. Features team-building activities, interactive discussions, and spiritual lessons.",
-      "link": "https://nurulquran.com/teens/",
-      "registrationForm": "https://forms.gle/example-youth-2026"
-    },
-    {
-      "date": "2026-07-26",
+      "date": "2026-09-27",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
       "time": "Sundays at 11:00 AM EST",
@@ -64,6 +82,51 @@
     }
   ],
   "trips": [
+    {
+      "title": "Ireland Ilm & Dawah Tour 2026",
+      "status": "upcoming",
+      "date": "Sept 3–6, 2026",
+      "icon": "☘️",
+      "meta": "✈️ Dublin • Cork • Kilkenny • Ballyhaunis | Live In-Person with Ustazah Iffat Maqbool",
+      "description": "An exclusive live seminar series for sisters across Ireland featuring Ustazah Iffat Maqbool covering Seerah, Sahaba, Anger Management, and community Meet & Greet events.",
+      "flyers": [
+        {
+          "city": "Dublin",
+          "date": "3rd Sept 2026 (Thu) • 6pm-8pm",
+          "topic": "Meet & Greet with Ustazah Iffat Maqbool",
+          "venue": "9 Dalriada Walk Knocklyon, Dublin 16, D16CC01 Ireland",
+          "phone": "+353 83 025 6299 / +353 86 198 1176",
+          "image": "assets/flyers/ireland-dublin-2026.jpeg"
+        },
+        {
+          "city": "Cork",
+          "date": "4th Sept 2026 (Fri) • 6pm-8pm",
+          "topic": "Anger Management (Part-3) - لا تغضب",
+          "venue": "Cork Mosque | CICC Ltd 60, Tramore Road Turner's Cross T12XV27 Cork",
+          "phone": "0861729070",
+          "image": "assets/flyers/ireland-cork-2026.jpeg"
+        },
+        {
+          "city": "Kilkenny",
+          "date": "5th Sept 2026 (Sat) • 3pm-5pm",
+          "topic": "Seerat aur Quran ka Bahami Taluq",
+          "venue": "Talbotsinch R95 PW84, Kilkenny, Ireland",
+          "phone": "+353 87 714 7776",
+          "image": "assets/flyers/ireland-kilkenny-2026.jpeg"
+        },
+        {
+          "city": "Ballyhaunis",
+          "date": "6th Sept 2026 (Sun) • 12:30pm-2:30pm",
+          "topic": "Sahaba-e-Rasool ﷺ aur Hum",
+          "venue": "Mid West House, Abbey Street, Ballyhaunis, Co. Mayo F35PP48",
+          "phone": "+353 89 951 4733 / +353 86 731 5000",
+          "image": "assets/flyers/ireland-ballyhaunis-2026.jpeg"
+        }
+      ],
+      "link": "assets/flyers/ireland-dublin-2026.jpeg",
+      "linkText": "View Ireland Tour Flyers ☘️",
+      "registrationForm": ""
+    },
     {
       "title": "Saudi Arabia Ilm & Umrah Trip 2026",
       "status": "upcoming",
@@ -96,42 +159,6 @@
       "link": "https://nurulquran.com/ksa-trip-2024/",
       "linkText": "View Photo Gallery →",
       "registrationForm": ""
-    }
-  ],
-  "upcoming": [
-    {
-      "title": "Events 2026",
-      "description": "Explore our upcoming events, workshops, and community gatherings planned for 2026. Stay connected and be part of our growing learning community.",
-      "date": "2026",
-      "status": "upcoming",
-      "link": "https://nurulquran.com/events-2026",
-      "icon": "📅"
-    },
-    {
-      "title": "Ramadan Portal 2026",
-      "description": "Your comprehensive companion for the blessed month of Ramadan. Access daily Quran reflections, special lectures, Dawrah-e-Quran sessions, and spiritual resources.",
-      "date": "Ramadan 2026",
-      "status": "upcoming",
-      "link": "https://nurulquran.com/ramadan",
-      "icon": "🌙"
-    }
-  ],
-  "past": [
-    {
-      "title": "Saudi Arabia Ilm & Umrah Trip 2024",
-      "description": "A blessed journey combining sacred Umrah with immersive Islamic learning in the holy lands. Students experienced firsthand the places of revelation and prophetic history.",
-      "date": "2024",
-      "status": "completed",
-      "link": "https://nurulquran.com/ksa-trip-2024",
-      "icon": "🕋"
-    },
-    {
-      "title": "Pakistan Trip December 2024",
-      "description": "An enriching educational trip to Pakistan featuring community engagement, onsite classes, and fellowship with students across our local branches.",
-      "date": "December 2024",
-      "status": "completed",
-      "link": "https://nurulquran.com/pk-trip-2024",
-      "icon": "✈️"
     }
   ]
 }

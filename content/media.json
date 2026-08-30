@@ -1,38 +1,46 @@
 {
   "audio": {
-    "defaultArtist": "Mishary Rashid Alafasy",
+    "defaultArtist": "Ustazah Iffat Maqbool",
     "tracks": [
       {
         "id": 1,
-        "title": "Surah Al-Fatihah",
-        "artist": "Mishary Rashid Alafasy",
-        "surahNumber": "01",
-        "src": "https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/001.mp3",
-        "duration": "1:40"
+        "title": "Tajjuliyat e Nabuwat — Importance of Seerah",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "01",
+        "src": "https://nq-international.com/wp-content/uploads/2018/06/01-TJ_Intro-importance-of-seerah-Tjaliety-Nabuwat-edited-number1-mean-file-number.mp3",
+        "duration": "35:19"
       },
       {
         "id": 2,
-        "title": "Surah At-Tin",
-        "artist": "Mishary Rashid Alafasy",
-        "surahNumber": "95",
-        "src": "https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/095.mp3",
-        "duration": "1:50"
+        "title": "Nasab & Blessed Family of Prophet ﷺ",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "02",
+        "src": "https://nq-international.com/wp-content/uploads/2018/06/02-TJ-pag15-18-Ap-ka-nasab-and-family-Tjaliety-Nabuwat-edited.mp3",
+        "duration": "33:35"
       },
       {
         "id": 3,
-        "title": "Surah Al-Kauthar",
-        "artist": "Mishary Rashid Alafasy",
-        "surahNumber": "108",
-        "src": "https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/108.mp3",
-        "duration": "0:45"
+        "title": "Blessed Childhood of Prophet ﷺ",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "03",
+        "src": "https://nq-international.com/wp-content/uploads/2018/06/03-TJ-pag18-21-Ap-ka-Childhood-Tjaliety-Nabuwat-edited.mp3",
+        "duration": "19:53"
       },
       {
         "id": 4,
-        "title": "Surah Al-Ikhlas",
-        "artist": "Mishary Rashid Alafasy",
-        "surahNumber": "112",
-        "src": "https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/112.mp3",
-        "duration": "0:50"
+        "title": "Youth & Dawn of Prophethood",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "04",
+        "src": "https://nq-international.com/wp-content/uploads/2018/06/04-TJ-pag21-30-Ap-ke-jwani-and-nabuwat-ka-start-Tjaliety-Nabuwat-edited.mp3",
+        "duration": "43:29"
+      },
+      {
+        "id": 5,
+        "title": "Waseelay Ki Haqeeqat (Emaan Series)",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "05",
+        "src": "https://nq-international.com/wp-content/uploads/2017/06/Lec01_WR15_6_Waseely-ki-haqeeqat-_nur-masjid-4-24-2015.mp3",
+        "duration": "30:45"
       }
     ]
   },
@@ -40,21 +48,21 @@
     "items": [
       {
         "id": 1,
-        "title": "Medina Live & Scenic Reflections",
-        "description": "A beautiful serene footage of Al-Masjid an-Nabawi",
-        "youtubeId": "5Hw0Q7yJigw"
+        "title": "Dawrah e Quran 2026 — Juz 1 (Intro & Key Themes)",
+        "description": "Comprehensive explanation and reflection on Juz 1 by Ustazah Iffat Maqbool",
+        "youtubeId": "rvMxAl6BiAg"
       },
       {
         "id": 2,
-        "title": "Tajweed Basics - Proper Pronunciation",
-        "description": "Introductory lesson on the rules of reciting Al-Quran",
-        "youtubeId": "a7Aea3l1K5E"
+        "title": "Dawrah e Quran 2026 — Juz 2 (Surah Al-Baqarah)",
+        "description": "In-depth insights, rulings, and spiritual wisdom from Surah Al-Baqarah",
+        "youtubeId": "8K8PqckMGiA"
       },
       {
         "id": 3,
-        "title": "Quran: The Ultimate Guide for Humanity",
-        "description": "Reflecting on the purpose and message of Al-Quran",
-        "youtubeId": "G6jWzN0u5t0"
+        "title": "Medina Live & Scenic Reflections",
+        "description": "Serene and beautiful atmospheric footage of Al-Masjid an-Nabawi",
+        "youtubeId": "5Hw0Q7yJigw"
       }
     ]
   }

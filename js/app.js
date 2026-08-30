@@ -397,8 +397,9 @@ const MediaManager = {
       btn.className = `playlist-item${index === 0 ? ' active' : ''}`;
       btn.dataset.index = index;
       btn.dataset.src = track.src;
+      btn.dataset.artist = track.artist || 'Ustazah Iffat Maqbool';
       btn.innerHTML = `
-        <span class="track-num">${track.surahNumber}</span>
+        <span class="track-num">${track.trackNumber || (index + 1).toString().padStart(2, '0')}</span>
         <span class="track-name">${track.title}</span>
         <span class="track-length">${track.duration}</span>
       `;
@@ -408,6 +409,10 @@ const MediaManager = {
     // Set initial track from first audio track
     const firstTrack = tracks[0];
     this.trackTitle.textContent = firstTrack.title;
+    if (this.floatingTitle) this.floatingTitle.textContent = firstTrack.title;
+    if (this.floatingArtist) this.floatingArtist.textContent = firstTrack.artist || 'Ustazah Iffat Maqbool';
+    const artistEl = document.getElementById('audio-track-artist');
+    if (artistEl) artistEl.textContent = firstTrack.artist || 'Ustazah Iffat Maqbool';
     this.audio.src = firstTrack.src;
 
     // Bind playlist click handlers
@@ -419,8 +424,12 @@ const MediaManager = {
 
         const src = item.dataset.src;
         const name = item.querySelector('.track-name').textContent;
+        const artist = item.dataset.artist || 'Ustazah Iffat Maqbool';
 
         this.trackTitle.textContent = name;
+        if (artistEl) artistEl.textContent = artist;
+        if (this.floatingTitle) this.floatingTitle.textContent = name;
+        if (this.floatingArtist) this.floatingArtist.textContent = artist;
         this.audio.src = src;
         this.audio.load();
 
@@ -682,8 +691,8 @@ const MediaManager = {
       
       const activeItem = this.audioPlaylistContainer?.querySelector('.playlist-item.active');
       if (activeItem) {
-        const title = activeItem.querySelector('.track-name')?.textContent || 'Recitation';
-        const artist = 'Mishary Rashid Alafasy';
+        const title = activeItem.querySelector('.track-name')?.textContent || 'Tajjuliyat e Nabuwat — Importance of Seerah';
+        const artist = activeItem.dataset.artist || 'Ustazah Iffat Maqbool';
         if (this.floatingTitle) this.floatingTitle.textContent = title;
         if (this.floatingArtist) this.floatingArtist.textContent = artist;
       }
@@ -792,9 +801,9 @@ const CalendarManager = {
       console.error('Failed to load events.json:', err);
     }
 
-    // Set current active date (July 2026)
+    // Set current active date (September 2026)
     this.currentYear = 2026;
-    this.currentMonth = 6; // 0-indexed: 6 = July
+    this.currentMonth = 8; // 0-indexed: 8 = September
     
     this.renderCalendar();
     this.setupTabs();
@@ -815,6 +824,20 @@ const CalendarManager = {
       const tagClass = trip.status === 'upcoming' ? 'upcoming' : 'past';
       const btnClass = trip.status === 'upcoming' ? 'btn-outline' : 'btn-secondary';
 
+      let flyersHtml = '';
+      if (trip.flyers && Array.isArray(trip.flyers) && trip.flyers.length > 0) {
+        flyersHtml = `
+          <div class="trip-flyers-grid">
+            ${trip.flyers.map(f => `
+              <div class="trip-flyer-thumb" data-flyer-src="${f.image}" data-caption="${f.city}: ${f.topic} (${f.date}) • ${f.venue} (Tel: ${f.phone})">
+                <img src="${f.image}" alt="${f.city} Flyer" loading="lazy">
+                <span class="trip-flyer-label">${f.city} • ${f.topic}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
       const timelineItem = document.createElement('div');
       timelineItem.className = 'timeline-item reveal';
       timelineItem.innerHTML = `
@@ -824,12 +847,31 @@ const CalendarManager = {
           <h3>${trip.title}</h3>
           <p class="trip-meta">${trip.meta}</p>
           <p class="trip-desc">${trip.description}</p>
+          ${flyersHtml}
           <div class="trip-footer">
-            <a href="${trip.link}" class="btn ${btnClass}">${trip.linkText}</a>
+            <a href="${trip.link}" class="btn ${btnClass}" ${trip.link.endsWith('.jpeg') || trip.link.endsWith('.jpg') ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
             ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="margin-left:0.5rem">Register →</a>` : ''}
           </div>
         </div>
       `;
+
+      // Bind click handlers on flyer thumbnails
+      timelineItem.querySelectorAll('.trip-flyer-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          const src = thumb.dataset.flyerSrc;
+          const caption = thumb.dataset.caption;
+          FlyerLightboxManager.open(src, caption);
+        });
+      });
+
+      // Bind flyer link button if applicable
+      const flyerLinkBtn = timelineItem.querySelector('a[data-flyer-link="true"]');
+      if (flyerLinkBtn) {
+        flyerLinkBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          FlyerLightboxManager.open(trip.link, trip.title);
+        });
+      }
 
       this.tripsContainer.appendChild(timelineItem);
     });
@@ -927,6 +969,30 @@ const CalendarManager = {
     this.detailDesc.textContent = event.desc;
     this.detailCta.href = event.link;
 
+    // Handle flyer graphic preview inside card
+    const flyerWrap = document.getElementById('event-detail-flyer-wrap');
+    if (flyerWrap) {
+      if (event.flyer || (event.link && (event.link.endsWith('.jpeg') || event.link.endsWith('.jpg')))) {
+        const flyerSrc = event.flyer || event.link;
+        flyerWrap.innerHTML = `
+          <div class="event-detail-flyer-preview" data-flyer-src="${flyerSrc}" data-caption="${event.title} • ${event.time}">
+            <img src="${flyerSrc}" alt="${event.title} Flyer">
+            <div class="event-detail-flyer-overlay">
+              <span>☘️ In-Person Ireland Flyer</span>
+              <span>🔍 Click to Expand</span>
+            </div>
+          </div>
+        `;
+        flyerWrap.classList.remove('hidden');
+        flyerWrap.querySelector('.event-detail-flyer-preview')?.addEventListener('click', () => {
+          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`);
+        });
+      } else {
+        flyerWrap.innerHTML = '';
+        flyerWrap.classList.add('hidden');
+      }
+    }
+
     // Handle registration form button
     const existingRegBtn = this.detailContent.querySelector('.event-register-btn');
     if (existingRegBtn) existingRegBtn.remove();
@@ -945,6 +1011,53 @@ const CalendarManager = {
     // Swap displays
     this.detailEmpty.classList.add('hidden');
     this.detailContent.classList.remove('hidden');
+  }
+};
+
+// ---- Flyer Lightbox Modal Manager ----
+const FlyerLightboxManager = {
+  init() {
+    this.lightbox = document.getElementById('flyer-lightbox');
+    this.img = document.getElementById('flyer-lightbox-img');
+    this.caption = document.getElementById('flyer-lightbox-caption');
+    this.closeBtn = document.getElementById('close-flyer-lightbox');
+
+    if (!this.lightbox) return;
+
+    // Bind all static flyer cards
+    document.querySelectorAll('.flyer-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const src = card.dataset.flyerSrc;
+        const caption = card.dataset.caption;
+        this.open(src, caption);
+      });
+    });
+
+    this.closeBtn?.addEventListener('click', () => this.close());
+    this.lightbox.addEventListener('click', (e) => {
+      if (e.target === this.lightbox) this.close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !this.lightbox.classList.contains('hidden')) {
+        this.close();
+      }
+    });
+  },
+
+  open(src, caption = '') {
+    if (!this.lightbox || !this.img) return;
+    this.img.src = src;
+    if (this.caption) this.caption.innerHTML = caption;
+    this.lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  },
+
+  close() {
+    if (!this.lightbox) return;
+    this.lightbox.classList.add('hidden');
+    if (this.img) this.img.src = '';
+    document.body.style.overflow = '';
   }
 };
 
@@ -1286,6 +1399,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   MediaManager.init();
   CalendarManager.init();
+  FlyerLightboxManager.init();
   VideoLightbox.init();
   initSmoothScroll();
 });
