@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>NurulQuran Kids Programs — NurulQuran</title>
+  <meta name="description" content="Engaging Quranic and Islamic studies courses designed specially for young children. Quran recitation, Tajweed, Duas, Akhlaq, and Prophet stories.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <!-- Preload Font -->
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs" class="active">Programs</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero" style="min-height: 40vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        NurulQuran <span class="highlight">Kids Programs</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 680px; margin: 0 auto 1.5rem;">
+        Inspiring the next generation with the light of the Holy Quran, Prophet stories, beautiful manners, and foundational Islamic knowledge in an engaging, nurturing environment.
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#courses-list" class="btn btn-primary">View Programs ↓</a>
+        <a href="index.html#programs" class="btn btn-outline">← All Programs</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <!-- Featured Notice Banner -->
+      <div class="glass-card" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-left: 4px solid var(--accent-gold); border-radius: var(--radius-lg); background: var(--surface);">
+        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+          <span style="font-size: 1.8rem; line-height: 1;">🌟</span>
+          <div>
+            <h3 style="margin: 0 0 0.4rem 0; font-size: 1.15rem; color: var(--text);">Now Enrolling: Kids Academic Year 2026–2027</h3>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+              Online classes begin <strong>13th September 2026</strong> and continue until <strong>16th May 2027</strong>. Designed for children ages 6 to 12 with interactive slides, stories, and weekly exercises.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programs Grid -->
+      <div id="courses-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; margin-bottom: 3.5rem;">
+
+        <!-- Card 1: Annual Kids Course (Urdu) -->
+        <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag trip-tag-active">Annual Course • Urdu</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Ages 6–12</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">✨ NurulQuran Kids Course in Urdu</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              A comprehensive year-long curriculum covering Tajweed foundations, memorization of essential daily Duas, stories of the Ambiya (Prophets), and Islamic morals (Akhlaq &amp; Adab).
+            </p>
+
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">🗓️ Schedule:</div>
+              <div style="color: var(--text-secondary); margin-bottom: 0.75rem;">13th Sept 2026 to 16th May 2027 • Weekly Sessions</div>
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">💳 Nominal Tuition Per Semester:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                • Pakistan: <strong>Rs. 1,000 PKR</strong><br>
+                • India: <strong>Rs. 500 INR</strong><br>
+                • KSA / UAE / USA: <strong> USD</strong><br>
+                • UK / Europe: <strong>£15 GBP</strong>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="https://forms.gle/CaUMukUJ1ATG5WsTA" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+              Register for Urdu Course →
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: Kids Summer Special (Urdu & English) -->
+        <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(46, 204, 113, 0.15); color: #2ecc71;">Summer Camp</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Interactive</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">☀️ Kids Summer Camp Special</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Engaging summer sessions packed with creative activities, Quran recitation practice, interactive quizzes, arts, and inspirational lessons from the Seerah.
+            </p>
+
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">💻 Zoom Class Details:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">
+                • Meeting ID: <code>873 5591 1943</code><br>
+                • Passcode: <code>Islam</code>
+              </div>
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">💳 Camp Fee:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                • Pakistan: Rs. 1,000 | India: Rs. 500<br>
+                • USA:  | UK: £25
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-direction: column;">
+            <a href="https://forms.gle/1xYmodgHHBD5VxxYA" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+              Register for Summer Camp →
+            </a>
+            <a href="https://us02web.zoom.us/j/87355911943?pwd=WeLRDFNDXEfvOwioGrJisSTI1Rfvm6.1" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              Join Zoom Room directly →
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: Ramadan Kids Programs -->
+        <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(241, 196, 15, 0.15); color: #f39c12;">Ramadan Special</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">All Ages</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">🌙 Kids Dawrah-e-Quran &amp; Ramadan</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Short, daily uplifting reflections on the Juz of the day, understanding fasting, giving charity, and creating a Ramadan routine that instills lifelong love for the blessed month.
+            </p>
+
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">📖 Highlights:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                • Daily Ramadan Activity Sheets<br>
+                • Dua &amp; Hadith of the Day<br>
+                • Eid Preparation &amp; Sunnah Traditions<br>
+                • Separate Tracks in Urdu &amp; English
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-direction: column;">
+            <a href="https://forms.gle/QEuQm9sn7ghFMohV6" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+              Register (Urdu Track) →
+            </a>
+            <a href="https://forms.gle/1xYmodgHHBD5VxxYA" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              Register (English Track) →
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Curriculum Details & Semester Breakdown -->
+      <section class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 1.25rem; text-align: center;">How the Kids Curriculum Works</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📖</div>
+            <h4 style="margin: 0 0 0.5rem; color: var(--text);">Semester I: Foundations</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.45;">
+              Arabic alphabet recognition, makharij (articulation points), basic Tajweed, and introduction to Tauheed and Allah’s creation.
+            </p>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤲</div>
+            <h4 style="margin: 0 0 0.5rem; color: var(--text);">Semester II: Practice</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.45;">
+              Memorization of Surah Al-Fatiha and short Surahs (Juz Amma), daily morning and evening Athkar, and Salah step-by-step.
+            </p>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌟</div>
+            <h4 style="margin: 0 0 0.5rem; color: var(--text);">Semester III: Character</h4>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.45;">
+              Stories of Prophet Muhammad ﷺ and the Sahaba, respecting parents, honesty, kindness to animals, and Muslim identity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back / Explore Other Programs -->
+      <div style="text-align: center;">
+        <h3 style="font-size: 1.2rem; color: var(--text); margin-bottom: 1rem;">Explore More Programs</h3>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="teens.html" class="btn btn-outline">Youth &amp; Teens Programs →</a>
+          <a href="ramadan.html" class="btn btn-outline">Ramadan Portal →</a>
+          <a href="volunteer.html" class="btn btn-outline">Volunteer with Us →</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo.png" alt="NurulQuran" width="36" height="26">
+            <h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Kids</h4>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Nurturing hearts with the light of Quran &amp; Sunnah.</p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Navigation</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
+            <li><a href="index.html#courses">All Courses</a></li>
+            <li><a href="teens.html">Teens Programs</a></li>
+            <li><a href="ramadan.html">Ramadan Portal</a></li>
+            <li><a href="resources.html">Student Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+            Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>
+            Official Website: <a href="index.html">nurulquran.web.app</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

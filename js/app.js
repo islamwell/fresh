@@ -1776,7 +1776,7 @@ const DynamicDataManager = {
       const regBtnHtml = c.registerLink 
         ? `<a href="${c.registerLink}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 20px;">Register Now →</a>`
         : '';
-      const detailsBtnHtml = `<a href="${c.link || 'https://nurulquran.com/courses/'}" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 20px;">Details →</a>`;
+      const detailsBtnHtml = `<a href="${c.link || '#courses'}" class="btn btn-outline btn-sm" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-radius: 20px;">Details →</a>`;
 
       return `
         <article class="course-card reveal" style="--i:${i}; border-top: 4px solid ${c.color || 'var(--primary)'}; display: flex; flex-direction: column; justify-content: space-between;">
@@ -1934,10 +1934,10 @@ const DynamicDataManager = {
 
       schema["@graph"].push({
         "@type": "EducationalOrganization",
-        "@id": "https://nurulquran.com/#organization",
+        "@id": "https://nurulquran.web.app/#organization",
         "name": "Nur-Ul-Quran International Institute",
-        "url": "https://nurulquran.com",
-        "logo": "https://nurulquran.com/assets/logo.png",
+        "url": "https://nurulquran.web.app",
+        "logo": "https://nurulquran.web.app/assets/logo.png",
         "sameAs": [
           "https://www.youtube.com/nurulqurantv"
         ]
@@ -1951,7 +1951,7 @@ const DynamicDataManager = {
           "provider": {
             "@type": "EducationalOrganization",
             "name": "Nur-Ul-Quran International Institute",
-            "sameAs": "https://nurulquran.com"
+            "sameAs": "https://nurulquran.web.app"
           }
         });
       });

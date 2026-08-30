@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Surah Tafseer Notes — NurulQuran</title>
+  <meta name="description" content="Detailed Tafseer study notes for Surahs of the Holy Quran by Ustazah Iffat Maqbool and NurulQuran Institute instructors.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 38vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Tafseer <span class="highlight">Study Notes</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 680px; margin: 0 auto 1.5rem;">
+        Comprehensive lesson notes and reflections from NurulQuran Tafseer sessions to enrich your Quranic understanding.
+      </p>
+      <div style="max-width: 480px; margin: 0 auto;">
+        <input type="search" id="tn-search" placeholder="🔍 Search by Surah number or name (e.g. Baqarah, Fatiha, Kahf)..." style="width: 100%; padding: 0.85rem 1.25rem; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 0.95rem; box-shadow: var(--shadow-md); outline: none;">
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 style="font-size: 1.35rem; margin: 0; color: var(--text);">Surah Tafseer Notes Directory</h2>
+        <span id="tn-count" style="font-size: 0.88rem; color: var(--text-secondary);">Showing all notes</span>
+      </div>
+
+      <div id="tn-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+        
+  <div class="glass-card tn-card" data-query="prior to tafseer introduction foundations" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <span class="trip-tag" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; margin-bottom: 0.75rem;">Foundation</span>
+      <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Notes Prior to Tafseer</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+        Essential prerequisites, etiquette of reciting Allah’s speech, rules of contemplation (Tadabbur), and intention setting.
+      </p>
+    </div>
+    <a href="https://fast.nurulquran.com/wp-content/uploads/2018/02/Notes-Prior-to-Tafseer.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="text-align: center; justify-content: center;">
+      Download Notes PDF 📥
+    </a>
+  </div>
+
+  <div class="glass-card tn-card" data-query="tawuz tasmiya bismillah aoodhubillah" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <span class="trip-tag" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; margin-bottom: 0.75rem;">Foundation</span>
+      <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Ta’awwuz &amp; Tasmiya Notes</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+        Deep linguistic and spiritual explanation of seeking refuge in Allah from Satan, and beginning every deed in Allah’s name.
+      </p>
+    </div>
+    <a href="https://fast.nurulquran.com/wp-content/uploads/2018/02/Notes-Tawuz-and-Tasmiya.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="text-align: center; justify-content: center;">
+      Download Notes PDF 📥
+    </a>
+  </div>
+
+          <div class="glass-card tn-card" data-query="1 prior to tafseer" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #1</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Prior to Tafseer</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/1-Surah-Prior-to-Tafseer-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="2 tawuz and tasmiya" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #2</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Tawuz and Tasmiya</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/2-Surah-Tawuz-and-Tasmiya-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="1 al-fateha" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #1</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Fateha</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/1-Surah-Al-Fateha-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="2 al-baqarah" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #2</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Baqarah</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/2-Surah-Al-Baqarah-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="3 aal-e-imran" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #3</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Aal-e-Imran</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/3-Surah-Aal-e-Imran-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="4 an-nisa" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #4</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">An-Nisa</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/4-Surah-An-Nisa-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="5 al-maidah" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #5</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Maidah</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/5-Surah-Al-Maidah-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="6 al-anaam" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #6</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Anaam</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/6-Surah-Al-Anaam-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="7 al-aaraaf" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #7</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Aaraaf</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/7-Surah-Al-Aaraaf-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="8 al-anfal" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #8</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Anfal</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/8-Surah-Al-Anfal-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="9 at-tawbah" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #9</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">At-Tawbah</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/9-Surah-At-Tawbah-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="10 yunus" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #10</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Yunus</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/10-Surah-Yunus-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="11 hud" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #11</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Hud</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/11-Surah-Hud-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="12 yusuf" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #12</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Yusuf</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/12-Surah-Yusuf-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="13 ar-raad" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #13</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Ar-Raad</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/13-Surah-Ar-Raad-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="14 ibrahim" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #14</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Ibrahim</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/14-Surah-Ibrahim-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="15 al-hijr" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #15</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Hijr</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/15-Surah-Al-Hijr-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="16 an-nahl" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #16</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">An-Nahl</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/16-Surah-An-Nahl-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="17 bani-israeel" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #17</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Bani-Israeel</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/17-Surah-Bani-Israeel-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="18 al-kahf" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #18</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al-Kahf</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/18-Surah-Al-Kahf-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="19 mariyam" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #19</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Mariyam</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/19-Surah-Mariyam-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="20 taha" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #20</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Taha</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/20-Surah-Taha-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+          <div class="glass-card tn-card" data-query="21 al anbiya" style="padding: 1.5rem; border-radius: var(--radius-md); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Surah #21</span>
+              <h3 style="font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--text);">Al Anbiya</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.4;">
+                Detailed lecture study notes, Ayah commentary, context of revelation (Asbab an-Nuzul), and life application.
+              </p>
+            </div>
+            <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/21-Surah-Al-Anbiya-Notes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="text-align: center; justify-content: center;">
+              View Tafseer Notes 📋
+            </a>
+          </div>
+        
+      </div>
+
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); text-align: center;">
+        <h3 style="margin: 0 0 1rem; color: var(--text); font-size: 1.2rem;">Explore More Study Aids</h3>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="rootwords.html" class="btn btn-outline">Juz Wise Rootwords →</a>
+          <a href="flowcharts.html" class="btn btn-outline">Surah Wise Flowcharts →</a>
+          <a href="reading-material.html" class="btn btn-outline">Reading Material →</a>
+          <a href="resources.html" class="btn btn-outline">Student Hub →</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);"><div class="container"><div class="footer-grid"><div><div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;"><img src="assets/logo.png" alt="NurulQuran" width="36" height="26"><h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Tafseer</h4></div><p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Delving into the timeless wisdom and practical commands of the Holy Quran.</p></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Resources</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;"><li><a href="rootwords.html">Rootwords</a></li><li><a href="flowcharts.html">Surah Flowcharts</a></li><li><a href="reading-material.html">Reading Material</a></li><li><a href="resources.html">All Resources</a></li></ul></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4><p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>Official Website: <a href="index.html">nurulquran.web.app</a></p></div></div><div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;"><p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p></div></div></footer>
+
+  <script>
+    document.getElementById('tn-search')?.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.tn-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const text = (card.dataset.query || '') + ' ' + card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      const counter = document.getElementById('tn-count');
+      if (counter) counter.textContent = 'Showing ' + visible + ' of ' + cards.length + ' Notes';
+    });
+  </script>
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Donate &amp; Support — NurulQuran International</title>
+  <meta name="description" content="Invest in your Aakhirah. Support NurulQuran’s global Quranic education, student sponsorships, Ramadan Ration, Khayran Kaseer USA, and Zakat distributions.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="donate.html" class="active">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 42vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Support <span class="highlight">NurulQuran</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 720px; margin: 0 auto 1.5rem;">
+        “The example of those who spend their wealth in the way of Allah is like a seed of grain which grows seven spikes; in each spike is a hundred grains.” (Al-Baqarah: 261)
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#ways-to-give" class="btn btn-primary">Ways to Donate ↓</a>
+        <a href="#projects-breakdown" class="btn btn-outline">Explore Projects ↓</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <!-- Quick Navigation Anchors -->
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+        <a href="#sadaqah" class="btn btn-outline btn-sm">💖 General Sadaqah</a>
+        <a href="#zakat" class="btn btn-outline btn-sm">⚖️ Zakat Policy</a>
+        <a href="#khayrankaseer" class="btn btn-outline btn-sm">🏛️ Khayran Kaseer USA</a>
+        <a href="#ration" class="btn btn-outline btn-sm">🌾 Ramadan Ration</a>
+        <a href="#ways-to-give" class="btn btn-outline btn-sm">💳 Bank &amp; Payment Details</a>
+      </div>
+
+      <!-- Projects Breakdown Grid -->
+      <div id="projects-breakdown" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; margin-bottom: 3.5rem;">
+
+        <!-- Project 1: General Sadaqah -->
+        <article id="sadaqah" class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag trip-tag-active">Sadaqah Jariyah</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Global Reach</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">💖 General Education &amp; Dawah</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Supports free Quranic education globally, web and mobile app servers, audio and video recording studios, publishing of translations, and scholarships for needy students.
+            </p>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <div style="font-weight: 700; color: var(--text); margin-bottom: 0.3rem;">Direct Impact:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                Every lecture heard, Surah memorized, and heart touched serves as an ongoing investment for you in the hereafter.
+              </div>
+            </div>
+          </div>
+          <a href="#ways-to-give" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">Donate Now →</a>
+        </article>
+
+        <!-- Project 2: Zakat -->
+        <article id="zakat" class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">100% Zakat Policy</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Fardh Obligation</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">⚖️ Zakat Contributions</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Disbursed in strict compliance with Shariah guidelines. 100% of your Zakat funds go directly to eligible recipients, impoverished families, widows, orphans, and deserving students of Islamic knowledge.
+            </p>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <div style="font-weight: 700; color: var(--text); margin-bottom: 0.3rem;">Transparency:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                Zero administrative cuts. Separate tracking for Zakat funds ensuring they reach the 8 Quranic categories of As-Sadaqat.
+              </div>
+            </div>
+          </div>
+          <a href="#ways-to-give" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">Pay Zakat →</a>
+        </article>
+
+        <!-- Project 3: Khayran Kaseer USA -->
+        <article id="khayrankaseer" class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">Campus Building</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">USA Project</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">🏛️ Khayran Kaseer Project (USA)</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Establishing the permanent physical campus of the Nur-Ul-Quran Institute in North America (Atlanta / Chicago) to host Quran learning circles, youth training, workshops, and community brotherhood.
+            </p>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <div style="font-weight: 700; color: var(--text); margin-bottom: 0.3rem;">Endowment (Waqf):</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                Building a physical legacy of knowledge that will serve generation after generation of Muslim families.
+              </div>
+            </div>
+          </div>
+          <a href="#ways-to-give" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">Support Campus Waqf →</a>
+        </article>
+
+        <!-- Project 4: Ramadan Ration -->
+        <article id="ration" class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">Relief &amp; Food</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Ramadan Aid</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">🌾 Ramadan Ration Project</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Distributing month-long food ration packages (flour, rice, oil, lentils, dates, sugar) to destitute families before Ramadan, ensuring they can fast and break their fasts with dignity.
+            </p>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <div style="font-weight: 700; color: var(--text); margin-bottom: 0.3rem;">Package Cost:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                One complete month-long family food hamper costs approximately – USD. Feed a fasting family this Ramadan!
+              </div>
+            </div>
+          </div>
+          <a href="#ways-to-give" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">Sponsor Ration Pack →</a>
+        </article>
+
+      </div>
+
+      <!-- Ways to Give (Payment & Bank Methods) -->
+      <section id="ways-to-give" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.6rem; color: var(--text); margin-bottom: 0.5rem; text-align: center;">Ways to Donate</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 0.95rem;">
+          You can contribute through bank transfer, cheque, wire, or online electronic payment. All contributions are acknowledged with official receipts.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+          <!-- Method 1: Bank Transfer -->
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🏦</div>
+            <h3 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Bank Transfer (Wire / ACH)</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.45;">
+              Direct transfer into Nur-Ul-Quran Institute official accounts in USA, UK, Europe, or Pakistan.
+            </p>
+            <div style="font-size: 0.85rem; color: var(--text); background: var(--surface); padding: 0.85rem; border-radius: var(--radius-md); line-height: 1.6;">
+              <strong>Account Name:</strong> Nur-Ul-Quran Institute<br>
+              <strong>Country:</strong> United States / Global<br>
+              <strong>Inquiries:</strong> <a href="mailto:info@nurulquran.com" style="color: var(--accent-teal);">info@nurulquran.com</a>
+            </div>
+          </div>
+
+          <!-- Method 2: Cheque / Money Order -->
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">✉️</div>
+            <h3 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Cheque or Money Order</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.45;">
+              For donations in the form of Cheque, Money Order, Cash, or Gold:
+            </p>
+            <div style="font-size: 0.85rem; color: var(--text); background: var(--surface); padding: 0.85rem; border-radius: var(--radius-md); line-height: 1.6;">
+              <strong>Payable to:</strong> Nur-Ul-Quran Institute<br>
+              <strong>Mailing Address:</strong><br>
+              Nur-Ul-Quran Institute<br>
+              P.O. Box Oak Brook, IL 60523, USA
+            </div>
+          </div>
+
+          <!-- Method 3: PayPal / Card -->
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">💳</div>
+            <h3 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Online Card / PayPal</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.45;">
+              Fast, secure SSL-encrypted online payment supporting debit cards, credit cards, and PayPal accounts.
+            </p>
+            <div style="font-size: 0.85rem; color: var(--text); background: var(--surface); padding: 0.85rem; border-radius: var(--radius-md); line-height: 1.6; margin-bottom: 1rem;">
+              <strong>Security:</strong> 256-bit SSL encryption<br>
+              <strong>Receipts:</strong> Emailed automatically
+            </div>
+            <a href="mailto:info@nurulquran.com?subject=Donation%20Inquiry%20-%20NurulQuran" class="btn btn-primary btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              Request Payment Link / Details →
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo.png" alt="NurulQuran" width="36" height="26">
+            <h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Institute</h4>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Non-profit Islamic educational institute serving humanity.</p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Quick Navigation</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
+            <li><a href="index.html#courses">All Courses</a></li>
+            <li><a href="kids.html">Kids Programs</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="resources.html">Student Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Donation Inquiries</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+            Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>
+            Official Website: <a href="index.html">nurulquran.web.app</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

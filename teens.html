@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>NurulQuran Teens &amp; Youth Programs — NurulQuran</title>
+  <meta name="description" content="Empowering Muslim youth and teen girls with Quranic wisdom, faith foundations, character building, and guidance for modern challenges.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs" class="active">Programs</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 40vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        NurulQuran <span class="highlight">Teens &amp; Youth</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 680px; margin: 0 auto 1.5rem;">
+        Guiding young Muslim women to anchor their hearts in Allah's book, embrace their Islamic identity with confidence, and excel in both faith and character.
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#programs-grid" class="btn btn-primary">Explore Courses ↓</a>
+        <a href="index.html#programs" class="btn btn-outline">← All Programs</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <div class="glass-card" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem; border-left: 4px solid var(--accent-gold); border-radius: var(--radius-lg); background: var(--surface);">
+        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+          <span style="font-size: 1.8rem; line-height: 1;">🌸</span>
+          <div>
+            <h3 style="margin: 0 0 0.4rem 0; font-size: 1.15rem; color: var(--text);">Safe &amp; Inspiring Space for Girls (Ages 13+)</h3>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+              All teen courses are exclusively designed for young girls and teens, taught with compassion and contemporary relevance by qualified instructors. Interactive live Zoom sessions with open discussions and Q&amp;A.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="programs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; margin-bottom: 3.5rem;">
+
+        <!-- Course 1 -->
+        <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag trip-tag-active">Core Course • Teens</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Ages 13+ Girls</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">🌱 Faith &amp; Character (Imaan &amp; Akhlaq)</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              An uplifting short course exploring the pillars of Iman, overcoming doubts, dealing with peer pressure, building self-worth through Allah’s love, and developing emotional resilience.
+            </p>
+
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">🎯 Key Topics:</div>
+              <ul style="margin: 0 0 0.75rem 1.2rem; padding: 0; color: var(--text-secondary); line-height: 1.4;">
+                <li>Who is Allah? Loving and knowing our Creator</li>
+                <li>Stories of Youth in the Quran (Ashab al-Kahf, Maryam)</li>
+                <li>Friendships, Social Media, and Boundaries</li>
+                <li>Finding Peace through Salah and Dua</li>
+              </ul>
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">💳 Tuition Per Semester:</div>
+              <div style="color: var(--text-secondary); line-height: 1.4;">
+                • Pakistan: <strong>Rs. 1,000 PKR</strong> | India: <strong>Rs. 500 INR</strong><br>
+                • KSA / UAE / USA: <strong> USD</strong> | Europe: <strong>£15 GBP</strong>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="https://forms.gle/rgNXb2vVZ8UukXL8A" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+              Register for Faith &amp; Character →
+            </a>
+          </div>
+        </article>
+
+        <!-- Course 2 -->
+        <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="trip-tag" style="background: rgba(241, 196, 15, 0.15); color: #f39c12;">Seasonal Special</span>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-gold);">Ages 13+ Girls</span>
+            </div>
+            <h2 style="font-size: 1.35rem; margin: 0 0 0.75rem; color: var(--text);">🌙 Ramadan Youth Special for Teens</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.55;">
+              Transform your Ramadan from a routine ritual into a deeply personal spiritual breakthrough. Daily inspirational reflections, Quran journaling, and setting meaningful life goals.
+            </p>
+
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text);">📖 Program Highlights:</div>
+              <ul style="margin: 0 0 0.75rem 1.2rem; padding: 0; color: var(--text-secondary); line-height: 1.4;">
+                <li>Daily 30-min Zoom reflections on selected Ayahs</li>
+                <li>Practical Ramadan habit tracker and gratitude journal</li>
+                <li>Youth discussions on making lasting change</li>
+                <li>Interactive Q&amp;A on everyday life situations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <a href="https://forms.gle/rgNXb2vVZ8UukXL8A" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+              Register for Ramadan Youth Special →
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="text-align: center;">
+        <h3 style="font-size: 1.2rem; color: var(--text); margin-bottom: 1rem;">Explore More Programs</h3>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="kids.html" class="btn btn-outline">Kids Programs →</a>
+          <a href="ramadan.html" class="btn btn-outline">Ramadan Portal →</a>
+          <a href="volunteer.html" class="btn btn-outline">Volunteer with Us →</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo.png" alt="NurulQuran" width="36" height="26">
+            <h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Teens</h4>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Empowering Muslim youth with knowledge and conviction.</p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Navigation</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
+            <li><a href="index.html#courses">All Courses</a></li>
+            <li><a href="kids.html">Kids Programs</a></li>
+            <li><a href="ramadan.html">Ramadan Portal</a></li>
+            <li><a href="resources.html">Student Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+            Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>
+            Official Website: <a href="index.html">nurulquran.web.app</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

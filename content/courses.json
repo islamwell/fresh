@@ -11,7 +11,7 @@
       "description": "A journey through the Qur'an with Tafseer, Arabic grammar and practical lessons for living. The flagship annual program — run every year since the institute's founding.",
       "icon": "🌿",
       "color": "var(--accent-gold)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": "https://forms.gle/QBxBMFNyEiyameb97"
     },
     {
@@ -23,7 +23,7 @@
       "description": "Light upon light — a deep-dive Tafseer program connecting the layers of meaning in the Qur'an and their reflections in daily Muslim life.",
       "icon": "✨",
       "color": "var(--accent-teal)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": "https://forms.gle/14Sim7wjfTiq45ep9"
     },
     {
@@ -35,8 +35,8 @@
       "description": "The life of the Prophet ﷺ studied in detail — character, events, lessons, and how his ﷺ example transforms our families, homes and relationships today.",
       "icon": "🕌",
       "color": "var(--accent-rose)",
-      "link": "https://nurulquran.com/courses/",
-      "registerLink": "https://nurulquran.com/seerah"
+      "link": "#courses",
+      "registerLink": "https://forms.gle/QBxBMFNyEiyameb97"
     },
     {
       "id": "lulu-wal-marjaan",
@@ -47,7 +47,7 @@
       "description": "Pearls and coral — a two-part course of selected ahadith, their meanings, and practical wisdom for family life, kindness and worship.",
       "icon": "📿",
       "color": "var(--accent-gold)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": ""
     },
     {
@@ -59,7 +59,7 @@
       "description": "Verse-by-verse explanation of the Qur'an woven together with the authentic Sunnah — so students understand what Allah says and how the Prophet ﷺ lived it.",
       "icon": "📖",
       "color": "var(--primary)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": ""
     },
     {
@@ -71,7 +71,7 @@
       "description": "Arabic grammar is built into every lesson so students can unlock the Qur'an's own language — understanding root words, verb forms and sentence structures that reveal deeper meaning.",
       "icon": "🔤",
       "color": "var(--accent-teal)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": ""
     },
     {
@@ -83,7 +83,7 @@
       "description": "Master the art of proper Quranic recitation with precise pronunciation rules and expand your understanding of Quranic vocabulary to connect more deeply with each word you recite.",
       "icon": "🎙️",
       "color": "var(--primary)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": ""
     },
     {
@@ -95,7 +95,7 @@
       "description": "An empowering course equipping students to become confident ambassadors of Islamic knowledge, equipped to share the beauty of Islam with wisdom and grace.",
       "icon": "🌟",
       "color": "var(--accent-gold)",
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "registerLink": ""
     }
   ]

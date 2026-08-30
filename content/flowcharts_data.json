@@ -1,0 +1,686 @@
+[
+  {
+    "num": "1",
+    "name": "Surah Al-Fateha",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/1-SurahAl-Fateha-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/1-SurahAl-Fateha-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "2",
+    "name": "Surah Al-Baqarah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/2-SurahAl-Baqarah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/2-SurahAl-Baqarah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "3",
+    "name": "Surah Ale-Imran",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/3-SurahAle-Imran-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/3-SurahAle-Imran-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "4",
+    "name": "Surah An-Nisaa",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/4-SurahAn-Nisaa-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/4-SurahAn-Nisaa-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "5",
+    "name": "Surah Al-Maiida",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/5-SurahAl-Maiida-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/5-SurahAl-Maiida-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "6",
+    "name": "Surah Al-Anaam",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/6-SurahAl-Anaam-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/6-SurahAl-Anaam-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "7",
+    "name": "Surah Al-Araaf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/7-SurahAl-Araaf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/7-SurahAl-Araaf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "8",
+    "name": "Surah Al-Anfal",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/8-SurahAl-Anfal-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/8-SurahAl-Anfal-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "9",
+    "name": "Surah At-Tawabah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/9-SurahAt-Tawabah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/9-SurahAt-Tawabah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "10",
+    "name": "Surah Yunus",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/10-SurahYunus-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/10-SurahYunus-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "11",
+    "name": "Surah Hud",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/11-SurahHud-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/11-SurahHud-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "12",
+    "name": "Surah Yusuf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/12-SurahYusuf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/12-SurahYusuf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "13",
+    "name": "Surah Ar-Raad",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/13-SurahAr-Raad-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/13-SurahAr-Raad-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "14",
+    "name": "Surah Ibrahim",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/14-SurahIbrahim-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/14-SurahIbrahim-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "15",
+    "name": "Surah Al-Hijr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/15-SurahAl-Hijr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/15-SurahAl-Hijr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "16",
+    "name": "Surah An-Nahl",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/16-SurahAn-Nahl-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/16-SurahAn-Nahl-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "17",
+    "name": "Surah Bani Israeel",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/17-SurahBaniIsraeel-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/17-SurahBaniIsraeel-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "18",
+    "name": "Surah Al-Kahf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/18-SurahAl-Kahf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/18-SurahAl-Kahf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "19",
+    "name": "Surah Maryam",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/19-SurahMaryam-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/19-SurahMaryam-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "20",
+    "name": "Surah Taha",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/20-SurahTaha-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/20-SurahTaha-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "21",
+    "name": "Surah\u00a0Al-Anbiya",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/21-Surah\u00a0Al-Anbiya-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/21-Surah\u00a0Al-Anbiya-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "22",
+    "name": "Surah Al-Hajj",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/22-SurahAl-Hajj-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/22-SurahAl-Hajj-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "23",
+    "name": "Surah Al-Mumenoon",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/23-SurahAl-Mumenoon-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/23-SurahAl-Mumenoon-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "24",
+    "name": "Surah Al-Nur",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/24-SurahAl-Nur-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/24-SurahAl-Nur-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "25",
+    "name": "Surah Al-Furqan",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/25-SurahAl-Furqan-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/25-SurahAl-Furqan-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "26",
+    "name": "Surah Ash-Shuara",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/26-SurahAsh-Shuara-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/26-SurahAsh-Shuara-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "27",
+    "name": "Surah An-Namal",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/27-SurahAn-Namal-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/27-SurahAn-Namal-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "28",
+    "name": "Surah Al-Qasas",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/28-SurahAl-Qasas-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/28-SurahAl-Qasas-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "29",
+    "name": "Surah Al-Ankaboot",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/29-SurahAl-Ankaboot-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/29-SurahAl-Ankaboot-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "30",
+    "name": "Surah Ar-Room",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/30-SurahAr-Room-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/30-SurahAr-Room-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "31",
+    "name": "Surah Luqmaan",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/31-SurahLuqmaan-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/31-SurahLuqmaan-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "32",
+    "name": "Surah As-Sajdah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/32-SurahAs-Sajdah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/32-SurahAs-Sajdah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "33",
+    "name": "Surah Al-Ahzaab",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/33-SurahAl-Ahzaab-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/33-SurahAl-Ahzaab-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "34",
+    "name": "Surah Saba",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/34-SurahSaba-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/34-SurahSaba-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "35",
+    "name": "Surah Fatir",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/35-SurahFatir-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/35-SurahFatir-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "36",
+    "name": "Surah Yaseen",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/36-SurahYaseen-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/36-SurahYaseen-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "37",
+    "name": "Surah Saffaat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/37-SurahSaffaat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/37-SurahSaffaat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "38",
+    "name": "Surah Suaad",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/38-SurahSuaad-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/38-SurahSuaad-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "39",
+    "name": "Surah Az-Zumar",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/39-SurahAz-Zumar-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/39-SurahAz-Zumar-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "40",
+    "name": "Surah Al-Momin",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/40-SurahAl-Momin-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/40-SurahAl-Momin-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "41",
+    "name": "Surah Haa Meem Sajdah /Fussilat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/41-SurahHaaMeemSajdah/Fussilat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/41-SurahHaaMeemSajdah/Fussilat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "42",
+    "name": "Surah Ash-Shura",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/42-SurahAsh-Shura-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/42-SurahAsh-Shura-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "43",
+    "name": "Surah Az-Zukhruf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/43-SurahAz-Zukhruf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/43-SurahAz-Zukhruf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "44",
+    "name": "Surah Ad-Dukhan",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/44-SurahAd-Dukhan-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/44-SurahAd-Dukhan-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "45",
+    "name": "Surah Al-Jathiya",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/45-SurahAl-Jathiya-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/45-SurahAl-Jathiya-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "46",
+    "name": "Surah Al- Ahkaf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/46-SurahAl-Ahkaf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/46-SurahAl-Ahkaf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "47",
+    "name": "Surah Muhammad",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/47-SurahMuhammad-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/47-SurahMuhammad-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "48",
+    "name": "Surah Al-Fath",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/48-SurahAl-Fath-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/48-SurahAl-Fath-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "49",
+    "name": "Surah Al-Hujraat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/49-SurahAl-Hujraat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/49-SurahAl-Hujraat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "50",
+    "name": "Surah Qaaf",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/50-SurahQaaf-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/50-SurahQaaf-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "51",
+    "name": "Surah Adh-Dhariyat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/51-SurahAdh-Dhariyat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/51-SurahAdh-Dhariyat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "52",
+    "name": "Surah At-Tur",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/52-SurahAt-Tur-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/52-SurahAt-Tur-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "53",
+    "name": "Surah An-Najm",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/53-SurahAn-Najm-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/53-SurahAn-Najm-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "54",
+    "name": "Surah Al-Qamar",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/54-SurahAl-Qamar-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/54-SurahAl-Qamar-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "55",
+    "name": "Surah Ar-Rahman",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/55-SurahAr-Rahman-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/55-SurahAr-Rahman-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "56",
+    "name": "Surah Al-Waqia",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/56-SurahAl-Waqia-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/56-SurahAl-Waqia-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "57",
+    "name": "Surah Al-Hadid",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/57-SurahAl-Hadid-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/57-SurahAl-Hadid-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "58",
+    "name": "Surah Al-Mujadila",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/58-SurahAl-Mujadila-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/58-SurahAl-Mujadila-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "59",
+    "name": "Surah Al-Hashr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/59-SurahAl-Hashr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/59-SurahAl-Hashr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "60",
+    "name": "Surah Al-Mumtahina",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/60-SurahAl-Mumtahina-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/60-SurahAl-Mumtahina-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "61",
+    "name": "Surah As-Saff",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/61-SurahAs-Saff-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/61-SurahAs-Saff-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "62",
+    "name": "Surah Al-Jumuah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/62-SurahAl-Jumuah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/62-SurahAl-Jumuah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "63",
+    "name": "Surah Al-Munafiqoon",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/63-SurahAl-Munafiqoon-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/63-SurahAl-Munafiqoon-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "64",
+    "name": "Surah At-Taghabun",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/64-SurahAt-Taghabun-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/64-SurahAt-Taghabun-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "65",
+    "name": "Surah At-Talaq",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/65-SurahAt-Talaq-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/65-SurahAt-Talaq-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "66",
+    "name": "Surah At-Tahrim",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/66-SurahAt-Tahrim-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/66-SurahAt-Tahrim-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "67",
+    "name": "Surah Al-Mulk",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/67-SurahAl-Mulk-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/67-SurahAl-Mulk-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "68",
+    "name": "Surah Al-Qalam",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/68-SurahAl-Qalam-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/68-SurahAl-Qalam-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "69",
+    "name": "Surah Al-Haaqqah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/69-SurahAl-Haaqqah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/69-SurahAl-Haaqqah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "70",
+    "name": "Surah Al-Maarij",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/70-SurahAl-Maarij-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/70-SurahAl-Maarij-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "71",
+    "name": "Surah Nooh",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/71-SurahNooh-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/71-SurahNooh-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "72",
+    "name": "Surah Jinn",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/72-SurahJinn-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/72-SurahJinn-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "73",
+    "name": "Surah Muzzammil",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/73-SurahMuzzammil-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/73-SurahMuzzammil-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "74",
+    "name": "Surah Al-Muddathir",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/74-SurahAl-Muddathir-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/74-SurahAl-Muddathir-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "75",
+    "name": "Surah Al-Qiyamah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/75-SurahAl-Qiyamah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/75-SurahAl-Qiyamah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "76",
+    "name": "Surah Al-Insan/Ad-Dahar",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/76-SurahAl-Insan/Ad-Dahar-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/76-SurahAl-Insan/Ad-Dahar-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "77",
+    "name": "Surah Mursalat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/77-SurahMursalat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/77-SurahMursalat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "78",
+    "name": "Surah An-Naba",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/78-SurahAn-Naba-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/78-SurahAn-Naba-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "79",
+    "name": "Surah An-Naziat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/79-SurahAn-Naziat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/79-SurahAn-Naziat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "80",
+    "name": "Surah Abasa",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/80-SurahAbasa-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/80-SurahAbasa-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "81",
+    "name": "Surah At-Takwir",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/81-SurahAt-Takwir-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/81-SurahAt-Takwir-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "82",
+    "name": "Surah Al-Infitar",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/82-SurahAl-Infitar-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/82-SurahAl-Infitar-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "83",
+    "name": "Surah Mutaffifin",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/83-SurahMutaffifin-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/83-SurahMutaffifin-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "84",
+    "name": "Surah Al-Inshiqaq",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/84-SurahAl-Inshiqaq-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/84-SurahAl-Inshiqaq-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "85",
+    "name": "Surah Al-Burooj",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/85-SurahAl-Burooj-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/85-SurahAl-Burooj-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "86",
+    "name": "Surah At-Tariq",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/86-SurahAt-Tariq-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/86-SurahAt-Tariq-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "87",
+    "name": "Surah Al-Ala",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/87-SurahAl-Ala-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/87-SurahAl-Ala-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "88",
+    "name": "Surah Al-Ghashiya",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/88-SurahAl-Ghashiya-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/88-SurahAl-Ghashiya-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "89",
+    "name": "Surah Al-Fajr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/89-SurahAl-Fajr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/89-SurahAl-Fajr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "90",
+    "name": "Surah Al-Balad",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/90-SurahAl-Balad-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/90-SurahAl-Balad-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "91",
+    "name": "Surah Ash-Shams",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/91-SurahAsh-Shams-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/91-SurahAsh-Shams-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "92",
+    "name": "Surah Al-Lail",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/92-SurahAl-Lail-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/92-SurahAl-Lail-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "93",
+    "name": "Surah Ad-Dhuha",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/93-SurahAd-Dhuha-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/93-SurahAd-Dhuha-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "94",
+    "name": "Surah Al-Inshira",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/94-SurahAl-Inshira-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/94-SurahAl-Inshira-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "95",
+    "name": "Surah At-Tin",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/95-SurahAt-Tin-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/95-SurahAt-Tin-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "96",
+    "name": "Surah Al-Alaq",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/96-SurahAl-Alaq-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/96-SurahAl-Alaq-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "97",
+    "name": "Surah Al-Qadr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/97-SurahAl-Qadr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/97-SurahAl-Qadr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "98",
+    "name": "Surah Al-Bayyinah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/98-SurahAl-Bayyinah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/98-SurahAl-Bayyinah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "99",
+    "name": "Surah Az-Zalzalah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/99-SurahAz-Zalzalah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/99-SurahAz-Zalzalah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "100",
+    "name": "Surah Al-Adiyat",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/100-SurahAl-Adiyat-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/100-SurahAl-Adiyat-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "101",
+    "name": "Surah Al-Qari\u2019ah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/101-SurahAl-Qari\u2019ah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/101-SurahAl-Qari\u2019ah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "102",
+    "name": "Surah At-Takathur",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/102-SurahAt-Takathur-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/102-SurahAt-Takathur-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "103",
+    "name": "Surah Al-Asr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/103-SurahAl-Asr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/103-SurahAl-Asr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "104",
+    "name": "Surah Al-Humazah",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/104-SurahAl-Humazah-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/104-SurahAl-Humazah-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "105",
+    "name": "Surah Al-Feel",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/105-SurahAl-Feel-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/105-SurahAl-Feel-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "106",
+    "name": "Surah Quraysh",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/106-SurahQuraysh-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/106-SurahQuraysh-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "107",
+    "name": "Surah Al-Ma\u2019un",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/107-SurahAl-Ma\u2019un-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/107-SurahAl-Ma\u2019un-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "108",
+    "name": "Surah Al-Kawthar",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/108-SurahAl-Kawthar-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/108-SurahAl-Kawthar-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "109",
+    "name": "Surah Al-Kafiroon",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/109-SurahAl-Kafiroon-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/109-SurahAl-Kafiroon-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "110",
+    "name": "Surah An-Nasr",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/110-SurahAn-Nasr-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/110-SurahAn-Nasr-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "111",
+    "name": "Surah Al-Masad",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/111-SurahAl-Masad-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/111-SurahAl-Masad-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "112",
+    "name": "Surah Al-Ikhlaas",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/112-SurahAl-Ikhlaas-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/112-SurahAl-Ikhlaas-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "113",
+    "name": "Surah Al-Falaq",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/113-SurahAl-Falaq-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/113-SurahAl-Falaq-Urdu-Flowchart.pdf"
+  },
+  {
+    "num": "114",
+    "name": "Surah An-Naas",
+    "eng_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/114-SurahAn-Naas-Flowchart.pdf",
+    "urdu_pdf": "https://fast.nurulquran.com/wp-content/uploads/2018/02/114-SurahAn-Naas-Urdu-Flowchart.pdf"
+  }
+]

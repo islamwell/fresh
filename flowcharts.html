@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Surah Wise Flowcharts (Surah 1–114) — NurulQuran</title>
+  <meta name="description" content="Visual thematic flow charts for all 114 Surahs of the Holy Quran in English and Urdu. Understand Quranic themes, structural flow, and subject divisions.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+  <style>
+    .fc-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .fc-table th, .fc-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .fc-table th {
+      background: var(--bg-alt);
+      color: var(--text);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .fc-table tr:hover {
+      background: rgba(124, 156, 255, 0.06);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 38vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ أَمْ عَلَىٰ قُلُوبٍ أَقْفَالُهَا</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Surah Wise <span class="highlight">Flowcharts</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 680px; margin: 0 auto 1.5rem;">
+        Visual structural maps and thematic overviews for all 114 Surahs of the Holy Quran, available in both English and Urdu.
+      </p>
+      <div style="max-width: 480px; margin: 0 auto;">
+        <input type="search" id="fc-search" placeholder="🔍 Search by Surah number or name (e.g. 2, Baqarah, Yusuf)..." style="width: 100%; padding: 0.85rem 1.25rem; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 0.95rem; box-shadow: var(--shadow-md); outline: none;">
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 style="font-size: 1.35rem; margin: 0; color: var(--text);">Complete 114 Surahs Directory</h2>
+        <span id="fc-count" style="font-size: 0.88rem; color: var(--text-secondary);">Showing all 114 Surahs</span>
+      </div>
+
+      <!-- Table Container -->
+      <div class="glass-card" style="border-radius: var(--radius-lg); background: var(--surface); overflow-x: auto; margin-bottom: 3.5rem; box-shadow: var(--shadow-md);">
+        <table class="fc-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Surah Name</th>
+              <th>English Chart</th>
+              <th>Urdu Chart</th>
+            </tr>
+          </thead>
+          <tbody id="fc-tbody">
+            
+      <tr class="fc-row" data-query="1 surah al-fateha">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#1</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Fateha</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/1-SurahAl-Fateha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/1-SurahAl-Fateha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="2 surah al-baqarah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#2</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Baqarah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/2-SurahAl-Baqarah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/2-SurahAl-Baqarah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="3 surah ale-imran">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#3</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ale-Imran</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/3-SurahAle-Imran-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/3-SurahAle-Imran-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="4 surah an-nisaa">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#4</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Nisaa</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/4-SurahAn-Nisaa-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/4-SurahAn-Nisaa-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="5 surah al-maiida">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#5</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Maiida</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/5-SurahAl-Maiida-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/5-SurahAl-Maiida-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="6 surah al-anaam">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#6</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Anaam</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/6-SurahAl-Anaam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/6-SurahAl-Anaam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="7 surah al-araaf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#7</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Araaf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/7-SurahAl-Araaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/7-SurahAl-Araaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="8 surah al-anfal">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#8</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Anfal</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/8-SurahAl-Anfal-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/8-SurahAl-Anfal-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="9 surah at-tawabah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#9</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Tawabah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/9-SurahAt-Tawabah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/9-SurahAt-Tawabah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="10 surah yunus">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#10</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Yunus</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/10-SurahYunus-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/10-SurahYunus-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="11 surah hud">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#11</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Hud</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/11-SurahHud-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/11-SurahHud-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="12 surah yusuf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#12</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Yusuf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/12-SurahYusuf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/12-SurahYusuf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="13 surah ar-raad">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#13</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ar-Raad</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/13-SurahAr-Raad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/13-SurahAr-Raad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="14 surah ibrahim">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#14</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ibrahim</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/14-SurahIbrahim-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/14-SurahIbrahim-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="15 surah al-hijr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#15</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Hijr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/15-SurahAl-Hijr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/15-SurahAl-Hijr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="16 surah an-nahl">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#16</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Nahl</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/16-SurahAn-Nahl-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/16-SurahAn-Nahl-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="17 surah bani israeel">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#17</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Bani Israeel</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/17-SurahBaniIsraeel-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/17-SurahBaniIsraeel-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="18 surah al-kahf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#18</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Kahf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/18-SurahAl-Kahf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/18-SurahAl-Kahf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="19 surah maryam">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#19</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Maryam</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/19-SurahMaryam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/19-SurahMaryam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="20 surah taha">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#20</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Taha</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/20-SurahTaha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/20-SurahTaha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="21 surah al-anbiya">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#21</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Anbiya</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/21-Surah Al-Anbiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/21-Surah Al-Anbiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="22 surah al-hajj">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#22</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Hajj</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/22-SurahAl-Hajj-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/22-SurahAl-Hajj-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="23 surah al-mumenoon">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#23</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Mumenoon</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/23-SurahAl-Mumenoon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/23-SurahAl-Mumenoon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="24 surah al-nur">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#24</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Nur</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/24-SurahAl-Nur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/24-SurahAl-Nur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="25 surah al-furqan">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#25</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Furqan</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/25-SurahAl-Furqan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/25-SurahAl-Furqan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="26 surah ash-shuara">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#26</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ash-Shuara</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/26-SurahAsh-Shuara-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/26-SurahAsh-Shuara-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="27 surah an-namal">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#27</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Namal</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/27-SurahAn-Namal-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/27-SurahAn-Namal-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="28 surah al-qasas">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#28</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qasas</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/28-SurahAl-Qasas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/28-SurahAl-Qasas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="29 surah al-ankaboot">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#29</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ankaboot</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/29-SurahAl-Ankaboot-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/29-SurahAl-Ankaboot-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="30 surah ar-room">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#30</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ar-Room</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/30-SurahAr-Room-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/30-SurahAr-Room-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="31 surah luqmaan">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#31</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Luqmaan</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/31-SurahLuqmaan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/31-SurahLuqmaan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="32 surah as-sajdah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#32</td>
+        <td style="font-weight: 600; color: var(--text);">Surah As-Sajdah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/32-SurahAs-Sajdah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/32-SurahAs-Sajdah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="33 surah al-ahzaab">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#33</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ahzaab</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/33-SurahAl-Ahzaab-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/33-SurahAl-Ahzaab-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="34 surah saba">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#34</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Saba</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/34-SurahSaba-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/34-SurahSaba-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="35 surah fatir">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#35</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Fatir</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/35-SurahFatir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/35-SurahFatir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="36 surah yaseen">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#36</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Yaseen</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/36-SurahYaseen-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/36-SurahYaseen-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="37 surah saffaat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#37</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Saffaat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/37-SurahSaffaat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/37-SurahSaffaat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="38 surah suaad">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#38</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Suaad</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/38-SurahSuaad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/38-SurahSuaad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="39 surah az-zumar">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#39</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Az-Zumar</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/39-SurahAz-Zumar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/39-SurahAz-Zumar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="40 surah al-momin">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#40</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Momin</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/40-SurahAl-Momin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/40-SurahAl-Momin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="41 surah haa meem sajdah /fussilat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#41</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Haa Meem Sajdah /Fussilat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/41-SurahHaaMeemSajdah/Fussilat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/41-SurahHaaMeemSajdah/Fussilat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="42 surah ash-shura">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#42</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ash-Shura</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/42-SurahAsh-Shura-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/42-SurahAsh-Shura-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="43 surah az-zukhruf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#43</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Az-Zukhruf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/43-SurahAz-Zukhruf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/43-SurahAz-Zukhruf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="44 surah ad-dukhan">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#44</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ad-Dukhan</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/44-SurahAd-Dukhan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/44-SurahAd-Dukhan-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="45 surah al-jathiya">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#45</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Jathiya</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/45-SurahAl-Jathiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/45-SurahAl-Jathiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="46 surah al- ahkaf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#46</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al- Ahkaf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/46-SurahAl-Ahkaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/46-SurahAl-Ahkaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="47 surah muhammad">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#47</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Muhammad</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/47-SurahMuhammad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/47-SurahMuhammad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="48 surah al-fath">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#48</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Fath</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/48-SurahAl-Fath-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/48-SurahAl-Fath-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="49 surah al-hujraat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#49</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Hujraat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/49-SurahAl-Hujraat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/49-SurahAl-Hujraat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="50 surah qaaf">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#50</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Qaaf</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/50-SurahQaaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/50-SurahQaaf-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="51 surah adh-dhariyat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#51</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Adh-Dhariyat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/51-SurahAdh-Dhariyat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/51-SurahAdh-Dhariyat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="52 surah at-tur">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#52</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Tur</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/52-SurahAt-Tur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/52-SurahAt-Tur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="53 surah an-najm">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#53</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Najm</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/53-SurahAn-Najm-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/53-SurahAn-Najm-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="54 surah al-qamar">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#54</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qamar</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/54-SurahAl-Qamar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/54-SurahAl-Qamar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="55 surah ar-rahman">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#55</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ar-Rahman</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/55-SurahAr-Rahman-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/55-SurahAr-Rahman-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="56 surah al-waqia">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#56</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Waqia</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/56-SurahAl-Waqia-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/56-SurahAl-Waqia-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="57 surah al-hadid">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#57</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Hadid</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/57-SurahAl-Hadid-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/57-SurahAl-Hadid-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="58 surah al-mujadila">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#58</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Mujadila</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/58-SurahAl-Mujadila-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/58-SurahAl-Mujadila-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="59 surah al-hashr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#59</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Hashr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/59-SurahAl-Hashr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/59-SurahAl-Hashr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="60 surah al-mumtahina">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#60</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Mumtahina</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/60-SurahAl-Mumtahina-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/60-SurahAl-Mumtahina-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="61 surah as-saff">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#61</td>
+        <td style="font-weight: 600; color: var(--text);">Surah As-Saff</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/61-SurahAs-Saff-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/61-SurahAs-Saff-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="62 surah al-jumuah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#62</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Jumuah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/62-SurahAl-Jumuah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/62-SurahAl-Jumuah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="63 surah al-munafiqoon">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#63</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Munafiqoon</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/63-SurahAl-Munafiqoon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/63-SurahAl-Munafiqoon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="64 surah at-taghabun">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#64</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Taghabun</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/64-SurahAt-Taghabun-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/64-SurahAt-Taghabun-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="65 surah at-talaq">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#65</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Talaq</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/65-SurahAt-Talaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/65-SurahAt-Talaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="66 surah at-tahrim">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#66</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Tahrim</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/66-SurahAt-Tahrim-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/66-SurahAt-Tahrim-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="67 surah al-mulk">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#67</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Mulk</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/67-SurahAl-Mulk-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/67-SurahAl-Mulk-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="68 surah al-qalam">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#68</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qalam</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/68-SurahAl-Qalam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/68-SurahAl-Qalam-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="69 surah al-haaqqah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#69</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Haaqqah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/69-SurahAl-Haaqqah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/69-SurahAl-Haaqqah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="70 surah al-maarij">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#70</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Maarij</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/70-SurahAl-Maarij-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/70-SurahAl-Maarij-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="71 surah nooh">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#71</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Nooh</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/71-SurahNooh-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/71-SurahNooh-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="72 surah jinn">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#72</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Jinn</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/72-SurahJinn-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/72-SurahJinn-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="73 surah muzzammil">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#73</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Muzzammil</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/73-SurahMuzzammil-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/73-SurahMuzzammil-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="74 surah al-muddathir">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#74</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Muddathir</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/74-SurahAl-Muddathir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/74-SurahAl-Muddathir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="75 surah al-qiyamah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#75</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qiyamah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/75-SurahAl-Qiyamah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/75-SurahAl-Qiyamah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="76 surah al-insan/ad-dahar">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#76</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Insan/Ad-Dahar</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/76-SurahAl-Insan/Ad-Dahar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/76-SurahAl-Insan/Ad-Dahar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="77 surah mursalat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#77</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Mursalat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/77-SurahMursalat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/77-SurahMursalat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="78 surah an-naba">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#78</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Naba</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/78-SurahAn-Naba-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/78-SurahAn-Naba-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="79 surah an-naziat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#79</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Naziat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/79-SurahAn-Naziat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/79-SurahAn-Naziat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="80 surah abasa">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#80</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Abasa</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/80-SurahAbasa-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/80-SurahAbasa-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="81 surah at-takwir">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#81</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Takwir</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/81-SurahAt-Takwir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/81-SurahAt-Takwir-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="82 surah al-infitar">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#82</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Infitar</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/82-SurahAl-Infitar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/82-SurahAl-Infitar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="83 surah mutaffifin">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#83</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Mutaffifin</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/83-SurahMutaffifin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/83-SurahMutaffifin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="84 surah al-inshiqaq">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#84</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Inshiqaq</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/84-SurahAl-Inshiqaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/84-SurahAl-Inshiqaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="85 surah al-burooj">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#85</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Burooj</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/85-SurahAl-Burooj-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/85-SurahAl-Burooj-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="86 surah at-tariq">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#86</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Tariq</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/86-SurahAt-Tariq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/86-SurahAt-Tariq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="87 surah al-ala">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#87</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ala</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/87-SurahAl-Ala-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/87-SurahAl-Ala-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="88 surah al-ghashiya">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#88</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ghashiya</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/88-SurahAl-Ghashiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/88-SurahAl-Ghashiya-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="89 surah al-fajr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#89</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Fajr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/89-SurahAl-Fajr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/89-SurahAl-Fajr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="90 surah al-balad">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#90</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Balad</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/90-SurahAl-Balad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/90-SurahAl-Balad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="91 surah ash-shams">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#91</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ash-Shams</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/91-SurahAsh-Shams-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/91-SurahAsh-Shams-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="92 surah al-lail">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#92</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Lail</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/92-SurahAl-Lail-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/92-SurahAl-Lail-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="93 surah ad-dhuha">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#93</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Ad-Dhuha</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/93-SurahAd-Dhuha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/93-SurahAd-Dhuha-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="94 surah al-inshira">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#94</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Inshira</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/94-SurahAl-Inshira-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/94-SurahAl-Inshira-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="95 surah at-tin">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#95</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Tin</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/95-SurahAt-Tin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/95-SurahAt-Tin-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="96 surah al-alaq">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#96</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Alaq</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/96-SurahAl-Alaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/96-SurahAl-Alaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="97 surah al-qadr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#97</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qadr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/97-SurahAl-Qadr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/97-SurahAl-Qadr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="98 surah al-bayyinah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#98</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Bayyinah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/98-SurahAl-Bayyinah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/98-SurahAl-Bayyinah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="99 surah az-zalzalah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#99</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Az-Zalzalah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/99-SurahAz-Zalzalah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/99-SurahAz-Zalzalah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="100 surah al-adiyat">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#100</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Adiyat</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/100-SurahAl-Adiyat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/100-SurahAl-Adiyat-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="101 surah al-qari’ah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#101</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Qari’ah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/101-SurahAl-Qari’ah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/101-SurahAl-Qari’ah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="102 surah at-takathur">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#102</td>
+        <td style="font-weight: 600; color: var(--text);">Surah At-Takathur</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/102-SurahAt-Takathur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/102-SurahAt-Takathur-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="103 surah al-asr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#103</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Asr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/103-SurahAl-Asr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/103-SurahAl-Asr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="104 surah al-humazah">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#104</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Humazah</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/104-SurahAl-Humazah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/104-SurahAl-Humazah-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="105 surah al-feel">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#105</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Feel</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/105-SurahAl-Feel-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/105-SurahAl-Feel-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="106 surah quraysh">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#106</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Quraysh</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/106-SurahQuraysh-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/106-SurahQuraysh-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="107 surah al-ma’un">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#107</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ma’un</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/107-SurahAl-Ma’un-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/107-SurahAl-Ma’un-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="108 surah al-kawthar">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#108</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Kawthar</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/108-SurahAl-Kawthar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/108-SurahAl-Kawthar-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="109 surah al-kafiroon">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#109</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Kafiroon</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/109-SurahAl-Kafiroon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/109-SurahAl-Kafiroon-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="110 surah an-nasr">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#110</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Nasr</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/110-SurahAn-Nasr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/110-SurahAn-Nasr-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="111 surah al-masad">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#111</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Masad</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/111-SurahAl-Masad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/111-SurahAl-Masad-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="112 surah al-ikhlaas">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#112</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Ikhlaas</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/112-SurahAl-Ikhlaas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/112-SurahAl-Ikhlaas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="113 surah al-falaq">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#113</td>
+        <td style="font-weight: 600; color: var(--text);">Surah Al-Falaq</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/113-SurahAl-Falaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/113-SurahAl-Falaq-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+      <tr class="fc-row" data-query="114 surah an-naas">
+        <td style="font-weight: 700; color: var(--accent-gold); width: 60px;">#114</td>
+        <td style="font-weight: 600; color: var(--text);">Surah An-Naas</td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/114-SurahAn-Naas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            English View 📊
+          </a>
+        </td>
+        <td style="width: 140px;">
+          <a href="https://docs.google.com/viewer?url=https://fast.nurulquran.com/wp-content/uploads/2018/02/114-SurahAn-Naas-Flowchart.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;">
+            Urdu View 📊
+          </a>
+        </td>
+      </tr>
+    
+          </tbody>
+        </table>
+      </div>
+
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); text-align: center;">
+        <h3 style="margin: 0 0 1rem; color: var(--text); font-size: 1.2rem;">Explore More Study Aids</h3>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="rootwords.html" class="btn btn-outline">Juz Wise Rootwords →</a>
+          <a href="tafseer-notes.html" class="btn btn-outline">Tafseer Notes →</a>
+          <a href="reading-material.html" class="btn btn-outline">Reading Material →</a>
+          <a href="resources.html" class="btn btn-outline">Student Hub →</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);"><div class="container"><div class="footer-grid"><div><div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;"><img src="assets/logo.png" alt="NurulQuran" width="36" height="26"><h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Flowcharts</h4></div><p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Visual roadmaps to comprehend the thematic cohesion of the Holy Quran.</p></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Resources</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;"><li><a href="rootwords.html">Rootwords</a></li><li><a href="tafseer-notes.html">Tafseer Notes</a></li><li><a href="reading-material.html">Reading Material</a></li><li><a href="resources.html">All Resources</a></li></ul></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4><p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>Official Website: <a href="index.html">nurulquran.web.app</a></p></div></div><div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;"><p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p></div></div></footer>
+
+  <script>
+    document.getElementById('fc-search')?.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase().trim();
+      const rows = document.querySelectorAll('.fc-row');
+      let visible = 0;
+      rows.forEach(row => {
+        const text = row.dataset.query || row.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          row.style.display = '';
+          visible++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      const counter = document.getElementById('fc-count');
+      if (counter) counter.textContent = 'Showing ' + visible + ' of ' + rows.length + ' Surahs';
+    });
+  </script>
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

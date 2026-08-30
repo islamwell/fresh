@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Student Resources Hub — NurulQuran</title>
+  <meta name="description" content="Central study hub for NurulQuran students. Access Juz Rootwords, Surah Flowcharts, Tafseer Notes, Reading Material, Islamic Websites, and Audio App.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 40vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Student <span class="highlight">Resources Hub</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 700px; margin: 0 auto 1.5rem;">
+        Empowering your journey of sacred knowledge with essential Quranic tools, vocabulary study, thematic flowcharts, audio lectures, and verified research portals.
+      </p>
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#main-tools" class="btn btn-primary btn-sm">Study Tools ↓</a>
+        <a href="#useful-websites" class="btn btn-outline btn-sm">Useful Websites ↓</a>
+        <a href="#audio-app" class="btn btn-outline btn-sm">Audio App ↓</a>
+        <a href="#whatsapp" class="btn btn-outline btn-sm">WhatsApp Circles ↓</a>
+        <a href="#refer" class="btn btn-outline btn-sm">Refer a Friend ↓</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <!-- Core Study Tools Grid -->
+      <section id="main-tools" style="margin-bottom: 4rem;">
+        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 1.5rem;">Essential Study Aids</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem;">
+
+          <!-- Tool 1: Rootwords -->
+          <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🔤</div>
+              <h3 style="font-size: 1.25rem; margin: 0 0 0.5rem; color: var(--text);">Juz Wise Rootwords</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
+                3-letter Arabic root words across all 30 Juz. Deepen your vocabulary and direct comprehension of the Quranic text.
+              </p>
+            </div>
+            <a href="rootwords.html" class="btn btn-primary" style="text-align: center; justify-content: center;">Open Rootwords Directory →</a>
+          </article>
+
+          <!-- Tool 2: Flowcharts -->
+          <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📊</div>
+              <h3 style="font-size: 1.25rem; margin: 0 0 0.5rem; color: var(--text);">Surah Wise Flowcharts</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
+                Visual mind maps and thematic breakdowns for all 114 Surahs in English &amp; Urdu. Perfect for Tadabbur and revision.
+              </p>
+            </div>
+            <a href="flowcharts.html" class="btn btn-primary" style="text-align: center; justify-content: center;">Open Flowcharts Directory →</a>
+          </article>
+
+          <!-- Tool 3: Tafseer Notes -->
+          <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📋</div>
+              <h3 style="font-size: 1.25rem; margin: 0 0 0.5rem; color: var(--text);">Tafseer Study Notes</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
+                Session notes, Ayah commentary, context of revelation, and life application points from Ustazah Iffat Maqbool’s lectures.
+              </p>
+            </div>
+            <a href="tafseer-notes.html" class="btn btn-primary" style="text-align: center; justify-content: center;">Open Tafseer Notes →</a>
+          </article>
+
+          <!-- Tool 4: Reading Material -->
+          <article class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📖</div>
+              <h3 style="font-size: 1.25rem; margin: 0 0 0.5rem; color: var(--text);">Reading Material &amp; Books</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
+                Curated booklets including <em>Gham Na Karo</em>, <em>Paighambar-e-Inquilab</em>, <em>Namaaz-e-Nabawi</em>, and Ramadan guides.
+              </p>
+            </div>
+            <a href="reading-material.html" class="btn btn-primary" style="text-align: center; justify-content: center;">Browse Library →</a>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section: Useful Websites -->
+      <section id="useful-websites" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 4rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <span style="font-size: 1.8rem;">🔗</span>
+          <h2 style="font-size: 1.45rem; color: var(--text); margin: 0;">Recommended Islamic Learning Websites</h2>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.75rem;">
+          Trusted digital Quranic search engines, authentic Hadith databases, and classical Tafseer libraries for serious students of knowledge.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          <a href="http://www.quranexplorer.com" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">1. Quran Explorer ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Multi-language recitations, synchronous text highlighting, and verse translations.</p>
+          </a>
+          <a href="http://tanzil.net" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">2. Tanzil.net ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Highly verified Quranic Unicode text project, translations in 40+ languages, and audio recitations.</p>
+          </a>
+          <a href="http://www.searchtruth.com" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">3. SearchTruth ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Rapid word search engine across the Quran and Major Hadith collections.</p>
+          </a>
+          <a href="http://corpus.quran.com" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">4. Quranic Arabic Corpus ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Annotated linguistic resource showing Arabic grammar, syntax, and morphology for every word.</p>
+          </a>
+          <a href="https://sunnah.com" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">5. Sunnah.com ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">The definitive searchable repository of the Prophet's ﷺ sayings with Arabic and English side-by-side.</p>
+          </a>
+          <a href="http://www.altafsir.com" target="_blank" rel="noopener noreferrer" class="glass-card" style="padding: 1.25rem; border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+            <h4 style="margin: 0 0 0.3rem; color: var(--accent-teal);">6. Altafsir.com ↗</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Immense archive of classical and contemporary Quranic commentaries (Tafseer Ibn Katheer, Tabari, Qurtubi).</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: Audio App -->
+      <section id="audio-app" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 4rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: center;">
+          <div>
+            <span class="trip-tag trip-tag-active" style="margin-bottom: 0.75rem;">Official Mobile App</span>
+            <h2 style="font-size: 1.6rem; color: var(--text); margin: 0 0 0.75rem;">🎧 NurulQuran Audio App</h2>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+              Take the light of the Quran with you wherever you go. Stream thousands of audio lectures by Ustazah Iffat Maqbool, download episodes for offline commute listening, and create personalized playlists.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem; font-size: 0.88rem; color: var(--text); line-height: 1.8;">
+              <li>✓ <strong>Background Playback:</strong> Listen while using other apps or with screen locked</li>
+              <li>✓ <strong>Offline Mode:</strong> One-tap downloads for air travel or low-signal areas</li>
+              <li>✓ <strong>Surah &amp; Juz Index:</strong> Instant navigation to any Surah commentary</li>
+              <li>✓ <strong>Auto-Bookmark:</strong> Pick up right where you left off</li>
+            </ul>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="https://apps.apple.com/us/app/nurulquran-audio/id1112448378" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <span>🍏</span> <span>App Store (iOS)</span>
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.nurulquran.audio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <span>🤖</span> <span>Google Play (Android)</span>
+              </a>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <div style="background: var(--bg-alt); padding: 2rem; border-radius: var(--radius-lg); display: inline-block; border: 1px solid var(--border-light);">
+              <div style="font-size: 4rem; margin-bottom: 0.5rem;">📱</div>
+              <h4 style="margin: 0 0 0.35rem; color: var(--text);">NurulQuran Audio</h4>
+              <p style="margin: 0; font-size: 0.82rem; color: var(--text-secondary);">10,000+ Lectures in Your Pocket</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Student Activities -->
+      <section id="activities" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 4rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <span style="font-size: 1.8rem;">🎯</span>
+          <h2 style="font-size: 1.45rem; color: var(--text); margin: 0;">Student Activities &amp; Presentations</h2>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.75rem;">
+          Active learning presentation topics and research projects developed by fellow students in NurulQuran diploma programs.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="margin: 0 0 0.35rem; color: var(--text);">🎯 My Goals in Life</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Setting spiritual, personal, and family targets aligned with the pleasure of Allah.</p>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="margin: 0 0 0.35rem; color: var(--text);">⏳ Value &amp; Use of Time</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Understanding Surah Al-Asr, overcoming procrastination, and beating modern time wasters.</p>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="margin: 0 0 0.35rem; color: var(--text);">👅 Guarding the Tongue</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Overcoming backbiting (Gheebah), falsehood, and slander through Quranic consciousness.</p>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="margin: 0 0 0.35rem; color: var(--text);">💖 Softening Hardened Hearts</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Causes of spiritual dryness and actionable remedies from the Sunnah to restore khushu.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: WhatsApp Groups -->
+      <section id="whatsapp" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); margin-bottom: 4rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <span style="font-size: 1.8rem;">💬</span>
+          <h2 style="font-size: 1.45rem; color: var(--text); margin: 0;">Official WhatsApp Study Circles</h2>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.75rem;">
+          Join our moderated sisters study circles to receive daily reminders, audio summaries, course registration announcements, and schedule updates.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+            <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Urdu WhatsApp Groups</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
+              Daily Quranic audio reflections, weekly course reminders, and announcements in Urdu.
+            </p>
+            <a href="https://forms.gle/4v35QMeKzrZHxwhe8" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              Join Urdu Circle (Form) →
+            </a>
+          </div>
+
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+            <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">English WhatsApp Groups</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
+              English summaries, youth and kids notifications, and Ustazah Iffat Maqbool’s English lecture links.
+            </p>
+            <a href="https://forms.gle/4v35QMeKzrZHxwhe8" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              Join English Circle (Form) →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Refer a Friend -->
+      <section id="refer" class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); text-align: center; margin-bottom: 2rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🤝</div>
+        <p class="hero__arabic" lang="ar" style="font-size: 1.5rem; margin-bottom: 0.5rem;">مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ</p>
+        <h2 style="font-size: 1.4rem; color: var(--text); margin-bottom: 0.75rem;">Refer a Friend &amp; Share the Reward</h2>
+        <p style="max-width: 640px; margin: 0 auto 1.5rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55;">
+          “One who guides to something good has a reward similar to that of its doer.” (Sahih Muslim 1893). Invite friends and family to join free live Quran classes and earn an unending share in their good deeds.
+        </p>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://api.whatsapp.com/send?text=Assalamu%20Alaikum!%20Join%20free%20Quranic%20classes%20and%20inspiring%20lectures%20with%20Ustazah%20Iffat%20Maqbool%20at%20Nur-Ul-Quran%20International%3A%20https%3A%2F%2Fnurulquran.web.app%2F" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            <span>💬</span> <span>Share Invitation on WhatsApp</span>
+          </a>
+          <button type="button" class="btn btn-outline" onclick="navigator.clipboard.writeText('Join free Quranic classes with Ustazah Iffat Maqbool at NurulQuran: https://nurulquran.web.app/').then(() => alert('Invitation link copied to clipboard!'))">
+            <span>📋</span> <span>Copy Invite Message</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);"><div class="container"><div class="footer-grid"><div><div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;"><img src="assets/logo.png" alt="NurulQuran" width="36" height="26"><h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Resources</h4></div><p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Dedicated learning resources to support your Quranic journey.</p></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Directory</h4><ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;"><li><a href="rootwords.html">Juz Rootwords</a></li><li><a href="flowcharts.html">Surah Flowcharts</a></li><li><a href="tafseer-notes.html">Tafseer Notes</a></li><li><a href="reading-material.html">Reading Material</a></li></ul></div><div><h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4><p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>Official Website: <a href="index.html">nurulquran.web.app</a></p></div></div><div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;"><p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p></div></div></footer>
+
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Volunteer with NurulQuran — Serve the Deen</title>
+  <meta name="description" content="Join the NurulQuran International volunteer team. Dedicate your skills in IT, media, translation, and student support as a continuous Sadaqah Jariyah.">
+  <meta name="theme-color" content="#1a237e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+
+  <link rel="preload" href="assets/fonts/me_quran.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    {
+      const theme = localStorage.getItem("nq-theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+        document.querySelector('meta[name="color-scheme"]').content = theme === 'dark' ? 'dark' : 'light';
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="NurulQuran — Home">
+        <img src="assets/logo.png" alt="NurulQuran" width="56" height="40">
+        <span>NurulQuran</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#programs" class="active">Programs</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span>☰</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height: 42vh; padding-top: 7rem; padding-bottom: 2.5rem;">
+    <div class="hero-stars" aria-hidden="true" id="hero-stars"></div>
+    <div class="hero-pattern" aria-hidden="true"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <p class="hero__arabic" lang="ar">كُنتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ تَأْمُرُونَ بِالْمَعْرُوفِ وَتَنْهَوْنَ عَنِ الْمُنكَرِ وَتُؤْمِنُونَ بِاللَّهِ</p>
+      <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
+        Volunteer With <span class="highlight">NurulQuran</span>
+      </h1>
+      <p class="hero__subtitle" style="max-width: 720px; margin: 0 auto 1.5rem;">
+        “You are the best community brought forth for the good of mankind. You enjoin what is right, forbid what is wrong, and believe in Allah.” (Aal ‘Imran: 110)
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://forms.gle/LeqrQ7iHAGgKxYCd7" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Join Volunteer Team (Form) →</a>
+        <a href="#volunteer-roles" class="btn btn-outline">Explore Roles ↓</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 3.5rem 0 5rem;">
+    <div class="container">
+
+      <div class="glass-card" style="margin-bottom: 3rem; padding: 2rem 2.5rem; border-radius: var(--radius-lg); background: var(--surface); text-align: center;">
+        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 0.75rem;">Invest Your Time as a Sadaqah Jariyah</h2>
+        <p style="max-width: 760px; margin: 0 auto; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+          NurulQuran is driven by dedicated brothers and sisters around the globe who generously give their time and talents to spread the light of the Quran. Whether you have 2 hours a week or more, your unique skills can make an eternal difference.
+        </p>
+      </div>
+
+      <!-- Volunteer Roles Grid -->
+      <h3 id="volunteer-roles" style="font-size: 1.35rem; color: var(--text); margin-bottom: 1.5rem;">Available Volunteer Opportunities</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+
+        <!-- Role 1 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">🎨</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Media, Design &amp; Video Editing</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Create event flyers, social media carousels, YouTube thumbnails, video reels, and polish audio recordings for our lecture catalog.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(59, 130, 246, 0.15); color: #3b82f6;">Photoshop • Premiere • Canva • Audio</span>
+        </article>
+
+        <!-- Role 2 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">IT &amp; Web Development</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Build and optimize our web apps, manage Firebase/hosting services, configure automated audio streaming, and support Zoom class infrastructure.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(16, 185, 129, 0.15); color: #10b981;">HTML/CSS • JavaScript • Git • Cloud</span>
+        </article>
+
+        <!-- Role 3 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">✍️</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Translation &amp; Transcription</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Translate Tafseer summaries, lecture notes, and social posts between Urdu, English, and Arabic. Create video subtitles for international outreach.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(245, 158, 11, 0.15); color: #f59e0b;">Urdu • English • Arabic</span>
+        </article>
+
+        <!-- Role 4 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">💬</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Student Coordination &amp; Moderation</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Support students in official WhatsApp study circles, answer course registration inquiries, record attendance, and facilitate breakout rooms.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">Community Care • WhatsApp • Zoom</span>
+        </article>
+
+        <!-- Role 5 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">📍</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">Local Tour &amp; Event Operations</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Help coordinate on-the-ground logistics during international tours, seminars, book tables, attendee registration, and welcome hospitality.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(236, 72, 153, 0.15); color: #ec4899;">Local City Teams • Events</span>
+        </article>
+
+        <!-- Role 6 -->
+        <article class="glass-card" style="padding: 1.75rem; border-radius: var(--radius-md); background: var(--surface);">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">🤝</div>
+          <h4 style="margin: 0 0 0.5rem; font-size: 1.15rem; color: var(--text);">General Administration</h4>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Help with bookkeeping assistance, email management, documentation, certificate preparation, and special Ramadan projects.
+          </p>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; background: rgba(107, 114, 128, 0.15); color: #6b7280;">Organization • Documentation</span>
+        </article>
+
+      </div>
+
+      <!-- Application CTA Card -->
+      <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-xl); background: var(--surface); text-align: center; border: 1px solid var(--primary);">
+        <h3 style="font-size: 1.4rem; color: var(--text); margin-bottom: 0.75rem;">Ready to Join the Team?</h3>
+        <p style="max-width: 600px; margin: 0 auto 1.5rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+          Fill out our quick volunteer registration form to tell us about your background, interests, and availability. Our team coordinator will be in touch!
+        </p>
+        <a href="https://forms.gle/LeqrQ7iHAGgKxYCd7" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.75rem;">
+          Submit Volunteer Application Form →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 3rem 0 1.5rem; background: var(--bg-alt); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo.png" alt="NurulQuran" width="36" height="26">
+            <h4 style="margin:0; font-size: 1.1rem; color: var(--text);">NurulQuran Volunteer</h4>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">Dedicated to serving the message of the Holy Quran.</p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Navigation</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
+            <li><a href="index.html#programs">All Programs</a></li>
+            <li><a href="donate.html">Support / Donate</a></li>
+            <li><a href="resources.html">Student Resources</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text);">Contact</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+            Email: <a href="mailto:info@nurulquran.com">info@nurulquran.com</a><br>
+            Official Website: <a href="index.html">nurulquran.web.app</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-light); text-align: center;">
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.0 (updated 2026-08-31 01:12)</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>
