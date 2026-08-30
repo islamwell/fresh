@@ -236,57 +236,86 @@ const TestimonialCarousel = {
     if (!this.track || !this.dotsContainer) return;
 
     this.cards = this.track.querySelectorAll('.testimonial-card');
+    if (!this.cards.length) return;
+
     this.currentIndex = 0;
     this.autoplayInterval = null;
 
-    // Create dots
-    this.cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = `dot${i === 0 ? ' active' : ''}`;
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Testimonial ${i + 1}`);
-      dot.addEventListener('click', () => this.goTo(i));
-      this.dotsContainer.appendChild(dot);
+    // Calculate clean page count (max 3-4 dots instead of dot-per-card)
+    this.calculatePages();
+    this.renderDots();
+
+    // Scroll listener to update active dot smoothly
+    let scrollTimeout;
+    this.track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => this.updateActiveDotFromScroll(), 60);
+    }, { passive: true });
+
+    // Handle responsive resize
+    window.addEventListener('resize', () => {
+      this.calculatePages();
+      this.renderDots();
     });
 
-    this.dots = this.dotsContainer.querySelectorAll('.dot');
-
-    // Track scroll position to update dots
-    this.track.addEventListener('scroll', () => this.onScroll(), { passive: true });
-
-    // Auto-scroll
+    // Auto-scroll loop
     this.startAutoplay();
 
-    // Pause on hover/focus
+    // Pause on interaction
     this.track.addEventListener('mouseenter', () => this.stopAutoplay());
     this.track.addEventListener('mouseleave', () => this.startAutoplay());
-    this.track.addEventListener('focusin', () => this.stopAutoplay());
-    this.track.addEventListener('focusout', () => this.startAutoplay());
+    this.track.addEventListener('touchstart', () => this.stopAutoplay(), { passive: true });
+    this.track.addEventListener('touchend', () => this.startAutoplay(), { passive: true });
   },
 
-  onScroll() {
-    const scrollLeft = this.track.scrollLeft;
-    const cardWidth = this.cards[0]?.offsetWidth + 24; // gap
-    const newIndex = Math.round(scrollLeft / cardWidth);
+  calculatePages() {
+    if (!this.track || !this.cards.length) return;
+    const trackWidth = this.track.clientWidth || window.innerWidth;
+    const cardWidth = (this.cards[0]?.offsetWidth || 340) + 24;
+    const visibleCount = Math.max(1, Math.round(trackWidth / cardWidth));
+    this.pageCount = Math.min(4, Math.max(1, Math.ceil(this.cards.length / visibleCount)));
+  },
 
-    if (newIndex !== this.currentIndex) {
-      this.currentIndex = newIndex;
+  renderDots() {
+    if (!this.dotsContainer) return;
+    this.dotsContainer.innerHTML = '';
+    if (this.pageCount <= 1) return;
+
+    for (let i = 0; i < this.pageCount; i++) {
+      const dot = document.createElement('button');
+      dot.className = `dot${i === this.currentIndex ? ' active' : ''}`;
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Testimonials Slide ${i + 1}`);
+      dot.addEventListener('click', () => this.goToPage(i));
+      this.dotsContainer.appendChild(dot);
+    }
+  },
+
+  updateActiveDotFromScroll() {
+    if (!this.track || !this.cards.length || this.pageCount <= 1) return;
+    const maxScroll = this.track.scrollWidth - this.track.clientWidth;
+    if (maxScroll <= 0) return;
+    const progress = this.track.scrollLeft / maxScroll;
+    const pageIndex = Math.min(this.pageCount - 1, Math.max(0, Math.round(progress * (this.pageCount - 1))));
+    if (pageIndex !== this.currentIndex) {
+      this.currentIndex = pageIndex;
       this.updateDots();
     }
   },
 
-  goTo(index) {
-    const card = this.cards[index];
-    if (!card) return;
-
-    const cardWidth = card.offsetWidth + 24; // card width + gap
-    this.track.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-    this.currentIndex = index;
+  goToPage(pageIndex) {
+    if (!this.track || !this.cards.length) return;
+    this.currentIndex = pageIndex;
+    const maxScroll = this.track.scrollWidth - this.track.clientWidth;
+    const targetScroll = this.pageCount > 1 ? (pageIndex / (this.pageCount - 1)) * maxScroll : 0;
+    this.track.scrollTo({ left: targetScroll, behavior: 'smooth' });
     this.updateDots();
   },
 
   updateDots() {
-    this.dots?.forEach((dot, i) => {
+    if (!this.dotsContainer) return;
+    const dots = this.dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === this.currentIndex);
     });
   },
@@ -297,9 +326,10 @@ const TestimonialCarousel = {
 
     this.stopAutoplay();
     this.autoplayInterval = setInterval(() => {
-      const next = (this.currentIndex + 1) % this.cards.length;
-      this.goTo(next);
-    }, 5000);
+      if (this.pageCount <= 1) return;
+      const next = (this.currentIndex + 1) % this.pageCount;
+      this.goToPage(next);
+    }, 5500);
   },
 
   stopAutoplay() {
@@ -777,19 +807,25 @@ const CalendarManager = {
       const response = await fetch('content/events.json');
       const data = await response.json();
 
-      // Build events lookup object keyed by date string
+      // Build events lookup object keyed by date string (array of events per date)
       this.events = {};
       if (data.calendar && Array.isArray(data.calendar)) {
         data.calendar.forEach(item => {
-          this.events[item.date] = {
+          if (!this.events[item.date]) {
+            this.events[item.date] = [];
+          }
+          this.events[item.date].push({
             title: item.title,
             type: item.type,
             time: item.time,
             location: item.location,
             desc: item.description,
             link: item.link,
+            flyer: item.flyer || item.link,
+            contact: item.contact || '',
+            whatsapp: item.whatsapp || '',
             registrationForm: item.registrationForm || ''
-          };
+          });
         });
       }
 
@@ -972,16 +1008,16 @@ const CalendarManager = {
       
       const dateString = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
       
-      if (this.events[dateString]) {
+      if (this.events[dateString] && this.events[dateString].length > 0) {
         dayButton.classList.add('has-event');
-        dayButton.setAttribute('aria-label', `Day ${day}, has event: ${this.events[dateString].title}`);
+        dayButton.setAttribute('aria-label', `Day ${day}, has ${this.events[dateString].length} event(s)`);
         
         // Add dot marker
         const dot = document.createElement('span');
         dot.className = 'event-dot';
         dayButton.appendChild(dot);
         
-        dayButton.addEventListener('click', () => this.showEvent(dateString, dayButton));
+        dayButton.addEventListener('click', () => this.showEvent(dateString, dayButton, 0));
       } else {
         dayButton.setAttribute('aria-label', `Day ${day}`);
       }
@@ -990,13 +1026,40 @@ const CalendarManager = {
     }
   },
 
-  showEvent(dateString, element) {
-    const event = this.events[dateString];
-    if (!event) return;
+  showEvent(dateString, element, eventIndex = 0) {
+    const eventList = this.events[dateString];
+    if (!eventList || !eventList.length) return;
+    const event = eventList[eventIndex] || eventList[0];
 
     // Highlight selected day
-    this.daysGrid.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
-    element.classList.add('selected');
+    if (element) {
+      this.daysGrid.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    // If multiple events on same date, add switcher buttons
+    let multiHeader = this.detailContent.querySelector('.event-multi-switcher');
+    if (eventList.length > 1) {
+      if (!multiHeader) {
+        multiHeader = document.createElement('div');
+        multiHeader.className = 'event-multi-switcher';
+        multiHeader.style.cssText = 'display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;';
+        this.detailContent.insertBefore(multiHeader, this.detailTag);
+      }
+      multiHeader.innerHTML = eventList.map((ev, idx) => `
+        <button type="button" class="btn btn-sm ${idx === eventIndex ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.6rem; font-size: 0.75rem; border-radius: 12px; cursor: pointer;">
+          Program ${idx + 1}: ${idx === 0 ? '12:30 PM' : '4:30 PM'}
+        </button>
+      `).join('');
+      multiHeader.classList.remove('hidden');
+
+      // Bind click on multi switcher buttons
+      multiHeader.querySelectorAll('button').forEach((btn, idx) => {
+        btn.addEventListener('click', () => this.showEvent(dateString, document.querySelector('.cal-day.selected'), idx));
+      });
+    } else if (multiHeader) {
+      multiHeader.classList.add('hidden');
+    }
 
     // Fill event details
     this.detailTag.textContent = event.type;
@@ -1004,7 +1067,8 @@ const CalendarManager = {
     this.detailTime.textContent = event.time;
     this.detailLoc.textContent = event.location;
     this.detailDesc.textContent = event.desc;
-    this.detailCta.href = event.link;
+    this.detailCta.href = event.link || '#events';
+    this.detailCta.textContent = (event.link && event.link.startsWith('http')) ? 'Join Program Live →' : 'View Program Details →';
 
     const flyerShareText = `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 Contact: ${event.contact || '+353 83 025 6299'}\n\nJoin Ustazah Iffat Maqbool!\nMore details: https://nurulquran.web.app/#events`;
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(flyerShareText)}`;
@@ -1012,7 +1076,7 @@ const CalendarManager = {
     // Handle flyer graphic preview inside card
     const flyerWrap = document.getElementById('event-detail-flyer-wrap');
     if (flyerWrap) {
-      if (event.flyer || (event.link && (event.link.endsWith('.jpeg') || event.link.endsWith('.jpg')))) {
+      if (event.flyer || (event.link && (event.link.endsWith('.jpeg') || event.link.endsWith('.jpg') || event.link.endsWith('.png')))) {
         const flyerSrc = event.flyer || event.link;
         flyerWrap.innerHTML = `
           <div class="event-detail-flyer-preview" data-flyer-src="${flyerSrc}" data-caption="${event.title} • ${event.time}">

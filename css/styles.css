@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ---- Google Fonts ---- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&family=Amiri:wght@400;700&display=swap');
 
 /* ============================================================
    1. CSS CUSTOM PROPERTIES — Color System
@@ -88,7 +88,7 @@
   /* Typography */
   --font-heading: 'Outfit', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-arabic: 'Amiri', serif;
+  --font-arabic: 'Amiri Quran', 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif;
 
   /* Color scheme */
   color-scheme: light dark;
@@ -821,11 +821,15 @@ p {
 
 .hero__arabic {
   font-family: var(--font-arabic);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.8rem, 3.8vw, 2.75rem);
   color: var(--color-bright-gold);
   margin-bottom: 1.5rem;
-  opacity: 0.9;
+  opacity: 0.95;
   direction: rtl;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
 }
 
 .hero__title {

@@ -434,19 +434,26 @@ const adminApp = {
   /* ---- Specific Rendering Methods ---- */
   
   // Helper to generate a card
-  generateCardHTML(title, subtitle, meta, desc, actionsHtml) {
+  generateCardHTML(title, subtitle, meta, desc, actionsHtml, imageSrc = null) {
     return `
-      <div class="item-card">
-        <div class="item-card-header">
-          <div>
-            <h4 class="item-title">${title}</h4>
-            ${subtitle ? `<span class="item-subtitle">${subtitle}</span>` : ''}
+      <div class="item-card" style="display: flex; gap: 1rem; align-items: flex-start;">
+        ${imageSrc ? `
+          <div style="flex-shrink: 0; width: 64px; height: 80px; border-radius: 6px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1);">
+            <img src="${imageSrc}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-        </div>
-        ${meta ? `<div class="item-meta">${meta}</div>` : ''}
-        ${desc ? `<div class="item-desc">${desc}</div>` : ''}
-        <div class="item-actions">
-          ${actionsHtml}
+        ` : ''}
+        <div style="flex: 1; min-width: 0;">
+          <div class="item-card-header">
+            <div>
+              <h4 class="item-title">${title}</h4>
+              ${subtitle ? `<span class="item-subtitle">${subtitle}</span>` : ''}
+            </div>
+          </div>
+          ${meta ? `<div class="item-meta">${meta}</div>` : ''}
+          ${desc ? `<div class="item-desc">${desc}</div>` : ''}
+          <div class="item-actions">
+            ${actionsHtml}
+          </div>
         </div>
       </div>
     `;
@@ -458,21 +465,29 @@ const adminApp = {
     
     // Calendar
     const calList = document.getElementById('list-events-calendar');
-    calList.innerHTML = (d.calendar || []).map((e, i) => this.generateCardHTML(
-      e.title, e.type, `${e.date} | ${e.time} | ${e.location}`, e.description,
-      `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'calendar')">Edit</button>
-       <button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('calendar', ${i})">Archive</button>
-       <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'calendar')">Delete</button>`
-    )).join('');
+    calList.innerHTML = (d.calendar || []).map((e, i) => {
+      const flyerPic = e.flyer || ((e.link && (e.link.endsWith('.jpeg') || e.link.endsWith('.jpg') || e.link.endsWith('.png'))) ? e.link : null);
+      return this.generateCardHTML(
+        e.title, e.type, `${e.date} | ${e.time} | ${e.location}`, e.description,
+        `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'calendar')">Edit</button>
+         <button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('calendar', ${i})">Archive</button>
+         <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'calendar')">Delete</button>`,
+        flyerPic
+      );
+    }).join('');
 
     // Trips
     const tripsList = document.getElementById('list-events-trips');
-    tripsList.innerHTML = (d.trips || []).map((e, i) => this.generateCardHTML(
-      `${e.icon} ${e.title}`, e.status, `${e.date} | ${e.meta}`, e.description,
-      `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'trips')">Edit</button>
-       ${e.status === 'upcoming' ? `<button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('trips', ${i})">Archive</button>` : ''}
-       <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'trips')">Delete</button>`
-    )).join('');
+    tripsList.innerHTML = (d.trips || []).map((e, i) => {
+      const tripPic = e.flyer || ((e.link && (e.link.endsWith('.jpeg') || e.link.endsWith('.jpg') || e.link.endsWith('.png'))) ? e.link : null);
+      return this.generateCardHTML(
+        `${e.icon} ${e.title}`, e.status, `${e.date} | ${e.meta}`, e.description,
+        `<button class="action-btn" onclick="adminApp.openModal('event', ${i}, 'trips')">Edit</button>
+         ${e.status === 'upcoming' ? `<button class="action-btn archive" style="background:rgba(245, 158, 11, 0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)" onclick="adminApp.archiveItem('trips', ${i})">Archive</button>` : ''}
+         <button class="action-btn delete" onclick="adminApp.deleteItem('event', ${i}, 'trips')">Delete</button>`,
+        tripPic
+      );
+    }).join('');
 
     // Upcoming General
     const upcomingList = document.getElementById('list-events-upcoming');
@@ -639,25 +654,52 @@ const adminApp = {
     let html = '';
     
     if (type === 'event' && subList === 'calendar') {
+      const flyerVal = item.flyer || item.link || '';
       html = `
         <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
         <div class="form-group"><label>Date (YYYY-MM-DD)</label><input type="date" name="date" value="${item.date || ''}" required></div>
         <div class="form-group"><label>Type (e.g., Weekly Circle, Seminar)</label><input type="text" name="type" value="${item.type || ''}" required></div>
         <div class="form-group"><label>Time</label><input type="text" name="time" value="${item.time || ''}" required></div>
         <div class="form-group"><label>Location</label><input type="text" name="location" value="${item.location || ''}" required></div>
-        <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
+        <div class="form-group">
+          <label>Event Flyer Picture / Image</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="text" name="flyer" id="field-event-flyer" value="${flyerVal}" placeholder="assets/flyers/event.jpeg" style="flex: 1;" oninput="adminApp.previewFlyer(this.value, 'event-flyer-preview-img', 'flyer-preview-container')">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Picture
+              <input type="file" accept="image/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-event-flyer', 'flyers'); adminApp.previewFlyer(this.files[0] ? URL.createObjectURL(this.files[0]) : '', 'event-flyer-preview-img', 'flyer-preview-container')">
+            </label>
+          </div>
+          <div id="flyer-preview-container" style="margin-top: 0.5rem; ${flyerVal ? '' : 'display:none;'}">
+            <img id="event-flyer-preview-img" src="${flyerVal}" alt="Flyer Preview" style="max-height: 140px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; background: #000;">
+          </div>
+        </div>
         <div class="form-group"><label>Event Link (Zoom/Live)</label><input type="url" name="link" value="${item.link || ''}"></div>
         <div class="form-group"><label>Registration Form (Google Form URL)</label><input type="url" name="registrationForm" value="${item.registrationForm || ''}"></div>
+        <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
       `;
     } else if (type === 'event' && subList === 'trips') {
+       const tripFlyerVal = item.link || item.flyer || '';
        html = `
         <div class="form-group"><label>Title</label><input type="text" name="title" value="${item.title || ''}" required></div>
         <div class="form-group"><label>Date/Month</label><input type="text" name="date" value="${item.date || ''}" required></div>
         <div class="form-group"><label>Status</label><select name="status"><option value="upcoming" ${item.status === 'upcoming' ? 'selected' : ''}>Upcoming</option><option value="past" ${item.status === 'past' ? 'selected' : ''}>Past</option></select></div>
         <div class="form-group"><label>Icon Emoji</label><input type="text" name="icon" value="${item.icon || ''}" required></div>
         <div class="form-group"><label>Meta Info (Location | Duration)</label><input type="text" name="meta" value="${item.meta || ''}" required></div>
+        <div class="form-group">
+          <label>Trip Flyer Picture / Image</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="text" name="link" id="field-trip-flyer" value="${tripFlyerVal}" placeholder="assets/flyers/trip.jpeg" style="flex: 1;" oninput="adminApp.previewFlyer(this.value, 'trip-flyer-preview-img', 'trip-flyer-preview-container')">
+            <label class="btn btn-secondary" style="margin: 0; padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap;">
+              📁 Upload Picture
+              <input type="file" accept="image/*" style="display: none;" onchange="adminApp.handleModalFileUpload(this, 'field-trip-flyer', 'flyers'); adminApp.previewFlyer(this.files[0] ? URL.createObjectURL(this.files[0]) : '', 'trip-flyer-preview-img', 'trip-flyer-preview-container')">
+            </label>
+          </div>
+          <div id="trip-flyer-preview-container" style="margin-top: 0.5rem; ${tripFlyerVal ? '' : 'display:none;'}">
+            <img id="trip-flyer-preview-img" src="${tripFlyerVal}" alt="Flyer Preview" style="max-height: 140px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); object-fit: contain; background: #000;">
+          </div>
+        </div>
         <div class="form-group"><label>Description</label><textarea name="description" required>${item.description || ''}</textarea></div>
-        <div class="form-group"><label>More Info Link</label><input type="url" name="link" value="${item.link || ''}"></div>
         <div class="form-group"><label>Link Text</label><input type="text" name="linkText" value="${item.linkText || 'Details →'}"></div>
         <div class="form-group"><label>Registration Form (Google Form URL)</label><input type="url" name="registrationForm" value="${item.registrationForm || ''}"></div>
       `;
@@ -813,6 +855,18 @@ const adminApp = {
     } catch (err) {
       console.error(err);
       this.showToast('Upload failed: ' + err.message, 'error');
+    }
+  },
+
+  previewFlyer(val, imgId = 'event-flyer-preview-img', containerId = 'flyer-preview-container') {
+    const container = document.getElementById(containerId);
+    const img = document.getElementById(imgId);
+    if (!container || !img) return;
+    if (val && val.trim()) {
+      img.src = val.trim();
+      container.style.display = 'block';
+    } else {
+      container.style.display = 'none';
     }
   },
 

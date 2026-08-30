@@ -43,7 +43,7 @@
     },
     {
       "date": "2026-09-06",
-      "title": "Ireland Tour: Sahaba-e-Rasool ﷺ aur Hum",
+      "title": "Ireland Tour: Sahaba-e-Rasool ﷺ aur Hum (Ballyhaunis)",
       "type": "Special Seminar (Sisters)",
       "time": "Sunday, Sept 6, 2026 • 12:30 PM – 2:30 PM",
       "location": "Mid West House, Abbey Street, Ballyhaunis, County Mayo F35PP48 Ireland",
@@ -53,6 +53,32 @@
       "contact": "+353 89 951 4733 | +353 86 731 5000",
       "whatsapp": "+353899514733",
       "registrationForm": ""
+    },
+    {
+      "date": "2026-09-06",
+      "title": "Ireland Tour: Meet & Greet (Ballaghaderreen)",
+      "type": "Meet & Greet (Sisters)",
+      "time": "Sunday, Sept 6, 2026 • 4:30 PM – 6:30 PM",
+      "location": "Ballaghaderreen Mosque, 1A The Mill Business Park, Dublin Road, Ballaghaderreen, Co. Roscommon F45FY98 Ireland",
+      "description": "Live in-person Meet & Greet for sisters with Ustazah Iffat Maqbool in Ballaghaderreen, Co. Roscommon. An intimate gathering of Islamic reflection and sisterhood.",
+      "link": "assets/flyers/ireland-ballaghaderreen-2026.jpeg",
+      "flyer": "assets/flyers/ireland-ballaghaderreen-2026.jpeg",
+      "contact": "0860673196",
+      "whatsapp": "+353860673196",
+      "registrationForm": ""
+    },
+    {
+      "date": "2026-09-07",
+      "title": "Ireland Tour: Let's Know Prophet ﷺ (Dublin MAI)",
+      "type": "Inspirational Lecture (Sisters)",
+      "time": "Monday, Sept 7, 2026 • 9:30 AM – 12:00 PM",
+      "location": "MAI - Muslim Centre, Greenhills Rd, Tymon North, Dublin 24, Ireland (Onsite & Zoom)",
+      "description": "Live in-person sisters inspirational lecture 'Let's Know Prophet ﷺ' with Ustazah Iffat Maqbool at MAI Muslim Centre Dublin 24. Live onsite & online via Zoom.",
+      "link": "assets/flyers/ireland-dublin-mai-2026.jpeg",
+      "flyer": "assets/flyers/ireland-dublin-mai-2026.jpeg",
+      "contact": "+353 83 025 6299",
+      "whatsapp": "+353830256299",
+      "registrationForm": "https://nurulquran.com/seerah"
     },
     {
       "date": "2026-09-13",
@@ -96,13 +122,13 @@
       "id": "ireland-2026",
       "title": "Ireland Ilm & Dawah Tour 2026",
       "status": "upcoming",
-      "date": "Sept 3–6, 2026",
+      "date": "Sept 3–7, 2026",
       "icon": "☘️",
-      "meta": "✈️ Dublin • Cork • Kilkenny • Ballyhaunis | Live In-Person with Ustazah Iffat Maqbool",
-      "description": "An exclusive live seminar series for sisters across Ireland featuring Ustazah Iffat Maqbool covering Seerah, Sahaba, Anger Management, and community Meet & Greet events.",
+      "meta": "✈️ Dublin • Cork • Kilkenny • Ballyhaunis • Ballaghaderreen | Live In-Person with Ustazah Iffat Maqbool",
+      "description": "An exclusive live seminar and lecture series for sisters across Ireland featuring Ustazah Iffat Maqbool covering Seerah, Sahaba, Anger Management, and community Meet & Greet events.",
       "flyers": [
         {
-          "city": "Dublin",
+          "city": "Dublin (Knocklyon)",
           "date": "3rd Sept 2026 (Thu) • 6pm-8pm",
           "topic": "Meet & Greet with Ustazah Iffat Maqbool",
           "venue": "9 Dalriada Walk Knocklyon, Dublin 16, D16CC01 Ireland",
@@ -132,23 +158,27 @@
           "venue": "Mid West House, Abbey Street, Ballyhaunis, Co. Mayo F35PP48",
           "phone": "+353 89 951 4733 / +353 86 731 5000",
           "image": "assets/flyers/ireland-ballyhaunis-2026.jpeg"
+        },
+        {
+          "city": "Ballaghaderreen",
+          "date": "6th Sept 2026 (Sun) • 4:30pm-6:30pm",
+          "topic": "Meet & Greet for Sisters",
+          "venue": "Ballaghaderreen Mosque, 1A The Mill Business Park, Dublin Rd F45FY98",
+          "phone": "0860673196",
+          "image": "assets/flyers/ireland-ballaghaderreen-2026.jpeg"
+        },
+        {
+          "city": "Dublin (MAI Muslim Centre)",
+          "date": "7th Sept 2026 (Mon) • 9:30am-12pm",
+          "topic": "Let's Know Prophet ﷺ",
+          "venue": "MAI Muslim Centre, Greenhills Rd, Tymon North, Dublin 24",
+          "phone": "+353 83 025 6299",
+          "image": "assets/flyers/ireland-dublin-mai-2026.jpeg"
         }
       ],
       "link": "assets/flyers/ireland-dublin-2026.jpeg",
-      "linkText": "View Ireland Tour Flyers ☘️",
+      "linkText": "View All Ireland Flyers ☘️",
       "registrationForm": ""
-    },
-    {
-      "id": "ksa-2026",
-      "title": "Saudi Arabia Ilm & Umrah Trip 2026",
-      "status": "upcoming",
-      "date": "October 2026",
-      "icon": "🕋",
-      "meta": "✈️ Medina & Mecca | 12 Days | Coordinated by USA & UK Branches",
-      "description": "An intensive spiritual journey combining the sacred Umrah pilgrimage with daily interactive Quran study circles, Seerah lectures, and historical tours of key Islamic sites.",
-      "link": "https://nurulquran.com/ksa-trip-2026/",
-      "linkText": "Registration Details →",
-      "registrationForm": "https://forms.gle/example-ksa-2026"
     },
     {
       "id": "pk-2026",
@@ -158,7 +188,7 @@
       "icon": "✈️",
       "meta": "✈️ Lahore & Islamabad | 10 Days | Onsite Fellowship",
       "description": "A beautiful opportunity for international students to gather for a spiritual retreat, participate in community service projects, and attend specialized onsite workshops.",
-      "link": "https://nurulquran.com/pk-trip-2026/",
+      "link": "#events",
       "linkText": "Join Waitlist →",
       "registrationForm": ""
     }
@@ -280,7 +310,7 @@
         "Comparative Fiqh & character guidance",
         "Archived for ongoing enrolled students"
       ],
-      "link": "https://nurulquran.com/courses/",
+      "link": "#courses",
       "linkText": "Explore Course Materials →"
     }
   ]

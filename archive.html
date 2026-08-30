@@ -10,6 +10,11 @@
   <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/logo.png" type="image/png">
 
+  <!-- Google Fonts for Quranic Uthmani Arabic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Scheherazade+New:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- Prevent FOUC for manual theme override -->
   <script>
     {
@@ -21,7 +26,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body>
   <!-- Skip Link -->
@@ -36,7 +41,7 @@
       </a>
 
       <ul class="nav-links" id="nav-links" role="list">
-        <li><a href="index.html#events">Upcoming Events</a></li>
+        <li><a href="index.html#events">Events</a></li>
         <li><a href="archive.html" class="active">Archive</a></li>
         <li><a href="index.html#courses">Courses</a></li>
         <li><a href="index.html#programs">Programs</a></li>
@@ -44,6 +49,7 @@
         <li><a href="index.html#testimonials">Testimonials</a></li>
         <li><a href="index.html#resources">Resources</a></li>
         <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
 
@@ -65,7 +71,7 @@
     <div class="hero-pattern" aria-hidden="true"></div>
 
     <div class="container" style="position: relative; z-index: 2;">
-      <p class="hero__arabic" lang="ar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+      <p class="hero__arabic" lang="ar">بسم الله الرحمن الرحيم</p>
       <h1 class="hero__title" style="font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.75rem;">
         Events &amp; Trips <span class="highlight">Archive</span>
       </h1>
@@ -83,29 +89,23 @@
   <main id="main-content" class="section" style="padding-top: 3rem;">
     <div class="container">
       
-      <!-- Filter and Search Bar -->
+      <!-- Filter Bar -->
       <div class="archive-filter-bar reveal">
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="filter-btn archive-filter-btn active" data-filter="all" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">All Records</button>
-          <button class="filter-btn archive-filter-btn" data-filter="trips" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">✈️ Past International Trips</button>
-          <button class="filter-btn archive-filter-btn" data-filter="seminars" style="padding: 0.55rem 1.2rem; border-radius: 30px; cursor: pointer;">📖 Major Seminars &amp; Dawrahs</button>
+        <div class="archive-filter-tabs" id="archive-filter-tabs" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="filter-btn active" data-filter="all" style="padding: 0.6rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; background: transparent; color: var(--text); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem;">All Records</button>
+          <button class="filter-btn" data-filter="trips" style="padding: 0.6rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; background: transparent; color: var(--text); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem;">✈️ Past International Trips</button>
+          <button class="filter-btn" data-filter="seminars" style="padding: 0.6rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; background: transparent; color: var(--text); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem;">📖 Major Seminars &amp; Dawrahs</button>
         </div>
 
-        <div style="display: flex; gap: 1rem; align-items: center; width: 100%; max-width: 360px;">
-          <div class="search-box" style="position: relative; width: 100%;">
-            <input type="text" id="archive-search" placeholder="Search by city, country, title..." style="width: 100%; padding: 0.7rem 1.2rem; border: 1px solid var(--border-light); border-radius: 30px; background: rgba(0,0,0,0.2); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; box-sizing: border-box;">
-            <span style="position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
-          </div>
+        <div class="search-box" style="position: relative; max-width: 320px; width: 100%;">
+          <input type="text" id="archive-search" placeholder="Search archive by keyword..." style="width: 100%; padding: 0.75rem 1.25rem; border: 1px solid var(--border-light); border-radius: 30px; background: rgba(0,0,0,0.15); color: var(--text); font-family: inherit; font-size: 0.9rem; outline: none; transition: all 0.3s; box-sizing: border-box;">
+          <span style="position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
         </div>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <span id="archive-count" style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Loading archive records...</span>
-      </div>
-
-      <!-- Archive Grid (populated dynamically) -->
+      <!-- Archive Cards Grid -->
       <div class="archive-grid" id="archive-grid">
-        <!-- Generated by js/archive.js from content/events.json -->
+        <!-- Populated dynamically by archive.js from events.json -->
       </div>
 
     </div>
@@ -143,11 +143,12 @@
         <div>
           <h4>Resources</h4>
           <ul class="footer-links" role="list">
-            <li><a href="archive.html">Event Archive</a></li>
+            <li><a href="archive.html">Event &amp; Trips Archive</a></li>
             <li><a href="https://nurulquran.com/blogs/">Blogs</a></li>
             <li><a href="https://nurulquran.com/rootwords/">Rootwords</a></li>
             <li><a href="https://nurulquran.com/tafseer-notes-2/">Tafseer Notes</a></li>
             <li><a href="https://nurulquran.com/reading-material/">Reading Material</a></li>
+            <li><a href="https://nurulquran.com/nq-audio-app/">Audio App</a></li>
           </ul>
         </div>
 
@@ -157,14 +158,14 @@
             <li><a href="index.html#projects">Donate</a></li>
             <li><a href="https://nurulquran.com/volunteer/">Volunteer</a></li>
             <li><a href="https://nurulquran.com/refer/">Refer a Friend</a></li>
+            <li><a href="index.html#about">About Us</a></li>
             <li><a href="index.html#contact">Contact Us</a></li>
-            <li><a href="https://nurulquran.com/about-nurulquran/">About Us</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.0.8 (updated 2026-08-30 16:50)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.0.9 (updated 2026-08-30 19:40)</span></p>
       </div>
     </div>
   </footer>
