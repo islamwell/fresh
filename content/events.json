@@ -81,6 +81,19 @@
       "registrationForm": "https://forms.gle/QBxBMFNyEiyameb97"
     },
     {
+      "date": "2026-09-07",
+      "title": "Ireland Tour: Nafs ke Saat Darjaat (Drogheda)",
+      "type": "Lecture & Seminar (Sisters)",
+      "time": "Monday, Sept 7, 2026 • 6:00 PM – 8:00 PM",
+      "location": "Drogheda Islamic Centre, 34 Windmill Road, Drogheda, Co. Louth A92AYH7 Ireland",
+      "description": "Live in-person sisters lecture 'نفس کے سات درجات' (Seven Stages of the Soul) with Ustazah Iffat Maqbool at Drogheda Islamic Centre. Contact: +353 86 721 5080.",
+      "link": "assets/flyers/ireland7b.webp",
+      "flyer": "assets/flyers/ireland7b.webp",
+      "contact": "+353 86 721 5080",
+      "whatsapp": "+353867215080",
+      "registrationForm": ""
+    },
+    {
       "date": "2026-09-13",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
@@ -124,7 +137,7 @@
       "status": "upcoming",
       "date": "Sept 3–7, 2026",
       "icon": "☘️",
-      "meta": "✈️ Dublin • Cork • Kilkenny • Ballyhaunis • Ballaghaderreen | Live In-Person with Ustazah Iffat Maqbool",
+      "meta": "✈️ Dublin • Cork • Kilkenny • Ballyhaunis • Ballaghaderreen • Drogheda | Live In-Person with Ustazah Iffat Maqbool",
       "description": "An exclusive live seminar and lecture series for sisters across Ireland featuring Ustazah Iffat Maqbool covering Seerah, Sahaba, Anger Management, and community Meet & Greet events.",
       "flyers": [
         {
@@ -174,6 +187,14 @@
           "venue": "MAI Muslim Centre, Greenhills Rd, Tymon North, Dublin 24",
           "phone": "+353 83 025 6299",
           "image": "assets/flyers/ireland-dublin-mai-2026.webp"
+        },
+        {
+          "city": "Drogheda",
+          "date": "7th Sept 2026 (Mon) • 6pm-8pm",
+          "topic": "نفس کے سات درجات (Nafs ke Saat Darjaat)",
+          "venue": "Drogheda Islamic Centre, 34 Windmill Road, Drogheda A92AYH7",
+          "phone": "+353 86 721 5080",
+          "image": "assets/flyers/ireland7b.webp"
         }
       ],
       "link": "assets/flyers/ireland-dublin-2026.webp",

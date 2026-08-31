@@ -29,7 +29,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=18">
+  <link rel="stylesheet" href="css/styles.css?v=19">
 </head>
 <body>
   <!-- Skip Link -->
@@ -44,7 +44,6 @@
 
       <ul class="nav-links" id="nav-links" role="list">
         <li><a href="#events">Events</a></li>
-        <li><a href="archive.html">Archive</a></li>
         <li><a href="#courses">Courses</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#media">Media</a></li>
@@ -273,6 +272,34 @@
                     <span>📍</span> <span>Map</span>
                   </a>
                   <a href="assets/flyers/ireland-dublin-mai-2026.webp" download="ireland-dublin-mai-2026.webp" class="btn btn-outline btn-sm flyer-download-btn" style="padding:0.35rem 0.65rem;display:inline-flex;align-items:center;justify-content:center;" aria-label="Download flyer" title="Download flyer" onclick="event.stopPropagation()">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                  </a>
+                  <button type="button" class="btn-share-icon" aria-label="Share" title="Share event &amp; flyer" onclick="event.stopPropagation(); SocialShareManager.openFromCard(this.closest('.flyer-card'))">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Flyer 7: Drogheda -->
+            <article class="flyer-card" data-flyer-src="assets/flyers/ireland7b.webp" data-caption="Drogheda: Nafs ke Saat Darjaat (Mon 7th Sept 2026, 6pm-8pm) • Drogheda Islamic Centre, 34 Windmill Rd, Drogheda A92AYH7">
+              <div class="flyer-img-wrap">
+                <span class="flyer-badge">Mon 7 Sept • Drogheda</span>
+                <img src="assets/flyers/ireland7b.webp" alt="Drogheda Ireland Tour Flyer - Nafs ke Saat Darjaat - Ustazah Iffat Maqbool" loading="lazy" decoding="async">
+                <div class="flyer-zoom-overlay">
+                  <div class="flyer-zoom-icon">🔍</div>
+                </div>
+              </div>
+              <div class="flyer-info">
+                <span class="flyer-city-date">Drogheda • 6:00 PM – 8:00 PM</span>
+                <h4>نفس کے سات درجات (Seven Stages of Soul)</h4>
+                <p class="flyer-venue">📍 Drogheda Islamic Centre, 34 Windmill Rd, Drogheda A92AYH7</p>
+                <p class="flyer-contact">📞 +353 86 721 5080</p>
+                <div class="flyer-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Drogheda+Islamic+Centre+34+Windmill+Road+Drogheda+Co+Louth+A92AYH7" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm flyer-map-btn" style="padding:0.35rem 0.65rem;font-size:0.75rem" onclick="event.stopPropagation()">
+                    <span>📍</span> <span>Map</span>
+                  </a>
+                  <a href="assets/flyers/ireland7b.webp" download="ireland-drogheda-2026.webp" class="btn btn-outline btn-sm flyer-download-btn" style="padding:0.35rem 0.65rem;display:inline-flex;align-items:center;justify-content:center;" aria-label="Download flyer" title="Download flyer" onclick="event.stopPropagation()">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                   </a>
                   <button type="button" class="btn-share-icon" aria-label="Share" title="Share event &amp; flyer" onclick="event.stopPropagation(); SocialShareManager.openFromCard(this.closest('.flyer-card'))">
@@ -733,7 +760,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.11 (updated 2026-08-31 19:32)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.12 (updated 2026-08-31 19:36)</span></p>
       </div>
     </div>
   </footer>
@@ -1132,7 +1159,7 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=18" defer></script>
-  <script src="js/course-finder.js?v=18" defer></script>
+  <script src="js/app.js?v=19" defer></script>
+  <script src="js/course-finder.js?v=19" defer></script>
 </body>
 </html>
