@@ -523,7 +523,7 @@
       lines.push('Goals: ' + (answers.goals.length ? answers.goals.map(function(g){ return goalLabels[g] || g; }).join(', ') : 'General'));
       lines.push('Recommended Course: ' + courseCode);
       lines.push('');
-      lines.push("I would like to arrange my free consultation and trial class, jazakum Allah khayr!");
+      lines.push("I would like to arrange my free consultation, jazakum Allah khayr!");
 
       return lines.join('\n');
     }
