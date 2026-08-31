@@ -29,7 +29,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=11">
+  <link rel="stylesheet" href="css/styles.css?v=12">
 </head>
 <body>
   <!-- Skip Link -->
@@ -562,9 +562,16 @@
         <div class="donate-cta reveal" id="donate-cta-container">
           <h3 style="color:#fff;margin-bottom:0.75rem;font-size:1.5rem">Support Quranic Education</h3>
           <p id="donate-message">Your generous contributions enable us to continue providing free and affordable Quranic education to students worldwide. Every donation is a Sadaqah Jariyah — a continuous charity.</p>
+          <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; margin-top: 1.5rem;">
+            <stripe-buy-button buy-button-id="buy_btn_1T4O8lJY3Tz98YLtPdPR47DM" publishable-key="pk_live_51H4ocTJY3Tz98YLtpJS7EcQc0PiikV2O2lFVLa8rfPSqw3Q5KkuV4S91Qv63fiShYKTs8Dm42T1suYEWgctlKNgk00vstWSzFO"></stripe-buy-button>
+            <stripe-buy-button buy-button-id="buy_btn_1T4OB1JY3Tz98YLt0baD7DG9" publishable-key="pk_live_51H4ocTJY3Tz98YLtpJS7EcQc0PiikV2O2lFVLa8rfPSqw3Q5KkuV4S91Qv63fiShYKTs8Dm42T1suYEWgctlKNgk00vstWSzFO"></stripe-buy-button>
+            <stripe-buy-button buy-button-id="buy_btn_1RWm1IJY3Tz98YLtyqEd4JKl" publishable-key="pk_live_51H4ocTJY3Tz98YLtpJS7EcQc0PiikV2O2lFVLa8rfPSqw3Q5KkuV4S91Qv63fiShYKTs8Dm42T1suYEWgctlKNgk00vstWSzFO"></stripe-buy-button>
+            <stripe-buy-button buy-button-id="buy_btn_1T4P96JY3Tz98YLtCkA7QXyy" publishable-key="pk_live_51H4ocTJY3Tz98YLtpJS7EcQc0PiikV2O2lFVLa8rfPSqw3Q5KkuV4S91Qv63fiShYKTs8Dm42T1suYEWgctlKNgk00vstWSzFO"></stripe-buy-button>
+          </div>
+
           <div class="donate-buttons" id="donate-buttons-container">
-            <!-- Populated by JS -->
-            <a href="donate.html" class="btn btn-donate">💖 Donate Now</a>
+            <a href="donate.html" class="btn btn-donate">💖 More Ways to Donate</a>
             <a href="donate.html#zakat" class="btn btn-secondary">Zakat Contributions</a>
             <a href="volunteer.html" class="btn btn-secondary">🤝 Volunteer</a>
           </div>
@@ -715,7 +722,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.4 (updated 2026-08-31 06:08)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.5 (updated 2026-08-31 06:15)</span></p>
       </div>
     </div>
   </footer>
@@ -1114,7 +1121,7 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=11" defer></script>
-  <script src="js/course-finder.js?v=11" defer></script>
+  <script src="js/app.js?v=12" defer></script>
+  <script src="js/course-finder.js?v=12" defer></script>
 </body>
 </html>
