@@ -91,7 +91,8 @@
       'finderTriggerHero',
       'finderTriggerCourses',
       'finderTriggerMobile',
-      'finderTrigger2'
+      'finderTrigger2',
+      'finderTriggerFooter'
     ];
     triggers.forEach(function (id) {
       var el = document.getElementById(id);
