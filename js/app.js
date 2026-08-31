@@ -1726,11 +1726,6 @@ const DynamicDataManager = {
     const heroTagline = document.querySelector('.hero-content p');
     if (heroTagline) heroTagline.textContent = site.tagline;
 
-    const aboutMission = document.querySelector('#about p');
-    if (aboutMission && site.mission) {
-      aboutMission.textContent = site.mission;
-    }
-
     const statsContainer = document.querySelector('.stats-grid');
     if (statsContainer && site.stats) {
       statsContainer.innerHTML = site.stats.map(s => `
