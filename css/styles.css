@@ -694,12 +694,15 @@ p {
     color: #fff;
   }
 
-  /* ---- Fix: force white-on-dark when overlay is open, even if scrolled ---- */
+  /* ---- Force white-on-dark when overlay is open, even if scrolled ---- */
   body.menu-open { overflow: hidden; }
 
+  .nav-links.open a,
   .navbar.scrolled .nav-links.open a {
     color: #fff;
   }
+  .nav-links.open a:hover,
+  .nav-links.open a.active,
   .navbar.scrolled .nav-links.open a:hover,
   .navbar.scrolled .nav-links.open a.active {
     color: #fff;
@@ -713,6 +716,7 @@ p {
     color: #fff;
   }
 
+  .nav-links.open ~ .nav-actions .theme-toggle,
   .navbar.scrolled .nav-links.open ~ .nav-actions .theme-toggle {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
@@ -723,6 +727,7 @@ p {
     color: #fff;
   }
 
+  .navbar:has(.nav-links.open),
   .navbar.scrolled:has(.nav-links.open) {
     background: transparent;
     backdrop-filter: none;

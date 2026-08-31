@@ -9,8 +9,8 @@
       "time": "Thursday, Sept 3, 2026 • 6:00 PM – 8:00 PM",
       "location": "9 Dalriada Walk Knocklyon, Dublin 16, D16CC01 Ireland",
       "description": "Live in-person Meet & Greet for sisters with Ustazah Iffat Maqbool in Dublin. An uplifting evening of fellowship, Q&A, and Quranic reflections. Contact: +353 83 025 6299 / +353 86 198 1176.",
-      "link": "assets/flyers/ireland-dublin-2026.jpeg",
-      "flyer": "assets/flyers/ireland-dublin-2026.jpeg",
+      "link": "assets/flyers/ireland-dublin-2026.webp",
+      "flyer": "assets/flyers/ireland-dublin-2026.webp",
       "contact": "+353 83 025 6299 | +353 86 198 1176",
       "whatsapp": "+353830256299",
       "registrationForm": ""
@@ -22,8 +22,8 @@
       "time": "Friday, Sept 4, 2026 • 6:00 PM – 8:00 PM",
       "location": "Cork Mosque | CICC LTD 60, Tramore Road Turner's Cross T12XV27 Cork",
       "description": "Live in-person sisters lecture on Anger Management (Part 3) - لا تغضب with Ustazah Iffat Maqbool in Cork. Learn prophetic strategies for emotional regulation and inner peace. Contact: 0861729070.",
-      "link": "assets/flyers/ireland-cork-2026.jpeg",
-      "flyer": "assets/flyers/ireland-cork-2026.jpeg",
+      "link": "assets/flyers/ireland-cork-2026.webp",
+      "flyer": "assets/flyers/ireland-cork-2026.webp",
       "contact": "0861729070",
       "whatsapp": "+353861729070",
       "registrationForm": ""
@@ -35,8 +35,8 @@
       "time": "Saturday, Sept 5, 2026 • 3:00 PM – 5:00 PM",
       "location": "Talbotsinch R95 PW84, Kilkenny, Ireland",
       "description": "Live in-person sisters seminar 'سیرت اور قرآن کا باہمی تعلق' (The Mutual Connection of Seerah and Quran) with Ustazah Iffat Maqbool in Kilkenny. Contact: +353 87 714 7776.",
-      "link": "assets/flyers/ireland-kilkenny-2026.jpeg",
-      "flyer": "assets/flyers/ireland-kilkenny-2026.jpeg",
+      "link": "assets/flyers/ireland-kilkenny-2026.webp",
+      "flyer": "assets/flyers/ireland-kilkenny-2026.webp",
       "contact": "+353 87 714 7776",
       "whatsapp": "+353877147776",
       "registrationForm": ""
@@ -48,8 +48,8 @@
       "time": "Sunday, Sept 6, 2026 • 12:30 PM – 2:30 PM",
       "location": "Mid West House, Abbey Street, Ballyhaunis, County Mayo F35PP48 Ireland",
       "description": "Live in-person sisters seminar 'صحابۂ رسول ﷺ اور ہم' with Ustazah Iffat Maqbool in Ballyhaunis. Inspiring stories and timeless lessons from the companions of the Prophet ﷺ. Contact: +353 89 951 4733 / +353 86 731 5000.",
-      "link": "assets/flyers/ireland-ballyhaunis-2026.jpeg",
-      "flyer": "assets/flyers/ireland-ballyhaunis-2026.jpeg",
+      "link": "assets/flyers/ireland-ballyhaunis-2026.webp",
+      "flyer": "assets/flyers/ireland-ballyhaunis-2026.webp",
       "contact": "+353 89 951 4733 | +353 86 731 5000",
       "whatsapp": "+353899514733",
       "registrationForm": ""
@@ -61,8 +61,8 @@
       "time": "Sunday, Sept 6, 2026 • 4:30 PM – 6:30 PM",
       "location": "Ballaghaderreen Mosque, 1A The Mill Business Park, Dublin Road, Ballaghaderreen, Co. Roscommon F45FY98 Ireland",
       "description": "Live in-person Meet & Greet for sisters with Ustazah Iffat Maqbool in Ballaghaderreen, Co. Roscommon. An intimate gathering of Islamic reflection and sisterhood.",
-      "link": "assets/flyers/ireland-ballaghaderreen-2026.jpeg",
-      "flyer": "assets/flyers/ireland-ballaghaderreen-2026.jpeg",
+      "link": "assets/flyers/ireland-ballaghaderreen-2026.webp",
+      "flyer": "assets/flyers/ireland-ballaghaderreen-2026.webp",
       "contact": "0860673196",
       "whatsapp": "+353860673196",
       "registrationForm": ""
@@ -74,8 +74,8 @@
       "time": "Monday, Sept 7, 2026 • 9:30 AM – 12:00 PM",
       "location": "MAI - Muslim Centre, Greenhills Rd, Tymon North, Dublin 24, Ireland (Onsite & Zoom)",
       "description": "Live in-person sisters inspirational lecture 'Let's Know Prophet ﷺ' with Ustazah Iffat Maqbool at MAI Muslim Centre Dublin 24. Live onsite & online via Zoom.",
-      "link": "assets/flyers/ireland-dublin-mai-2026.jpeg",
-      "flyer": "assets/flyers/ireland-dublin-mai-2026.jpeg",
+      "link": "assets/flyers/ireland-dublin-mai-2026.webp",
+      "flyer": "assets/flyers/ireland-dublin-mai-2026.webp",
       "contact": "+353 83 025 6299",
       "whatsapp": "+353830256299",
       "registrationForm": "https://forms.gle/QBxBMFNyEiyameb97"
@@ -133,7 +133,7 @@
           "topic": "Meet & Greet with Ustazah Iffat Maqbool",
           "venue": "9 Dalriada Walk Knocklyon, Dublin 16, D16CC01 Ireland",
           "phone": "+353 83 025 6299 / +353 86 198 1176",
-          "image": "assets/flyers/ireland-dublin-2026.jpeg"
+          "image": "assets/flyers/ireland-dublin-2026.webp"
         },
         {
           "city": "Cork",
@@ -141,7 +141,7 @@
           "topic": "Anger Management (Part-3) - لا تغضب",
           "venue": "Cork Mosque | CICC Ltd 60, Tramore Road Turner's Cross T12XV27 Cork",
           "phone": "0861729070",
-          "image": "assets/flyers/ireland-cork-2026.jpeg"
+          "image": "assets/flyers/ireland-cork-2026.webp"
         },
         {
           "city": "Kilkenny",
@@ -149,7 +149,7 @@
           "topic": "Seerat aur Quran ka Bahami Taluq",
           "venue": "Talbotsinch R95 PW84, Kilkenny, Ireland",
           "phone": "+353 87 714 7776",
-          "image": "assets/flyers/ireland-kilkenny-2026.jpeg"
+          "image": "assets/flyers/ireland-kilkenny-2026.webp"
         },
         {
           "city": "Ballyhaunis",
@@ -157,7 +157,7 @@
           "topic": "Sahaba-e-Rasool ﷺ aur Hum",
           "venue": "Mid West House, Abbey Street, Ballyhaunis, Co. Mayo F35PP48",
           "phone": "+353 89 951 4733 / +353 86 731 5000",
-          "image": "assets/flyers/ireland-ballyhaunis-2026.jpeg"
+          "image": "assets/flyers/ireland-ballyhaunis-2026.webp"
         },
         {
           "city": "Ballaghaderreen",
@@ -165,7 +165,7 @@
           "topic": "Meet & Greet for Sisters",
           "venue": "Ballaghaderreen Mosque, 1A The Mill Business Park, Dublin Rd F45FY98",
           "phone": "0860673196",
-          "image": "assets/flyers/ireland-ballaghaderreen-2026.jpeg"
+          "image": "assets/flyers/ireland-ballaghaderreen-2026.webp"
         },
         {
           "city": "Dublin (MAI Muslim Centre)",
@@ -173,10 +173,10 @@
           "topic": "Let's Know Prophet ﷺ",
           "venue": "MAI Muslim Centre, Greenhills Rd, Tymon North, Dublin 24",
           "phone": "+353 83 025 6299",
-          "image": "assets/flyers/ireland-dublin-mai-2026.jpeg"
+          "image": "assets/flyers/ireland-dublin-mai-2026.webp"
         }
       ],
-      "link": "assets/flyers/ireland-dublin-2026.jpeg",
+      "link": "assets/flyers/ireland-dublin-2026.webp",
       "linkText": "View All Ireland Flyers ☘️",
       "registrationForm": ""
     },

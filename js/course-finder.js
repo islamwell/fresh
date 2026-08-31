@@ -61,9 +61,23 @@
       }
     }
 
+    function getFocusableElements() {
+      if (!dialog) return [];
+      var selector = 'button:not([disabled]):not([hidden]), [href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      var all = Array.prototype.slice.call(dialog.querySelectorAll(selector));
+      return all.filter(function (el) {
+        if (el.offsetWidth === 0 && el.offsetHeight === 0 && !el.getClientRects().length) return false;
+        if (el.closest('[hidden]')) return false;
+        var style = window.getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden') return false;
+        return true;
+      });
+    }
+
     function openWizard(triggerElement) {
       lastFocusedTrigger = triggerElement || document.activeElement;
       overlay.hidden = false;
+      dialog.setAttribute('tabindex', '-1');
       requestAnimationFrame(function () {
         overlay.classList.add('open');
       });
@@ -78,7 +92,9 @@
       setTimeout(function () {
         overlay.hidden = true;
         if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
-          lastFocusedTrigger.focus();
+          try {
+            lastFocusedTrigger.focus();
+          } catch (e) {}
         }
       }, 350);
     }
@@ -110,8 +126,39 @@
     overlay.addEventListener('click', function (e) {
       if (e.target === overlay) closeWizard();
     });
+
+    // Keyboard navigation & Focus Trap
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !overlay.hidden) closeWizard();
+      if (overlay.hidden) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeWizard();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        var focusables = getFocusableElements();
+        if (focusables.length === 0) {
+          e.preventDefault();
+          return;
+        }
+
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first || !dialog.contains(document.activeElement)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last || !dialog.contains(document.activeElement)) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
     });
 
     function resetAnswers() {
@@ -480,7 +527,12 @@
         ul.innerHTML = '';
         items.forEach(function (item) {
           var li = document.createElement('li');
-          li.innerHTML = '<strong>' + item.k + ':</strong> <span>' + item.v + '</span>';
+          var strong = document.createElement('strong');
+          strong.textContent = item.k + ': ';
+          var span = document.createElement('span');
+          span.textContent = item.v;
+          li.appendChild(strong);
+          li.appendChild(span);
           ul.appendChild(li);
         });
       }
