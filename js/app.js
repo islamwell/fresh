@@ -431,6 +431,96 @@ function initSmoothScroll() {
   });
 }
 
+// ---- First-Visit Smooth Scroll to Events (10 Seconds) ----
+function initFirstVisitScroll() {
+  // Only trigger on home page root, when no specific anchor hash is in the URL
+  const path = window.location.pathname;
+  if (path.endsWith('archive.html') || 
+      path.endsWith('donate.html') || 
+      path.endsWith('admin.html') || 
+      path.endsWith('kids.html') || 
+      path.endsWith('teens.html') || 
+      path.endsWith('ramadan.html') || 
+      path.endsWith('resources.html') || 
+      path.endsWith('rootwords.html') || 
+      path.endsWith('flowcharts.html') || 
+      path.endsWith('tafseer-notes.html') || 
+      path.endsWith('reading-material.html') || 
+      path.endsWith('volunteer.html') || 
+      window.location.hash) {
+    return;
+  }
+
+  // Check session storage to ensure it only happens once per session
+  if (sessionStorage.getItem('nq_first_visit_scrolled')) {
+    return;
+  }
+
+  const eventsSection = document.getElementById('events');
+  if (!eventsSection) return;
+
+  sessionStorage.setItem('nq_first_visit_scrolled', 'true');
+
+  let animationId = null;
+  let isCancelled = false;
+
+  const cancelAutoScroll = () => {
+    if (!isCancelled) {
+      isCancelled = true;
+      if (animationId) cancelAnimationFrame(animationId);
+      window.removeEventListener('wheel', cancelAutoScroll);
+      window.removeEventListener('touchstart', cancelAutoScroll);
+      window.removeEventListener('keydown', cancelAutoScroll);
+      window.removeEventListener('mousedown', cancelAutoScroll);
+    }
+  };
+
+  // Gracefully stop if the user initiates any manual interaction
+  window.addEventListener('wheel', cancelAutoScroll, { passive: true });
+  window.addEventListener('touchstart', cancelAutoScroll, { passive: true });
+  window.addEventListener('keydown', cancelAutoScroll, { passive: true });
+  window.addEventListener('mousedown', cancelAutoScroll, { passive: true });
+
+  // Initial delay so user sees hero before smooth 10s descent begins
+  setTimeout(() => {
+    if (isCancelled || window.scrollY > 100) {
+      cancelAutoScroll();
+      return;
+    }
+
+    const startY = window.scrollY;
+    const targetY = eventsSection.getBoundingClientRect().top + window.scrollY - 70;
+    const distance = targetY - startY;
+    if (distance <= 10) return;
+
+    const duration = 10000; // 10 seconds
+    let startTime = null;
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function scrollStep(timestamp) {
+      if (isCancelled) return;
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutQuad(progress);
+
+      window.scrollTo(0, startY + (distance * eased));
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(scrollStep);
+      } else {
+        cancelAutoScroll();
+      }
+    }
+
+    animationId = requestAnimationFrame(scrollStep);
+  }, 1200);
+}
+
 // ---- Media Manager (Audio & Video Player) ----
 const MediaManager = {
   async init() {
@@ -1978,4 +2068,5 @@ document.addEventListener('DOMContentLoaded', () => {
   VideoLightbox.init();
   SocialShareManager.init();
   initSmoothScroll();
+  initFirstVisitScroll();
 });
