@@ -484,7 +484,7 @@
       if (resDescEl) resDescEl.textContent = desc;
 
       var labels = {
-        age: { little: 'Ages 5–9 (Little One)', teen: 'Ages 10–17 (Tween/Teen)', adult: 'Adult / Sister (18+)', family: 'Family Circle' },
+        age: { little: 'Ages 5–9 (Little One)', teen: 'Ages 10–17 (Teen)', adult: 'Adult / Sister (18+)', family: 'Family Circle' },
         format: { online: 'Online (Live Video Call)', onsite: 'Onsite (In-Person Centre)' },
         level: { beginner: 'Complete Beginner', qaida: 'Knows Alphabet', reading: 'Can Read Quran', advanced: 'Advanced / Hifz' }
       };
