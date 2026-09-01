@@ -2006,11 +2006,11 @@ p {
 }
 
 .cal-day {
-  aspect-ratio: 1.1;
+  aspect-ratio: 1;
   background: transparent;
   border: 1px solid transparent;
   color: var(--text);
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -2018,11 +2018,27 @@ p {
   justify-content: center;
   font-size: 0.95rem;
   position: relative;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  z-index: 1;
 }
 
-.cal-day:hover:not(.empty) {
-  background: rgba(255, 255, 255, 0.05);
+/* Spring-in liquid selection ring */
+.cal-day::before {
+  content: "";
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  transform: scale(0.4);
+  opacity: 0;
+  z-index: -1;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
+}
+
+.cal-day:hover:not(.empty):not(.selected) {
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--border-light);
 }
 
@@ -2033,44 +2049,71 @@ p {
 .cal-day.has-event {
   color: var(--cal-event-text);
   font-weight: 700;
-  border-color: var(--cal-event-border);
-  background: var(--cal-event-bg);
 }
 
-.cal-day.has-event:hover {
-  border-color: var(--cal-event-border);
+.cal-day.has-event:hover:not(.selected) {
   background: var(--cal-event-bg-hover);
 }
 
-.event-dots-wrap {
+/* Today: dashed gold halo (never clashes with selection fill) */
+.cal-day.is-today {
+  outline: 1.5px dashed var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* Multi-event dot clusters (program-coded) */
+.cal-dots {
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3px;
+  height: 4px;
   pointer-events: none;
 }
 
-.event-dot {
-  width: 5px;
-  height: 5px;
+.cal-dots i {
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: var(--accent-gold);
-  box-shadow: 0 0 8px var(--accent-gold);
+  box-shadow: 0 0 6px var(--accent-gold);
   display: inline-block;
 }
 
-.cal-day.selected {
-  background: var(--accent-gold) !important;
-  color: #000000 !important;
-  border-color: var(--accent-gold) !important;
+.cal-dots i[data-prog="tajweed"] {
+  background: var(--color-mint-teal, #64ffda);
+  box-shadow: 0 0 6px var(--color-mint-teal, #64ffda);
 }
 
-.cal-day.selected .event-dot {
-  background: #000;
+.cal-dots i[data-prog="seerah"] {
+  background: var(--color-luminous-blue, #7c9cff);
+  box-shadow: 0 0 6px var(--color-luminous-blue, #7c9cff);
+}
+
+.cal-dots i[data-prog="lecture"] {
+  background: var(--color-warm-gold, #ffd54f);
+  box-shadow: 0 0 6px var(--color-warm-gold, #ffd54f);
+}
+
+/* Selected state with spring-in gold ring */
+.cal-day.selected {
+  color: #000000 !important;
+  font-weight: 800;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.cal-day.selected::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.cal-day.selected .cal-dots i {
+  background: #000000;
   box-shadow: none;
 }
 
@@ -2273,23 +2316,94 @@ p {
   gap: 1.5rem;
 }
 
+/* @property registration for smooth conic gold foil rim sweep */
+@property --rim-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .flyer-card {
   position: relative;
   border-radius: 16px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+  transform-style: preserve-3d;
+  transform: perspective(900px)
+             rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg))
+             translateY(var(--lift, 0px));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  will-change: transform;
+}
+
+/* Conic gold foil rim (Tazhib illumination effect) */
+.flyer-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--rim-angle, 0deg),
+    rgba(201, 162, 39, 0.15) 0%,
+    var(--color-bright-gold, #ffd54f) 12%,
+    rgba(255, 213, 79, 0.9) 18%,
+    rgba(201, 162, 39, 0.15) 32%,
+    rgba(124, 156, 255, 0.1) 60%,
+    rgba(201, 162, 39, 0.15) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask-composite: exclude;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Specular glass sheen following pointer */
+.flyer-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--px, 50%) var(--py, 50%),
+    rgba(255, 213, 79, 0.12),
+    rgba(124, 156, 255, 0.05) 40%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .flyer-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-  border-color: var(--color-gold);
+  --lift: -8px;
+  box-shadow:
+    0 20px 50px -12px rgba(13, 0, 51, 0.45),
+    0 0 32px rgba(255, 213, 79, 0.12);
+  border-color: rgba(255, 213, 79, 0.4);
+}
+
+.flyer-card:hover::before {
+  opacity: 1;
+  animation: rim-sweep 2.6s linear infinite;
+}
+
+.flyer-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes rim-sweep {
+  to { --rim-angle: 360deg; }
 }
 
 .flyer-img-wrap {
@@ -2298,17 +2412,19 @@ p {
   aspect-ratio: 1 / 1.4;
   overflow: hidden;
   background: #000;
+  border-radius: 15px 15px 0 0;
 }
 
 .flyer-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transform: scale(1.001);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .flyer-card:hover .flyer-img-wrap img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .flyer-badge {
@@ -2514,12 +2630,72 @@ p {
 
 .flyer-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
   gap: 0.5rem;
   margin-top: 0.5rem;
-  padding-top: 0.5rem;
+  padding: 0.5rem 0 0;
   border-top: 1px solid var(--border-light);
+}
+
+.flyer-actions .action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  line-height: 1.2;
+}
+
+.flyer-actions .action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-gold);
+}
+
+.flyer-actions .action-btn:active {
+  transform: scale(0.96);
+}
+
+.flyer-actions .action-label {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .flyer-actions {
+    gap: 0;
+    margin: 0.5rem -1.15rem -1rem;
+    padding: 0;
+    border-top: 1px solid var(--border-light);
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+  }
+  .flyer-actions .action-btn {
+    flex: 1;
+    min-height: 48px; /* WCAG 2.5.5 target size */
+    border: none;
+    border-radius: 0;
+    border-right: 1px solid var(--border-light);
+    padding: 0.5rem 0.25rem;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .flyer-actions .action-btn:last-child {
+    border-right: none;
+  }
+  .flyer-actions .action-label {
+    display: inline;
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+  .flyer-actions .action-btn--share {
+    color: #25d366; /* WhatsApp green */
+  }
 }
 
 /* ============================================================

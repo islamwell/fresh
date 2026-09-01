@@ -1167,11 +1167,20 @@ const CalendarManager = {
       this.daysGrid.appendChild(emptyDiv);
     }
 
+    const now = new Date();
+    const isCurrentYear = (this.currentYear === now.getFullYear());
+    const isCurrentMonth = (this.currentMonth === now.getMonth());
+    const todayDate = now.getDate();
+
     // Days in current month
     for (let day = 1; day <= lastDay; day++) {
       const dayButton = document.createElement('button');
       dayButton.className = 'cal-day';
       dayButton.textContent = day;
+
+      if (isCurrentYear && isCurrentMonth && day === todayDate) {
+        dayButton.classList.add('is-today');
+      }
       
       const dateString = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
       
@@ -1179,14 +1188,22 @@ const CalendarManager = {
         dayButton.classList.add('has-event');
         dayButton.setAttribute('aria-label', `Day ${day}, has ${this.events[dateString].length} event(s)`);
         
-        // Add dot marker (renders 2 dots on Sept 6, 1 dot for single event days)
+        // Multi-event program-coded dots
         const dotsWrap = document.createElement('span');
-        dotsWrap.className = 'event-dots-wrap';
-        for (let k = 0; k < this.events[dateString].length; k++) {
-          const dot = document.createElement('span');
-          dot.className = 'event-dot';
+        dotsWrap.className = 'cal-dots';
+        this.events[dateString].forEach(ev => {
+          const dot = document.createElement('i');
+          const typeLower = (ev.type || '').toLowerCase();
+          const titleLower = (ev.title || '').toLowerCase();
+          if (typeLower.includes('tajweed') || titleLower.includes('tajweed')) {
+            dot.setAttribute('data-prog', 'tajweed');
+          } else if (typeLower.includes('seerah') || titleLower.includes('seerat') || titleLower.includes('prophet') || titleLower.includes('sahaba')) {
+            dot.setAttribute('data-prog', 'seerah');
+          } else if (typeLower.includes('lecture') || typeLower.includes('seminar') || titleLower.includes('nafs') || titleLower.includes('anger')) {
+            dot.setAttribute('data-prog', 'lecture');
+          }
           dotsWrap.appendChild(dot);
-        }
+        });
         dayButton.appendChild(dotsWrap);
         
         dayButton.addEventListener('click', () => this.showEvent(dateString, dayButton, 0));
@@ -2051,6 +2068,34 @@ const DynamicDataManager = {
   }
 };
 
+// ---- 19. Flyer 3D Tilt & Light Sheen Manager ----
+const FlyerTiltManager = {
+  init() {
+    if (window.matchMedia && (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover)').matches)) {
+      return;
+    }
+
+    const cards = document.querySelectorAll('.flyer-card');
+    cards.forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        
+        card.style.setProperty('--tilt-y', `${((x - 0.5) * 8).toFixed(2)}deg`);
+        card.style.setProperty('--tilt-x', `${((0.5 - y) * 8).toFixed(2)}deg`);
+        card.style.setProperty('--px', `${(x * 100).toFixed(1)}%`);
+        card.style.setProperty('--py', `${(y * 100).toFixed(1)}%`);
+      });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+  }
+};
+
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
@@ -2065,6 +2110,7 @@ document.addEventListener('DOMContentLoaded', () => {
   MediaManager.init();
   CalendarManager.init();
   FlyerLightboxManager.init();
+  FlyerTiltManager.init();
   VideoLightbox.init();
   SocialShareManager.init();
   initSmoothScroll();
