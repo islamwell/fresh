@@ -1159,75 +1159,74 @@ const EventFlyerAutoScroller = {
     this.currentEl = el;
     el.scrollTop = 0; // start at top
 
-    const initScrollLoop = () => {
-      if (this.currentEl !== el) return;
-      const maxScroll = el.scrollHeight - el.clientHeight;
-      if (maxScroll <= 6) return;
+    let direction = 1; // 1 = down, -1 = up
+    const speed = 0.6;
+    let isPaused = false;
+    let isHovered = false;
 
-      let direction = 1; // 1 = down, -1 = up
-      const speed = 0.55;
-      let isPaused = false;
-      let isHovered = false;
-
-      const pause = (duration = 1600) => {
-        isPaused = true;
-        this.activeTimeoutId = setTimeout(() => {
-          if (!isHovered && this.currentEl === el) {
-            isPaused = false;
+    const pause = (duration = 1600) => {
+      isPaused = true;
+      if (this.activeTimeoutId) clearTimeout(this.activeTimeoutId);
+      this.activeTimeoutId = setTimeout(() => {
+        if (this.currentEl === el) {
+          isPaused = false;
+          if (!isHovered) {
             this.activeAnimationId = requestAnimationFrame(step);
           }
-        }, duration);
-      };
-
-      const step = () => {
-        if (this.currentEl !== el) return;
-        if (isPaused || isHovered) return;
-
-        const currentMax = el.scrollHeight - el.clientHeight;
-        if (currentMax <= 6) return;
-
-        el.scrollTop += speed * direction;
-
-        if (el.scrollTop >= currentMax - 1) {
-          el.scrollTop = currentMax;
-          direction = -1; // reverse to up
-          pause(1600);
-          return;
-        } else if (el.scrollTop <= 1) {
-          el.scrollTop = 0;
-          direction = 1; // reverse to down
-          pause(1600);
-          return;
         }
-
-        this.activeAnimationId = requestAnimationFrame(step);
-      };
-
-      // Pause on pointerenter / touch so user can manually view
-      el.addEventListener('pointerenter', () => {
-        isHovered = true;
-      });
-      el.addEventListener('pointerleave', () => {
-        isHovered = false;
-        if (!isPaused && this.currentEl === el) {
-          this.activeAnimationId = requestAnimationFrame(step);
-        }
-      });
-
-      // Initial pause of 900ms before auto-scroll begins
-      pause(900);
+      }, duration);
     };
 
-    const img = el.querySelector('img');
-    if (img && !img.complete) {
-      img.addEventListener('load', () => {
-        if (this.currentEl === el) initScrollLoop();
-      }, { once: true });
-    } else {
-      setTimeout(() => {
-        if (this.currentEl === el) initScrollLoop();
-      }, 60);
-    }
+    const step = () => {
+      if (this.currentEl !== el) return;
+      if (isPaused || isHovered) return;
+
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 5) {
+        // If image hasn't finished sizing yet, keep requesting frames
+        this.activeAnimationId = requestAnimationFrame(step);
+        return;
+      }
+
+      el.scrollTop += speed * direction;
+
+      if (direction === 1 && el.scrollTop >= maxScroll - 1) {
+        el.scrollTop = maxScroll;
+        direction = -1; // reverse to up
+        pause(1600);
+        return;
+      } else if (direction === -1 && el.scrollTop <= 1) {
+        el.scrollTop = 0;
+        direction = 1; // reverse to down
+        pause(1600);
+        return;
+      }
+
+      this.activeAnimationId = requestAnimationFrame(step);
+    };
+
+    // Pause when user hovers or touches to inspect manually
+    el.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+    el.addEventListener('mouseleave', () => {
+      isHovered = false;
+      if (!isPaused && this.currentEl === el) {
+        this.activeAnimationId = requestAnimationFrame(step);
+      }
+    });
+    el.addEventListener('touchstart', () => {
+      isHovered = true;
+    }, { passive: true });
+    el.addEventListener('touchend', () => {
+      isHovered = false;
+      if (!isPaused && this.currentEl === el) {
+        this.activeAnimationId = requestAnimationFrame(step);
+      }
+    }, { passive: true });
+
+    // Initial pause of 900ms before auto-scrolling starts
+    pause(900);
   }
 };
 
@@ -1612,10 +1611,14 @@ const CalendarManager = {
     const eventUrl = EventUrlManager.urlForEvent(event.id);
     const flyerShareText = `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 Contact: ${event.contact || '+353 83 025 6299'}\n\nJoin Ustazah Iffat Maqbool!`;
 
+    // Swap displays first so layout engine computes dimensions
+    this.detailEmpty.classList.add('hidden');
+    this.detailContent.classList.remove('hidden');
+
     // Handle flyer graphic preview inside card
     const flyerWrap = document.getElementById('event-detail-flyer-wrap');
     if (flyerWrap) {
-      if (event.flyer || (event.link && (event.link.endsWith('.jpeg') || event.link.endsWith('.jpg') || event.link.endsWith('.png')))) {
+      if (event.flyer || (event.link && /\.(jpe?g|png|webp)$/i.test(event.link))) {
         const flyerSrc = event.flyer || event.link;
         flyerWrap.innerHTML = `
           <div class="event-detail-flyer-preview" data-flyer-src="${flyerSrc}" data-caption="${event.title} • ${event.time}" title="Auto-scrolling flyer preview • Click to expand full screen">
@@ -1701,7 +1704,7 @@ const CalendarManager = {
       shareBtn.className = 'btn-share-icon event-share-btn';
       shareBtn.setAttribute('aria-label', 'Share event & flyer');
       shareBtn.setAttribute('title', 'Share event & flyer');
-      shareBtn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>';
+      shareBtn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>';
       actionWrap.appendChild(shareBtn);
     }
     shareBtn.onclick = (e) => {
@@ -1731,10 +1734,6 @@ const CalendarManager = {
     } else if (regBtn) {
       regBtn.remove();
     }
-
-    // Swap displays
-    this.detailEmpty.classList.add('hidden');
-    this.detailContent.classList.remove('hidden');
 
     if (updateUrl) EventUrlManager.updateBrowserUrl(event);
   }
