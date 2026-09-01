@@ -210,6 +210,11 @@ html.light {
   --border: rgba(26, 35, 126, 0.12);
   --border-light: rgba(26, 35, 126, 0.06);
 
+  --cal-event-bg: #e6f4ea;
+  --cal-event-border: #1e8e3e;
+  --cal-event-text: #0d652d;
+  --cal-event-bg-hover: #ceead6;
+
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.35);
   --glass-shadow: rgba(26, 35, 126, 0.08);
@@ -742,14 +747,14 @@ p {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 560px;
+  min-height: clamp(560px, 72svh, 740px);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--gradient-hero);
   overflow: hidden;
-  padding: 6rem 0 4rem;
+  padding: 5.25rem 0 3.25rem;
 }
 
 /* Animated gradient mesh overlay */
@@ -846,7 +851,7 @@ p {
   font-family: var(--font-arabic);
   font-size: clamp(1.8rem, 3.8vw, 2.75rem);
   color: var(--color-bright-gold);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   opacity: 0.95;
   direction: rtl;
   letter-spacing: 0;
@@ -857,7 +862,7 @@ p {
 
 .hero__title {
   color: #fff;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
@@ -872,7 +877,7 @@ p {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   color: rgba(255, 255, 255, 0.75);
   max-width: 620px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
   line-height: 1.8;
 }
 
@@ -885,7 +890,7 @@ p {
 
 .hero__scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -896,6 +901,33 @@ p {
   font-size: 0.8rem;
   font-family: var(--font-heading);
   animation: bounce-down 2s ease-in-out infinite;
+}
+
+#events {
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  scroll-margin-top: 72px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 500px;
+    min-height: clamp(500px, 76svh, 640px);
+    padding: 5rem 0 3rem;
+  }
+
+  .hero__arabic {
+    font-size: clamp(1.55rem, 7vw, 2.1rem);
+    margin-bottom: 0.65rem;
+  }
+
+  .hero__subtitle {
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+  }
+
+  #events {
+    padding-top: 3.25rem;
+  }
 }
 
 @keyframes bounce-down {
@@ -2010,7 +2042,7 @@ p {
   background: transparent;
   border: 1px solid transparent;
   color: var(--text);
-  border-radius: 50%;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -2018,28 +2050,15 @@ p {
   justify-content: center;
   font-size: 0.95rem;
   position: relative;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  z-index: 1;
-}
-
-/* Spring-in liquid selection ring */
-.cal-day::before {
-  content: "";
-  position: absolute;
-  inset: 4%;
-  border-radius: 50%;
-  background: var(--gradient-gold);
-  transform: scale(0.4);
-  opacity: 0;
-  z-index: -1;
-  transition:
-    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.2s ease;
+  min-width: 36px;
+  min-height: 36px;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .cal-day:hover:not(.empty):not(.selected) {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--border-light);
+  transform: translateY(-1px);
 }
 
 .cal-day.empty {
@@ -2047,6 +2066,8 @@ p {
 }
 
 .cal-day.has-event {
+  background: var(--cal-event-bg);
+  border-color: var(--cal-event-border);
   color: var(--cal-event-text);
   font-weight: 700;
 }
@@ -2055,22 +2076,21 @@ p {
   background: var(--cal-event-bg-hover);
 }
 
-/* Today: dashed gold halo (never clashes with selection fill) */
-.cal-day.is-today {
-  outline: 1.5px dashed var(--accent-gold);
-  outline-offset: 2px;
+/* Today stays recognizable without changing the familiar tile shape. */
+.cal-day.is-today:not(.selected) {
+  box-shadow: inset 0 0 0 2px var(--accent-gold);
 }
 
-/* Multi-event dot clusters (program-coded) */
+/* A simple dot count communicates one or more events without a color legend. */
 .cal-dots {
   position: absolute;
-  bottom: 4px;
+  bottom: 5px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   height: 4px;
   pointer-events: none;
 }
@@ -2079,42 +2099,46 @@ p {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--accent-gold);
-  box-shadow: 0 0 6px var(--accent-gold);
+  background: currentColor;
+  box-shadow: none;
   display: inline-block;
 }
 
-.cal-dots i[data-prog="tajweed"] {
-  background: var(--color-mint-teal, #64ffda);
-  box-shadow: 0 0 6px var(--color-mint-teal, #64ffda);
-}
-
-.cal-dots i[data-prog="seerah"] {
-  background: var(--color-luminous-blue, #7c9cff);
-  box-shadow: 0 0 6px var(--color-luminous-blue, #7c9cff);
-}
-
-.cal-dots i[data-prog="lecture"] {
-  background: var(--color-warm-gold, #ffd54f);
-  box-shadow: 0 0 6px var(--color-warm-gold, #ffd54f);
-}
-
-/* Selected state with spring-in gold ring */
+/* Selected date: solid, calm, and unmistakable. */
 .cal-day.selected {
   color: #000000 !important;
   font-weight: 800;
-  background: transparent !important;
-  border-color: transparent !important;
-}
-
-.cal-day.selected::before {
-  transform: scale(1);
-  opacity: 1;
+  background: var(--gradient-gold) !important;
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 5px 14px rgba(201, 162, 39, 0.24);
 }
 
 .cal-day.selected .cal-dots i {
   background: #000000;
   box-shadow: none;
+}
+
+.cal-day:focus-visible,
+.cal-nav-btn:focus-visible {
+  outline: 3px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .calendar-widget {
+    padding: 1rem;
+  }
+
+  .calendar-days {
+    gap: 0.25rem;
+  }
+
+  .cal-day {
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Event Detail Card Display */
@@ -2338,7 +2362,6 @@ p {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  will-change: transform;
 }
 
 /* Conic gold foil rim (Tazhib illumination effect) */
@@ -2395,7 +2418,7 @@ p {
 
 .flyer-card:hover::before {
   opacity: 1;
-  animation: rim-sweep 2.6s linear infinite;
+  animation: rim-sweep 1.15s ease-out 1 both;
 }
 
 .flyer-card:hover::after {
@@ -2404,6 +2427,11 @@ p {
 
 @keyframes rim-sweep {
   to { --rim-angle: 360deg; }
+}
+
+.flyer-card.deep-linked-event {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(255, 213, 79, 0.22), 0 0 34px rgba(255, 213, 79, 0.18);
 }
 
 .flyer-img-wrap {
@@ -2647,11 +2675,19 @@ p {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   padding: 0.4rem 0.75rem;
+  min-width: 40px;
+  min-height: 36px;
   font-size: 0.85rem;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
   line-height: 1.2;
+}
+
+.flyer-actions .action-btn svg {
+  display: block;
+  flex: 0 0 15px;
+  overflow: visible;
 }
 
 .flyer-actions .action-btn:hover {
@@ -3506,6 +3542,8 @@ html:not(.dark) .resource-category-card .resource-item-desc {
 .btn-share-icon {
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -3533,6 +3571,33 @@ html:not(.dark) .resource-category-card .resource-item-desc {
   width: 15px;
   height: 15px;
   display: block;
+  overflow: visible;
+}
+
+.calendar-action-status {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 5000;
+  max-width: min(90vw, 440px);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-action-status.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 /* Share Modal Dialog */

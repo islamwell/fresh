@@ -3,7 +3,11 @@
   "subtitle": "Join us for transformative learning experiences, study circles, and international tours",
   "calendar": [
     {
+      "id": "ireland-dublin-meet-greet-2026",
       "date": "2026-09-03",
+      "start": "2026-09-03T18:00:00+01:00",
+      "end": "2026-09-03T20:00:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Meet & Greet with Ustazah Iffat Maqbool",
       "type": "Meet & Greet (Sisters)",
       "time": "Thursday, Sept 3, 2026 • 6:00 PM – 8:00 PM",
@@ -16,7 +20,11 @@
       "registrationForm": ""
     },
     {
+      "id": "ireland-cork-anger-management-2026",
       "date": "2026-09-04",
+      "start": "2026-09-04T18:00:00+01:00",
+      "end": "2026-09-04T20:00:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Anger Management (Part 3) - لا تغضب",
       "type": "Lecture & Workshop (Sisters)",
       "time": "Friday, Sept 4, 2026 • 6:00 PM – 8:00 PM",
@@ -29,7 +37,11 @@
       "registrationForm": ""
     },
     {
+      "id": "ireland-kilkenny-seerah-quran-2026",
       "date": "2026-09-05",
+      "start": "2026-09-05T15:00:00+01:00",
+      "end": "2026-09-05T17:00:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Seerat aur Quran ka Bahami Taluq",
       "type": "Special Seminar (Sisters)",
       "time": "Saturday, Sept 5, 2026 • 3:00 PM – 5:00 PM",
@@ -42,7 +54,11 @@
       "registrationForm": ""
     },
     {
+      "id": "ireland-ballyhaunis-sahaba-2026",
       "date": "2026-09-06",
+      "start": "2026-09-06T12:30:00+01:00",
+      "end": "2026-09-06T14:30:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Sahaba-e-Rasool ﷺ aur Hum (Ballyhaunis)",
       "type": "Special Seminar (Sisters)",
       "time": "Sunday, Sept 6, 2026 • 12:30 PM – 2:30 PM",
@@ -55,7 +71,11 @@
       "registrationForm": ""
     },
     {
+      "id": "ireland-ballaghaderreen-meet-greet-2026",
       "date": "2026-09-06",
+      "start": "2026-09-06T16:30:00+01:00",
+      "end": "2026-09-06T18:30:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Meet & Greet (Ballaghaderreen)",
       "type": "Meet & Greet (Sisters)",
       "time": "Sunday, Sept 6, 2026 • 4:30 PM – 6:30 PM",
@@ -68,7 +88,11 @@
       "registrationForm": ""
     },
     {
+      "id": "ireland-dublin-mai-prophet-2026",
       "date": "2026-09-07",
+      "start": "2026-09-07T09:30:00+01:00",
+      "end": "2026-09-07T12:00:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Let's Know Prophet ﷺ (Dublin MAI)",
       "type": "Inspirational Lecture (Sisters)",
       "time": "Monday, Sept 7, 2026 • 9:30 AM – 12:00 PM",
@@ -81,7 +105,11 @@
       "registrationForm": "https://forms.gle/QBxBMFNyEiyameb97"
     },
     {
+      "id": "ireland-drogheda-nafs-2026",
       "date": "2026-09-07",
+      "start": "2026-09-07T18:00:00+01:00",
+      "end": "2026-09-07T20:00:00+01:00",
+      "timeZone": "Europe/Dublin",
       "title": "Ireland Tour: Nafs ke Saat Darjaat (Drogheda)",
       "type": "Lecture & Seminar (Sisters)",
       "time": "Monday, Sept 7, 2026 • 6:00 PM – 8:00 PM",
@@ -94,10 +122,14 @@
       "registrationForm": ""
     },
     {
+      "id": "surah-al-mulk-2026-09-13",
       "date": "2026-09-13",
+      "start": "2026-09-13T11:00:00-04:00",
+      "end": "2026-09-13T12:00:00-04:00",
+      "timeZone": "America/New_York",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
-      "time": "Sundays at 11:00 AM EST",
+      "time": "Sunday, Sept 13, 2026 • 11:00 AM – 12:00 PM ET",
       "location": "Online via Zoom / Live Stream",
       "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
       "link": "https://nurulquranlive.com/",
@@ -106,10 +138,14 @@
       "registrationForm": ""
     },
     {
+      "id": "surah-al-mulk-2026-09-20",
       "date": "2026-09-20",
+      "start": "2026-09-20T11:00:00-04:00",
+      "end": "2026-09-20T12:00:00-04:00",
+      "timeZone": "America/New_York",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
-      "time": "Sundays at 11:00 AM EST",
+      "time": "Sunday, Sept 20, 2026 • 11:00 AM – 12:00 PM ET",
       "location": "Online via Zoom / Live Stream",
       "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
       "link": "https://nurulquranlive.com/",
@@ -118,10 +154,14 @@
       "registrationForm": ""
     },
     {
+      "id": "surah-al-mulk-2026-09-27",
       "date": "2026-09-27",
+      "start": "2026-09-27T11:00:00-04:00",
+      "end": "2026-09-27T12:00:00-04:00",
+      "timeZone": "America/New_York",
       "title": "Surah Al-Mulk Study Circle",
       "type": "Weekly Circle",
-      "time": "Sundays at 11:00 AM EST",
+      "time": "Sunday, Sept 27, 2026 • 11:00 AM – 12:00 PM ET",
       "location": "Online via Zoom / Live Stream",
       "description": "Join us for a weekly reflection on the themes and lessons of Surah Al-Mulk, focusing on the majesty of Allah's creation and our purpose in life.",
       "link": "https://nurulquranlive.com/",
@@ -141,6 +181,7 @@
       "description": "An exclusive live seminar and lecture series for sisters across Ireland featuring Ustazah Iffat Maqbool covering Seerah, Sahaba, Anger Management, and community Meet & Greet events.",
       "flyers": [
         {
+          "id": "ireland-dublin-meet-greet-2026",
           "city": "Dublin (Knocklyon)",
           "date": "3rd Sept 2026 (Thu) • 6pm-8pm",
           "topic": "Meet & Greet with Ustazah Iffat Maqbool",
@@ -149,6 +190,7 @@
           "image": "assets/flyers/ireland-dublin-2026.webp"
         },
         {
+          "id": "ireland-cork-anger-management-2026",
           "city": "Cork",
           "date": "4th Sept 2026 (Fri) • 6pm-8pm",
           "topic": "Anger Management (Part-3) - لا تغضب",
@@ -157,6 +199,7 @@
           "image": "assets/flyers/ireland-cork-2026.webp"
         },
         {
+          "id": "ireland-kilkenny-seerah-quran-2026",
           "city": "Kilkenny",
           "date": "5th Sept 2026 (Sat) • 3pm-5pm",
           "topic": "Seerat aur Quran ka Bahami Taluq",
@@ -165,6 +208,7 @@
           "image": "assets/flyers/ireland-kilkenny-2026.webp"
         },
         {
+          "id": "ireland-ballyhaunis-sahaba-2026",
           "city": "Ballyhaunis",
           "date": "6th Sept 2026 (Sun) • 12:30pm-2:30pm",
           "topic": "Sahaba-e-Rasool ﷺ aur Hum",
@@ -173,6 +217,7 @@
           "image": "assets/flyers/ireland-ballyhaunis-2026.webp"
         },
         {
+          "id": "ireland-ballaghaderreen-meet-greet-2026",
           "city": "Ballaghaderreen",
           "date": "6th Sept 2026 (Sun) • 4:30pm-6:30pm",
           "topic": "Meet & Greet for Sisters",
@@ -181,6 +226,7 @@
           "image": "assets/flyers/ireland-ballaghaderreen-2026.webp"
         },
         {
+          "id": "ireland-dublin-mai-prophet-2026",
           "city": "Dublin (MAI Muslim Centre)",
           "date": "7th Sept 2026 (Mon) • 9:30am-12pm",
           "topic": "Let's Know Prophet ﷺ",
@@ -189,6 +235,7 @@
           "image": "assets/flyers/ireland-dublin-mai-2026.webp"
         },
         {
+          "id": "ireland-drogheda-nafs-2026",
           "city": "Drogheda",
           "date": "7th Sept 2026 (Mon) • 6pm-8pm",
           "topic": "نفس کے سات درجات (Nafs ke Saat Darjaat)",

@@ -934,9 +934,207 @@ const MediaManager = {
   }
 };
 
+// ---- Canonical Event Links ----
+const EventUrlManager = {
+  baseUrl: 'https://events.nurulquran.com/',
+
+  eventIdFromLocation() {
+    try {
+      return new URL(window.location.href).searchParams.get('event') || '';
+    } catch (err) {
+      return '';
+    }
+  },
+
+  urlForEvent(eventId) {
+    const url = new URL(this.baseUrl);
+    if (eventId) url.searchParams.set('event', eventId);
+    url.hash = 'events';
+    return url.href;
+  },
+
+  urlForTrip(tripId) {
+    const url = new URL(this.baseUrl);
+    if (tripId) url.searchParams.set('trip', tripId);
+    url.hash = 'events';
+    return url.href;
+  },
+
+  updateBrowserUrl(event) {
+    if (!event?.id) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('event', event.id);
+    url.searchParams.delete('trip');
+    url.hash = 'events';
+    history.replaceState({ eventId: event.id }, '', `${url.pathname}${url.search}${url.hash}`);
+    this.applyMetadata(event);
+  },
+
+  applyMetadata(event) {
+    if (!event?.id) return;
+
+    const eventUrl = this.urlForEvent(event.id);
+    const title = `${event.title} | NurulQuran Events`;
+    const description = event.desc || event.description || 'View event details from Nur-Ul-Quran International Institute.';
+    const image = event.flyer ? new URL(event.flyer, this.baseUrl).href : `${this.baseUrl}assets/logo.png`;
+
+    document.title = title;
+    this.setMeta('meta[name="description"]', 'content', description);
+    this.setMeta('meta[property="og:title"]', 'content', title);
+    this.setMeta('meta[property="og:description"]', 'content', description);
+    this.setMeta('meta[property="og:url"]', 'content', eventUrl);
+    this.setMeta('meta[property="og:image"]', 'content', image);
+    this.setMeta('link[rel="canonical"]', 'href', eventUrl);
+  },
+
+  setMeta(selector, attribute, value) {
+    const element = document.querySelector(selector);
+    if (element) element.setAttribute(attribute, value);
+  }
+};
+
+window.EventUrlManager = EventUrlManager;
+
+// ---- Device-aware Calendar Export ----
+const CalendarExportManager = {
+  eventsById: new Map(),
+  statusTimer: null,
+
+  register(events) {
+    this.eventsById.clear();
+    events.forEach(event => {
+      if (event?.id) this.eventsById.set(event.id, event);
+    });
+  },
+
+  addById(eventId) {
+    const event = this.eventsById.get(eventId);
+    if (!event) {
+      this.announce('Calendar details are still loading. Please try again.');
+      return;
+    }
+    this.add(event);
+  },
+
+  add(event) {
+    if (!event?.start || !event?.end) {
+      this.announce('Calendar times are unavailable for this event.');
+      return;
+    }
+
+    if (this.isAppleDevice()) {
+      this.announce('Opening an Apple Calendar event…');
+      this.downloadIcs(event);
+      return;
+    }
+
+    this.announce(this.isAndroidDevice() ? 'Opening Google Calendar on Android…' : 'Opening Google Calendar…');
+    this.openGoogleCalendar(event);
+  },
+
+  isAndroidDevice() {
+    return /Android/i.test(navigator.userAgent || '');
+  },
+
+  isAppleDevice() {
+    if (this.isAndroidDevice()) return false;
+    const platform = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || '';
+    return /iPhone|iPad|iPod|Mac/i.test(platform) || (/Macintosh/i.test(navigator.userAgent || '') && navigator.maxTouchPoints > 1);
+  },
+
+  toUtcStamp(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+  },
+
+  escapeIcs(value = '') {
+    return String(value)
+      .replace(/\\/g, '\\\\')
+      .replace(/\r?\n/g, '\\n')
+      .replace(/,/g, '\\,')
+      .replace(/;/g, '\\;');
+  },
+
+  calendarDescription(event) {
+    return `${event.desc || event.description || ''}\n\nEvent details: ${EventUrlManager.urlForEvent(event.id)}`.trim();
+  },
+
+  downloadIcs(event) {
+    const start = this.toUtcStamp(event.start);
+    const end = this.toUtcStamp(event.end);
+    if (!start || !end) {
+      this.announce('Calendar times could not be read.');
+      return;
+    }
+
+    const lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//NurulQuran//Events//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      `UID:${this.escapeIcs(event.id)}@events.nurulquran.com`,
+      `DTSTAMP:${this.toUtcStamp(new Date())}`,
+      `DTSTART:${start}`,
+      `DTEND:${end}`,
+      `SUMMARY:${this.escapeIcs(event.title)}`,
+      `DESCRIPTION:${this.escapeIcs(this.calendarDescription(event))}`,
+      `LOCATION:${this.escapeIcs(event.location)}`,
+      `URL:${EventUrlManager.urlForEvent(event.id)}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ];
+
+    const blobUrl = URL.createObjectURL(new Blob([`${lines.join('\r\n')}\r\n`], { type: 'text/calendar;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = `${event.id || 'nurulquran-event'}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+  },
+
+  openGoogleCalendar(event) {
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: event.title,
+      dates: `${this.toUtcStamp(event.start)}/${this.toUtcStamp(event.end)}`,
+      details: this.calendarDescription(event),
+      location: event.location || '',
+      ctz: event.timeZone || 'UTC'
+    });
+    const calendarUrl = `https://calendar.google.com/calendar/render?${params.toString()}`;
+    const calendarWindow = window.open(calendarUrl, '_blank', 'noopener,noreferrer');
+    if (!calendarWindow) window.location.href = calendarUrl;
+  },
+
+  announce(message) {
+    let status = document.getElementById('calendar-action-status');
+    if (!status) {
+      status = document.createElement('div');
+      status.id = 'calendar-action-status';
+      status.className = 'calendar-action-status';
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      document.body.appendChild(status);
+    }
+
+    status.textContent = message;
+    status.classList.add('is-visible');
+    clearTimeout(this.statusTimer);
+    this.statusTimer = setTimeout(() => status.classList.remove('is-visible'), 3200);
+  }
+};
+
+window.CalendarExportManager = CalendarExportManager;
+
 // ---- Calendar & Events Manager ----
 const CalendarManager = {
   events: {},
+  eventsById: {},
 
   async init() {
     this.daysGrid = document.getElementById('calendar-days-grid');
@@ -969,12 +1167,18 @@ const CalendarManager = {
 
       // Build events lookup object keyed by date string (array of events per date)
       this.events = {};
+      this.eventsById = {};
       if (data.calendar && Array.isArray(data.calendar)) {
         data.calendar.forEach(item => {
           if (!this.events[item.date]) {
             this.events[item.date] = [];
           }
-          this.events[item.date].push({
+          const event = {
+            id: item.id,
+            date: item.date,
+            start: item.start,
+            end: item.end,
+            timeZone: item.timeZone || 'UTC',
             title: item.title,
             type: item.type,
             time: item.time,
@@ -985,9 +1189,13 @@ const CalendarManager = {
             contact: item.contact || '',
             whatsapp: item.whatsapp || '',
             registrationForm: item.registrationForm || ''
-          });
+          };
+          this.events[item.date].push(event);
+          if (event.id) this.eventsById[event.id] = event;
         });
       }
+
+      CalendarExportManager.register(Object.values(this.eventsById));
 
       // Render trips timeline
       if (data.trips && Array.isArray(data.trips)) {
@@ -1007,8 +1215,11 @@ const CalendarManager = {
     this.prevBtn?.addEventListener('click', () => this.navigateMonth(-1));
     this.nextBtn?.addEventListener('click', () => this.navigateMonth(1));
 
-    // Auto-select and highlight first upcoming event with side flyer
-    this.autoSelectFirstUpcomingEvent();
+    // A shared event URL takes priority; otherwise show the next scheduled event.
+    const sharedEventId = EventUrlManager.eventIdFromLocation();
+    if (!sharedEventId || !this.selectEventById(sharedEventId)) {
+      this.autoSelectFirstUpcomingEvent();
+    }
   },
 
   autoSelectFirstUpcomingEvent() {
@@ -1030,8 +1241,38 @@ const CalendarManager = {
     const dayBtns = this.daysGrid.querySelectorAll('.cal-day.has-event');
     dayBtns.forEach(btn => {
       if (parseInt(btn.textContent.trim(), 10) === d) {
-        this.showEvent(targetDate, btn);
+        this.showEvent(targetDate, btn, 0, false);
       }
+    });
+  },
+
+  selectEventById(eventId) {
+    const event = this.eventsById[eventId];
+    if (!event) return false;
+
+    const [year, month] = event.date.split('-').map(Number);
+    this.currentYear = year;
+    this.currentMonth = month - 1;
+    this.renderCalendar();
+
+    const dayButton = this.daysGrid.querySelector(`[data-date="${event.date}"]`);
+    const eventIndex = this.events[event.date].findIndex(item => item.id === eventId);
+    this.showEvent(event.date, dayButton, Math.max(eventIndex, 0), false);
+    EventUrlManager.applyMetadata(event);
+    this.highlightSharedEvent(eventId);
+    return true;
+  },
+
+  highlightSharedEvent(eventId) {
+    requestAnimationFrame(() => {
+      const card = document.querySelector(`.flyer-card[data-event-id="${eventId}"]`);
+      const target = card || document.getElementById('event-detail-card');
+      if (!target) return;
+
+      card?.classList.add('deep-linked-event');
+      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      if (card) setTimeout(() => card.classList.remove('deep-linked-event'), 4200);
     });
   },
 
@@ -1052,9 +1293,9 @@ const CalendarManager = {
         flyersHtml = `
           <div class="trip-flyers-grid">
             ${trip.flyers.map(f => {
-              const flyerShareText = `*${f.topic} (${f.city})*\n🗓️ ${f.date}\n📍 ${f.venue}\n📞 Contact: ${f.phone}\n\nJoin Ustazah Iffat Maqbool in Ireland!\nDetails: https://nurulquran.web.app/#events`;
+              const flyerShareText = `*${f.topic} (${f.city})*\n🗓️ ${f.date}\n📍 ${f.venue}\n📞 Contact: ${f.phone}\n\nJoin Ustazah Iffat Maqbool in Ireland!`;
               return `
-                <div class="trip-flyer-thumb" data-flyer-src="${f.image}" data-caption="${f.city}: ${f.topic} (${f.date}) • ${f.venue} (Tel: ${f.phone})" data-share-text="${encodeURIComponent(flyerShareText)}">
+                <div class="trip-flyer-thumb" data-event-id="${f.id || ''}" data-event-title="${f.topic}" data-event-date="${f.date}" data-flyer-src="${f.image}" data-caption="${f.city}: ${f.topic} (${f.date}) • ${f.venue} (Tel: ${f.phone})" data-share-text="${encodeURIComponent(flyerShareText)}">
                   <img src="${f.image}" alt="${f.city} Flyer" loading="lazy">
                   <span class="trip-flyer-label">${f.city} • ${f.topic}</span>
                 </div>
@@ -1064,14 +1305,15 @@ const CalendarManager = {
         `;
       }
 
-      const tripShareText = `*${trip.title}*\n🗓️ ${trip.date}\n${trip.meta}\n\n${trip.description}\n\nMore details: https://nurulquran.web.app/#events`;
-      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(tripShareText)}`;
+      const tripShareText = `*${trip.title}*\n🗓️ ${trip.date}\n${trip.meta}\n\n${trip.description}`;
+      const tripUrl = EventUrlManager.urlForTrip(trip.id);
       const tripMapBtn = (trip.meta && !trip.meta.toLowerCase().includes('online'))
         ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(trip.meta)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm trip-map-btn" style="padding:0.35rem 0.65rem;font-size:0.75rem"><span>📍</span> <span>Map</span></a>`
         : '';
 
       const timelineItem = document.createElement('div');
       timelineItem.className = 'timeline-item reveal';
+      timelineItem.dataset.tripId = trip.id || '';
       timelineItem.innerHTML = `
         <div class="timeline-badge">${trip.icon}</div>
         <div class="timeline-card glass-card">
@@ -1081,10 +1323,10 @@ const CalendarManager = {
           <p class="trip-desc">${trip.description}</p>
           ${flyersHtml}
           <div class="trip-footer" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-            <a href="${trip.link}" class="btn ${btnClass}" ${trip.link.endsWith('.jpeg') || trip.link.endsWith('.jpg') ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
+            <a href="${trip.link}" class="btn ${btnClass}" ${/\.(jpe?g|png|webp)$/i.test(trip.link) ? 'data-flyer-link="true"' : ''}>${trip.linkText}</a>
             ${tripMapBtn}
             ${trip.registrationForm ? `<a href="${trip.registrationForm}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Register →</a>` : ''}
-            <button type="button" class="btn-share-icon trip-share-btn" aria-label="Share" title="Share event &amp; flyer" onclick="event.stopPropagation(); SocialShareManager.open({ title: '${trip.title.replace(/'/g, "\\'")}', text: '${(trip.title + '\n🗓️ ' + trip.meta + '\n' + trip.description).replace(/'/g, "\\'")}', url: 'https://nurulquran.web.app/#trips', imgUrl: '${trip.flyers && trip.flyers[0] ? trip.flyers[0].src : ''}', date: '${trip.meta.replace(/'/g, "\\'")}' })">
+            <button type="button" class="btn-share-icon trip-share-btn" aria-label="Share" title="Share event &amp; flyer">
               <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
             </button>
           </div>
@@ -1097,7 +1339,19 @@ const CalendarManager = {
           const src = thumb.dataset.flyerSrc;
           const caption = thumb.dataset.caption;
           const shareText = thumb.dataset.shareText ? decodeURIComponent(thumb.dataset.shareText) : '';
-          FlyerLightboxManager.open(src, caption, shareText, caption);
+          FlyerLightboxManager.open(src, caption, shareText, caption, thumb.dataset.eventTitle, thumb.dataset.eventDate, thumb.dataset.eventId);
+        });
+      });
+
+      timelineItem.querySelector('.trip-share-btn')?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        SocialShareManager.open({
+          title: trip.title,
+          text: tripShareText,
+          url: tripUrl,
+          imgUrl: trip.flyers?.[0]?.image || '',
+          date: trip.date,
+          venue: trip.meta
         });
       });
 
@@ -1106,7 +1360,8 @@ const CalendarManager = {
       if (flyerLinkBtn) {
         flyerLinkBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          FlyerLightboxManager.open(trip.link, trip.title, tripShareText, trip.meta);
+          const firstFlyer = trip.flyers?.[0];
+          FlyerLightboxManager.open(trip.link, trip.title, tripShareText, trip.meta, trip.title, trip.date, firstFlyer?.id || '');
         });
       }
 
@@ -1183,25 +1438,19 @@ const CalendarManager = {
       }
       
       const dateString = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      dayButton.dataset.date = dateString;
       
       if (this.events[dateString] && this.events[dateString].length > 0) {
         dayButton.classList.add('has-event');
-        dayButton.setAttribute('aria-label', `Day ${day}, has ${this.events[dateString].length} event(s)`);
+        const eventCount = this.events[dateString].length;
+        dayButton.setAttribute('aria-label', `Day ${day}, ${eventCount} ${eventCount === 1 ? 'event' : 'events'}`);
         
-        // Multi-event program-coded dots
+        // One neutral dot per event; the count carries meaning without a color legend.
         const dotsWrap = document.createElement('span');
         dotsWrap.className = 'cal-dots';
-        this.events[dateString].forEach(ev => {
+        dotsWrap.setAttribute('aria-hidden', 'true');
+        this.events[dateString].forEach(() => {
           const dot = document.createElement('i');
-          const typeLower = (ev.type || '').toLowerCase();
-          const titleLower = (ev.title || '').toLowerCase();
-          if (typeLower.includes('tajweed') || titleLower.includes('tajweed')) {
-            dot.setAttribute('data-prog', 'tajweed');
-          } else if (typeLower.includes('seerah') || titleLower.includes('seerat') || titleLower.includes('prophet') || titleLower.includes('sahaba')) {
-            dot.setAttribute('data-prog', 'seerah');
-          } else if (typeLower.includes('lecture') || typeLower.includes('seminar') || titleLower.includes('nafs') || titleLower.includes('anger')) {
-            dot.setAttribute('data-prog', 'lecture');
-          }
           dotsWrap.appendChild(dot);
         });
         dayButton.appendChild(dotsWrap);
@@ -1215,7 +1464,7 @@ const CalendarManager = {
     }
   },
 
-  showEvent(dateString, element, eventIndex = 0) {
+  showEvent(dateString, element, eventIndex = 0, updateUrl = true) {
     const eventList = this.events[dateString];
     if (!eventList || !eventList.length) return;
     const event = eventList[eventIndex] || eventList[0];
@@ -1237,7 +1486,7 @@ const CalendarManager = {
       }
       multiHeader.innerHTML = eventList.map((ev, idx) => `
         <button type="button" class="btn btn-sm ${idx === eventIndex ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.6rem; font-size: 0.75rem; border-radius: 12px; cursor: pointer;">
-          Program ${idx + 1}: ${idx === 0 ? '12:30 PM' : '4:30 PM'}
+          Program ${idx + 1}: ${ev.time.includes('•') ? ev.time.split('•').pop().trim() : ev.time}
         </button>
       `).join('');
       multiHeader.classList.remove('hidden');
@@ -1259,8 +1508,8 @@ const CalendarManager = {
     this.detailCta.href = event.link || '#events';
     this.detailCta.textContent = (event.link && event.link.startsWith('http')) ? 'Join Program Live →' : 'View Program Details →';
 
-    const flyerShareText = `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 Contact: ${event.contact || '+353 83 025 6299'}\n\nJoin Ustazah Iffat Maqbool!\nMore details: https://nurulquran.web.app/#events`;
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(flyerShareText)}`;
+    const eventUrl = EventUrlManager.urlForEvent(event.id);
+    const flyerShareText = `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 Contact: ${event.contact || '+353 83 025 6299'}\n\nJoin Ustazah Iffat Maqbool!`;
 
     // Handle flyer graphic preview inside card
     const flyerWrap = document.getElementById('event-detail-flyer-wrap');
@@ -1278,7 +1527,7 @@ const CalendarManager = {
         `;
         flyerWrap.classList.remove('hidden');
         flyerWrap.querySelector('.event-detail-flyer-preview')?.addEventListener('click', () => {
-          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText, event.location);
+          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText, event.location, event.title, event.time, event.id);
         });
       } else {
         flyerWrap.innerHTML = '';
@@ -1286,7 +1535,7 @@ const CalendarManager = {
       }
     }
 
-    // Dynamic action buttons container (Registration + Google Maps + WhatsApp Share)
+    // Dynamic action buttons container (program, calendar, map, share, registration)
     let actionWrap = this.detailContent.querySelector('.event-detail-actions-wrap');
     if (!actionWrap) {
       actionWrap = document.createElement('div');
@@ -1299,6 +1548,22 @@ const CalendarManager = {
       this.detailCta.parentNode.insertBefore(actionWrap, this.detailCta);
       actionWrap.appendChild(this.detailCta);
     }
+
+    // Device-aware Calendar Button
+    let calendarBtn = actionWrap.querySelector('.event-calendar-btn');
+    if (!calendarBtn) {
+      calendarBtn = document.createElement('button');
+      calendarBtn.type = 'button';
+      calendarBtn.className = 'btn btn-outline event-calendar-btn';
+      calendarBtn.style.display = 'inline-flex';
+      calendarBtn.style.alignItems = 'center';
+      calendarBtn.style.gap = '0.35rem';
+      calendarBtn.style.padding = '0.4rem 0.8rem';
+      calendarBtn.style.fontSize = '0.85rem';
+      calendarBtn.innerHTML = '<span aria-hidden="true">📅</span> <span>Add to Calendar</span>';
+      actionWrap.appendChild(calendarBtn);
+    }
+    calendarBtn.onclick = () => CalendarExportManager.add(event);
 
     // Google Maps Button
     let mapBtn = actionWrap.querySelector('.event-map-btn');
@@ -1338,7 +1603,7 @@ const CalendarManager = {
       SocialShareManager.open({
         title: event.title,
         text: `*${event.title}*\n🗓️ ${event.time}\n📍 ${event.location}\n📞 ${event.contact || ''}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!`,
-        url: 'https://nurulquran.web.app/#events',
+        url: eventUrl,
         imgUrl: event.flyer || event.link || '',
         date: event.time,
         venue: event.location
@@ -1364,6 +1629,8 @@ const CalendarManager = {
     // Swap displays
     this.detailEmpty.classList.add('hidden');
     this.detailContent.classList.remove('hidden');
+
+    if (updateUrl) EventUrlManager.updateBrowserUrl(event);
   }
 };
 
@@ -1418,9 +1685,10 @@ const SocialShareManager = {
     const date = card.querySelector('.flyer-city-date')?.textContent || '';
     const venue = card.querySelector('.flyer-venue')?.textContent || '';
     const contact = card.querySelector('.flyer-contact')?.textContent || '';
+    const eventId = card.dataset.eventId || '';
     
     const formattedText = `*${title}*\n🗓️ ${date}\n${venue}\n${contact}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!`;
-    const fullUrl = 'https://nurulquran.web.app/#events';
+    const fullUrl = EventUrlManager.urlForEvent(eventId);
 
     this.open({
       title: title,
@@ -1462,7 +1730,7 @@ const SocialShareManager = {
       this.previewMeta.textContent = [date, venue.replace(/^📍\s*/, '')].filter(Boolean).join(' • ') || 'Nur-Ul-Quran International';
     }
 
-    // Prepare share text with direct flyer image link so social networks unfurl and show the image!
+    // Include the flyer as a secondary link while keeping the event URL canonical.
     const textWithImage = absoluteImgUrl 
       ? `${text}\n\n🖼️ View Flyer: ${absoluteImgUrl}\n🔗 Site: ${this.data.url}`
       : `${text}\n\n🔗 ${this.data.url}`;
@@ -1474,18 +1742,18 @@ const SocialShareManager = {
 
     // Facebook
     if (this.linkFb) {
-      this.linkFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(absoluteImgUrl || this.data.url)}&quote=${encodeURIComponent(text)}`;
+      this.linkFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.data.url)}&quote=${encodeURIComponent(text)}`;
     }
 
     // X / Twitter
     if (this.linkX) {
       const tweetText = `${title} with Ustazah Iffat Maqbool ${date ? '• ' + date : ''}`;
-      this.linkX.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(absoluteImgUrl || this.data.url)}`;
+      this.linkX.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(this.data.url)}`;
     }
 
     // Telegram
     if (this.linkTg) {
-      this.linkTg.href = `https://t.me/share/url?url=${encodeURIComponent(absoluteImgUrl || this.data.url)}&text=${encodeURIComponent(text)}`;
+      this.linkTg.href = `https://t.me/share/url?url=${encodeURIComponent(this.data.url)}&text=${encodeURIComponent(text)}`;
     }
 
     // Download Flyer button
@@ -1620,9 +1888,10 @@ const FlyerLightboxManager = {
         const venue = card.querySelector('.flyer-venue')?.textContent || '';
         const date = card.querySelector('.flyer-city-date')?.textContent || '';
         const phone = card.querySelector('.flyer-contact')?.textContent || '';
-        const shareText = `*${title}*\n🗓️ ${date}\n${venue}\n${phone}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!\nMore info: https://nurulquran.web.app/#events`;
+        const eventId = card.dataset.eventId || '';
+        const shareText = `*${title}*\n🗓️ ${date}\n${venue}\n${phone}\n\nJoin Ustazah Iffat Maqbool (Nur-Ul-Quran International)!`;
         const venueQuery = venue.replace(/^📍\s*/, '').trim();
-        this.open(src, caption, shareText, venueQuery, title, date);
+        this.open(src, caption, shareText, venueQuery, title, date, eventId);
       });
     });
 
@@ -1638,7 +1907,7 @@ const FlyerLightboxManager = {
     });
   },
 
-  open(src, caption = '', shareText = '', mapQuery = '', eventTitle = '', eventDate = '') {
+  open(src, caption = '', shareText = '', mapQuery = '', eventTitle = '', eventDate = '', eventId = '') {
     if (!this.lightbox || !this.img) return;
     this.img.src = src;
     if (this.caption) this.caption.innerHTML = caption;
@@ -1650,6 +1919,11 @@ const FlyerLightboxManager = {
             <span>📍</span> <span>Google Maps</span>
           </a>`
         : '';
+      const calendarBtnHtml = eventId
+        ? `<button type="button" class="btn btn-outline" id="flyer-lightbox-calendar-btn" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3);padding:0.6rem 1.2rem;display:inline-flex;align-items:center;gap:0.4rem;cursor:pointer;">
+            <span aria-hidden="true">📅</span> <span>Add to Calendar</span>
+          </button>`
+        : '';
 
       this.shareContainer.innerHTML = `
         <div style="display:flex;gap:0.75rem;justify-content:center;align-items:center;flex-wrap:wrap;">
@@ -1657,6 +1931,7 @@ const FlyerLightboxManager = {
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
             <span>Share Flyer</span>
           </button>
+          ${calendarBtnHtml}
           ${mapBtnHtml}
         </div>
       `;
@@ -1666,11 +1941,16 @@ const FlyerLightboxManager = {
         SocialShareManager.open({
           title: eventTitle || 'Ireland Tour 2026',
           text: textToShare,
-          url: 'https://nurulquran.web.app/#events',
+          url: EventUrlManager.urlForEvent(eventId),
           imgUrl: src,
           date: eventDate,
           venue: mapQuery
         });
+      });
+
+      document.getElementById('flyer-lightbox-calendar-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        CalendarExportManager.addById(eventId);
       });
     }
 
@@ -2036,10 +2316,10 @@ const DynamicDataManager = {
 
       schema["@graph"].push({
         "@type": "EducationalOrganization",
-        "@id": "https://nurulquran.web.app/#organization",
+        "@id": "https://events.nurulquran.com/#organization",
         "name": "Nur-Ul-Quran International Institute",
-        "url": "https://nurulquran.web.app",
-        "logo": "https://nurulquran.web.app/assets/logo.png",
+        "url": "https://events.nurulquran.com/",
+        "logo": "https://events.nurulquran.com/assets/logo.png",
         "sameAs": [
           "https://www.youtube.com/nurulqurantv"
         ]
@@ -2053,7 +2333,7 @@ const DynamicDataManager = {
           "provider": {
             "@type": "EducationalOrganization",
             "name": "Nur-Ul-Quran International Institute",
-            "sameAs": "https://nurulquran.web.app"
+            "sameAs": "https://events.nurulquran.com/"
           }
         });
       });
@@ -2082,8 +2362,8 @@ const FlyerTiltManager = {
         const x = (e.clientX - r.left) / r.width;
         const y = (e.clientY - r.top) / r.height;
         
-        card.style.setProperty('--tilt-y', `${((x - 0.5) * 8).toFixed(2)}deg`);
-        card.style.setProperty('--tilt-x', `${((0.5 - y) * 8).toFixed(2)}deg`);
+        card.style.setProperty('--tilt-y', `${((x - 0.5) * 6).toFixed(2)}deg`);
+        card.style.setProperty('--tilt-x', `${((0.5 - y) * 6).toFixed(2)}deg`);
         card.style.setProperty('--px', `${(x * 100).toFixed(1)}%`);
         card.style.setProperty('--py', `${(y * 100).toFixed(1)}%`);
       });
@@ -2097,7 +2377,7 @@ const FlyerTiltManager = {
 };
 
 // ---- Initialize Everything ----
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   ThemeManager.init();
   NavManager.init();
   StarField.init();
@@ -2108,11 +2388,12 @@ document.addEventListener('DOMContentLoaded', () => {
   DynamicDataManager.init();
   
   MediaManager.init();
-  CalendarManager.init();
-  FlyerLightboxManager.init();
-  FlyerTiltManager.init();
   VideoLightbox.init();
   SocialShareManager.init();
   initSmoothScroll();
   initFirstVisitScroll();
+
+  await CalendarManager.init();
+  FlyerLightboxManager.init();
+  FlyerTiltManager.init();
 });
