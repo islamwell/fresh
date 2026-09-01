@@ -1131,6 +1131,106 @@ const CalendarExportManager = {
 
 window.CalendarExportManager = CalendarExportManager;
 
+// ---- Event Flyer Detail Auto-Scroller ----
+const EventFlyerAutoScroller = {
+  activeAnimationId: null,
+  activeTimeoutId: null,
+  currentEl: null,
+
+  stop() {
+    if (this.activeAnimationId) {
+      cancelAnimationFrame(this.activeAnimationId);
+      this.activeAnimationId = null;
+    }
+    if (this.activeTimeoutId) {
+      clearTimeout(this.activeTimeoutId);
+      this.activeTimeoutId = null;
+    }
+    this.currentEl = null;
+  },
+
+  start(el) {
+    this.stop();
+    if (!el) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    this.currentEl = el;
+    el.scrollTop = 0; // start at top
+
+    const initScrollLoop = () => {
+      if (this.currentEl !== el) return;
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 6) return;
+
+      let direction = 1; // 1 = down, -1 = up
+      const speed = 0.55;
+      let isPaused = false;
+      let isHovered = false;
+
+      const pause = (duration = 1600) => {
+        isPaused = true;
+        this.activeTimeoutId = setTimeout(() => {
+          if (!isHovered && this.currentEl === el) {
+            isPaused = false;
+            this.activeAnimationId = requestAnimationFrame(step);
+          }
+        }, duration);
+      };
+
+      const step = () => {
+        if (this.currentEl !== el) return;
+        if (isPaused || isHovered) return;
+
+        const currentMax = el.scrollHeight - el.clientHeight;
+        if (currentMax <= 6) return;
+
+        el.scrollTop += speed * direction;
+
+        if (el.scrollTop >= currentMax - 1) {
+          el.scrollTop = currentMax;
+          direction = -1; // reverse to up
+          pause(1600);
+          return;
+        } else if (el.scrollTop <= 1) {
+          el.scrollTop = 0;
+          direction = 1; // reverse to down
+          pause(1600);
+          return;
+        }
+
+        this.activeAnimationId = requestAnimationFrame(step);
+      };
+
+      // Pause on pointerenter / touch so user can manually view
+      el.addEventListener('pointerenter', () => {
+        isHovered = true;
+      });
+      el.addEventListener('pointerleave', () => {
+        isHovered = false;
+        if (!isPaused && this.currentEl === el) {
+          this.activeAnimationId = requestAnimationFrame(step);
+        }
+      });
+
+      // Initial pause of 900ms before auto-scroll begins
+      pause(900);
+    };
+
+    const img = el.querySelector('img');
+    if (img && !img.complete) {
+      img.addEventListener('load', () => {
+        if (this.currentEl === el) initScrollLoop();
+      }, { once: true });
+    } else {
+      setTimeout(() => {
+        if (this.currentEl === el) initScrollLoop();
+      }, 60);
+    }
+  }
+};
+
 // ---- Calendar & Events Manager ----
 const CalendarManager = {
   events: {},
@@ -1396,6 +1496,7 @@ const CalendarManager = {
     this.renderCalendar();
     
     // Reset selection card
+    EventFlyerAutoScroller.stop();
     this.detailContent.classList.add('hidden');
     this.detailEmpty.classList.remove('hidden');
     
@@ -1517,7 +1618,7 @@ const CalendarManager = {
       if (event.flyer || (event.link && (event.link.endsWith('.jpeg') || event.link.endsWith('.jpg') || event.link.endsWith('.png')))) {
         const flyerSrc = event.flyer || event.link;
         flyerWrap.innerHTML = `
-          <div class="event-detail-flyer-preview" data-flyer-src="${flyerSrc}" data-caption="${event.title} • ${event.time}">
+          <div class="event-detail-flyer-preview" data-flyer-src="${flyerSrc}" data-caption="${event.title} • ${event.time}" title="Auto-scrolling flyer preview • Click to expand full screen">
             <img src="${flyerSrc}" alt="${event.title} Flyer">
             <div class="event-detail-flyer-overlay">
               <span>☘️ In-Person Ireland Flyer</span>
@@ -1526,10 +1627,15 @@ const CalendarManager = {
           </div>
         `;
         flyerWrap.classList.remove('hidden');
-        flyerWrap.querySelector('.event-detail-flyer-preview')?.addEventListener('click', () => {
-          FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText, event.location, event.title, event.time, event.id);
-        });
+        const previewEl = flyerWrap.querySelector('.event-detail-flyer-preview');
+        if (previewEl) {
+          previewEl.addEventListener('click', () => {
+            FlyerLightboxManager.open(flyerSrc, `${event.title}<br><span style="font-size:0.85em;opacity:0.85">${event.location} • ${event.time}</span>`, flyerShareText, event.location, event.title, event.time, event.id);
+          });
+          EventFlyerAutoScroller.start(previewEl);
+        }
       } else {
+        EventFlyerAutoScroller.stop();
         flyerWrap.innerHTML = '';
         flyerWrap.classList.add('hidden');
       }
