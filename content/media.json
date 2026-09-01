@@ -36,11 +36,59 @@
       },
       {
         "id": 5,
-        "title": "Waseelay Ki Haqeeqat (Emaan Series)",
+        "title": "Waseelay Ki Haqeeqat (Part 1 — Emaan Series)",
         "artist": "Ustazah Iffat Maqbool",
         "trackNumber": "05",
         "src": "https://nq-international.com/wp-content/uploads/2017/06/Lec01_WR15_6_Waseely-ki-haqeeqat-_nur-masjid-4-24-2015.mp3",
         "duration": "30:45"
+      },
+      {
+        "id": 6,
+        "title": "Waseelay Ki Haqeeqat (Part 2 — Tawassul Rulings)",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "06",
+        "src": "https://nq-international.com/wp-content/uploads/2017/06/Lec02_WR15_6_Waseely-ki-haqeeqat-_nur-masjid-4-24-2015.mp3",
+        "duration": "32:10"
+      },
+      {
+        "id": 7,
+        "title": "Waseelay Ki Haqeeqat (Part 3 — Dua & Supplication)",
+        "artist": "Ustazah Iffat Maqbool",
+        "trackNumber": "07",
+        "src": "https://nq-international.com/wp-content/uploads/2017/06/Lec03_WR15_6_Waseely-ki-haqeeqat-_nur-masjid-4-24-2015.mp3",
+        "duration": "28:50"
+      },
+      {
+        "id": 8,
+        "title": "Sūrah Al-Mulk (The Sovereignty)",
+        "artist": "Mishary Rashid Alafasy",
+        "trackNumber": "08",
+        "src": "https://server8.mp3quran.net/afs/067.mp3",
+        "duration": "08:42"
+      },
+      {
+        "id": 9,
+        "title": "Sūrah Ar-Raḥmān (The Most Merciful)",
+        "artist": "Mishary Rashid Alafasy",
+        "trackNumber": "09",
+        "src": "https://server8.mp3quran.net/afs/055.mp3",
+        "duration": "12:30"
+      },
+      {
+        "id": 10,
+        "title": "Sūrah Yāsīn (Heart of the Quran)",
+        "artist": "Mishary Rashid Alafasy",
+        "trackNumber": "10",
+        "src": "https://server8.mp3quran.net/afs/036.mp3",
+        "duration": "15:18"
+      },
+      {
+        "id": 11,
+        "title": "Sūrah Al-Kahf (The Cave)",
+        "artist": "Mishary Rashid Alafasy",
+        "trackNumber": "11",
+        "src": "https://server8.mp3quran.net/afs/018.mp3",
+        "duration": "25:40"
       }
     ]
   },
@@ -48,21 +96,57 @@
     "items": [
       {
         "id": 1,
-        "title": "Dawrah e Quran 2026 — Juz 1 (Intro & Key Themes)",
-        "description": "Comprehensive explanation and reflection on Juz 1 by Ustazah Iffat Maqbool",
+        "title": "The Humility & Modesty of the Companions (فضائلِ صحابہ کرامؓ)",
+        "description": "Inspiring lessons from the lives and virtues of Sahaba-e-Kiram by Ustazah Iffat Maqbool",
         "youtubeId": "rvMxAl6BiAg"
       },
       {
         "id": 2,
-        "title": "Dawrah e Quran 2026 — Juz 2 (Surah Al-Baqarah)",
-        "description": "In-depth insights, rulings, and spiritual wisdom from Surah Al-Baqarah",
+        "title": "Dawrah e Quran 2026 — Para 2 (Surah Al-Baqarah)",
+        "description": "In-depth insights, practical rulings, and spiritual wisdom from Surah Al-Baqarah",
         "youtubeId": "8K8PqckMGiA"
       },
       {
         "id": 3,
-        "title": "Medina Live & Scenic Reflections",
-        "description": "Serene and beautiful atmospheric footage of Al-Masjid an-Nabawi",
-        "youtubeId": "5Hw0Q7yJigw"
+        "title": "Anger Management Workshop (لا تغضب - غصّہ مت کریں)",
+        "description": "Powerful Quranic & Sunnah strategies to master emotions and achieve emotional peace",
+        "youtubeId": "4M95qA9tyek"
+      },
+      {
+        "id": 4,
+        "title": "Hold Firmly to the Qur'an & Sunnah (پیوستہ رہ شجر سے)",
+        "description": "Reconnecting our hearts and lives with the divine rope of the Quran and authentic Prophetic guidance",
+        "youtubeId": "uFVXoF7RK-A"
+      },
+      {
+        "id": 5,
+        "title": "Recognize Your Lord Through His Signs (خالق کو اُس کی نشانیوں سے پہچانو)",
+        "description": "A deeply moving reflection on the signs of Allah in the universe and human soul",
+        "youtubeId": "_Xj7Ql3QsSg"
+      },
+      {
+        "id": 6,
+        "title": "Haqooq Allah (حقوق اللہ‎) — Muamlat & Ibadah Series",
+        "description": "Understanding our primary duties, sincere worship, and devotion to our Creator",
+        "youtubeId": "WAflrDCO2jA"
+      },
+      {
+        "id": 7,
+        "title": "Allah Ka Pyar (The Boundless Love of Allah)",
+        "description": "Heart-touching lecture on experiencing the warmth, mercy, and love of Allah in daily life",
+        "youtubeId": "0IbfpLzCXj8"
+      },
+      {
+        "id": 8,
+        "title": "From Words to Transformation — Dawrah e Qur’an 2026 Reflections",
+        "description": "Practical life transformations and takeaways from the international Dawrah e Quran",
+        "youtubeId": "R-E1myKqvaA"
+      },
+      {
+        "id": 9,
+        "title": "The Companions: Chosen Servants of Allah (فضائلِ صحابہ کرامؓ — Day 24)",
+        "description": "Exploring the devotion and sacrifices of the noble companions of Prophet Muhammad ﷺ",
+        "youtubeId": "yIrM3SvbYu4"
       }
     ]
   }
