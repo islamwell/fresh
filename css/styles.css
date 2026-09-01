@@ -747,14 +747,14 @@ p {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 560px;
-  min-height: clamp(560px, 72svh, 740px);
+  min-height: 500px;
+  min-height: clamp(500px, 60svh, 640px);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--gradient-hero);
   overflow: hidden;
-  padding: 5.25rem 0 3.25rem;
+  padding: 4.75rem 0 2.75rem;
 }
 
 /* Animated gradient mesh overlay */
@@ -849,20 +849,22 @@ p {
 
 .hero__arabic {
   font-family: var(--font-arabic);
-  font-size: clamp(1.8rem, 3.8vw, 2.75rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
   color: var(--color-bright-gold);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   opacity: 0.95;
   direction: rtl;
   letter-spacing: 0;
-  line-height: 1.8;
+  line-height: 1.65;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   font-weight: 400; /* Regular weight - NOT bold */
 }
 
 .hero__title {
+  font-size: clamp(2.35rem, 5vw, 4rem);
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.12;
   letter-spacing: -0.02em;
 }
 
@@ -874,11 +876,11 @@ p {
 }
 
 .hero__subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 1.55vw, 1.2rem);
   color: rgba(255, 255, 255, 0.75);
   max-width: 620px;
-  margin: 0 auto 2rem;
-  line-height: 1.8;
+  margin: 0 auto 1.5rem;
+  line-height: 1.65;
 }
 
 .hero__cta {
@@ -904,20 +906,28 @@ p {
 }
 
 #events {
-  padding-top: clamp(3.5rem, 6vw, 5rem);
+  padding-top: clamp(2.5rem, 4vw, 3.5rem);
   scroll-margin-top: 72px;
+}
+
+#events .section-header {
+  margin-bottom: 2.75rem;
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 500px;
-    min-height: clamp(500px, 76svh, 640px);
-    padding: 5rem 0 3rem;
+    min-height: 480px;
+    min-height: clamp(480px, 64svh, 540px);
+    padding: 4.5rem 0 2.25rem;
   }
 
   .hero__arabic {
-    font-size: clamp(1.55rem, 7vw, 2.1rem);
+    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
     margin-bottom: 0.65rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.25rem, 10vw, 2.7rem);
   }
 
   .hero__subtitle {
@@ -926,7 +936,15 @@ p {
   }
 
   #events {
-    padding-top: 3.25rem;
+    padding-top: 2.25rem;
+  }
+
+  #events .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .hero__scroll-indicator {
+    display: none;
   }
 }
 
