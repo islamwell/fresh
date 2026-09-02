@@ -1014,8 +1014,46 @@ p {
 }
 
 /* ============================================================
-   10. COURSE CARDS
+   10. COURSE FILTERS & CARDS
    ============================================================ */
+.courses-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.85rem 1.15rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--text-color, #e2e8f0);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+  font-weight: 500;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.filter-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+}
+
 .course-card {
   position: relative;
   padding: 2.5rem 2rem;

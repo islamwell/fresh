@@ -435,19 +435,8 @@ function initSmoothScroll() {
 function initFirstVisitScroll() {
   // Only trigger on home page root, when no specific anchor hash is in the URL
   const path = window.location.pathname;
-  if (path.endsWith('archive.html') || 
-      path.endsWith('donate.html') || 
-      path.endsWith('admin.html') || 
-      path.endsWith('kids.html') || 
-      path.endsWith('teens.html') || 
-      path.endsWith('ramadan.html') || 
-      path.endsWith('resources.html') || 
-      path.endsWith('rootwords.html') || 
-      path.endsWith('flowcharts.html') || 
-      path.endsWith('tafseer-notes.html') || 
-      path.endsWith('reading-material.html') || 
-      path.endsWith('volunteer.html') || 
-      window.location.hash) {
+  const isHomePage = path === '/' || path.endsWith('/index.html') || path.endsWith('/') || path === '' || !path.includes('.html');
+  if (!isHomePage || window.location.hash) {
     return;
   }
 
@@ -834,33 +823,35 @@ const MediaManager = {
 
   setupPlayerControls() {
     // Play/Pause button
-    this.playBtn.addEventListener('click', () => this.togglePlay());
+    this.playBtn?.addEventListener('click', () => this.togglePlay());
     this.floatingPlayBtn?.addEventListener('click', () => this.togglePlay());
     this.floatingPrevBtn?.addEventListener('click', () => this.playPrev());
     this.floatingNextBtn?.addEventListener('click', () => this.playNext());
 
     // Time update
-    this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+    this.audio?.addEventListener('timeupdate', () => this.onTimeUpdate());
 
     // Loaded metadata to set initial duration
-    this.audio.addEventListener('loadedmetadata', () => {
-      this.durationEl.textContent = this.formatTime(this.audio.duration);
+    this.audio?.addEventListener('loadedmetadata', () => {
+      if (this.durationEl) this.durationEl.textContent = this.formatTime(this.audio.duration);
     });
 
     // Seek progress
-    this.progress.addEventListener('input', (e) => {
+    this.progress?.addEventListener('input', (e) => {
       const pct = parseFloat(e.target.value);
-      this.audio.currentTime = (pct / 100) * this.audio.duration;
+      if (this.audio && this.audio.duration) {
+        this.audio.currentTime = (pct / 100) * this.audio.duration;
+      }
     });
 
     // Volume adjustment
-    this.volume.addEventListener('input', (e) => {
+    this.volume?.addEventListener('input', (e) => {
       const vol = parseFloat(e.target.value) / 100;
-      this.audio.volume = vol;
+      if (this.audio) this.audio.volume = vol;
     });
 
     // Track ended → play next
-    this.audio.addEventListener('ended', () => {
+    this.audio?.addEventListener('ended', () => {
       this.playNext();
     });
   },
@@ -2210,16 +2201,20 @@ const DynamicDataManager = {
 
   populateSiteDetails(site) {
     if (!site) return;
-    const siteTitleEls = document.querySelectorAll('.logo span, footer .logo-footer h3');
+    const siteTitleEls = document.querySelectorAll('.nav-brand span, .logo span, footer .logo-footer h3');
     siteTitleEls.forEach(el => {
-      el.textContent = site.name;
+      if (!el.textContent.trim() && site.name) {
+        el.textContent = site.name;
+      }
     });
 
-    const heroTagline = document.querySelector('.hero-content p');
-    if (heroTagline) heroTagline.textContent = site.tagline;
+    const heroTagline = document.querySelector('.hero__subtitle, .hero-content p');
+    if (heroTagline && site.tagline && !heroTagline.textContent.trim()) {
+      heroTagline.textContent = site.tagline;
+    }
 
-    const statsContainer = document.querySelector('.stats-grid');
-    if (statsContainer && site.stats) {
+    const statsContainer = document.querySelector('.about-stats, .stats-grid');
+    if (statsContainer && site.stats && !statsContainer.children.length) {
       statsContainer.innerHTML = site.stats.map(s => `
         <div class="stat-card glass-card reveal">
           <div class="stat-number" data-count="${parseInt(s.number)}">${s.number}</div>
@@ -2227,24 +2222,6 @@ const DynamicDataManager = {
         </div>
       `).join('');
       StatCounter.init();
-    }
-
-    const footerContact = document.querySelector('.footer-col:last-child');
-    if (footerContact && site.contact) {
-      const emailEl = footerContact.querySelector('p:nth-of-type(1)');
-      if (emailEl) emailEl.innerHTML = `<strong>Email:</strong> <a href="mailto:${site.contact.email}" style="color:var(--text-muted)">${site.contact.email}</a>`;
-      
-      const phoneList = footerContact.querySelector('.phone-list') || document.createElement('div');
-      phoneList.className = 'phone-list';
-      phoneList.style.marginTop = '0.5rem';
-      phoneList.innerHTML = (site.contact.phones || []).map(p => `
-        <div style="font-size:0.9rem;margin-bottom:0.25rem;color:var(--text-muted)">
-          ${p.flag} ${p.region}: <a href="tel:${p.number.replace(/\D/g,'')}" style="color:inherit">${p.number}</a>
-        </div>
-      `).join('');
-      if (!footerContact.querySelector('.phone-list')) {
-        footerContact.appendChild(phoneList);
-      }
     }
   },
 
@@ -2322,24 +2299,16 @@ const DynamicDataManager = {
       tab.addEventListener('click', () => {
         tabs.forEach(t => {
           t.classList.remove('active');
-          t.style.background = 'transparent';
-          t.style.borderColor = 'rgba(255,255,255,0.1)';
+          t.style.background = '';
+          t.style.borderColor = '';
         });
         tab.classList.add('active');
-        tab.style.background = 'var(--primary)';
-        tab.style.borderColor = 'var(--primary)';
         filterAndSearch();
       });
     });
 
     if (searchInput) {
       searchInput.addEventListener('input', () => filterAndSearch());
-    }
-
-    const active = document.querySelector('#course-filter-tabs .filter-btn.active');
-    if (active) {
-      active.style.background = 'var(--primary)';
-      active.style.borderColor = 'var(--primary)';
     }
   },
 

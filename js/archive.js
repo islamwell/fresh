@@ -10,7 +10,7 @@ const ArchiveManager = {
 
   async init() {
     this.grid = document.getElementById('archive-grid');
-    this.filterTabs = document.querySelectorAll('.archive-filter-btn');
+    this.filterTabs = document.querySelectorAll('#archive-filter-tabs .filter-btn, .archive-filter-btn');
     this.searchInput = document.getElementById('archive-search');
     this.countEl = document.getElementById('archive-count');
 
