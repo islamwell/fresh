@@ -37,7 +37,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=26">
+  <link rel="stylesheet" href="css/styles.css?v=27">
 </head>
 <body>
   <!-- Skip Link -->
@@ -386,9 +386,9 @@
         </div>
 
         <!-- Archive Link Banner -->
-        <div class="archive-callout reveal" style="margin-top: 2.5rem; text-align: center; padding: 1.5rem; border-radius: 16px; background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border-light);">
-          <p style="margin: 0 0 0.85rem 0; font-size: 0.95rem; color: var(--text-muted);">Looking for historical tours, previous Umrah trips, or completed seminar series?</p>
-          <a href="archive.html" class="btn btn-outline" style="border-radius: 30px; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <div class="archive-callout reveal" style="margin-top: 1.25rem; text-align: center; padding: 1rem 1.25rem; border-radius: 16px; background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border-light);">
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--text-muted);">Looking for historical tours, previous Umrah trips, or completed seminar series?</p>
+          <a href="archive.html" class="btn btn-outline" style="border-radius: 30px; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; font-size: 0.9rem;">
             <span>📜</span> <span>View Past Events &amp; Trips Archive →</span>
           </a>
         </div>
@@ -405,29 +405,29 @@
         </div>
 
         <!-- Find Best Course Banner -->
-        <div class="finder-banner reveal" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(200, 150, 62, 0.12), rgba(26, 35, 126, 0.08)); border: 1.5px solid var(--accent-gold); border-radius: var(--radius-lg); padding: 1.5rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem;">
+        <div class="finder-banner reveal" style="margin-bottom: 1.25rem; background: linear-gradient(135deg, rgba(200, 150, 62, 0.12), rgba(26, 35, 126, 0.08)); border: 1.5px solid var(--accent-gold); border-radius: var(--radius-lg); padding: 1.15rem 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
           <div>
-            <span class="trip-tag trip-tag-active" style="margin-bottom: 0.5rem;">Interactive Course Matcher</span>
-            <h3 style="margin: 0 0 0.4rem; font-size: 1.35rem; color: var(--text);">Not sure which course is right for you?</h3>
-            <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); max-width: 580px;">Answer a few quick questions about your age, schedule, and goals. We'll match you with the perfect course and instructor.</p>
+            <span class="trip-tag trip-tag-active" style="margin-bottom: 0.35rem;">Interactive Course Matcher</span>
+            <h3 style="margin: 0 0 0.25rem; font-size: 1.25rem; color: var(--text);">Not sure which course is right for you?</h3>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); max-width: 580px;">Answer a few quick questions about your age, schedule, and goals. We'll match you with the perfect course and instructor.</p>
           </div>
-          <button type="button" class="btn btn-finder" id="finderTriggerCourses" style="padding: 0.85rem 1.75rem; font-size: 0.95rem;" aria-haspopup="dialog">
+          <button type="button" class="btn btn-finder" id="finderTriggerCourses" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;" aria-haspopup="dialog">
             <span>🎯</span> <span>Find Best Course →</span>
           </button>
         </div>
 
         <!-- Course Filters & Search -->
-        <div class="courses-filter-bar reveal" style="margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 1.25rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(8px);">
-          <div class="filter-tabs" id="course-filter-tabs" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button class="filter-btn active" data-filter="all" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">All Courses</button>
-            <button class="filter-btn" data-filter="quran" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Quran & Tafseer</button>
-            <button class="filter-btn" data-filter="tajweed" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Tajweed & Recitation</button>
-            <button class="filter-btn" data-filter="arabic" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Arabic Grammar</button>
-            <button class="filter-btn" data-filter="character" style="padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; font-family: inherit;">Development & Family</button>
+        <div class="courses-filter-bar reveal" style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 0.85rem 1.15rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(8px);">
+          <div class="filter-tabs" id="course-filter-tabs" style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <button class="filter-btn active" data-filter="all" style="padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.85rem; font-family: inherit;">All Courses</button>
+            <button class="filter-btn" data-filter="quran" style="padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.85rem; font-family: inherit;">Quran & Tafseer</button>
+            <button class="filter-btn" data-filter="tajweed" style="padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.85rem; font-family: inherit;">Tajweed & Recitation</button>
+            <button class="filter-btn" data-filter="arabic" style="padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.85rem; font-family: inherit;">Arabic Grammar</button>
+            <button class="filter-btn" data-filter="character" style="padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: transparent; color: var(--text-color, #e2e8f0); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.85rem; font-family: inherit;">Development & Family</button>
           </div>
-          <div class="search-box" style="position: relative; max-width: 320px; width: 100%;">
-            <input type="text" id="course-search" placeholder="Search courses by keyword..." aria-label="Search courses by keyword" style="width: 100%; padding: 0.75rem 1.25rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: rgba(0,0,0,0.2); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; transition: all 0.3s; box-sizing: border-box;">
-            <span style="position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+          <div class="search-box" style="position: relative; max-width: 300px; width: 100%;">
+            <input type="text" id="course-search" placeholder="Search courses by keyword..." aria-label="Search courses by keyword" style="width: 100%; padding: 0.65rem 1.15rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; background: rgba(0,0,0,0.2); color: #fff; font-family: inherit; font-size: 0.85rem; outline: none; transition: all 0.3s; box-sizing: border-box;">
+            <span style="position: absolute; right: 1.15rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
           </div>
         </div>
 
@@ -769,7 +769,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.20 (updated 2026-09-01 23:17)</span></p>
+        <p>© 2008–2026 NurulQuran.com — Nur-Ul-Quran International Institute. All Rights Reserved. <span id="site-version" style="opacity: 0.5; font-size: 0.85em; margin-left: 0.5rem;">v2.3.21 (updated 2026-09-02 13:52)</span></p>
       </div>
     </div>
   </footer>
@@ -1168,7 +1168,7 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=26" defer></script>
-  <script src="js/course-finder.js?v=26" defer></script>
+  <script src="js/app.js?v=27" defer></script>
+  <script src="js/course-finder.js?v=27" defer></script>
 </body>
 </html>
