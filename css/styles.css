@@ -2611,6 +2611,8 @@ p {
   border-radius: 12px;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   border: 1px solid var(--border-light);
   cursor: pointer;
   position: relative;
@@ -2621,6 +2623,7 @@ p {
   scroll-behavior: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 213, 79, 0.35) transparent;
+  will-change: scroll-position;
 }
 
 .event-detail-flyer-preview::-webkit-scrollbar {
@@ -2643,6 +2646,7 @@ p {
   display: block;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .event-detail-flyer-overlay {

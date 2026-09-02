@@ -440,6 +440,11 @@ function initFirstVisitScroll() {
     return;
   }
 
+  // Disable on mobile/touch screens or when reduced motion is preferred
+  if (window.matchMedia && (window.matchMedia('(hover: none)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    return;
+  }
+
   // Check session storage to ensure it only happens once per session
   if (sessionStorage.getItem('nq_first_visit_scrolled')) {
     return;
@@ -1122,11 +1127,13 @@ const CalendarExportManager = {
 
 window.CalendarExportManager = CalendarExportManager;
 
-// ---- Event Flyer Detail Auto-Scroller ----
+// ---- Event Flyer Detail Auto-Scroller (Mobile & Desktop Optimized) ----
 const EventFlyerAutoScroller = {
   activeAnimationId: null,
   activeTimeoutId: null,
   currentEl: null,
+  observer: null,
+  cleanupListeners: null,
 
   stop() {
     if (this.activeAnimationId) {
@@ -1136,6 +1143,14 @@ const EventFlyerAutoScroller = {
     if (this.activeTimeoutId) {
       clearTimeout(this.activeTimeoutId);
       this.activeTimeoutId = null;
+    }
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+    if (this.cleanupListeners) {
+      this.cleanupListeners();
+      this.cleanupListeners = null;
     }
     this.currentEl = null;
   },
@@ -1151,73 +1166,155 @@ const EventFlyerAutoScroller = {
     el.scrollTop = 0; // start at top
 
     let direction = 1; // 1 = down, -1 = up
-    const speed = 0.6;
+    const scrollSpeedPxPerSec = 22; // smooth 22px/sec across 60Hz, 90Hz, and 120Hz screens
     let isPaused = false;
-    let isHovered = false;
+    let isInteracting = false;
+    let isVisible = true;
+    let lastTimestamp = null;
+    let maxScroll = 0;
+    let stuckFrameCount = 0;
 
-    const pause = (duration = 1600) => {
+    // Cache maxScroll to completely prevent layout thrashing on every frame
+    const updateMaxScroll = () => {
+      if (!this.currentEl) return;
+      maxScroll = Math.max(0, el.scrollHeight - el.clientHeight);
+    };
+
+    const img = el.querySelector('img');
+    if (img) {
+      if (img.complete) {
+        updateMaxScroll();
+      } else {
+        img.addEventListener('load', updateMaxScroll, { once: true });
+      }
+    } else {
+      updateMaxScroll();
+    }
+
+    const pause = (duration = 1800) => {
       isPaused = true;
       if (this.activeTimeoutId) clearTimeout(this.activeTimeoutId);
       this.activeTimeoutId = setTimeout(() => {
         if (this.currentEl === el) {
           isPaused = false;
-          if (!isHovered) {
+          lastTimestamp = null;
+          stuckFrameCount = 0;
+          if (!isInteracting && isVisible) {
             this.activeAnimationId = requestAnimationFrame(step);
           }
         }
       }, duration);
     };
 
-    const step = () => {
+    const step = (timestamp) => {
       if (this.currentEl !== el) return;
-      if (isPaused || isHovered) return;
+      if (isPaused || isInteracting || !isVisible) {
+        lastTimestamp = null;
+        return;
+      }
 
-      const maxScroll = el.scrollHeight - el.clientHeight;
-      if (maxScroll <= 5) {
-        // If image hasn't finished sizing yet, keep requesting frames
+      if (!lastTimestamp) {
+        lastTimestamp = timestamp;
         this.activeAnimationId = requestAnimationFrame(step);
         return;
       }
 
-      el.scrollTop += speed * direction;
+      const elapsed = Math.min((timestamp - lastTimestamp) / 1000, 0.1); // cap delta to 100ms
+      lastTimestamp = timestamp;
 
-      if (direction === 1 && el.scrollTop >= maxScroll - 1) {
-        el.scrollTop = maxScroll;
+      // Check maxScroll if not computed yet
+      if (maxScroll <= 5) {
+        updateMaxScroll();
+        if (maxScroll <= 5) {
+          // Retry after a brief delay without pegging requestAnimationFrame
+          pause(300);
+          return;
+        }
+      }
+
+      const stepDist = scrollSpeedPxPerSec * elapsed;
+      const prevScroll = el.scrollTop;
+      el.scrollTop += stepDist * direction;
+      const currentScroll = el.scrollTop;
+
+      // Stuck detection for Android Chrome subpixel boundaries & DPR rounding
+      if (Math.abs(currentScroll - prevScroll) < 0.15) {
+        stuckFrameCount++;
+      } else {
+        stuckFrameCount = 0;
+      }
+
+      // Check if reached bottom or stuck at bottom
+      if (direction === 1 && (currentScroll >= maxScroll - 3 || stuckFrameCount >= 4)) {
         direction = -1; // reverse to up
-        pause(1600);
+        pause(2000);
         return;
-      } else if (direction === -1 && el.scrollTop <= 1) {
-        el.scrollTop = 0;
+      }
+
+      // Check if reached top or stuck at top
+      if (direction === -1 && (currentScroll <= 3 || stuckFrameCount >= 4)) {
         direction = 1; // reverse to down
-        pause(1600);
+        pause(2000);
         return;
       }
 
       this.activeAnimationId = requestAnimationFrame(step);
     };
 
-    // Pause when user hovers or touches to inspect manually
-    el.addEventListener('mouseenter', () => {
-      isHovered = true;
-    });
-    el.addEventListener('mouseleave', () => {
-      isHovered = false;
-      if (!isPaused && this.currentEl === el) {
-        this.activeAnimationId = requestAnimationFrame(step);
-      }
-    });
-    el.addEventListener('touchstart', () => {
-      isHovered = true;
-    }, { passive: true });
-    el.addEventListener('touchend', () => {
-      isHovered = false;
-      if (!isPaused && this.currentEl === el) {
-        this.activeAnimationId = requestAnimationFrame(step);
-      }
-    }, { passive: true });
+    // Only auto-scroll when the flyer preview is actually visible in the viewport
+    if ('IntersectionObserver' in window) {
+      this.observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        isVisible = entry ? entry.isIntersecting : true;
+        if (isVisible && !isPaused && !isInteracting && this.currentEl === el) {
+          lastTimestamp = null;
+          if (!this.activeAnimationId) {
+            this.activeAnimationId = requestAnimationFrame(step);
+          }
+        } else if (!isVisible && this.activeAnimationId) {
+          cancelAnimationFrame(this.activeAnimationId);
+          this.activeAnimationId = null;
+        }
+      }, { threshold: 0.1 });
+      this.observer.observe(el);
+    }
 
-    // Initial pause of 900ms before auto-scrolling starts
-    pause(900);
+    // Touch and pointer listeners with graceful pause and resume
+    const onTouchStart = () => {
+      isInteracting = true;
+      if (this.activeAnimationId) {
+        cancelAnimationFrame(this.activeAnimationId);
+        this.activeAnimationId = null;
+      }
+      if (this.activeTimeoutId) {
+        clearTimeout(this.activeTimeoutId);
+        this.activeTimeoutId = null;
+      }
+    };
+
+    const onTouchEnd = () => {
+      isInteracting = false;
+      updateMaxScroll();
+      // Give user 2.5s to read before resuming auto-scroll
+      pause(2500);
+    };
+
+    el.addEventListener('mouseenter', onTouchStart);
+    el.addEventListener('mouseleave', onTouchEnd);
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+    el.addEventListener('touchcancel', onTouchEnd, { passive: true });
+
+    this.cleanupListeners = () => {
+      el.removeEventListener('mouseenter', onTouchStart);
+      el.removeEventListener('mouseleave', onTouchEnd);
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchend', onTouchEnd);
+      el.removeEventListener('touchcancel', onTouchEnd);
+    };
+
+    // Initial pause of 1200ms before auto-scrolling starts
+    pause(1200);
   }
 };
 
