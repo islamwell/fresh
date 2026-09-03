@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to NurulQuran — Select Your Destination</title>
+  <meta name="description" content="Welcome to NurulQuran International. Choose between the Events & Ireland Tour Portal or continue to the NurulQuran Main Audio & Course Library.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b0e;
+      --card-bg: rgba(18, 26, 34, 0.85);
+      --card-hover-bg: rgba(24, 34, 46, 0.95);
+      --stroke: rgba(255, 255, 255, 0.1);
+      --stroke-hover: rgba(255, 213, 79, 0.4);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --em: #22c99a;
+      --em-glow: rgba(34, 201, 154, 0.35);
+      --gold: #d8b46b;
+      --gold-glow: rgba(216, 180, 107, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      padding: 24px 16px;
+    }
+
+    /* Ambient Glow Orbs */
+    .glow-orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      top: 20%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle, var(--em-glow) 0%, rgba(34,201,154,0) 70%);
+      animation: pulseGlow 8s ease-in-out infinite alternate;
+    }
+    .glow-orb-2 {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      bottom: 10%;
+      right: 20%;
+      transform: translate(30%, 30%);
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle, var(--gold-glow) 0%, rgba(216,180,107,0) 70%);
+      animation: pulseGlow 7s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      100% { transform: scale(1.15); opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header Header */
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 10px rgba(216, 180, 107, 0.3);
+    }
+    .logo-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(34,201,154,0.2), rgba(216,180,107,0.2));
+      border: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .logo-badge svg {
+      width: 32px;
+      height: 32px;
+      color: var(--gold);
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      text-align: center;
+      max-width: 580px;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    /* Choice Cards Grid */
+    .choices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .choice-card {
+      background: var(--card-bg);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .choice-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+    .choice-card--events::before {
+      background: linear-gradient(90deg, #22c99a, #64ffda);
+    }
+    .choice-card--main::before {
+      background: linear-gradient(90deg, #d8b46b, #ffd54f);
+    }
+    .choice-card:hover {
+      transform: translateY(-6px);
+      background: var(--card-hover-bg);
+      border-color: rgba(255,255,255,0.25);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+    }
+    .choice-card--events:hover {
+      border-color: var(--em);
+      box-shadow: 0 24px 48px rgba(34, 201, 154, 0.2);
+    }
+    .choice-card--main:hover {
+      border-color: var(--gold);
+      box-shadow: 0 24px 48px rgba(216, 180, 107, 0.2);
+    }
+
+    .badge-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .choice-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .choice-badge--events {
+      background: rgba(34, 201, 154, 0.15);
+      color: #22c99a;
+      border: 1px solid rgba(34, 201, 154, 0.3);
+    }
+    .choice-badge--main {
+      background: rgba(216, 180, 107, 0.15);
+      color: #ffd54f;
+      border: 1px solid rgba(216, 180, 107, 0.3);
+    }
+
+    .destination-url {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    .choice-card h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .choice-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem 0;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .feature-list li span:first-child {
+      font-size: 1.05rem;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn-action--events {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }
+    .btn-action--events:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .btn-action--main {
+      background: linear-gradient(135deg, #d8b46b, #b88f3a);
+      color: #0b0f14;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(216, 180, 107, 0.35);
+    }
+    .btn-action--main:hover {
+      background: linear-gradient(135deg, #c9a239, #a37c27);
+      box-shadow: 0 6px 20px rgba(216, 180, 107, 0.5);
+    }
+
+    /* Auto-direct Bar */
+    .timer-bar {
+      background: rgba(18, 26, 34, 0.7);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 680px;
+      gap: 1rem;
+      backdrop-filter: blur(12px);
+    }
+    .timer-info {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .timer-info b {
+      color: #ffffff;
+    }
+    .timer-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-timer {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--stroke);
+      color: var(--text);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .btn-timer:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: #64748b;
+      text-align: center;
+    }
+    .footer-note a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 680px) {
+      .timer-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-orb" aria-hidden="true"></div>
+  <div class="glow-orb-2" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    
+    <div class="logo-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+    </div>
+
+    <h1>Welcome to NurulQuran</h1>
+    <p class="subtitle">Please choose where you would like to go today:</p>
+
+    <!-- Destination Cards -->
+    <div class="choices-grid">
+
+      <!-- Choice 1: Events & Ireland Tour -->
+      <a href="https://events.nurulquran.com/" class="choice-card choice-card--events" id="linkEvents">
+        <div>
+          <div class="badge-wrap">
+            <span class="choice-badge choice-badge--events">☘️ Upcoming Tours &amp; Events</span>
+            <span class="destination-url">events.nurulquran.com</span>
+          </div>
+          <h2>Events &amp; Tour Portal</h2>
+          <p>Explore upcoming in-person tours, seminars, Dawrah schedules, and interactive event calendar.</p>
+          <ul class="feature-list">
+            <li><span>🇮🇪</span> <span>Ireland Tour 2026 with Ustazah Iffat Maqbool</span></li>
+            <li><span>🗓️</span> <span>Interactive Calendar, Dates &amp; Maps</span></li>
+            <li><span>👶</span> <span>Dedicated Kids &amp; Teens Programs</span></li>
+            <li><span>🖼️</span> <span>Full-Screen Flyers &amp; WhatsApp Sharing</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="btn-action btn-action--events">
+            <span>Explore Events Portal</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Choice 2: Main Website & Audio Portal -->
+      <a href="https://share.nq-international.com/" class="choice-card choice-card--main" id="linkMain">
+        <div>
+          <div class="badge-wrap">
+            <span class="choice-badge choice-badge--main">🎧 Audio Player &amp; Courses</span>
+            <span class="destination-url">nurulquran.com</span>
+          </div>
+          <h2>Main Website &amp; Library</h2>
+          <p>Access our vast digital library of Quranic audio lectures, tafseer series, courses, and resources.</p>
+          <ul class="feature-list">
+            <li><span>📖</span> <span>15,000+ Quranic Tafseer &amp; Hadith Audios</span></li>
+            <li><span>🎓</span> <span>Diploma &amp; Foundation Islamic Courses</span></li>
+            <li><span>📚</span> <span>Juz Root Words &amp; Surah Flowcharts</span></li>
+            <li><span>📱</span> <span>High-Speed Audio Player with Offline Support</span></li>
+          </ul>
+        </div>
+        <div>
+          <span class="btn-action btn-action--main">
+            <span>Continue to NurulQuran</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Smart Auto-direct notification bar -->
+    <div class="timer-bar" id="timerBar">
+      <div class="timer-info">
+        <span>⏱️</span>
+        <span>Auto-directing to Events Portal in <b id="countdown">8</b> seconds...</span>
+      </div>
+      <div class="timer-controls">
+        <button type="button" class="btn-timer" id="pauseBtn">Pause Timer</button>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <p>© 2008–2026 Nur-Ul-Quran International Institute. Serving learners worldwide.</p>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const EVENTS_URL = 'https://events.nurulquran.com/';
+    const MAIN_URL = 'https://share.nq-international.com/';
+    
+    // Auto-direct countdown logic
+    let secondsLeft = 8;
+    let isPaused = false;
+    const countdownEl = document.getElementById('countdown');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const timerBar = document.getElementById('timerBar');
+
+    const countdownInterval = setInterval(() => {
+      if (isPaused) return;
+      secondsLeft--;
+      if (countdownEl) countdownEl.textContent = secondsLeft;
+      
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        window.location.href = EVENTS_URL;
+      }
+    }, 1000);
+
+    // Pause functionality
+    pauseBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      if (isPaused) {
+        pauseBtn.textContent = 'Resume Timer';
+        timerBar.style.borderColor = 'rgba(255, 213, 79, 0.4)';
+      } else {
+        pauseBtn.textContent = 'Pause Timer';
+        timerBar.style.borderColor = 'var(--stroke)';
+      }
+    });
+
+    // If user clicks either card, prevent any delayed timer execution
+    document.getElementById('linkEvents').addEventListener('click', () => clearInterval(countdownInterval));
+    document.getElementById('linkMain').addEventListener('click', () => clearInterval(countdownInterval));
+  </script>
+</body>
+</html>
