@@ -3,7 +3,7 @@
   "subtitle": "Support our mission to spread the light of Quranic knowledge across the globe",
   "donateMessage": "Your generous contributions enable us to continue providing free and affordable Quranic education to students worldwide. Every donation is a Sadaqah Jariyah — a continuous charity.",
   "donateLink": "donate.html",
-  "zakatLink": "donate.html#zakat",
+  "zakatLink": "donate.html",
   "projects": [
     {
       "title": "Khayran Kaseer Project",
@@ -21,9 +21,9 @@
       "status": "seasonal"
     },
     {
-      "title": "General Donations & Zakat",
-      "description": "Support our ongoing operations, student scholarships, and community services through your generous donations and Zakat contributions.",
-      "link": "donate.html#zakat",
+      "title": "General Education & Dawah",
+      "description": "Support our ongoing operations, student scholarships, and digital learning platforms worldwide through your generous contributions.",
+      "link": "donate.html#sadaqah",
       "icon": "💝",
       "status": "active"
     }
