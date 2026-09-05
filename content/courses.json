@@ -30,13 +30,13 @@
       "id": "seerah-course",
       "title": "Seerah Course",
       "arabic": "السِّيرَة النَّبَوِيَّة",
-      "tag": "Live · 2026",
+      "tag": "Live Online · Mondays",
       "category": "character",
-      "description": "The life of the Prophet ﷺ studied in detail — character, events, lessons, and how his ﷺ example transforms our families, homes and relationships today.",
+      "description": "An in-depth, inspiring study of the blessed life, sublime character, and prophetic methodology of Prophet Muhammad ﷺ. Exploring historical events, moral lessons, and their practical application to contemporary personal, family, and home life.",
       "icon": "🕌",
       "color": "var(--accent-rose)",
       "link": "#courses",
-      "registerLink": "https://forms.gle/QBxBMFNyEiyameb97"
+      "registerLink": ""
     },
     {
       "id": "lulu-wal-marjaan",
