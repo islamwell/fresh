@@ -4,11 +4,23 @@
   "tagline": "Enlighten Your Lives with the Nur of Al Quran",
   "mission": "Nur-Ul-Quran International is an institute that offers detailed onsite and online Quranic education, which includes in-depth tafseer of the Noble Quran, an understanding of the vocabulary along with Arabic grammar and rules of proper tajweed. Students are also introduced to the Seerah — biography of our beloved Prophet Muhammad ﷺ. Our courses focus on character building and personality development of the students, towards living a successful family life and effective home management. Our goal is to make this precious knowledge of Al-Quran easily understandable and attainable for anyone with the desire to build a strong relationship with Allah ﷻ.",
   "stats": [
-    { "number": "10000+", "label": "Students Worldwide" },
-    { "number": "25+", "label": "Countries Reached" },
-    { "number": "18+", "label": "Years of Service" },
-    { "number": "50+", "label": "Courses Offered" }
+    { "number": "3800", "label": "Registered Students" },
+    { "number": "9", "label": "Active Courses" },
+    { "number": "20", "label": "Countries Reached" },
+    { "number": "18+", "label": "Years of Service" }
   ],
+  "enrollmentBreakdown": [
+    { "program": "SabeelulJannah", "coursesRunning": 3, "students": 2000 },
+    { "program": "Nurunalanur", "coursesRunning": 2, "students": 600 },
+    { "program": "Seerah Course", "coursesRunning": 1, "students": 800 },
+    { "program": "Kids Course", "coursesRunning": 2, "students": 300 },
+    { "program": "Teens Course", "coursesRunning": 1, "students": 100 }
+  ],
+  "enrollmentTotals": {
+    "students": 3800,
+    "courses": 9,
+    "countries": 20
+  },
   "contact": {
     "phones": [
       { "region": "USA", "number": "(508) 580-8350", "flag": "🇺🇸" },
