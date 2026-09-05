@@ -458,7 +458,7 @@
         courseCode = "Hifz & Ijazah Program";
       } else if (answers.goals.indexOf('tafseer') !== -1 || answers.goals.indexOf('understand') !== -1) {
         title = "✨ Sabeel ul Jannah / Nurun Ala Nur (Tafseer)";
-        desc = "Comprehensive journey through the Holy Qur'an with verse-by-verse Tafseer, Arabic vocabulary, and real-life application.";
+        desc = "2.5-year structured Quranic study with Tajweed, Word-by-Word Translation & Tafseer, Tafheem Us Sunnah, Seerah, and post-graduate advanced Nurun Ala Nur courses.";
         courseCode = "Sabeel ul Jannah Tafseer";
       } else if (answers.goals.indexOf('seerah') !== -1) {
         title = "🕌 Seerah of the Prophet Muhammad ﷺ";
